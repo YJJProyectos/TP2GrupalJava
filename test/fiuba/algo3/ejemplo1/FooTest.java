@@ -22,7 +22,7 @@ public class FooTest {
 	public void hacerFoo(){
         Foo foo = new Foo();
         String result = foo.doBar();
-        Assert.assertEquals("Foo", result);
+        Assert.assertEquals("Bar", result);
 	}
 
 }
