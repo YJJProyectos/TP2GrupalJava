@@ -24,5 +24,5 @@ public class FooTest {
         String result = foo.doBar();
         Assert.assertEquals("Bar", result);
 	}
- //dfd
+ //d
 }
