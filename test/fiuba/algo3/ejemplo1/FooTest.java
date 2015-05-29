@@ -23,7 +23,6 @@ public class FooTest {
         Foo foo = new Foo();
         String result = foo.doBar();
         Assert.assertEquals("Bar", result);
-        
 	}
 
 }
