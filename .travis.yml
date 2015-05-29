@@ -6,5 +6,6 @@ notifications:
      recipients:
        -  y_jiajun_16@hotmail.com
        -  sgandolfo@fi.uba.ar
-     on_failure: always
+       -  fedevb94@hotmail.com
+     on_failure: always 
      on_success: always
