@@ -7,5 +7,6 @@ notifications:
        -  y_jiajun_16@hotmail.com
        -  sgandolfo@fi.uba.ar
        -  fedevb94@hotmail.com
+       -  santiago.v.gandolfo@gmail.com
      on_failure: always 
      on_success: always
