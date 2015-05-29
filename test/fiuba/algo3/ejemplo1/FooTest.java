@@ -18,6 +18,11 @@ public class FooTest {
         String result = foo.doBar();
         Assert.assertEquals("Bar", result);
 	}
-	
+	@Test 
+	public void hacerFoo(){
+        Foo foo = new Foo();
+        String result = foo.doBar();
+        Assert.assertEquals("Foo", result);
+	}
 
 }
