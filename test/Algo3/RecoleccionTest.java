@@ -9,9 +9,15 @@ public class RecoleccionTest {
 	@Test
 	public void deberiaRecolectarGas() {
       Gas gas = new Gas();
-      Refineria refineria = new Refineria();
-      refineria.recolectar(gas);
-      Assert.assertEquals(5, refineria.getGas());
+      Recolectable refineria = new Refineria();
+      Assert.assertTrue( refineria.recolectar(gas) );
 	}
-
+    @Test 
+    public void deberiaRecolectarMineral(){
+    	
+      Mineral mineral = new Mineral();
+      Recolectable centroDeMineral = new CentroDeMineral();
+      Assert.assertTrue( centroDeMineral.recolectar(mineral));
+    	
+    }
 }

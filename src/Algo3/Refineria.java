@@ -1,6 +1,6 @@
 package Algo3;
 
-public class Refineria {
+public class Refineria implements Recolectable{
 	
 	private int cantidadGas;
     public Refineria(){
@@ -11,9 +11,13 @@ public class Refineria {
 		
 		return this.cantidadGas;
 	}
-	public void recolectar(Gas gas) {
+
+	public boolean recolectar(Object gas) {
 		
+//		Gas elGas = (Gas) gas;
+	//	elGas.cantidad()
 		this.cantidadGas += 5;
+	   return true;	
 	}
 
 }
