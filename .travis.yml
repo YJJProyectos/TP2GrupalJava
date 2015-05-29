@@ -1,3 +1,6 @@
 language: java
 jdk:
   - oraclejdk7
+notifications:
+  email:
+     - y_jiajun_16@hotmail.com
