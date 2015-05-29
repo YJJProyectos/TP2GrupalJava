@@ -1,7 +1,7 @@
-Ejemplo                                                                                                                                                                 
+TP2 Grupal Java                                                                                                                                                            
 ==========
 
-Este proyecto es un simple ejemplo que muestra un proyecto base en Java para la material Algo3.
+Mencionar en el comentario los cambios que se hicieron por commit
 
 ## Definición de pruebas
 ### Nombrar correctamente los archivos de pruebas
