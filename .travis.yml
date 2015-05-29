@@ -3,4 +3,5 @@ jdk:
   - oraclejdk7
 notifications:
   email:
+   recipients:
      - y_jiajun_16@hotmail.com
