@@ -3,14 +3,14 @@ package algo3;
 import algo3.Ocupable;
 
 public class Mapa {
-	Ocupable [][] matriz;
+	Ocupable [][] tablero;
 
 	public Mapa(int largo) {
-		matriz = new Ocupable[largo][largo];
+		tablero = new Ocupable[largo][largo];
 		return;
 	}
 	
 	public int tamanio(){
-		return matriz.length * matriz[0].length;
+		return tablero.length * tablero[0].length;
 	}
 }
