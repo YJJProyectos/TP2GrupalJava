@@ -1,19 +1,20 @@
 package recolectables;
 
-public abstract class EstructuraRecoleccionMineral implements Recolectable {
+import tp2.Mineral;
 
-	protected int cantidadMineral;
+public abstract class EstructuraRecoleccionMineral  {
 
-	public EstructuraRecoleccionMineral() {
+	protected Mineral mineral;
 
-		cantidadMineral = 0;
+	public EstructuraRecoleccionMineral(Mineral mineral) {
+
+		this.mineral = mineral;
 	}
 
-	public abstract boolean Recolectar(Object object);
 
 	public int getMineral() {
 
-		return cantidadMineral;
+		return this.mineral.getMineral();
 	}
 
 }

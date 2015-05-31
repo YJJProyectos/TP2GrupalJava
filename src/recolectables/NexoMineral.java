@@ -1,14 +1,16 @@
 package recolectables;
 
+import tp2.Mineral;
+
 public class NexoMineral extends EstructuraRecoleccionMineral implements
 		Recolectable {
 
-	public NexoMineral() {
-		super();
+	public NexoMineral(Mineral mineral) {
+		super(mineral);
 	}
 
 	@Override
-	public boolean Recolectar(Object object) {
+	public boolean Recolectar() {
 
 		return true;
 	}

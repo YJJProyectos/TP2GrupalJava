@@ -1,18 +1,19 @@
 package recolectables;
 
-public abstract class EstructuraRecoleccionGas implements Recolectable {
+import tp2.GasVespeno;
 
-	protected int cantidadGas;
+public abstract class EstructuraRecoleccionGas {
 
-	public EstructuraRecoleccionGas() {
+	protected GasVespeno gasVespeno;
 
-		cantidadGas = 0;
+	public EstructuraRecoleccionGas(GasVespeno gasVespeno) {
+
+		this.gasVespeno = gasVespeno;
 	}
 
-	public abstract boolean Recolectar(Object object);
 
 	public int getGas() {
 
-		return cantidadGas;
+		return this.gasVespeno.getGas();
 	}
 }
