@@ -1,5 +1,6 @@
 package peleables;
+import tp2.Accionable;
 
-public interface Peleable {
+public interface Peleable extends Accionable {
 
 }

@@ -1,8 +1,13 @@
 package tp2;
 
-public class CasillaTerrestre extends Casilla {
+import recolectables.Recolectable;
+import edificables.Edificable;
 
-	@Override
+public class CasillaTerrestre extends Casilla {
+	
+	Edificable edificio;
+	Recolectable recurso;
+	
 	public boolean es_terrestre() {
 		return true;
 	}
