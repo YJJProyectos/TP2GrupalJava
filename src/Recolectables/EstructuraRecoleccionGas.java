@@ -1,19 +1,18 @@
 package Recolectables;
 
+public abstract class EstructuraRecoleccionGas implements Recolectable {
 
-public abstract class EstructuraRecoleccionGas implements Recolectable{
-	
 	protected int cantidadGas;
-	
-	public EstructuraRecoleccionGas(){
-		
+
+	public EstructuraRecoleccionGas() {
+
 		cantidadGas = 0;
 	}
-	
+
 	public abstract boolean Recolectar(Object object);
-    
-	public int getGas(){
-		
+
+	public int getGas() {
+
 		return cantidadGas;
 	}
 }

@@ -6,11 +6,11 @@ import org.junit.Test;
 import algo3.CasillaTerrestre;
 
 public class CasillaTest {
-	
+
 	@Test
-	public void deberiaNoEstarOcupada (){
+	public void deberiaNoEstarOcupada() {
 		CasillaTerrestre casilla = new CasillaTerrestre();
-		
+
 		Assert.assertFalse(casilla.esta_ocupada());
 	}
 

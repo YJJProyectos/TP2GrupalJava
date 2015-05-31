@@ -1,6 +1,5 @@
 package Recolectables;
 
-
 public class Refineria extends EstructuraRecoleccionGas implements Recolectable {
 
 	public Refineria() {

@@ -10,7 +10,7 @@ public class AccesoTest {
 	@Test
 	public void deberiaTransportarUnZealot() {
 		Acceso acceso = new Acceso();
-		
+
 		Assert.assertTrue(acceso.transportarZealot());
 	}
 

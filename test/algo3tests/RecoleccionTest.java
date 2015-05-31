@@ -22,23 +22,24 @@ public class RecoleccionTest {
 
 	@Test
 	public void deberiaRecolectarMineralElCentroDeMineral() {
-		
+
 		Mineral mineral = new Mineral();
 		Recolectable centroDeMineral = new CentroDeMineral();
 		Assert.assertTrue(centroDeMineral.Recolectar(mineral));
 
 	}
+
 	@Test
-	public void deberiaRecolectarGasElAsimilador(){
+	public void deberiaRecolectarGasElAsimilador() {
 		Gas gas = new Gas();
 		Recolectable asimilador = new Asimilador();
 		Assert.assertTrue(asimilador.Recolectar(gas));
 	}
-	
+
 	@Test
-	public void deberiaRecolectarMineralElNexoMineral(){
+	public void deberiaRecolectarMineralElNexoMineral() {
 		Mineral mineral = new Mineral();
 		Recolectable nexoMineral = new NexoMineral();
-		Assert.assertTrue(nexoMineral.Recolectar(mineral));		
+		Assert.assertTrue(nexoMineral.Recolectar(mineral));
 	}
 }
