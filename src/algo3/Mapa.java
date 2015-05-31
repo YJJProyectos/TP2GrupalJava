@@ -1,10 +1,12 @@
 package algo3;
 
+import algo3.Ocupable;
+
 public class Mapa {
-	Casilla [][] matriz;
+	Ocupable [][] matriz;
 
 	public Mapa(int largo) {
-		matriz = new Casilla[largo][largo];
+		matriz = new Ocupable[largo][largo];
 		return;
 	}
 	
