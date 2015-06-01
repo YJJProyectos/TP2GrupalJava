@@ -10,7 +10,7 @@ public class UnidadSoldadoTest {
 	@Test
 	public void deberiaRecibirDanio() {
 
-		UnidadSoldado soldado = new UnidadSoldado();
+		UnidadSoldado soldado = new UnidadSoldado(1);
 		int vidaInicial = soldado.vidaRestante();
 		soldado.recibirDanio(1);
 		int vidaFinal = soldado.vidaRestante();
