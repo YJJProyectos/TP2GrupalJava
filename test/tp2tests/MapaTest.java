@@ -10,9 +10,9 @@ public class MapaTest {
 
 	@Test
 	public void deberiaTenerTamanio64() {
-		Mapa mapa = new Mapa(8);
+		Mapa mapa = new Mapa(4);
 
-		Assert.assertEquals(mapa.tamanio(), 64);
+		Assert.assertEquals(mapa.tamanio(), 400);
 	}
 
 }

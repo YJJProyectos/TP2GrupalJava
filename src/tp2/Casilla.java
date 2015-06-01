@@ -9,6 +9,9 @@ public abstract class Casilla implements Ocupable {
 	public boolean esta_ocupada() {
 		return (ocupante != null);
 	}
-
+	
+	public void ocupar(Peleable soldado) {
+		ocupante = soldado;
+	}
 	
 }
