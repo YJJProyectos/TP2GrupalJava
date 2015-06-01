@@ -3,14 +3,14 @@ package tp2tests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import peleables.UnidadSoldado;
+import peleables.Marine;
 
-public class UnidadSoldadoTest {
+public class MarineTest {
 
 	@Test
 	public void deberiaRecibirDanio() {
 
-		UnidadSoldado soldado = new UnidadSoldado(1);
+		Marine soldado = new Marine();
 		int vidaInicial = soldado.vidaRestante();
 		soldado.recibirDanio(1);
 		int vidaFinal = soldado.vidaRestante();

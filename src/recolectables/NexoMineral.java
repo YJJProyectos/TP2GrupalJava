@@ -10,7 +10,7 @@ public class NexoMineral extends EstructuraRecoleccionMineral implements
 	}
 
 	@Override
-	public boolean Recolectar() {
+	public boolean recolectar() {
 
 		return true;
 	}

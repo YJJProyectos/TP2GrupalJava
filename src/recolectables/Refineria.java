@@ -9,7 +9,7 @@ public class Refineria extends EstructuraRecoleccionGas implements Recolectable 
 		super(gasVespeno);
 	}
 
-	public boolean Recolectar() {
+	public boolean recolectar() {
 
 		// Gas elGas = (Gas) gas;
 		// elGas.cantidad()

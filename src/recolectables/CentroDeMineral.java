@@ -12,7 +12,7 @@ public class CentroDeMineral extends EstructuraRecoleccionMineral implements
 		this.cantidadMineralRecolectado = 0;
 	}
 
-	public boolean Recolectar() {
+	public boolean recolectar() {
 
 		boolean sePudoRecolectar = false;
 		int cantidadMineralSacado;

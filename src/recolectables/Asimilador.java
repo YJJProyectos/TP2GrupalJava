@@ -10,7 +10,7 @@ public class Asimilador extends EstructuraRecoleccionGas implements
 	}
 
 	@Override
-	public boolean Recolectar() {
+	public boolean recolectar() {
 
 		return true;
 	}

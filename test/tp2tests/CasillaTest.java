@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import tp2.CasillaTerrestre;
+import peleables.Marine;
 import peleables.Peleable;
-import peleables.UnidadSoldado;
 
 public class CasillaTest {
 
@@ -20,7 +20,7 @@ public class CasillaTest {
 	public void deberiaEstarOcupada() {
 		CasillaTerrestre casilla = new CasillaTerrestre();
 
-		Peleable soldado = new UnidadSoldado(1);
+		Peleable soldado = new Marine();
 		casilla.ocupar(soldado);
 
 		Assert.assertTrue(casilla.estaOcupada());

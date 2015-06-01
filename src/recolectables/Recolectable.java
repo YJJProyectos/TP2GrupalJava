@@ -2,7 +2,7 @@ package recolectables;
 
 public interface Recolectable {
 
-	public abstract boolean Recolectar();
+	public abstract boolean recolectar();
 
 	public abstract int getCantidadRecursoRecolectado();
 
