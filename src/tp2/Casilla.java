@@ -4,7 +4,7 @@ import peleables.Peleable;
 
 public abstract class Casilla implements Ocupable {
 
-	Peleable ocupante;
+	Accionable ocupante;
 
 	public boolean estaOcupada() {
 		return (ocupante != null);
