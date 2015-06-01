@@ -17,5 +17,5 @@ public class GolliatTest {
 
 		Assert.assertEquals(1, vidaInicial - vidaFinal);
 	}
-
+	
 }

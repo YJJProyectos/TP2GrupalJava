@@ -2,8 +2,7 @@ package peleables;
 
 public class Marine extends UnidadSoldado {
 
-		public Marine() {
-
+	public Marine() {
 		this.danioAereo = 6;
 		this.danioTerrestre = 6;
 		this.vida = 40;
@@ -13,4 +12,5 @@ public class Marine extends UnidadSoldado {
 		this.vision = 7;
 		this.transporte = 1;
 	}
+	
 }

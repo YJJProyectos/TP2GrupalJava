@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import peleables.Peleable;
 import peleables.Marine;
+import peleables.Golliat;
 
 public class MarineTest {
 
@@ -22,10 +23,10 @@ public class MarineTest {
 	public void atacarEnemigo() {
 		
 		Marine soldadoAliado = new Marine();
-		Peleable soldadoEnemigo = new Marine();
+		Peleable soldadoEnemigo = new Golliat();
 		soldadoAliado.atacarEnemigo(soldadoEnemigo);
 		
-		Assert.assertEquals(34, soldadoEnemigo.vidaRestante());
+		Assert.assertEquals(119, soldadoEnemigo.vidaRestante());
 	}
 
 }
