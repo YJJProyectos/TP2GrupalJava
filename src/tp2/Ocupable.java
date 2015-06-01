@@ -2,8 +2,8 @@ package tp2;
 
 public interface Ocupable {
 
-	public abstract boolean esta_ocupada();
+	public abstract boolean estaOcupada();
 
-	public abstract boolean es_terrestre();
+	public abstract boolean esTerrestre();
 
 }
