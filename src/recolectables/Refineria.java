@@ -16,5 +16,9 @@ public class Refineria extends EstructuraRecoleccionGas implements Recolectable 
 		//this.cantidadGas += 5;
 		return true;
 	}
+	
+	public int getCantidadRecursoRecolectado(){
+		return 0;		
+	}
 
 }

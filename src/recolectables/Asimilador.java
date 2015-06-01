@@ -14,5 +14,7 @@ public class Asimilador extends EstructuraRecoleccionGas implements
 
 		return true;
 	}
-
+	public int getCantidadRecursoRecolectado(){
+		return 0;	
+	}
 }

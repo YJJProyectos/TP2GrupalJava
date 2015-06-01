@@ -13,6 +13,19 @@ public class Mineral {
 		
 		return this.cantidadMineral;
 	}
+	
+	public boolean sacarMineral(int cantidadMineralASacar) {
+		
+		boolean sePudoSacarMineral = false;
+		
+		if (this.cantidadMineral >= cantidadMineralASacar){
+			
+			this.cantidadMineral -= cantidadMineralASacar;
+			sePudoSacarMineral = true;
+		}
+		
+		return sePudoSacarMineral;
+	}
 
 
 }

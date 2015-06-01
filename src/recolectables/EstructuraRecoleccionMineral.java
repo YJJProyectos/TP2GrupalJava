@@ -12,9 +12,4 @@ public abstract class EstructuraRecoleccionMineral  {
 	}
 
 
-	public int getMineral() {
-
-		return this.mineral.getMineral();
-	}
-
 }

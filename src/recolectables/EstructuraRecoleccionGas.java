@@ -12,8 +12,4 @@ public abstract class EstructuraRecoleccionGas {
 	}
 
 
-	public int getGas() {
-
-		return this.gasVespeno.getGas();
-	}
 }
