@@ -17,12 +17,4 @@ public abstract class UnidadSoldado extends Unidad implements Peleable {
 		enemigo.recibirDanio(this.danioTerrestre);
 	}
 
-	public void recibirDanio(int danio) {
-		this.vida = (this.vida - danio);
-	}
-
-	public int vidaRestante() {
-		return this.vida;
-	}
-
 }
