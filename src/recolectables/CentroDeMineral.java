@@ -14,11 +14,13 @@ public class CentroDeMineral extends EstructuraRecoleccionMineral implements
 
 	public boolean Recolectar() {
 
-		boolean sePudoRecolectar;
+		boolean sePudoRecolectar = false;
+		int cantidadMineralSacado;
 
-		sePudoRecolectar = super.mineral.sacarMineral(10);
-		if (sePudoRecolectar) { // ver si hacerlo en una excepcion
-			this.cantidadMineralRecolectado += 10;
+		cantidadMineralSacado = super.mineral.sacarMineral(10);
+		if (cantidadMineralSacado > 0) { // ver si hacerlo en una excepcion
+			this.cantidadMineralRecolectado += cantidadMineralSacado;
+			sePudoRecolectar = true;
 		}
 
 		return sePudoRecolectar;

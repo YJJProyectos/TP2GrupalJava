@@ -4,9 +4,9 @@ public class Mineral {
 
 	private int cantidadMineral;
 
-	public Mineral() {
+	public Mineral(int cantidad) {
 
-		this.cantidadMineral = 1000;
+		this.cantidadMineral = cantidad;
 	}
 
 	public int getMineral() {
@@ -14,17 +14,19 @@ public class Mineral {
 		return this.cantidadMineral;
 	}
 
-	public boolean sacarMineral(int cantidadMineralASacar) {
+	public int sacarMineral(int cantidadMineralASacar) {
 
-		boolean sePudoSacarMineral = false;
+		int cantidadMineralSacado = 0;
 
-		if (this.cantidadMineral >= cantidadMineralASacar) {
-
-			this.cantidadMineral -= cantidadMineralASacar;
-			sePudoSacarMineral = true;
+		if (this.cantidadMineral > 0) {
+			cantidadMineralSacado = cantidadMineralASacar;
+			if (this.cantidadMineral < cantidadMineralASacar){
+				cantidadMineralSacado = this.cantidadMineral;
+			}
+			this.cantidadMineral -= cantidadMineralSacado;
 		}
 
-		return sePudoSacarMineral;
+		return cantidadMineralSacado;
 	}
 
 }

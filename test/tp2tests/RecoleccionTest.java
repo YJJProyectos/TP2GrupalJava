@@ -23,7 +23,7 @@ public class RecoleccionTest {
 	@Test
 	public void deberiaRecolectarMineralElCentroDeMineral() {
 
-		Mineral mineral = new Mineral();
+		Mineral mineral = new Mineral(30);
 		Recolectable centroDeMineral = new CentroDeMineral(mineral);
 		Assert.assertTrue(centroDeMineral.Recolectar());
 
@@ -38,14 +38,14 @@ public class RecoleccionTest {
 
 	@Test
 	public void deberiaRecolectarMineralElNexoMineral() {
-		Mineral mineral = new Mineral();
+		Mineral mineral = new Mineral(10);
 		Recolectable nexoMineral = new NexoMineral(mineral);
 		Assert.assertTrue(nexoMineral.Recolectar());
 	}
 
 	@Test
 	public void noDeberiaPoderRecolectarElCentroDeMineralSiSeAcabaElMineral() {
-		Mineral mineral = new Mineral();
+		Mineral mineral = new Mineral(1000);
 		Recolectable centroDeMineral = new CentroDeMineral(mineral);
 		for (int i = 1; i <= 100; i++) { // 100 turnos , se saca todo el mineral
 			centroDeMineral.Recolectar();
@@ -55,11 +55,18 @@ public class RecoleccionTest {
 
 	@Test
 	public void deberiaRecolectar50MineralEn5TurnosElCentroDeMineral() {
-		Mineral mineral = new Mineral();
+		Mineral mineral = new Mineral(1000);
 		Recolectable centroDeMineral = new CentroDeMineral(mineral);
 		for (int i = 1; i <= 5; i++) {
 			centroDeMineral.Recolectar();
 		}
 		Assert.assertEquals(50, centroDeMineral.getCantidadRecursoRecolectado());
+	}
+	@Test
+	public void deberiaRecolectarSiElMineralTiene7(){
+		Mineral mineral = new Mineral(7);
+		Recolectable centroDeMineral = new CentroDeMineral(mineral);
+		centroDeMineral.Recolectar();
+		Assert.assertEquals(7,centroDeMineral.getCantidadRecursoRecolectado());
 	}
 }
