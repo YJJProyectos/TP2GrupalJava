@@ -4,10 +4,7 @@
 	<property name="classes.dir" location="build" />
 	<property name="instrumented.dir" location="${build}/instrumented" />
 	<property name="cobertura.dir" location="${libs}" />
-<<<<<<< HEAD
-=======
 	<property name="pmd.dir" location="${libs}/analysis" />
->>>>>>> 85a3e1c13463754587318104d1d82a489daf1cb7
 	<property name="reports.dir" location="${build}/reports" />
 	<property name="reports.xml.dir" location="${reports.dir}/junit-xml" />
 	<property name="reports.html.dir" location="${reports.dir}/junit-html" />
@@ -16,16 +13,6 @@
 	<property name="coverage.summaryxml.dir" location="${reports.dir}/cobertura-summary-xml" />
 	<property name="coverage.html.dir" location="${reports.dir}/cobertura-html" />
 
-<<<<<<< HEAD
-  <!-- Ivy customization -->
-  <property name="ivy.install.version" value="2.2.0"/>
-  <property name="ivy.jar.dir" value="${libs}/"/>
-  <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
-  <!-- End of 'Ivy customization -->
-
-  <!-- For those who are behind a proxy you may add the line bellow -->
-  <!-- <setproxy proxyhost="proxy.domain.x.y" proxyport="8080" proxypassword="passwd" proxyuser="userid"/> -->
-=======
 	<!-- Ivy customization -->
 	<property name="ivy.install.version" value="2.2.0" />
 	<property name="ivy.jar.dir" value="${libs}/" />
@@ -34,7 +21,6 @@
 
 	<!-- For those who are behind a proxy you may add the line bellow -->
 	<!-- <setproxy proxyhost="proxy.domain.x.y" proxyport="8080" proxypassword="passwd" proxyuser="userid"/> -->
->>>>>>> 85a3e1c13463754587318104d1d82a489daf1cb7
 
 	<path id="classpath">
 		<fileset dir="${libs}">
@@ -47,22 +33,11 @@
 
 	<path id="cobertura.classpath">
 		<fileset dir="${cobertura.dir}">
-<<<<<<< HEAD
-      <include name="cobertura-1.9.4.1.jar" />
-=======
 			<include name="cobertura-1.9.4.1.jar" />
->>>>>>> 85a3e1c13463754587318104d1d82a489daf1cb7
 			<include name="*.jar" />
 		</fileset>
 	</path>
 
-<<<<<<< HEAD
-	<target name="setup">
-		<delete dir="${build}" />
-		<mkdir dir="${build}"/>
-		<mkdir dir="${build}/classes"/>
-		<mkdir dir="${build}/tests"/>
-=======
 	<path id="pmd.classpath">
 		<fileset dir="${pmd.dir}">
 			<include name="*.jar" />
@@ -74,18 +49,13 @@
 		<mkdir dir="${build}" />
 		<mkdir dir="${build}/classes" />
 		<mkdir dir="${build}/tests" />
->>>>>>> 85a3e1c13463754587318104d1d82a489daf1cb7
 	</target>
 
 	<target name="compilar.aplicacion" depends="setup, resolve">
 		<javac srcdir="src" destdir="${build}" includeantruntime="false" debug="yes" target="1.7">
 		</javac>
 	</target>
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 85a3e1c13463754587318104d1d82a489daf1cb7
 	<target name="compilar.tests" depends="instrumentar.aplicacion">
 		<javac srcdir="test" destdir="${build}/tests" includeantruntime="false" debug="yes" target="1.7">
 			<classpath refid="classpath" />
@@ -94,15 +64,8 @@
 
 
 	<target name="ejecutar.tests" depends="compilar.tests">
-<<<<<<< HEAD
-		<junit fork="yes" failureProperty="test.failure"  forkmode="once">
-			<!-- <classpath refid="classpath" /> -->
-			<sysproperty key="net.sourceforge.cobertura.datafile"
-					file="${build}/cobertura.ser" />
-=======
 		<junit fork="yes" failureProperty="test.failure" forkmode="once">
 			<sysproperty key="net.sourceforge.cobertura.datafile" file="${build}/cobertura.ser" />
->>>>>>> 85a3e1c13463754587318104d1d82a489daf1cb7
 			<classpath location="${instrumented.dir}" />
 			<classpath location="${build}" />
 			<classpath refid="cobertura.classpath" />
@@ -124,15 +87,9 @@
 
 
 	<target name="instrumentar.aplicacion" depends="compilar.aplicacion, init">
-<<<<<<< HEAD
-		<delete file="${build}/cobertura.ser"/>					
-		<delete dir="${instrumented.dir}" />
-	  <taskdef classpathref="cobertura.classpath" resource="tasks.properties"/>
-=======
 		<delete file="${build}/cobertura.ser" />
 		<delete dir="${instrumented.dir}" />
 		<taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
->>>>>>> 85a3e1c13463754587318104d1d82a489daf1cb7
 		<cobertura-instrument todir="${instrumented.dir}" datafile="${build}/cobertura.ser">
 			<ignore regex="org.apache.log4j.*" />
 			<fileset dir="${classes.dir}">
@@ -163,62 +120,11 @@
 	<target name="alternate-coverage-report">
 		<cobertura-report destdir="${coverage.html.dir}" datafile="${build}/cobertura.ser">
 			<fileset dir="${src.dir}">
-<<<<<<< HEAD
-				<include name="**/*.java"/>
-=======
 				<include name="**/*.java" />
->>>>>>> 85a3e1c13463754587318104d1d82a489daf1cb7
 			</fileset>
 		</cobertura-report>
 	</target>
 
-<<<<<<< HEAD
-	<taskdef resource="checkstyletask.properties" classpath="${libs}/checkstyle-5.5-all.jar"/>
-
-	<target name="checkstyle" description="Generates a report of code convention violations.">
-  		<checkstyle config="${libs}/sun_checks.xml"
-              failureProperty="checkstyle.failure"
-              failOnViolation="false">
-	    	<fileset dir="src" includes="**/*.java"/>
-  		</checkstyle>
-	</target>
-
-	<target name="test" depends="ejecutar.tests, coverage-report, alternate-coverage-report" description="Compile, instrument ourself, run the tests and generate JUnit and coverage reports."/>
-
-	<target name="compilar.paquete" depends="test">
-		<javac srcdir="src" destdir="${build}/classes" debug="no"></javac>
-	</target>
-
-	<target name="empaquetar" depends="compilar.paquete">
-		<jar destfile="${build}/dist/titiritero.jar" basedir="${build}/classes"/>
-	</target>
-
-	<target name="integracion-continua" depends="coverage-report,alternate-coverage-report" description="Ejecuta todas las tareas de integracion y genera los correspondientes reportes"/>
-
-  <!-- Ivy installation -->
-  <target name="download-ivy" unless="skip.download">
-    <mkdir dir="${ivy.jar.dir}"/>
-    <!-- download Ivy from web site so that it can be used even 
-         without any special installation -->
-    <echo message="installing ivy..."/>
-    <get src="http://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true"/>
-  </target>
-
-  <target name="install-ivy" depends="download-ivy" description="--> install ivy">
-    <path id="ivy.lib.path">
-    <fileset dir="${ivy.jar.dir}" includes="*.jar"/>
-    </path>
-    <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
-  </target>
-  <!-- End of 'Ivy installation -->
-
-  <!-- Resolve dependencies -->
-  <target name="resolve" depends="install-ivy" description="--> retrieve dependencies with ivy">
-    <ivy:retrieve pattern="${libs}/[artifact]-[type]-[revision].[ext]"/>
-  </target>
-  <!-- End of 'Resolve dependencies -->
-
-=======
 	<target name="test" depends="ejecutar.tests, coverage-report, alternate-coverage-report" description="Compile, instrument ourself, run the tests and generate JUnit and coverage reports." />
 
 	<target name="compilar.paquete" depends="test">
@@ -271,6 +177,5 @@
 			</fileset>
 		</pmd>
 	</target>
->>>>>>> 85a3e1c13463754587318104d1d82a489daf1cb7
 
 </project>
