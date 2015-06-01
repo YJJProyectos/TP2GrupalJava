@@ -2,15 +2,7 @@ package peleables;
 
 public class Marine extends UnidadSoldado {
 
-	protected int danioAereo;
-	protected int danioTerrestre;
-	protected int transporte;
-	protected int vision;
-	protected int suministro;
-	protected int rangoAereo;
-	protected int rangoTerrestre;
-
-	public Marine() {
+		public Marine() {
 
 		this.danioAereo = 6;
 		this.danioTerrestre = 6;
