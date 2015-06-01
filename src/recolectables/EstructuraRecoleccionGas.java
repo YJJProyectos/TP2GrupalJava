@@ -11,5 +11,4 @@ public abstract class EstructuraRecoleccionGas {
 		this.gasVespeno = gasVespeno;
 	}
 
-
 }

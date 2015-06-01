@@ -1,6 +1,5 @@
 package tp2tests;
 
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -43,22 +42,24 @@ public class RecoleccionTest {
 		Recolectable nexoMineral = new NexoMineral(mineral);
 		Assert.assertTrue(nexoMineral.Recolectar());
 	}
+
 	@Test
-	public void noDeberiaPoderRecolectarElCentroDeMineralSiSeAcabaElMineral(){
+	public void noDeberiaPoderRecolectarElCentroDeMineralSiSeAcabaElMineral() {
 		Mineral mineral = new Mineral();
 		Recolectable centroDeMineral = new CentroDeMineral(mineral);
-		for (int i = 1; i <= 100; i++ ){  // 100 turnos , se saca todo el mineral
+		for (int i = 1; i <= 100; i++) { // 100 turnos , se saca todo el mineral
 			centroDeMineral.Recolectar();
 		}
 		Assert.assertFalse(centroDeMineral.Recolectar());
 	}
+
 	@Test
-	public void deberiaRecolectar50MineralEn5TurnosElCentroDeMineral(){
+	public void deberiaRecolectar50MineralEn5TurnosElCentroDeMineral() {
 		Mineral mineral = new Mineral();
 		Recolectable centroDeMineral = new CentroDeMineral(mineral);
-		for (int i = 1; i <= 5; i++ ){  
+		for (int i = 1; i <= 5; i++) {
 			centroDeMineral.Recolectar();
-		}	
+		}
 		Assert.assertEquals(50, centroDeMineral.getCantidadRecursoRecolectado());
 	}
 }

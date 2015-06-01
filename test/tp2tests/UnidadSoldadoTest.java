@@ -11,9 +11,9 @@ public class UnidadSoldadoTest {
 	public void deberiaRecibirDanio() {
 
 		UnidadSoldado soldado = new UnidadSoldado();
-		int vidaInicial = soldado.getVida();
-		soldado.recibir_danio(1);
-		int vidaFinal = soldado.getVida();
+		int vidaInicial = soldado.vidaRestante();
+		soldado.recibirDanio(1);
+		int vidaFinal = soldado.vidaRestante();
 
 		Assert.assertEquals(1, vidaInicial - vidaFinal);
 	}

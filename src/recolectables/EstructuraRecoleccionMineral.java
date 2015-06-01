@@ -2,7 +2,7 @@ package recolectables;
 
 import tp2.Mineral;
 
-public abstract class EstructuraRecoleccionMineral  {
+public abstract class EstructuraRecoleccionMineral {
 
 	protected Mineral mineral;
 
@@ -10,6 +10,5 @@ public abstract class EstructuraRecoleccionMineral  {
 
 		this.mineral = mineral;
 	}
-
 
 }

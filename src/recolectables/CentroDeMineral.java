@@ -4,7 +4,7 @@ import tp2.Mineral;
 
 public class CentroDeMineral extends EstructuraRecoleccionMineral implements
 		Recolectable {
-	
+
 	private int cantidadMineralRecolectado;
 
 	public CentroDeMineral(Mineral mineral) {
@@ -13,18 +13,18 @@ public class CentroDeMineral extends EstructuraRecoleccionMineral implements
 	}
 
 	public boolean Recolectar() {
-		
+
 		boolean sePudoRecolectar;
-		
+
 		sePudoRecolectar = super.mineral.sacarMineral(10);
-		if (sePudoRecolectar){  // ver si hacerlo en una excepcion
+		if (sePudoRecolectar) { // ver si hacerlo en una excepcion
 			this.cantidadMineralRecolectado += 10;
 		}
 
 		return sePudoRecolectar;
 	}
-	
-	public int getCantidadRecursoRecolectado(){
+
+	public int getCantidadRecursoRecolectado() {
 		return this.cantidadMineralRecolectado;
 	}
 }

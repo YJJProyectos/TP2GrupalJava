@@ -7,8 +7,8 @@ public class CasillaTerrestre extends Casilla {
 	
 	Edificable edificio;
 	Recolectable recurso;
-	
-	public boolean es_terrestre() {
+
+	public boolean esTerrestre() {
 		return true;
 	}
 }

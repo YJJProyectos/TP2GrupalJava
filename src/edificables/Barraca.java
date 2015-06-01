@@ -10,8 +10,4 @@ public class Barraca implements Edificable {
 		return true;
 	}
 
-	public boolean edificar(Object object) {
-		return true;
-	}
-
 }

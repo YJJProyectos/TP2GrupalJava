@@ -15,16 +15,16 @@ public class UnidadSoldado extends Unidad implements Peleable {
 		this.vida = 4;
 	}
 
-	public void atacar_enemigo(Peleable enemigo) {
+	public void atacarEnemigo(Peleable enemigo) {
 		return;
 	}
 
-	public void recibir_danio(int danio) {
+	public void recibirDanio(int danio) {
 		this.vida = (this.vida - danio);
 	}
 
-	public int getVida() {
-
+	@Override
+	public int vidaRestante() {
 		return this.vida;
 	}
 

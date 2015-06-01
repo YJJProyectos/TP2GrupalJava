@@ -13,12 +13,12 @@ public class Refineria extends EstructuraRecoleccionGas implements Recolectable 
 
 		// Gas elGas = (Gas) gas;
 		// elGas.cantidad()
-		//this.cantidadGas += 5;
+		// this.cantidadGas += 5;
 		return true;
 	}
-	
-	public int getCantidadRecursoRecolectado(){
-		return 0;		
+
+	public int getCantidadRecursoRecolectado() {
+		return 0;
 	}
 
 }

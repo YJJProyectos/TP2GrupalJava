@@ -6,7 +6,7 @@ public class Mapa {
 	Ocupable[][] tablero;
 
 	public Mapa(int bases) {
-		tablero = new Ocupable[bases*5][bases*5];
+		tablero = new Ocupable[bases * 5][bases * 5];
 	}
 
 	public int tamanio() {
