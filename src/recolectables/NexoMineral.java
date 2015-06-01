@@ -18,4 +18,7 @@ public class NexoMineral extends EstructuraRecoleccionMineral implements
 	public int getCantidadRecursoRecolectado() {
 		return 0;
 	}
+	public boolean edificar(){
+		return true;
+	}
 }

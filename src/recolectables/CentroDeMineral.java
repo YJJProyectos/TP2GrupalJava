@@ -29,4 +29,8 @@ public class CentroDeMineral extends EstructuraRecoleccionMineral implements
 	public int getCantidadRecursoRecolectado() {
 		return this.cantidadMineralRecolectado;
 	}
+	public boolean edificar(){
+		
+		return true;	
+	}
 }
