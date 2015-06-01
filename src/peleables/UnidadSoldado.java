@@ -1,8 +1,9 @@
 package peleables;
 
+import tp2.Accionable;
 import tp2.Unidad;
 
-public class UnidadSoldado extends Unidad implements Peleable {
+public abstract class UnidadSoldado extends Unidad implements Peleable {
 
 	protected int danioAereo;
 	protected int danioTerrestre;
@@ -12,15 +13,14 @@ public class UnidadSoldado extends Unidad implements Peleable {
 	protected int rangoAereo;
 	protected int rangoTerrestre;
 
-	public void atacarEnemigo(Peleable enemigo) {
-		return;
+	public void atacarEnemigo(Accionable enemigo) {
+		//enemigo.recibirDanio(this.danioTerrestre);
 	}
 
 	public void recibirDanio(int danio) {
 		this.vida = (this.vida - danio);
 	}
 
-	@Override
 	public int vidaRestante() {
 		return this.vida;
 	}

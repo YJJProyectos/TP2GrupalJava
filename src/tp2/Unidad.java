@@ -4,11 +4,11 @@ public abstract class Unidad implements Accionable {
 	
 	protected int vida;
 
-	public void recibir_danio(int danio) {
+	public void recibirDanio(int danio) {
 		return;
 	}
 
-	public int vida_restante() {
+	public int vidaRestante() {
 		return 0;
 	}
 }

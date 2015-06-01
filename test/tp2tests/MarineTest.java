@@ -17,5 +17,13 @@ public class MarineTest {
 
 		Assert.assertEquals(1, vidaInicial - vidaFinal);
 	}
+	//@Test
+	//public void atacarEnemigo() {
+	//	Marine soldadoAliado = new Marine();
+	//	Marine soldadoEnemigo = new Marine();
+	//	soldadoAliado.atacarEnemigo(soldadoEnemigo);
+		
+	//	Assert.assertEquals(34, soldadoEnemigo.vidaRestante());
+	//}
 
 }
