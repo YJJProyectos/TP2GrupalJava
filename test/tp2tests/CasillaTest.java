@@ -20,7 +20,7 @@ public class CasillaTest {
 	public void deberiaEstarOcupada() {
 		CasillaTerrestre casilla = new CasillaTerrestre();
 
-		Peleable soldado = new UnidadSoldado();
+		Peleable soldado = new UnidadSoldado(1);
 		casilla.ocupar(soldado);
 
 		Assert.assertTrue(casilla.estaOcupada());
