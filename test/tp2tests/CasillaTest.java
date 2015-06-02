@@ -32,6 +32,7 @@ public class CasillaTest {
 		Assert.assertTrue(casilla.estaOcupada());
 	}
 
+	@Test
 	public void unaCasillaDeRecursodeberiaEstarOcupada() {
 		Recolectable recurso = new Mineral(1000);
 		CasillaDeRecurso casilla = new CasillaDeRecurso(recurso);
@@ -39,6 +40,7 @@ public class CasillaTest {
 		Assert.assertTrue(casilla.estaOcupada());
 	}
 
+	@Test
 	public void unaCasillaDeRecursosNoEstaOcupadaPorUnEdificio() {
 		Recolectable recurso = new Mineral(1000);
 		CasillaDeRecurso casilla = new CasillaDeRecurso(recurso);
@@ -46,6 +48,7 @@ public class CasillaTest {
 		Assert.assertFalse(casilla.estaOcupadaPorUnEdificio());
 	}
 
+	@Test
 	public void unaCasillaDeRecursosEstaOcupadaPorUnEdificio() {
 		Recolectable recurso = new Mineral(1000);
 		Recolectante edificio = new CentroDeMineral(recurso);
