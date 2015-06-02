@@ -3,9 +3,10 @@ package tp2tests;
 import org.junit.Assert;
 import org.junit.Test;
 
+import excepciones.CoordenadaInvalidaError;
+
 import peleables.Marine;
 
-import Excepciones.CoordenadaInvalidaError;
 import tp2.Coordenada;
 import tp2.Mapa;
 

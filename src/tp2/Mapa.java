@@ -2,7 +2,8 @@ package tp2;
 
 import java.util.HashMap;
 
-import Excepciones.CoordenadaInvalidaError;
+import excepciones.CoordenadaInvalidaError;
+
 import tp2.Ocupable;
 
 public class Mapa {
