@@ -2,7 +2,7 @@ package tp2;
 
 public abstract class Casilla implements Ocupable {
 
-	Accionable ocupante;
+	protected Accionable ocupante;
 
 	public boolean estaOcupada() {
 		return (ocupante != null);
@@ -12,9 +12,12 @@ public abstract class Casilla implements Ocupable {
 		return ocupante;
 	}
 
-	public void agregarElemento(Accionable elemento) {
-		ocupante = elemento;
-		
+	public boolean ocupar(Accionable unidad) {
+		if (ocupante == null) {
+			ocupante = unidad;
+			return true;
+		}
+		return false;
 	}
 
 }

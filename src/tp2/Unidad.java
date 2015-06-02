@@ -1,7 +1,9 @@
 package tp2;
+import tp2.Ocupable;
 
 public abstract class Unidad implements Accionable {
 	
+	protected Ocupable casilla;
 	protected int vida;
 
 	public void recibirDanio(int danio) {
@@ -14,5 +16,9 @@ public abstract class Unidad implements Accionable {
 	
 	public boolean estaDestruido(){
 		return (vida <= 0);
+	}
+	
+	public void posicionar(Ocupable casilla){
+		if (casilla.ocupar(this)) this.casilla = casilla;
 	}
 }

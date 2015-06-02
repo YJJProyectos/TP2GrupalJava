@@ -8,6 +8,6 @@ public interface Ocupable {
 	
 	public abstract Accionable obtenerElemento();
 
-	public abstract void agregarElemento(Accionable elemento);
-
+	public abstract boolean ocupar(Accionable unidad);
+	
 }

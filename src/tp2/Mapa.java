@@ -73,7 +73,7 @@ public class Mapa {
 	public void agregarElementoEnPosicion(Accionable elemento, Coordenada coordenada) {
 		
 		Ocupable casillero = tablero.get(coordenada);
-		casillero.agregarElemento(elemento);		
+		casillero.ocupar(elemento);		
 	}
 	
 	public Accionable obtenerElementoEnPosicion(Coordenada coordenada) {

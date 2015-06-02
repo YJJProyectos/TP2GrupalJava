@@ -26,7 +26,7 @@ public class CasillaTest {
 		CasillaTerrestre casilla = new CasillaTerrestre();
 
 		Peleable soldado = new Marine();
-		casilla.agregarElemento(soldado);
+		casilla.ocupar(soldado);
 
 		Assert.assertTrue(casilla.estaOcupada());
 	}
