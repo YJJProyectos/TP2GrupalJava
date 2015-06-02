@@ -8,20 +8,9 @@ import peleables.Marine;
 import peleables.Golliat;
 
 public class MarineTest {
-
-	@Test
-	public void deberiaRecibirDanio() {
-
-		Marine soldado = new Marine();
-		int vidaInicial = soldado.vidaRestante();
-		soldado.recibirDanio(1);
-		int vidaFinal = soldado.vidaRestante();
-
-		Assert.assertEquals(1, vidaInicial - vidaFinal);
-	}
 	
 	@Test
-	public void atacarEnemigo() {
+	public void deberiaDaniarEnemigo() {
 		
 		Marine soldadoAliado = new Marine();
 		Peleable soldadoEnemigo = new Golliat();
@@ -30,13 +19,4 @@ public class MarineTest {
 		Assert.assertEquals(119, soldadoEnemigo.vidaRestante());
 	}
 	
-	@Test
-	public void deberiaEstarDetruido(){
-		
-		Marine soldado = new Marine();
-		soldado.recibirDanio(1000);
-		
-		Assert.assertTrue(soldado.estaDestruido());
-	}
-
 }

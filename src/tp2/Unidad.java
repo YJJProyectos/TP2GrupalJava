@@ -4,7 +4,7 @@ import interfaces.Ocupable;
 
 public abstract class Unidad implements Accionable {
 	
-	protected Ocupable casilla;
+	protected Ocupable posicion;
 	protected int vida;
 
 	public void recibirDanio(int danio) {
@@ -19,7 +19,11 @@ public abstract class Unidad implements Accionable {
 		return (vida <= 0);
 	}
 	
+	public Ocupable posicion (){
+		return posicion;
+	}
+	
 	public void posicionar(Ocupable casilla){
-		if (casilla.ocupar(this)) this.casilla = casilla;
+		if (casilla.ocupar(this)) this.posicion = casilla;
 	}
 }

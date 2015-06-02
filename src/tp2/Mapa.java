@@ -29,6 +29,7 @@ public class Mapa {
 
 				Coordenada coordenada = new Coordenada(fila, columna);
 				Ocupable ocupable = new CasillaTerrestre();
+				ocupable.situar(coordenada);
 				tablero.put(coordenada, ocupable);
 			}
 
@@ -57,6 +58,15 @@ public class Mapa {
 
 		return distancia;
 	}
+	
+	public int distanciaEntre(Ocupable posicion1, Ocupable posicion2) {
+		try {
+			int distancia = this.distanciaEntre(posicion1.posicion(),posicion2.posicion());
+			return distancia;
+		} catch(CoordenadaInvalidaError error) {
+			return -1;
+		}
+	}
 
 	private void validarCoordenada(Coordenada coordenada)
 			throws CoordenadaInvalidaError {
@@ -75,7 +85,7 @@ public class Mapa {
 	public void agregarElementoEnPosicion(Accionable elemento, Coordenada coordenada) {
 		
 		Ocupable casillero = tablero.get(coordenada);
-		casillero.ocupar(elemento);		
+		elemento.posicionar(casillero);		
 	}
 	
 	public Accionable obtenerElementoEnPosicion(Coordenada coordenada) {

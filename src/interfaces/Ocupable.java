@@ -1,5 +1,6 @@
 package interfaces;
 
+import tp2.Coordenada;
 
 public interface Ocupable {
 
@@ -10,5 +11,9 @@ public interface Ocupable {
 	public abstract Accionable ocupante();
 
 	public abstract boolean ocupar(Accionable unidad);
+	
+	public abstract void situar(Coordenada coordenada);
+	
+	public abstract Coordenada posicion();
 	
 }

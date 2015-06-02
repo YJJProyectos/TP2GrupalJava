@@ -1,21 +1,22 @@
 package tp2tests;
 
+import interfaces.Peleable;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import peleables.Golliat;
+import peleables.Marine;
 
 public class GolliatTest {
 
 	@Test
-	public void deberiaRecibirDanio() {
-
-		Golliat soldado = new Golliat();
-		int vidaInicial = soldado.vidaRestante();
-		soldado.recibirDanio(1);
-		int vidaFinal = soldado.vidaRestante();
-
-		Assert.assertEquals(1, vidaInicial - vidaFinal);
+	public void deberiaDaniarEnemigo() {
+		
+		Golliat soldadoAliado = new Golliat();
+		Peleable soldadoEnemigo = new Marine();
+		soldadoAliado.atacarEnemigo(soldadoEnemigo);
+		
+		Assert.assertEquals(28, soldadoEnemigo.vidaRestante());
 	}
-	
 }

@@ -5,6 +5,7 @@ import interfaces.Ocupable;
 
 public abstract class Casilla implements Ocupable {
 
+	protected Coordenada ubicacion;
 	protected Accionable ocupante;
 
 	public boolean estaOcupada() {
@@ -21,6 +22,11 @@ public abstract class Casilla implements Ocupable {
 		ocupante = null;
 	}
 	
+	public void situar(Coordenada posicion) {
+		ubicacion = posicion;
+	}
 	
-
+	public Coordenada posicion(){
+		return ubicacion;
+	}
 }
