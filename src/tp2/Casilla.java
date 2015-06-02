@@ -1,7 +1,5 @@
 package tp2;
 
-import peleables.Peleable;
-
 public abstract class Casilla implements Ocupable {
 
 	Accionable ocupante;
@@ -10,8 +8,8 @@ public abstract class Casilla implements Ocupable {
 		return (ocupante != null);
 	}
 
-	public void ocupar(Peleable soldado) {
-		ocupante = soldado;
+	public void ocupar(Accionable ente) {
+		ocupante = ente;
 	}
 
 }
