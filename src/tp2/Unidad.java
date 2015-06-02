@@ -11,4 +11,8 @@ public abstract class Unidad implements Accionable {
 	public int vidaRestante() {
 		return vida;
 	}
+	
+	public boolean estaDestruido(){
+		return (vida <= 0);
+	}
 }

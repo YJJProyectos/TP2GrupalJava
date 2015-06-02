@@ -79,7 +79,6 @@ public class Mapa {
 	public Accionable obtenerElementoEnPosicion(Coordenada coordenada) {
 		
 		Ocupable casillero = tablero.get(coordenada);
-		
 		return casillero.obtenerElemento();		
 	}
 }

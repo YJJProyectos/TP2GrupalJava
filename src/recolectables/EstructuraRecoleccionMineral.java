@@ -1,6 +1,8 @@
 package recolectables;
 
-public abstract class EstructuraRecoleccionMineral {
+import tp2.Unidad;
+
+public abstract class EstructuraRecoleccionMineral extends Unidad{
 
 	protected Recolectable mineral;
 

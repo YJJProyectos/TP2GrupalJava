@@ -28,5 +28,14 @@ public class MarineTest {
 		
 		Assert.assertEquals(119, soldadoEnemigo.vidaRestante());
 	}
+	
+	@Test
+	public void deberiaEstarDetruido(){
+		
+		Marine soldado = new Marine();
+		soldado.recibirDanio(1000);
+		
+		Assert.assertTrue(soldado.estaDestruido());
+	}
 
 }
