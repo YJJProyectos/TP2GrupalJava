@@ -1,8 +1,9 @@
 package tp2tests;
 
+import interfaces.Peleable;
+
 import org.junit.Assert;
 import org.junit.Test;
-import peleables.Peleable;
 import peleables.Marine;
 import peleables.Golliat;
 

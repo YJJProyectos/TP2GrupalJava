@@ -1,5 +1,6 @@
 package tp2;
-import tp2.Ocupable;
+import interfaces.Accionable;
+import interfaces.Ocupable;
 
 public abstract class Unidad implements Accionable {
 	

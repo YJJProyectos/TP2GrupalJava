@@ -1,10 +1,12 @@
 package tp2;
 
+import interfaces.Accionable;
+import interfaces.Ocupable;
+
 import java.util.HashMap;
 
 import excepciones.CoordenadaInvalidaError;
 
-import tp2.Ocupable;
 
 public class Mapa {
 

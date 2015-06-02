@@ -1,5 +1,6 @@
 package tp2;
 
+import interfaces.Accionable;
 import recolectables.Recolectable;
 import tp2.CasillaTerrestre;
 

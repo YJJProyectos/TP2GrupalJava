@@ -1,7 +1,7 @@
 package tp2;
 
+import interfaces.Edificable;
 import recolectables.Recolectable;
-import edificables.Edificable;
 
 public class CasillaTerrestre extends Casilla {
 	

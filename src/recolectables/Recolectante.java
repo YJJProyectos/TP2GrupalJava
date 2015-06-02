@@ -1,6 +1,6 @@
 package recolectables;
 
-import edificables.Edificable;
+import interfaces.Edificable;
 
 public interface Recolectante extends Edificable {
 

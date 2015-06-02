@@ -1,4 +1,5 @@
-package tp2;
+package interfaces;
+
 
 public interface Ocupable {
 

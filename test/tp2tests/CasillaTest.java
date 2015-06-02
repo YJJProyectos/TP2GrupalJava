@@ -1,5 +1,7 @@
 package tp2tests;
 
+import interfaces.Peleable;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -10,7 +12,6 @@ import tp2.CasillaDeRecurso;
 import tp2.CasillaTerrestre;
 import tp2.Mineral;
 import peleables.Marine;
-import peleables.Peleable;
 
 public class CasillaTest {
 

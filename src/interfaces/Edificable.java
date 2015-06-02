@@ -1,6 +1,5 @@
-package edificables;
+package interfaces;
 
-import tp2.Accionable;
 
 public interface Edificable extends Accionable{
 

@@ -1,6 +1,5 @@
-package tp2;
+package interfaces;
 
-import tp2.Ocupable;
 
 public interface Accionable {
 
