@@ -8,8 +8,13 @@ public abstract class Casilla implements Ocupable {
 		return (ocupante != null);
 	}
 
-	public void ocupar(Accionable ente) {
-		ocupante = ente;
+	public Accionable obtenerElemento() {
+		return ocupante;
+	}
+
+	public void agregarElemento(Accionable elemento) {
+		ocupante = elemento;
+		
 	}
 
 }

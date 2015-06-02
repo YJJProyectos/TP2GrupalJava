@@ -3,6 +3,8 @@ package tp2tests;
 import org.junit.Assert;
 import org.junit.Test;
 
+import peleables.Marine;
+
 import Excepciones.CoordenadaInvalidaError;
 import tp2.Coordenada;
 import tp2.Mapa;
@@ -46,5 +48,16 @@ public class MapaTest {
 		coordenadaA = new Coordenada(1,1);
 		coordenadaB = new Coordenada(-1,3);
 		mapa.distanciaEntre(coordenadaA, coordenadaB);
+	}
+	
+	@Test
+	public void deberiaAgregarUnMarineEnLaPosicionDada(){
+		Mapa mapa = new Mapa(4);
+		Marine marine = new Marine();
+		Coordenada coordenadaMarine = new Coordenada(1,1);
+		mapa.agregarElementoEnPosicion(marine, coordenadaMarine);
+		
+		Assert.assertEquals(marine, mapa.obtenerElementoEnPosicion(coordenadaMarine));
+		
 	}
 }

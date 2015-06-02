@@ -68,4 +68,17 @@ public class Mapa {
 		}
 
 	}
+
+	public void agregarElementoEnPosicion(Accionable elemento, Coordenada coordenada) {
+		
+		Ocupable casillero = tablero.get(coordenada);
+		casillero.agregarElemento(elemento);		
+	}
+	
+	public Accionable obtenerElementoEnPosicion(Coordenada coordenada) {
+		
+		Ocupable casillero = tablero.get(coordenada);
+		
+		return casillero.obtenerElemento();		
+	}
 }
