@@ -26,7 +26,7 @@ public class Mapa {
 			for (int columna = this.minColumna; columna <= this.maxColumna; columna++){
 				
 			    coordenada = new Coordenada(fila,columna);
-			    ocupable = null;
+			    ocupable = new CasillaTerrestre();
 				tablero.put(coordenada,ocupable);
 			}
 			
