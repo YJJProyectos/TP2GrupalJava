@@ -1,14 +1,12 @@
 package recolectables;
 
-import tp2.GasVespeno;
-
 public abstract class EstructuraRecoleccionGas {
 
-	protected GasVespeno gasVespeno;
+	protected Recolectable gas;
 
-	public EstructuraRecoleccionGas(GasVespeno gasVespeno) {
+	public EstructuraRecoleccionGas(Recolectable gas) {
 
-		this.gasVespeno = gasVespeno;
+		this.gas = gas;
 	}
 
 }

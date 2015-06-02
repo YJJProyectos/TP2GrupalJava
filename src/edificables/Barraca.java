@@ -1,6 +1,6 @@
 package edificables;
 
-public class Barraca implements Edificable {
+public class Barraca {
 
 	public boolean entrenarMarine() {
 		return true;

@@ -1,24 +1,9 @@
 package recolectables;
 
-import tp2.GasVespeno;
+public abstract class Asimilador extends EstructuraRecoleccionMineral implements
+		Recolectante {
 
-public class Asimilador extends EstructuraRecoleccionGas implements
-		Recolectable {
-
-	public Asimilador(GasVespeno gasVespeno) {
-		super(gasVespeno);
-	}
-
-	@Override
-	public boolean recolectar() {
-
-		return true;
-	}
-
-	public int getCantidadRecursoRecolectado() {
-		return 0;
-	}
-	public boolean edificar(){
-		return true;
+	public Asimilador(Recolectable mineral) {
+		super(mineral);
 	}
 }

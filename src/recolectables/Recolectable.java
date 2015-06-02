@@ -1,13 +1,7 @@
 package recolectables;
 
-import edificables.Edificable;
+public interface Recolectable {
 
-public interface Recolectable extends Edificable{
-
-	public abstract boolean recolectar();
-
-	public abstract int getCantidadRecursoRecolectado();
-	
-	
+	public abstract int extraerRecurso(int cantidadDeMineral);
 
 }

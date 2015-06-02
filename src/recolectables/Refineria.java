@@ -1,27 +1,9 @@
 package recolectables;
 
-import tp2.GasVespeno;
+public abstract class Refineria extends EstructuraRecoleccionMineral implements
+		Recolectante {
 
-public class Refineria extends EstructuraRecoleccionGas implements Recolectable {
-
-	public Refineria(GasVespeno gasVespeno) {
-
-		super(gasVespeno);
+	public Refineria(Recolectable mineral) {
+		super(mineral);
 	}
-
-	public boolean recolectar() {
-
-		// Gas elGas = (Gas) gas;
-		// elGas.cantidad()
-		// this.cantidadGas += 5;
-		return true;
-	}
-
-	public int getCantidadRecursoRecolectado() {
-		return 0;
-	}
-	public boolean edificar(){
-		return true;
-	}
-
 }

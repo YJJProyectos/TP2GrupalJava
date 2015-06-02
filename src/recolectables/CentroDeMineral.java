@@ -1,14 +1,13 @@
 package recolectables;
 
-import tp2.Mineral;
-
 public class CentroDeMineral extends EstructuraRecoleccionMineral implements
-		Recolectable {
+		Recolectante {
 
 	private int cantidadMineralRecolectado;
+	private int vida;
 
-	public CentroDeMineral(Mineral mineral) {
-		super(mineral);
+	public CentroDeMineral(Recolectable recurso) {
+		super(recurso);
 		this.cantidadMineralRecolectado = 0;
 	}
 
@@ -17,7 +16,7 @@ public class CentroDeMineral extends EstructuraRecoleccionMineral implements
 		boolean sePudoRecolectar = false;
 		int cantidadMineralSacado;
 
-		cantidadMineralSacado = super.mineral.sacarMineral(10);
+		cantidadMineralSacado = super.mineral.extraerRecurso(10);
 		if (cantidadMineralSacado > 0) { // ver si hacerlo en una excepcion
 			this.cantidadMineralRecolectado += cantidadMineralSacado;
 			sePudoRecolectar = true;
@@ -29,8 +28,18 @@ public class CentroDeMineral extends EstructuraRecoleccionMineral implements
 	public int getCantidadRecursoRecolectado() {
 		return this.cantidadMineralRecolectado;
 	}
-	public boolean edificar(){
-		
-		return true;	
+
+	public boolean edificar() {
+
+		return true;
+	}
+
+	public void recibirDanio(int cantidadDanio) {
+		vida -= cantidadDanio;
+
+	}
+
+	public int vidaRestante() {
+		return vida;
 	}
 }
