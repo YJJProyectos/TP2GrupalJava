@@ -32,9 +32,9 @@ public class Mapa {
 		return tablero.size();
 	}
 
-	public long distanciaEntre(Coordenada coordenadaA, Coordenada coordenadaB) {
+	public int distanciaEntre(Coordenada coordenadaA, Coordenada coordenadaB) {
 		
-		long distancia;
+		int distancia;
 		int filaA = coordenadaA.getFila(); 
 		int columnaA = coordenadaA.getColumna();
 		int filaB = coordenadaB.getFila();
@@ -43,8 +43,7 @@ public class Mapa {
 		double Y = Math.pow( (columnaA - columnaB), 2);
 		double XCuadradoMasYCuadrado = X + Y;
 		double resultadoRaiz = Math.sqrt( XCuadradoMasYCuadrado);
-		
-		distancia =  Math.round(resultadoRaiz);
+		distancia = (int) Math.round(resultadoRaiz);
 		
 		return distancia;
 	}
