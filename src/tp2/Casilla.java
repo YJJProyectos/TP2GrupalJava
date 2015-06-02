@@ -11,16 +11,16 @@ public abstract class Casilla implements Ocupable {
 		return (ocupante != null);
 	}
 
-	public Accionable obtenerElemento() {
+	public Accionable ocupante() {
 		return ocupante;
 	}
 
-	public boolean ocupar(Accionable unidad) {
-		if (ocupante == null) {
-			ocupante = unidad;
-			return true;
-		}
-		return false;
+	public abstract boolean ocupar(Accionable unidad);
+	
+	public void desocupar() {
+		ocupante = null;
 	}
+	
+	
 
 }

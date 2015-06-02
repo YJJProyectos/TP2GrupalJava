@@ -7,7 +7,7 @@ public interface Ocupable {
 
 	public abstract boolean esTerrestre();
 	
-	public abstract Accionable obtenerElemento();
+	public abstract Accionable ocupante();
 
 	public abstract boolean ocupar(Accionable unidad);
 	
