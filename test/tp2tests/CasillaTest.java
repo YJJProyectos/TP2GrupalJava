@@ -1,14 +1,14 @@
 package tp2tests;
 
 import interfaces.Accionable;
+import interfaces.Imponible;
 import interfaces.Peleable;
+import interfaces.Recolectable;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import recolectables.CentroDeMineral;
-import recolectables.Recolectable;
-import recolectables.Recolectante;
 import tp2.CasillaDeRecurso;
 import tp2.CasillaTerrestre;
 import tp2.Mineral;
@@ -53,7 +53,7 @@ public class CasillaTest {
 	@Test
 	public void unaCasillaDeRecursosEstaOcupadaPorUnEdificio() {
 		Recolectable recurso = new Mineral(1000);
-		Recolectante edificio = new CentroDeMineral(recurso);
+		Imponible edificio = new CentroDeMineral(recurso);
 		CasillaDeRecurso casilla = new CasillaDeRecurso(recurso);
 		casilla.agregarRecolectante(edificio);
 		Assert.assertTrue(casilla.estaOcupadaPorUnEdificio());

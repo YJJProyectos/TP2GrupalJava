@@ -1,5 +1,7 @@
 package recolectables;
 
+import interfaces.Recolectable;
+
 public abstract class EstructuraRecoleccionGas {
 
 	protected Recolectable gas;

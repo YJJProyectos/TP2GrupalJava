@@ -1,17 +1,18 @@
 package tp2tests;
 
+import interfaces.Imponible;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import recolectables.CentroDeMineral;
-import recolectables.Recolectante;
 import tp2.Mineral;
 
 public class RecoleccionTest {
 	@Test
 	public void deberiaRecolectarMineralElCentroDeMineral() {
 		Mineral mineral = new Mineral(30);
-		Recolectante centroDeMineral = new CentroDeMineral(mineral);
+		Imponible centroDeMineral = new CentroDeMineral(mineral);
 		Assert.assertTrue(centroDeMineral.recolectar());
 	}
 
@@ -41,7 +42,7 @@ public class RecoleccionTest {
 	@Test
 	public void noDeberiaPoderRecolectarElCentroDeMineralSiSeAcabaElMineral() {
 		Mineral mineral = new Mineral(1000);
-		Recolectante centroDeMineral = new CentroDeMineral(mineral);
+		Imponible centroDeMineral = new CentroDeMineral(mineral);
 		for (int i = 1; i <= 100; i++) { // 100 turnos , se saca todo el mineral
 			centroDeMineral.recolectar();
 		}
@@ -51,7 +52,7 @@ public class RecoleccionTest {
 	@Test
 	public void deberiaRecolectar50MineralEn5TurnosElCentroDeMineral() {
 		Mineral mineral = new Mineral(1000);
-		Recolectante centroDeMineral = new CentroDeMineral(mineral);
+		Imponible centroDeMineral = new CentroDeMineral(mineral);
 		for (int i = 1; i <= 5; i++) {
 			centroDeMineral.recolectar();
 		}
@@ -61,7 +62,7 @@ public class RecoleccionTest {
 	@Test
 	public void deberiaRecolectarSiElMineralTiene7() {
 		Mineral mineral = new Mineral(7);
-		Recolectante centroDeMineral = new CentroDeMineral(mineral);
+		Imponible centroDeMineral = new CentroDeMineral(mineral);
 		centroDeMineral.recolectar();
 		Assert.assertEquals(7, centroDeMineral.getCantidadRecursoRecolectado());
 	}

@@ -1,7 +1,10 @@
 package recolectables;
 
+import interfaces.Imponible;
+import interfaces.Recolectable;
+
 public class CentroDeMineral extends EstructuraRecoleccionMineral implements
-		Recolectante {
+		Imponible {
 
 	private int cantidadMineralRecolectado;
 	private int vida;

@@ -1,6 +1,6 @@
 package tp2;
 
-import recolectables.Recolectable;
+import interfaces.Recolectable;
 
 public class Mineral implements Recolectable {
 

@@ -1,7 +1,10 @@
 package recolectables;
 
+import interfaces.Imponible;
+import interfaces.Recolectable;
+
 public abstract class Asimilador extends EstructuraRecoleccionMineral implements
-		Recolectante {
+		Imponible {
 
 	public Asimilador(Recolectable mineral) {
 		super(mineral);
