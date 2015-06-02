@@ -31,4 +31,21 @@ public class Mapa {
 		//return tablero.length * tablero[0].length;
 		return tablero.size();
 	}
+
+	public long distanciaEntre(Coordenada coordenadaA, Coordenada coordenadaB) {
+		
+		long distancia;
+		int filaA = coordenadaA.getFila(); 
+		int columnaA = coordenadaA.getColumna();
+		int filaB = coordenadaB.getFila();
+		int columnaB = coordenadaB.getColumna();
+		double X = Math.pow( (filaA - filaB ), 2);
+		double Y = Math.pow( (columnaA - columnaB), 2);
+		double XCuadradoMasYCuadrado = X + Y;
+		double resultadoRaiz = Math.sqrt( XCuadradoMasYCuadrado);
+		
+		distancia =  Math.round(resultadoRaiz);
+		
+		return distancia;
+	}
 }
