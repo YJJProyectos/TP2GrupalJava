@@ -20,6 +20,7 @@ public abstract class Casilla implements Ocupable {
 	}
 
 	public abstract boolean ocupar(Accionable unidad);
+	public abstract boolean esTerrestre();
 	
 	public void desocupar() {
 		ocupante = null;
