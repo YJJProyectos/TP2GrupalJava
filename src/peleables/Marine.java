@@ -12,5 +12,5 @@ public class Marine extends UnidadSoldado {
 		this.vision = 7;
 		this.transporte = 1;
 	}
-	
+
 }

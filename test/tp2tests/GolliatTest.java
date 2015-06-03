@@ -12,11 +12,11 @@ public class GolliatTest {
 
 	@Test
 	public void deberiaDaniarEnemigo() {
-		
+
 		Golliat soldadoAliado = new Golliat();
 		Peleable soldadoEnemigo = new Marine();
 		soldadoAliado.atacarEnemigo(soldadoEnemigo);
-		
+
 		Assert.assertEquals(28, soldadoEnemigo.vidaRestante());
 	}
 }

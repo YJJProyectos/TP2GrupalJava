@@ -9,16 +9,16 @@ import interfaces.Ocupable;
 import tp2.CasillaTerrestre;
 
 public class UnidadTest {
-	
+
 	@Test
-	public void deberiaEstarDetruido(){
-		
+	public void deberiaEstarDetruido() {
+
 		Unidad soldado = new Marine();
 		soldado.recibirDanio(1000);
-		
+
 		Assert.assertTrue(soldado.estaDestruido());
 	}
-	
+
 	@Test
 	public void deberiaRecibirDanio() {
 
@@ -29,18 +29,16 @@ public class UnidadTest {
 
 		Assert.assertEquals(1, vidaInicial - vidaFinal);
 	}
-	
+
 	@Test
 	public void deberiaGuardarSuPosicion() {
-		
+
 		Ocupable posicion = new CasillaTerrestre();
 		Unidad soldado = new Marine();
-		
+
 		soldado.posicionar(posicion);
-		
-		Assert.assertEquals(soldado.posicion(), posicion);		
+
+		Assert.assertEquals(soldado.posicion(), posicion);
 	}
 
 }
-	
-

@@ -1,9 +1,10 @@
 package tp2;
+
 import interfaces.Accionable;
 import interfaces.Ocupable;
 
 public abstract class Unidad implements Accionable {
-	
+
 	protected Ocupable posicion;
 	protected int vida;
 
@@ -14,16 +15,17 @@ public abstract class Unidad implements Accionable {
 	public int vidaRestante() {
 		return vida;
 	}
-	
-	public boolean estaDestruido(){
+
+	public boolean estaDestruido() {
 		return (vida <= 0);
 	}
-	
-	public Ocupable posicion (){
+
+	public Ocupable posicion() {
 		return posicion;
 	}
-	
-	public void posicionar(Ocupable casilla){
-		if (casilla.ocupar(this)) this.posicion = casilla;
+
+	public void posicionar(Ocupable casilla) {
+		if (casilla.ocupar(this))
+			this.posicion = casilla;
 	}
 }

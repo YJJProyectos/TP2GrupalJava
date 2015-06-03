@@ -15,9 +15,9 @@ public abstract class UnidadSoldado extends Unidad implements Peleable {
 	protected int rangoTerrestre;
 
 	public void atacarEnemigo(Accionable enemigo) {
-		
-		if (this.posicion == null || 
-				this.posicion.distanciaA(enemigo.posicion()) <= this.rangoTerrestre) {
+
+		if (this.posicion == null
+				|| this.posicion.distanciaA(enemigo.posicion()) <= this.rangoTerrestre) {
 			enemigo.recibirDanio(this.danioTerrestre);
 		}
 	}

@@ -9,8 +9,7 @@ import java.util.HashMap;
 
 import excepciones.CoordenadaInvalidaError;
 
-
-public class Mapa implements Navegable{
+public class Mapa implements Navegable {
 
 	HashMap<Ubicable, Ocupable> tablero = new HashMap<Ubicable, Ocupable>();
 	private int minFila = 1;
@@ -60,12 +59,13 @@ public class Mapa implements Navegable{
 
 		return distancia;
 	}
-	
+
 	public int distanciaEntre(Ocupable posicion1, Ocupable posicion2) {
 		try {
-			int distancia = this.distanciaEntre(posicion1.posicion(),posicion2.posicion());
+			int distancia = this.distanciaEntre(posicion1.posicion(),
+					posicion2.posicion());
 			return distancia;
-		} catch(CoordenadaInvalidaError error) {
+		} catch (CoordenadaInvalidaError error) {
 			return -1;
 		}
 	}
@@ -84,20 +84,21 @@ public class Mapa implements Navegable{
 
 	}
 
-	public void agregarElementoEnPosicion(Accionable elemento, Ubicable coordenada) {
-		
+	public void agregarElementoEnPosicion(Accionable elemento,
+			Ubicable coordenada) {
+
 		try {
 			validarCoordenada(coordenada);
-		} catch(CoordenadaInvalidaError error) {
+		} catch (CoordenadaInvalidaError error) {
 			return;
 		}
 		Ocupable casillero = tablero.get(coordenada);
-		elemento.posicionar(casillero);		
+		elemento.posicionar(casillero);
 	}
-	
+
 	public Accionable obtenerElementoEnPosicion(Ubicable coordenada) {
-		
+
 		Ocupable casillero = tablero.get(coordenada);
-		return casillero.ocupante();		
+		return casillero.ocupante();
 	}
 }

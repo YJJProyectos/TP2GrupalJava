@@ -20,22 +20,23 @@ public abstract class Casilla implements Ocupable {
 	}
 
 	public abstract boolean ocupar(Accionable unidad);
+
 	public abstract boolean esTerrestre();
-	
+
 	public void desocupar() {
 		ocupante = null;
 	}
-	
+
 	public void situar(Ubicable posicion, Navegable escenario) {
 		ubicacion = posicion;
 		mapa = escenario;
 	}
-	
-	public Ubicable posicion(){
+
+	public Ubicable posicion() {
 		return ubicacion;
 	}
-	
+
 	public int distanciaA(Ocupable otraPosicion) {
-		return mapa.distanciaEntre(this,otraPosicion);
+		return mapa.distanciaEntre(this, otraPosicion);
 	}
 }

@@ -58,40 +58,40 @@ public class CasillaTest {
 		casilla.agregarRecolectante(edificio);
 		Assert.assertTrue(casilla.estaOcupadaPorUnEdificio());
 	}
-	
+
 	@Test
-	public void deberiaGuardarALaUnidad(){
-		
+	public void deberiaGuardarALaUnidad() {
+
 		CasillaTerrestre casilla = new CasillaTerrestre();
 		Accionable soldado = new Marine();
-		
+
 		casilla.ocupar(soldado);
-		
+
 		Assert.assertEquals(casilla.ocupante(), soldado);
-		
+
 	}
-	
+
 	@Test
-	public void deberiaGuardarSoloLaPrimeraUnidad(){
-		
+	public void deberiaGuardarSoloLaPrimeraUnidad() {
+
 		CasillaTerrestre casilla = new CasillaTerrestre();
 		Accionable soldado1 = new Marine();
 		Accionable soldado2 = new Golliat();
-		
+
 		casilla.ocupar(soldado1);
 		casilla.ocupar(soldado2);
-		
+
 		Assert.assertEquals(casilla.ocupante(), soldado1);
 	}
-	
+
 	@Test
-	public void deberiaDesocuparse(){
+	public void deberiaDesocuparse() {
 		CasillaTerrestre casilla = new CasillaTerrestre();
 		Accionable soldado = new Marine();
-		
+
 		casilla.ocupar(soldado);
 		casilla.desocupar();
-		
+
 		Assert.assertFalse(casilla.estaOcupada());
 	}
 
