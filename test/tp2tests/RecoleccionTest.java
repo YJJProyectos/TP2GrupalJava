@@ -40,7 +40,7 @@ public class RecoleccionTest {
 //	}
 
 	@Test
-	public void noDeberiaPoderRecolectarElCentroDeMineralSiSeAcabaElMineral() {
+	public void deberiaNoPoderRecolectarElCentroDeMineralSiSeAcabaElMineral() {
 		Mineral mineral = new Mineral(1000);
 		Imponible centroDeMineral = new CentroDeMineral(mineral);
 		for (int i = 1; i <= 100; i++) { // 100 turnos , se saca todo el mineral

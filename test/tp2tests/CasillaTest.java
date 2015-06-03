@@ -35,7 +35,7 @@ public class CasillaTest {
 	}
 
 	@Test
-	public void unaCasillaDeRecursodeberiaEstarOcupada() {
+	public void deberiaEstarOcupadaUnaCasillaDeRecurso() {
 		Recolectable recurso = new Mineral(1000);
 		CasillaDeRecurso casilla = new CasillaDeRecurso(recurso);
 
@@ -43,7 +43,7 @@ public class CasillaTest {
 	}
 
 	@Test
-	public void unaCasillaDeRecursosNoEstaOcupadaPorUnEdificio() {
+	public void deberiaNoEstarOcupadaPorUnEdificioUnaCasillaDeRecursos() {
 		Recolectable recurso = new Mineral(1000);
 		CasillaDeRecurso casilla = new CasillaDeRecurso(recurso);
 
@@ -51,7 +51,7 @@ public class CasillaTest {
 	}
 
 	@Test
-	public void unaCasillaDeRecursosEstaOcupadaPorUnEdificio() {
+	public void deberiaEstarOcupadaPorUnEdificioUnaCasillaDeRecursos() {
 		Recolectable recurso = new Mineral(1000);
 		Imponible edificio = new CentroDeMineral(recurso);
 		CasillaDeRecurso casilla = new CasillaDeRecurso(recurso);
