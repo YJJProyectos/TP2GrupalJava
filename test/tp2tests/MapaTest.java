@@ -14,9 +14,8 @@ import tp2.Mapa;
 public class MapaTest {
 
 	@Test
-	public void deberiaTenerTamanio64() {
+	public void deberiaTenerTamanio400ElMapaDe4Bases() {
 		Mapa mapa = new Mapa(4);
-
 		Assert.assertEquals(mapa.tamanio(), 400);
 	}
 
