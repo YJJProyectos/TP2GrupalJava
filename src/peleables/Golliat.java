@@ -1,5 +1,7 @@
 package peleables;
 
+import interfaces.Ocupable;
+
 public class Golliat extends UnidadSoldado {
 
 	public Golliat() {
@@ -11,5 +13,14 @@ public class Golliat extends UnidadSoldado {
 		this.suministro = 2;
 		this.vision = 8;
 		this.transporte = 2;
+	}
+
+	@Override
+	public boolean mover(Ocupable casilla) {
+		if ( !casilla.estaOcupada() ){
+			casilla.ocupar(this);
+			return true;
+		}
+		return false;
 	}
 }
