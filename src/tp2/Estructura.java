@@ -3,7 +3,7 @@ package tp2;
 import interfaces.Edificable;
 import interfaces.Ocupable;
 
-public abstract class Estructura implements Edificable{
+public abstract class Estructura implements Edificable {
 
 	protected Ocupable posicion;
 	protected int vida;
@@ -26,14 +26,13 @@ public abstract class Estructura implements Edificable{
 
 	@Override
 	public boolean estaDestruido() {
-		return ( vida <= 0);
+		return (vida <= 0);
 	}
 
 	@Override
 	public Ocupable posicion() {
 		return posicion;
 	}
-
 
 	public abstract boolean edificar();
 

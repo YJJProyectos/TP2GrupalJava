@@ -1,13 +1,11 @@
 package tp2;
 
 import interfaces.Edificable;
-import interfaces.Recolectable;
 import interfaces.Accionable;
 
 public class CasillaTerrestre extends Casilla {
 
 	Edificable edificio;
-	Recolectable recurso;
 
 	public boolean esTerrestre() {
 		return true;
