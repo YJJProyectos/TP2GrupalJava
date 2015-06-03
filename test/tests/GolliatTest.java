@@ -1,14 +1,16 @@
-package tp2tests;
+package tests;
 
 import interfaces.Ocupable;
 import interfaces.Peleable;
 
+import ocupables.CasillaTerrestre;
+
 import org.junit.Assert;
 import org.junit.Test;
 
+
 import peleables.Golliat;
 import peleables.Marine;
-import tp2.CasillaTerrestre;
 
 public class GolliatTest {
 

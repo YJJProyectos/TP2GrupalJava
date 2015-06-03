@@ -1,4 +1,4 @@
-package tp2;
+package navegables;
 
 import interfaces.Accionable;
 import interfaces.Ocupable;
@@ -6,6 +6,11 @@ import interfaces.Navegable;
 import interfaces.Ubicable;
 
 import java.util.HashMap;
+
+import ocupables.CasillaTerrestre;
+
+
+import ubicables.Coordenada;
 
 import excepciones.CoordenadaInvalidaError;
 

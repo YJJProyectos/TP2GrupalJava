@@ -1,4 +1,4 @@
-package tp2tests;
+package tests;
 
 import interfaces.Imponible;
 

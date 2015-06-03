@@ -1,4 +1,6 @@
-package tp2tests;
+package tests;
+
+import navegables.Mapa;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -8,8 +10,7 @@ import excepciones.CoordenadaInvalidaError;
 import peleables.Marine;
 import interfaces.Ubicable;
 
-import tp2.Coordenada;
-import tp2.Mapa;
+import ubicables.Coordenada;
 
 public class MapaTest {
 

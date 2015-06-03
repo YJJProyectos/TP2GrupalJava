@@ -1,8 +1,7 @@
-package tp2;
+package ocupables;
 
 import interfaces.Accionable;
 import interfaces.Recolectable;
-import tp2.CasillaTerrestre;
 
 public class CasillaDeRecurso extends CasillaTerrestre {
 

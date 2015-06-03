@@ -1,12 +1,15 @@
-package tp2tests;
+package tests;
+
+import ocupables.CasillaTerrestre;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import tp2.Unidad;
+import accionables.Unidad;
+
+
 import peleables.Marine;
 import interfaces.Ocupable;
-import tp2.CasillaTerrestre;
 
 public class UnidadTest {
 

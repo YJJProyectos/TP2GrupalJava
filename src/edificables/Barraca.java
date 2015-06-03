@@ -1,6 +1,5 @@
 package edificables;
 
-import tp2.Estructura;
 
 public class Barraca extends Estructura{
 

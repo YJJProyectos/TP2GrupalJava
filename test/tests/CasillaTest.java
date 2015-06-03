@@ -1,16 +1,18 @@
-package tp2tests;
+package tests;
 
 import interfaces.Accionable;
 import interfaces.Imponible;
 import interfaces.Peleable;
 import interfaces.Recolectable;
 
+import ocupables.CasillaDeRecurso;
+import ocupables.CasillaTerrestre;
+
 import org.junit.Assert;
 import org.junit.Test;
 
+
 import recolectables.CentroDeMineral;
-import tp2.CasillaDeRecurso;
-import tp2.CasillaTerrestre;
 import tp2.Mineral;
 import peleables.Marine;
 import peleables.Golliat;

@@ -1,4 +1,4 @@
-package tp2;
+package ocupables;
 
 import interfaces.Edificable;
 import interfaces.Accionable;

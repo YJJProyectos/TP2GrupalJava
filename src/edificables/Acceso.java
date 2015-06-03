@@ -1,6 +1,5 @@
 package edificables;
 
-import tp2.Estructura;
 
 public class Acceso extends Estructura{
 

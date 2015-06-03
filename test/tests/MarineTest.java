@@ -1,13 +1,14 @@
-package tp2tests;
+package tests;
 
 import interfaces.Accionable;
+
+import navegables.Mapa;
 
 import org.junit.Assert;
 import org.junit.Test;
 import peleables.Marine;
 import peleables.Golliat;
-import tp2.Coordenada;
-import tp2.Mapa;
+import ubicables.Coordenada;
 import interfaces.Navegable;
 import interfaces.Ubicable;
 

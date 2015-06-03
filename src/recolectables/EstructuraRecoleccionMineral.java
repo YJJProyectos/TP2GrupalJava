@@ -1,7 +1,7 @@
 package recolectables;
 
+import accionables.Unidad;
 import interfaces.Recolectable;
-import tp2.Unidad;
 
 public abstract class EstructuraRecoleccionMineral extends Unidad {
 

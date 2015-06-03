@@ -1,6 +1,5 @@
-package tp2;
+package ocupables;
 
-import tp2.Casilla;
 import interfaces.Accionable;
 
 public class CasillaAerea extends Casilla {
