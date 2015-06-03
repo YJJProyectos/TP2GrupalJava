@@ -30,14 +30,6 @@ public class Coordenada implements Ubicable{
 		return this.columna;
 	}
 	
-	public int codigoUnico(){
-		return this.hashCode();
-	}
-	
-	public boolean esLaMismaUbicacion(Object Objeto) {
-		return this.equals(Objeto);
-	}
-	
 	@Override 
 	public int hashCode(){
 		

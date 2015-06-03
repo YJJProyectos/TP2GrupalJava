@@ -9,9 +9,5 @@ public interface Ubicable {
 	public int getFila();
 	
 	public int getColumna();
-	
-	public int codigoUnico();
-	
-	public boolean esLaMismaUbicacion(Object Objeto);
 
 }

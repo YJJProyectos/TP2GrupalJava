@@ -86,6 +86,11 @@ public class Mapa implements Navegable{
 
 	public void agregarElementoEnPosicion(Accionable elemento, Ubicable coordenada) {
 		
+		try {
+			validarCoordenada(coordenada);
+		} catch(CoordenadaInvalidaError error) {
+			return;
+		}
 		Ocupable casillero = tablero.get(coordenada);
 		elemento.posicionar(casillero);		
 	}

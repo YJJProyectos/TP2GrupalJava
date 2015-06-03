@@ -6,6 +6,7 @@ import org.junit.Test;
 import excepciones.CoordenadaInvalidaError;
 
 import peleables.Marine;
+import interfaces.Ubicable;
 
 import tp2.Coordenada;
 import tp2.Mapa;
@@ -23,8 +24,8 @@ public class MapaTest {
 
 		Mapa mapa = new Mapa(4);
 		int distancia ;
-		Coordenada coordenadaA = new Coordenada(1,1);
-		Coordenada coordenadaB = new Coordenada(2,3);
+		Ubicable coordenadaA = new Coordenada(1,1);
+		Ubicable coordenadaB = new Coordenada(2,3);
 		distancia = mapa.distanciaEntre(coordenadaA,coordenadaB);
 		Assert.assertEquals(2,distancia);
 		coordenadaA = new Coordenada(1,1);
@@ -43,8 +44,8 @@ public class MapaTest {
 	@Test (expected = CoordenadaInvalidaError.class)
 	public void deberiaLanzarErrorDeCoordenadaSiPasanCoordenadaInvalida() throws CoordenadaInvalidaError{
 		Mapa mapa = new Mapa(4);	
-		Coordenada coordenadaA = new Coordenada(1,1);
-		Coordenada coordenadaB = new Coordenada(500,3);
+		Ubicable coordenadaA = new Coordenada(1,1);
+		Ubicable coordenadaB = new Coordenada(500,3);
 		mapa.distanciaEntre(coordenadaA, coordenadaB);
 		coordenadaA = new Coordenada(1,1);
 		coordenadaB = new Coordenada(-1,3);
@@ -55,7 +56,7 @@ public class MapaTest {
 	public void deberiaAgregarUnMarineEnLaPosicionDada(){
 		Mapa mapa = new Mapa(4);
 		Marine marine = new Marine();
-		Coordenada coordenadaMarine = new Coordenada(1,1);
+		Ubicable coordenadaMarine = new Coordenada(1,1);
 		mapa.agregarElementoEnPosicion(marine, coordenadaMarine);
 		
 		Assert.assertEquals(marine, mapa.obtenerElementoEnPosicion(coordenadaMarine));
