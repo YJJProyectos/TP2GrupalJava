@@ -1,5 +1,7 @@
 package interfaces;
 
+import interfaces.Ocupable;
+
 
 public interface Accionable {
 
@@ -10,5 +12,7 @@ public interface Accionable {
 	public abstract int vidaRestante();
 	
 	public abstract boolean estaDestruido();
+	
+	public abstract Ocupable posicion();
 
 }

@@ -4,6 +4,7 @@ import interfaces.Edificable;
 import interfaces.Recolectable;
 import interfaces.Accionable;
 
+
 public class CasillaTerrestre extends Casilla {
 	
 	Edificable edificio;

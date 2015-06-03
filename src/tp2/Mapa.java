@@ -2,13 +2,14 @@ package tp2;
 
 import interfaces.Accionable;
 import interfaces.Ocupable;
+import interfaces.Navegable;
 
 import java.util.HashMap;
 
 import excepciones.CoordenadaInvalidaError;
 
 
-public class Mapa {
+public class Mapa implements Navegable{
 
 	HashMap<Coordenada, Ocupable> tablero = new HashMap<Coordenada, Ocupable>();
 	private int minFila = 1;
@@ -29,7 +30,7 @@ public class Mapa {
 
 				Coordenada coordenada = new Coordenada(fila, columna);
 				Ocupable ocupable = new CasillaTerrestre();
-				ocupable.situar(coordenada);
+				ocupable.situar(coordenada, this);
 				tablero.put(coordenada, ocupable);
 			}
 
