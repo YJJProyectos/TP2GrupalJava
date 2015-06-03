@@ -3,8 +3,8 @@ package interfaces;
 
 public interface Imponible extends Edificable {
 
-	public abstract boolean recolectar();
+	public boolean recolectar();
 
-	public abstract int getCantidadRecursoRecolectado();
+	public int getCantidadRecursoRecolectado();
 
 }

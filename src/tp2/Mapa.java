@@ -3,6 +3,7 @@ package tp2;
 import interfaces.Accionable;
 import interfaces.Ocupable;
 import interfaces.Navegable;
+import interfaces.Ubicable;
 
 import java.util.HashMap;
 
@@ -11,7 +12,7 @@ import excepciones.CoordenadaInvalidaError;
 
 public class Mapa implements Navegable{
 
-	HashMap<Coordenada, Ocupable> tablero = new HashMap<Coordenada, Ocupable>();
+	HashMap<Ubicable, Ocupable> tablero = new HashMap<Ubicable, Ocupable>();
 	private int minFila = 1;
 	private int minColumna = 1;
 	private int maxFila;
@@ -28,7 +29,7 @@ public class Mapa implements Navegable{
 		for (int fila = this.minFila; fila <= this.maxFila; fila++) {
 			for (int columna = this.minColumna; columna <= this.maxColumna; columna++) {
 
-				Coordenada coordenada = new Coordenada(fila, columna);
+				Ubicable coordenada = new Coordenada(fila, columna);
 				Ocupable ocupable = new CasillaTerrestre();
 				ocupable.situar(coordenada, this);
 				tablero.put(coordenada, ocupable);
@@ -43,7 +44,7 @@ public class Mapa implements Navegable{
 		return tablero.size();
 	}
 
-	public int distanciaEntre(Coordenada coordenadaA, Coordenada coordenadaB)
+	public int distanciaEntre(Ubicable coordenadaA, Ubicable coordenadaB)
 			throws CoordenadaInvalidaError {
 
 		int filaA = coordenadaA.getFila();
@@ -69,7 +70,7 @@ public class Mapa implements Navegable{
 		}
 	}
 
-	private void validarCoordenada(Coordenada coordenada)
+	private void validarCoordenada(Ubicable coordenada)
 			throws CoordenadaInvalidaError {
 
 		int fila = coordenada.getFila();
@@ -83,13 +84,13 @@ public class Mapa implements Navegable{
 
 	}
 
-	public void agregarElementoEnPosicion(Accionable elemento, Coordenada coordenada) {
+	public void agregarElementoEnPosicion(Accionable elemento, Ubicable coordenada) {
 		
 		Ocupable casillero = tablero.get(coordenada);
 		elemento.posicionar(casillero);		
 	}
 	
-	public Accionable obtenerElementoEnPosicion(Coordenada coordenada) {
+	public Accionable obtenerElementoEnPosicion(Ubicable coordenada) {
 		
 		Ocupable casillero = tablero.get(coordenada);
 		return casillero.ocupante();		

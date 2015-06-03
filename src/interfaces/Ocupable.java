@@ -1,22 +1,22 @@
 package interfaces;
 
-import tp2.Coordenada;
+import interfaces.Ubicable;
 import interfaces.Navegable;
 
 public interface Ocupable {
 
-	public abstract boolean estaOcupada();
+	public boolean estaOcupada();
 
-	public abstract boolean esTerrestre();
+	public boolean esTerrestre();
 	
-	public abstract Accionable ocupante();
+	public Accionable ocupante();
 
-	public abstract boolean ocupar(Accionable unidad);
+	public boolean ocupar(Accionable unidad);
 	
-	public abstract void situar(Coordenada coordenada, Navegable escenario);
+	public void situar(Ubicable coordenada, Navegable escenario);
 	
-	public abstract Coordenada posicion();
+	public Ubicable posicion();
 	
-	public abstract int distanciaA(Ocupable otroLugar);
+	public int distanciaA(Ocupable otroLugar);
 	
 }

@@ -1,10 +1,12 @@
 package tp2;
 
-public class Coordenada {
+import interfaces.Ubicable;
+
+public class Coordenada implements Ubicable{
 	
-	private int fila;
+	protected int fila;
 	
-	private int columna;
+	protected int columna;
 	
 	public Coordenada(int fila,int columna){
 		
@@ -28,6 +30,13 @@ public class Coordenada {
 		return this.columna;
 	}
 	
+	public int codigoUnico(){
+		return this.hashCode();
+	}
+	
+	public boolean esLaMismaUbicacion(Object Objeto) {
+		return this.equals(Objeto);
+	}
 	
 	@Override 
 	public int hashCode(){

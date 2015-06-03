@@ -3,10 +3,11 @@ package tp2;
 import interfaces.Accionable;
 import interfaces.Ocupable;
 import interfaces.Navegable;
+import interfaces.Ubicable;
 
 public abstract class Casilla implements Ocupable {
 
-	protected Coordenada ubicacion;
+	protected Ubicable ubicacion;
 	protected Accionable ocupante;
 	protected Navegable mapa;
 
@@ -24,12 +25,12 @@ public abstract class Casilla implements Ocupable {
 		ocupante = null;
 	}
 	
-	public void situar(Coordenada posicion, Navegable escenario) {
+	public void situar(Ubicable posicion, Navegable escenario) {
 		ubicacion = posicion;
 		mapa = escenario;
 	}
 	
-	public Coordenada posicion(){
+	public Ubicable posicion(){
 		return ubicacion;
 	}
 	

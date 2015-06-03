@@ -39,4 +39,22 @@ public class MarineTest {
 		
 	}
 	
+	@Test 
+	public void deberiaDaniarPorEstarEnElRango(){
+		
+		Mapa mapa = new Mapa(2);
+		Marine soldadoAliado = new Marine();
+		Accionable soldadoEnemigo = new Golliat();
+		Coordenada coordenadaAliado = new Coordenada(1,1);
+		Coordenada coordenadaEnemigo = new Coordenada(2,1);
+		mapa.agregarElementoEnPosicion(soldadoAliado, coordenadaAliado);
+		mapa.agregarElementoEnPosicion(soldadoEnemigo, coordenadaEnemigo);
+		
+		int vidaInicial = soldadoEnemigo.vidaRestante();
+		soldadoAliado.atacarEnemigo(soldadoEnemigo);
+		
+		Assert.assertNotEquals(vidaInicial, soldadoEnemigo.vidaRestante());
+		
+	}
+	
 }
