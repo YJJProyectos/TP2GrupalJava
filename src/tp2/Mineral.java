@@ -11,11 +11,6 @@ public class Mineral implements Recolectable {
 		this.cantidadMineral = cantidad;
 	}
 
-	public int getMineral() {
-
-		return this.cantidadMineral;
-	}
-
 	public int extraerRecurso(int cantidadMineralASacar) {
 
 		int cantidadMineralSacado = 0;
