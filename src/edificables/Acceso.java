@@ -1,6 +1,8 @@
 package edificables;
 
-public class Acceso {
+import tp2.Estructura;
+
+public class Acceso extends Estructura{
 
 	public boolean transportarZealot() {
 		return true;

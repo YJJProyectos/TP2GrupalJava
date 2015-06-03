@@ -1,6 +1,8 @@
 package edificables;
 
-public class Barraca {
+import tp2.Estructura;
+
+public class Barraca extends Estructura{
 
 	public boolean entrenarMarine() {
 		return true;
