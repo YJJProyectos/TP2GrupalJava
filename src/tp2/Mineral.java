@@ -26,4 +26,8 @@ public class Mineral implements Recolectable {
 		return cantidadMineralSacado;
 	}
 
+	public int getCantidadMineral() {
+		return this.cantidadMineral;
+	}
+
 }

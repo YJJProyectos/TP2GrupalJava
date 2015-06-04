@@ -64,4 +64,11 @@ public class RecoleccionTest {
 		centroDeMineral.recolectar();
 		Assert.assertEquals(7, centroDeMineral.getCantidadRecursoRecolectado());
 	}
+	@Test
+	public void deberiaDecrementarEn10ElMineralAlSerRecolectado(){
+		Mineral mineral = new Mineral(30);
+		Imponible centroDeMineral = new CentroDeMineral(mineral);
+		centroDeMineral.recolectar();
+		Assert.assertEquals(20, mineral.getCantidadMineral());
+	}
 }
