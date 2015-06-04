@@ -1,6 +1,6 @@
 package peleables;
 
-import interfaces.Ocupable;
+import ocupables.Casilla;
 
 public class Marine extends UnidadSoldado {
 
@@ -16,7 +16,7 @@ public class Marine extends UnidadSoldado {
 	}
 
 	@Override
-	public boolean mover(Ocupable casilla) {
+	public boolean mover(Casilla casilla) {
 		if ( !casilla.estaOcupada() ){
 			casilla.ocupar(this);
 			return true;

@@ -1,22 +1,17 @@
 package navegables;
 
 import interfaces.Accionable;
-import interfaces.Ocupable;
-import interfaces.Navegable;
-import interfaces.Ubicable;
 
 import java.util.HashMap;
 
+import ocupables.Casilla;
 import ocupables.CasillaTerrestre;
-
-
 import ubicables.Coordenada;
-
 import excepciones.CoordenadaInvalidaError;
 
-public class Mapa implements Navegable {
+public class Mapa  {
 
-	HashMap<Ubicable, Ocupable> tablero = new HashMap<Ubicable, Ocupable>();
+	HashMap<Coordenada, Casilla> tablero = new HashMap<Coordenada, Casilla>();
 	private int minFila = 1;
 	private int minColumna = 1;
 	private int maxFila;
@@ -33,8 +28,8 @@ public class Mapa implements Navegable {
 		for (int fila = this.minFila; fila <= this.maxFila; fila++) {
 			for (int columna = this.minColumna; columna <= this.maxColumna; columna++) {
 
-				Ubicable coordenada = new Coordenada(fila, columna);
-				Ocupable ocupable = new CasillaTerrestre();
+				Coordenada coordenada = new Coordenada(fila, columna);
+				Casilla ocupable = new CasillaTerrestre();
 				ocupable.situar(coordenada, this);
 				tablero.put(coordenada, ocupable);
 			}
@@ -48,7 +43,7 @@ public class Mapa implements Navegable {
 		return tablero.size();
 	}
 
-	public int distanciaEntre(Ubicable coordenadaA, Ubicable coordenadaB)
+	public int distanciaEntre(Coordenada coordenadaA, Coordenada coordenadaB)
 			throws CoordenadaInvalidaError {
 
 		int filaA = coordenadaA.getFila();
@@ -65,7 +60,7 @@ public class Mapa implements Navegable {
 		return distancia;
 	}
 
-	public int distanciaEntre(Ocupable posicion1, Ocupable posicion2) {
+	public int distanciaEntre(Casilla posicion1, Casilla posicion2) {
 		try {
 			int distancia = this.distanciaEntre(posicion1.posicion(),
 					posicion2.posicion());
@@ -75,7 +70,7 @@ public class Mapa implements Navegable {
 		}
 	}
 
-	private void validarCoordenada(Ubicable coordenada)
+	private void validarCoordenada(Coordenada coordenada)
 			throws CoordenadaInvalidaError {
 
 		int fila = coordenada.getFila();
@@ -90,20 +85,20 @@ public class Mapa implements Navegable {
 	}
 
 	public void agregarElementoEnPosicion(Accionable elemento,
-			Ubicable coordenada) {
+			Coordenada coordenada) {
 
 		try {
 			validarCoordenada(coordenada);
 		} catch (CoordenadaInvalidaError error) {
 			return;
 		}
-		Ocupable casillero = tablero.get(coordenada);
+		Casilla casillero = tablero.get(coordenada);
 		elemento.posicionar(casillero);
 	}
 
-	public Accionable obtenerElementoEnPosicion(Ubicable coordenada) {
+	public Accionable obtenerElementoEnPosicion(Coordenada coordenada) {
 
-		Ocupable casillero = tablero.get(coordenada);
+		Casilla casillero = tablero.get(coordenada);
 		return casillero.ocupante();
 	}
 }

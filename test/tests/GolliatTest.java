@@ -1,13 +1,12 @@
 package tests;
 
-import interfaces.Ocupable;
-import interfaces.Peleable;
 
+import interfaces.Peleable;
+import ocupables.Casilla;
 import ocupables.CasillaTerrestre;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 
 import peleables.Golliat;
 import peleables.Marine;
@@ -25,15 +24,15 @@ public class GolliatTest {
 	}
 	@Test
 	public void deberiaPoderMoverseSiNoHayNadieEnEseCasillero(){
-		Ocupable casilleroLibre = new CasillaTerrestre();
-		Ocupable casillero = new CasillaTerrestre();
+		Casilla casilleroLibre = new CasillaTerrestre();
+		Casilla casillero = new CasillaTerrestre();
 		Peleable golliat = new Golliat();
 		golliat.posicionar(casillero);
 		Assert.assertTrue(golliat.mover(casilleroLibre));
 	}
 	@Test
 	public void noDeberiaPoderMoverseSiEstaOcupadoElCasillero(){
-		Ocupable casillero = new CasillaTerrestre();
+		Casilla casillero = new CasillaTerrestre();
 		Peleable golliat = new Golliat();
 		Peleable otroGolliat = new Golliat();
 		otroGolliat.posicionar(casillero);

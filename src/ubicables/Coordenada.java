@@ -1,8 +1,7 @@
 package ubicables;
 
-import interfaces.Ubicable;
 
-public class Coordenada implements Ubicable {
+public class Coordenada {
 
 	protected int fila;
 

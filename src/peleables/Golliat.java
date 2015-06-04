@@ -1,6 +1,7 @@
 package peleables;
 
-import interfaces.Ocupable;
+import ocupables.Casilla;
+
 
 public class Golliat extends UnidadSoldado {
 
@@ -16,7 +17,7 @@ public class Golliat extends UnidadSoldado {
 	}
 
 	@Override
-	public boolean mover(Ocupable casilla) {
+	public boolean mover(Casilla casilla) {
 		if ( !casilla.estaOcupada() ){
 			casilla.ocupar(this);
 			return true;

@@ -1,15 +1,13 @@
 package tests;
 
+import ocupables.Casilla;
 import ocupables.CasillaTerrestre;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import accionables.Unidad;
-
-
 import peleables.Marine;
-import interfaces.Ocupable;
 
 public class UnidadTest {
 
@@ -36,7 +34,7 @@ public class UnidadTest {
 	@Test
 	public void deberiaGuardarSuPosicion() {
 
-		Ocupable posicion = new CasillaTerrestre();
+		Casilla posicion = new CasillaTerrestre();
 		Unidad soldado = new Marine();
 
 		soldado.posicionar(posicion);

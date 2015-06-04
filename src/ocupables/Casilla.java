@@ -1,15 +1,14 @@
 package ocupables;
 
+import ubicables.Coordenada;
+import navegables.Mapa;
 import interfaces.Accionable;
-import interfaces.Ocupable;
-import interfaces.Navegable;
-import interfaces.Ubicable;
 
-public abstract class Casilla implements Ocupable {
+public abstract class Casilla  {
 
-	protected Ubicable ubicacion;
+	protected Coordenada ubicacion;
 	protected Accionable ocupante;
-	protected Navegable mapa;
+	protected Mapa mapa;
 
 	public boolean estaOcupada() {
 		return (ocupante != null);
@@ -27,16 +26,16 @@ public abstract class Casilla implements Ocupable {
 		ocupante = null;
 	}
 
-	public void situar(Ubicable posicion, Navegable escenario) {
+	public void situar(Coordenada posicion, Mapa escenario) {
 		ubicacion = posicion;
 		mapa = escenario;
 	}
 
-	public Ubicable posicion() {
+	public Coordenada posicion() {
 		return ubicacion;
 	}
 
-	public int distanciaA(Ocupable otraPosicion) {
+	public int distanciaA(Casilla otraPosicion) {
 		return mapa.distanciaEntre(this, otraPosicion);
 	}
 }

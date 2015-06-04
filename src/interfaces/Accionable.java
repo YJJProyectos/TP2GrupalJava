@@ -1,10 +1,11 @@
 package interfaces;
 
-import interfaces.Ocupable;
+import ocupables.Casilla;
+
 
 public interface Accionable {
 
-	public abstract void posicionar(Ocupable casilla);
+	public abstract void posicionar(Casilla casilla);
 
 	public abstract void recibirDanio(int cantidadDanio);
 
@@ -12,6 +13,6 @@ public interface Accionable {
 
 	public abstract boolean estaDestruido();
 
-	public abstract Ocupable posicion();
+	public abstract Casilla posicion();
 
 }

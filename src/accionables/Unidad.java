@@ -1,11 +1,11 @@
 package accionables;
 
+import ocupables.Casilla;
 import interfaces.Accionable;
-import interfaces.Ocupable;
 
 public abstract class Unidad implements Accionable {
 
-	protected Ocupable posicion;
+	protected Casilla posicion;
 	protected int vida;
 
 	public void recibirDanio(int danio) {
@@ -20,11 +20,11 @@ public abstract class Unidad implements Accionable {
 		return (vida <= 0);
 	}
 
-	public Ocupable posicion() {
+	public Casilla posicion() {
 		return posicion;
 	}
 
-	public void posicionar(Ocupable casilla) {
+	public void posicionar(Casilla casilla) {
 		if (casilla.ocupar(this))
 			this.posicion = casilla;
 	}

@@ -9,8 +9,6 @@ import org.junit.Test;
 import peleables.Marine;
 import peleables.Golliat;
 import ubicables.Coordenada;
-import interfaces.Navegable;
-import interfaces.Ubicable;
 
 public class MarineTest {
 
@@ -27,11 +25,11 @@ public class MarineTest {
 	@Test
 	public void deberiaNoDaniarPorEstarFueraDelRango() {
 
-		Navegable mapa = new Mapa(2);
+		Mapa mapa = new Mapa(2);
 		Marine soldadoAliado = new Marine();
 		Accionable soldadoEnemigo = new Golliat();
-		Ubicable coordenadaAliado = new Coordenada(1, 1);
-		Ubicable coordenadaEnemigo = new Coordenada(10, 10);
+		Coordenada coordenadaAliado = new Coordenada(1, 1);
+		Coordenada coordenadaEnemigo = new Coordenada(10, 10);
 		mapa.agregarElementoEnPosicion(soldadoAliado, coordenadaAliado);
 		mapa.agregarElementoEnPosicion(soldadoEnemigo, coordenadaEnemigo);
 
@@ -45,11 +43,11 @@ public class MarineTest {
 	@Test
 	public void deberiaDaniarPorEstarEnElRango() {
 
-		Navegable mapa = new Mapa(2);
+		Mapa mapa = new Mapa(2);
 		Marine soldadoAliado = new Marine();
 		Accionable soldadoEnemigo = new Golliat();
-		Ubicable coordenadaAliado = new Coordenada(1, 1);
-		Ubicable coordenadaEnemigo = new Coordenada(2, 1);
+		Coordenada coordenadaAliado = new Coordenada(1, 1);
+		Coordenada coordenadaEnemigo = new Coordenada(2, 1);
 		mapa.agregarElementoEnPosicion(soldadoAliado, coordenadaAliado);
 		mapa.agregarElementoEnPosicion(soldadoEnemigo, coordenadaEnemigo);
 
