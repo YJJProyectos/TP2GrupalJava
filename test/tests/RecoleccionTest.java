@@ -1,11 +1,11 @@
 package tests;
 
-import interfaces.Imponible;
+import imponibles.CentroDeMineral;
+import imponibles.Imponible;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import recolectables.CentroDeMineral;
 import recolectables.Mineral;
 
 public class RecoleccionTest {

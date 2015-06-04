@@ -1,6 +1,6 @@
-package interfaces;
+package accionables;
 
-import ocupables.Casilla;
+import mapa.Casilla;
 
 
 public interface Accionable {

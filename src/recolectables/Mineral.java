@@ -1,6 +1,5 @@
 package recolectables;
 
-import interfaces.Recolectable;
 
 public class Mineral implements Recolectable {
 

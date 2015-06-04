@@ -1,7 +1,6 @@
-package recolectables;
+package imponibles;
 
-import interfaces.Imponible;
-import interfaces.Recolectable;
+import recolectables.Recolectable;
 
 public abstract class Asimilador extends EstructuraRecoleccionMineral implements
 		Imponible {

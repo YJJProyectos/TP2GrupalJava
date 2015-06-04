@@ -1,6 +1,7 @@
-package interfaces;
+package peleables;
 
-import ocupables.Casilla;
+import accionables.Accionable;
+import mapa.Casilla;
 
 public interface Peleable extends Accionable {
 

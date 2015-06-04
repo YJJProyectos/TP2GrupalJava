@@ -1,4 +1,4 @@
-package interfaces;
+package recolectables;
 
 public interface Recolectable {
 

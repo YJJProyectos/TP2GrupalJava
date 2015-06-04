@@ -1,7 +1,7 @@
 package tests;
 
-import ocupables.Casilla;
-import ocupables.CasillaTerrestre;
+import mapa.Casilla;
+import mapa.CasillaTerrestre;
 
 import org.junit.Assert;
 import org.junit.Test;

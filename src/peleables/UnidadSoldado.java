@@ -1,8 +1,7 @@
 package peleables;
 
+import accionables.Accionable;
 import accionables.Unidad;
-import interfaces.Accionable;
-import interfaces.Peleable;
 
 public abstract class UnidadSoldado extends Unidad implements Peleable {
 

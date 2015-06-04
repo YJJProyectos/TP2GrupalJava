@@ -1,19 +1,19 @@
 package tests;
 
-import interfaces.Accionable;
-import interfaces.Imponible;
-import interfaces.Peleable;
-import interfaces.Recolectable;
-import ocupables.CasillaDeRecurso;
-import ocupables.CasillaTerrestre;
+import imponibles.CentroDeMineral;
+import imponibles.Imponible;
+import mapa.CasillaDeRecurso;
+import mapa.CasillaTerrestre;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import recolectables.CentroDeMineral;
+import accionables.Accionable;
 import recolectables.Mineral;
+import recolectables.Recolectable;
 import peleables.Marine;
 import peleables.Golliat;
+import peleables.Peleable;
 
 public class CasillaTest {
 

@@ -1,12 +1,12 @@
 package tests;
 
-import interfaces.Accionable;
 import mapa.Coordenada;
 import mapa.Mapa;
 
 import org.junit.Assert;
 import org.junit.Test;
 
+import accionables.Accionable;
 import peleables.Marine;
 import peleables.Golliat;
 

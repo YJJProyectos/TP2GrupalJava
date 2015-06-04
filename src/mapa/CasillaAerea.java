@@ -1,6 +1,6 @@
-package ocupables;
+package mapa;
 
-import interfaces.Accionable;
+import accionables.Accionable;
 
 public class CasillaAerea extends Casilla {
 

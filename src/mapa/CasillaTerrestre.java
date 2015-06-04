@@ -1,7 +1,7 @@
-package ocupables;
+package mapa;
 
-import interfaces.Edificable;
-import interfaces.Accionable;
+import edificables.Edificable;
+import accionables.Accionable;
 
 public class CasillaTerrestre extends Casilla {
 

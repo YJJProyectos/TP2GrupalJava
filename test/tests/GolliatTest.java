@@ -1,15 +1,15 @@
 package tests;
 
 
-import interfaces.Peleable;
-import ocupables.Casilla;
-import ocupables.CasillaTerrestre;
+import mapa.Casilla;
+import mapa.CasillaTerrestre;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import peleables.Golliat;
 import peleables.Marine;
+import peleables.Peleable;
 
 public class GolliatTest {
 

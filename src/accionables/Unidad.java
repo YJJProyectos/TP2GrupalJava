@@ -1,7 +1,6 @@
 package accionables;
 
-import ocupables.Casilla;
-import interfaces.Accionable;
+import mapa.Casilla;
 
 public abstract class Unidad implements Accionable {
 

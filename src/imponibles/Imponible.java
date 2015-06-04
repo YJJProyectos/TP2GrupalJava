@@ -1,4 +1,6 @@
-package interfaces;
+package imponibles;
+
+import edificables.Edificable;
 
 public interface Imponible extends Edificable {
 

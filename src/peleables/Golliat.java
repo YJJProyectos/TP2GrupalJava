@@ -1,6 +1,6 @@
 package peleables;
 
-import ocupables.Casilla;
+import mapa.Casilla;
 
 
 public class Golliat extends UnidadSoldado {

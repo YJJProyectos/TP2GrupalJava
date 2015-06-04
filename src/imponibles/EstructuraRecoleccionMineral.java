@@ -1,7 +1,7 @@
-package recolectables;
+package imponibles;
 
+import recolectables.Recolectable;
 import accionables.Unidad;
-import interfaces.Recolectable;
 
 public abstract class EstructuraRecoleccionMineral extends Unidad {
 

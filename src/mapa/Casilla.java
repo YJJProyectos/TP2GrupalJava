@@ -1,8 +1,6 @@
-package ocupables;
+package mapa;
 
-import mapa.Coordenada;
-import mapa.Mapa;
-import interfaces.Accionable;
+import accionables.Accionable;
 
 public abstract class Casilla  {
 
