@@ -1,4 +1,4 @@
-package ubicables;
+package mapa;
 
 
 public class Coordenada {

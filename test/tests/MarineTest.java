@@ -1,14 +1,14 @@
 package tests;
 
 import interfaces.Accionable;
-
-import navegables.Mapa;
+import mapa.Coordenada;
+import mapa.Mapa;
 
 import org.junit.Assert;
 import org.junit.Test;
+
 import peleables.Marine;
 import peleables.Golliat;
-import ubicables.Coordenada;
 
 public class MarineTest {
 

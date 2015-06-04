@@ -1,4 +1,4 @@
-package navegables;
+package mapa;
 
 import interfaces.Accionable;
 
@@ -6,7 +6,6 @@ import java.util.HashMap;
 
 import ocupables.Casilla;
 import ocupables.CasillaTerrestre;
-import ubicables.Coordenada;
 import excepciones.CoordenadaInvalidaError;
 
 public class Mapa  {

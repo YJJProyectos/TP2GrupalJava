@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import recolectables.CentroDeMineral;
-import tp2.Mineral;
+import recolectables.Mineral;
 
 public class RecoleccionTest {
 	@Test

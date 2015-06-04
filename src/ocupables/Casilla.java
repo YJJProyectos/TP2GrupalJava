@@ -1,7 +1,7 @@
 package ocupables;
 
-import ubicables.Coordenada;
-import navegables.Mapa;
+import mapa.Coordenada;
+import mapa.Mapa;
 import interfaces.Accionable;
 
 public abstract class Casilla  {
