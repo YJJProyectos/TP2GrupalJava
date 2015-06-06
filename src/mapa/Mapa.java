@@ -25,9 +25,9 @@ public class Mapa {
 			for (int columna = this.minColumna; columna <= this.maxColumna; columna++) {
 
 				Coordenada coordenada = new Coordenada(fila, columna);
-				Casilla ocupable = new Casilla();
-				ocupable.situar(coordenada, this);
-				tablero.put(coordenada, ocupable);
+				Casilla casilla = new Casilla();
+				casilla.situar(coordenada);
+				tablero.put(coordenada, casilla);
 			}
 
 		}
@@ -55,7 +55,7 @@ public class Mapa {
 
 		return distancia;
 	}
-
+    /*
 	public int distanciaEntre(Casilla posicion1, Casilla posicion2) {
 		try {
 			int distancia = this.distanciaEntre(posicion1.posicion(),
@@ -64,7 +64,7 @@ public class Mapa {
 		} catch (CoordenadaInvalidaError error) {
 			return -1;
 		}
-	}
+	} */
 
 	private void validarCoordenada(Coordenada coordenada)
 			throws CoordenadaInvalidaError {

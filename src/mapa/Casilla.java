@@ -101,9 +101,8 @@ public class Casilla {
 
 	// /
 
-	public void situar(Coordenada posicion, Mapa escenario) {
+	public void situar(Coordenada posicion) {
 		this.ubicacion = posicion;
-		// mapa = escenario;
 	}
 
 	public Coordenada posicion() {
@@ -111,6 +110,21 @@ public class Casilla {
 	}
 
 	public int distanciaA(Casilla otraPosicion) {
-		return -1;
+		Coordenada otraCoordenada = otraPosicion.posicion();
+
+		return distanciaEntre(this.ubicacion, otraCoordenada);
+	}
+	private int distanciaEntre(Coordenada coordenadaA, Coordenada coordenadaB){
+		int filaA = coordenadaA.getFila();
+		int columnaA = coordenadaA.getColumna();
+		int filaB = coordenadaB.getFila();
+		int columnaB = coordenadaB.getColumna();
+		double X = Math.pow((filaA - filaB), 2);
+		double Y = Math.pow((columnaA - columnaB), 2);
+		double resultadoRaiz = Math.sqrt(X + Y);
+		int distancia = (int) Math.round(resultadoRaiz);
+
+		return distancia;
+
 	}
 }
