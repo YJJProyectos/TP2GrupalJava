@@ -1,39 +1,116 @@
 package mapa;
 
+import imponibles.Recolector;
+import recolectables.Recolectable;
 import accionables.Accionable;
 
-public abstract class Casilla  {
+public class Casilla {
 
-	protected Coordenada ubicacion;
-	protected Accionable ocupante;
-	protected Mapa mapa;
+	private Coordenada ubicacion;
+	private Accionable ocupanteTerrestre;
+	private Accionable ocupanteAereo;
+	private Recolectable recurso;
 
-	public boolean estaOcupada() {
-		return (ocupante != null);
+	public Casilla() {
+		this.ubicacion = null;
+		this.ocupanteTerrestre = null;
+		this.ocupanteAereo = null;
+		this.recurso = null;
 	}
 
-	public Accionable ocupante() {
-		return ocupante;
+	public boolean estaOcupadaLaTierra() {
+		return (this.ocupanteTerrestre != null);
 	}
 
-	public abstract boolean ocupar(Accionable unidad);
-
-	public abstract boolean esTerrestre();
-
-	public void desocupar() {
-		ocupante = null;
+	public boolean estaOcupadoElAire() {
+		return (this.ocupanteAereo != null);
 	}
+
+	public boolean estaOcupadoElRecurso() {
+		return (this.recurso != null);
+	}
+
+	public Accionable getOcupanteTerrestre() {
+		return this.ocupanteTerrestre;
+	}
+
+	public Accionable getOcupanteAereo() {
+		return this.ocupanteTerrestre;
+	}
+
+	public Recolectable getRecurso() {
+		return this.recurso;
+	}
+
+	private boolean ocuparTerrestre(Accionable unidad) {
+		if ((this.ocupanteTerrestre == null) && (this.recurso == null)) {
+			this.ocupanteTerrestre = (Accionable) unidad;
+			return true;
+		}
+		return false;
+
+	}
+
+	private boolean ocuparAereo(Accionable unidad) {
+		if (this.ocupanteAereo == null) {
+			this.ocupanteAereo = (Accionable) unidad;
+			return true;
+		}
+		return false;
+
+	}
+
+	public boolean ocupar(Accionable unidad) {
+		if (unidad.esTerrestre()) {
+			return ocuparTerrestre(unidad);
+		}
+		return ocuparAereo(unidad);
+	}
+
+	public boolean ocupar(Recolector unidad) {
+		if ((this.ocupanteTerrestre == null) && (this.recurso != null)) {
+			this.ocupanteTerrestre = (Accionable) unidad;
+			return true;
+		}
+		return false;
+	}
+
+	public boolean agregarRecurso(Recolectable unRecurso) {
+		if ((this.ocupanteTerrestre == null) && (this.recurso == null)) {
+			this.recurso = unRecurso;
+			return true;
+		}
+		return false;
+	}
+
+	public boolean desocuparTierra() {
+		if (this.ocupanteTerrestre == null) {
+			return false;
+		}
+		this.ocupanteTerrestre = null;
+		return true;
+	}
+
+	public boolean desocuparAire() {
+		if (this.ocupanteAereo == null) {
+			return false;
+		}
+		this.ocupanteAereo = null;
+		return true;
+	}
+
+	// /
 
 	public void situar(Coordenada posicion, Mapa escenario) {
-		ubicacion = posicion;
-		mapa = escenario;
+		this.ubicacion = posicion;
+		// mapa = escenario;
 	}
 
 	public Coordenada posicion() {
-		return ubicacion;
+		return this.ubicacion;
 	}
 
 	public int distanciaA(Casilla otraPosicion) {
-		return mapa.distanciaEntre(this, otraPosicion);
+		return -1;
 	}
 }

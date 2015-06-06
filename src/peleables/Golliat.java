@@ -2,7 +2,6 @@ package peleables;
 
 import mapa.Casilla;
 
-
 public class Golliat extends UnidadSoldado {
 
 	public Golliat() {
@@ -18,10 +17,19 @@ public class Golliat extends UnidadSoldado {
 
 	@Override
 	public boolean mover(Casilla casilla) {
-		if ( !casilla.estaOcupada() ){
+		if (!casilla.estaOcupadaLaTierra()) {
 			casilla.ocupar(this);
 			return true;
 		}
 		return false;
+	}
+
+	public void posicionar(Casilla casilla) {
+		if (casilla.ocupar(this))
+			this.posicion = casilla;
+	}
+
+	public boolean esTerrestre() {
+		return true;
 	}
 }

@@ -2,7 +2,6 @@ package tests;
 
 
 import mapa.Casilla;
-import mapa.CasillaTerrestre;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -24,15 +23,15 @@ public class GolliatTest {
 	}
 	@Test
 	public void deberiaPoderMoverseSiNoHayNadieEnEseCasillero(){
-		Casilla casilleroLibre = new CasillaTerrestre();
-		Casilla casillero = new CasillaTerrestre();
+		Casilla casilleroLibre = new Casilla();
+		Casilla casillero = new Casilla();
 		Peleable golliat = new Golliat();
 		golliat.posicionar(casillero);
 		Assert.assertTrue(golliat.mover(casilleroLibre));
 	}
 	@Test
 	public void noDeberiaPoderMoverseSiEstaOcupadoElCasillero(){
-		Casilla casillero = new CasillaTerrestre();
+		Casilla casillero = new Casilla();
 		Peleable golliat = new Golliat();
 		Peleable otroGolliat = new Golliat();
 		otroGolliat.posicionar(casillero);

@@ -2,7 +2,7 @@ package imponibles;
 
 import edificables.Edificable;
 
-public interface Imponible extends Edificable {
+public interface Recolector extends Edificable {
 
 	public boolean recolectar();
 

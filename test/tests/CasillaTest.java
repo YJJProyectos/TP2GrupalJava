@@ -1,98 +1,226 @@
 package tests;
 
 import imponibles.CentroDeMineral;
-import imponibles.Imponible;
-import mapa.CasillaDeRecurso;
-import mapa.CasillaTerrestre;
+import imponibles.Recolector;
+import mapa.Casilla;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import accionables.Accionable;
+import accionables.Unidad;
+
+
+import peleables.Marine;
 import recolectables.Mineral;
 import recolectables.Recolectable;
-import peleables.Marine;
-import peleables.Golliat;
-import peleables.Peleable;
 
 public class CasillaTest {
 
 	@Test
-	public void deberiaNoEstarOcupada() {
-		CasillaTerrestre casilla = new CasillaTerrestre();
+	public void deberiaNoEstarOcupadaLaTierra() {
+		Casilla casilla = new Casilla();
 
-		Assert.assertFalse(casilla.estaOcupada());
+		Assert.assertFalse(casilla.estaOcupadaLaTierra());
 	}
 
 	@Test
-	public void deberiaEstarOcupada() {
-		CasillaTerrestre casilla = new CasillaTerrestre();
+	public void deberiaNoEstarOcupadoElAire() {
+		Casilla casilla = new Casilla();
 
-		Peleable soldado = new Marine();
-		casilla.ocupar(soldado);
-
-		Assert.assertTrue(casilla.estaOcupada());
+		Assert.assertFalse(casilla.estaOcupadoElAire());
 	}
 
 	@Test
-	public void deberiaEstarOcupadaUnaCasillaDeRecurso() {
-		Recolectable recurso = new Mineral(1000);
-		CasillaDeRecurso casilla = new CasillaDeRecurso(recurso);
+	public void deberiaNoEstarOcupadoElRecurso() {
+		Casilla casilla = new Casilla();
 
-		Assert.assertTrue(casilla.estaOcupada());
+		Assert.assertFalse(casilla.estaOcupadoElRecurso());
 	}
 
 	@Test
-	public void deberiaNoEstarOcupadaPorUnEdificioUnaCasillaDeRecursos() {
-		Recolectable recurso = new Mineral(1000);
-		CasillaDeRecurso casilla = new CasillaDeRecurso(recurso);
+	public void deberiaEstarOcupadaLaTierraAlAgregarUnMarineEnTierra() {
+		Casilla casilla = new Casilla();
+		Unidad marine = new Marine();
+		casilla.ocupar(marine);
 
-		Assert.assertFalse(casilla.estaOcupadaPorUnEdificio());
-	}
-
-	@Test
-	public void deberiaEstarOcupadaPorUnEdificioUnaCasillaDeRecursos() {
-		Recolectable recurso = new Mineral(1000);
-		Imponible edificio = new CentroDeMineral(recurso);
-		CasillaDeRecurso casilla = new CasillaDeRecurso(recurso);
-		casilla.agregarRecolectante(edificio);
-		Assert.assertTrue(casilla.estaOcupadaPorUnEdificio());
+		Assert.assertTrue(casilla.estaOcupadaLaTierra());
 	}
 
 	@Test
 	public void deberiaGuardarALaUnidad() {
+		Casilla casilla = new Casilla();
+		Unidad marine = new Marine();
+		casilla.ocupar(marine);
 
-		CasillaTerrestre casilla = new CasillaTerrestre();
-		Accionable soldado = new Marine();
-
-		casilla.ocupar(soldado);
-
-		Assert.assertEquals(casilla.ocupante(), soldado);
-
+		Assert.assertEquals(marine, casilla.getOcupanteTerrestre());
 	}
 
 	@Test
-	public void deberiaGuardarSoloLaPrimeraUnidad() {
+	public void deberiaGuardarSoloLaPrimeraUnidadEntreDosUnidadesTerrestres() {
+		Casilla casilla = new Casilla();
+		Unidad primerMarine = new Marine();
+		Unidad segundoMarine = new Marine();
+		casilla.ocupar(primerMarine);
+		casilla.ocupar(segundoMarine);
 
-		CasillaTerrestre casilla = new CasillaTerrestre();
-		Accionable soldado1 = new Marine();
-		Accionable soldado2 = new Golliat();
-
-		casilla.ocupar(soldado1);
-		casilla.ocupar(soldado2);
-
-		Assert.assertEquals(casilla.ocupante(), soldado1);
+		Assert.assertEquals(primerMarine, casilla.getOcupanteTerrestre());
 	}
 
 	@Test
-	public void deberiaDesocuparse() {
-		CasillaTerrestre casilla = new CasillaTerrestre();
-		Accionable soldado = new Marine();
+	public void deberiaNoEstarOcupadoElAireAlAgregarUnMarineEnTierra() {
+		Casilla casilla = new Casilla();
+		Unidad marine = new Marine();
+		casilla.ocupar(marine);
 
-		casilla.ocupar(soldado);
-		casilla.desocupar();
-
-		Assert.assertFalse(casilla.estaOcupada());
+		Assert.assertFalse(casilla.estaOcupadoElAire());
 	}
+
+	@Test
+	public void deberiaNoEstarOcupadoElRecursoAlAgregarUnMarineEnTierra() {
+		Casilla casilla = new Casilla();
+		Unidad marine = new Marine();
+		casilla.ocupar(marine);
+
+		Assert.assertFalse(casilla.estaOcupadoElRecurso());
+	}
+
+	@Test
+	public void deberiaNoEstarOcupadaLaTierraAlAgregarUnRecurso() {
+		Casilla casilla = new Casilla();
+		Recolectable mineral = new Mineral(100);
+		casilla.agregarRecurso(mineral);
+
+		Assert.assertFalse(casilla.estaOcupadaLaTierra());
+	}
+
+	@Test
+	public void deberiaNoEstarOcupadoElAireAlAgregarUnRecurso() {
+		Casilla casilla = new Casilla();
+		Recolectable mineral = new Mineral(100);
+		casilla.agregarRecurso(mineral);
+
+		Assert.assertFalse(casilla.estaOcupadoElAire());
+	}
+
+	@Test
+	public void deberiaEstarOcupadoElRecursoAlAgregarUnRecurso() {
+		Casilla casilla = new Casilla();
+		Recolectable mineral = new Mineral(100);
+		casilla.agregarRecurso(mineral);
+
+		Assert.assertTrue(casilla.estaOcupadoElRecurso());
+	}
+	
+	@Test
+	public void deberiaGuardarSoloElPrimerRecursoEntreDosRecursosAgregados() {
+		Casilla casilla = new Casilla();
+		Recolectable primerMineral = new Mineral(100);
+		Recolectable segundoMineral = new Mineral(200);
+		casilla.agregarRecurso(primerMineral);
+		casilla.agregarRecurso(segundoMineral);
+
+		Assert.assertEquals(primerMineral, casilla.getRecurso());
+	}
+
+	@Test
+	public void deberiaNoPoderDesocuparLaTierraSiNoHayUnaUnidad() {
+		Casilla casilla = new Casilla();
+
+		Assert.assertFalse(casilla.desocuparTierra());
+	}
+
+	@Test
+	public void deberiaNoPoderDesocuparElAireSiNoHayUnaUnidad() {
+		Casilla casilla = new Casilla();
+
+		Assert.assertFalse(casilla.desocuparAire());
+	}
+
+	@Test
+	public void deberiaPoderDesocuparLaTierraSiSoloHayUnMarineEnTierra() {
+		Casilla casilla = new Casilla();
+		Unidad marine = new Marine();
+		casilla.ocupar(marine);
+
+		Assert.assertTrue(casilla.desocuparTierra());
+	}
+
+	@Test
+	public void deberiaNoPoderDesocuparElAireSiSoloHayUnMarineEnTierra() {
+		Casilla casilla = new Casilla();
+		Unidad marine = new Marine();
+		casilla.ocupar(marine);
+
+		Assert.assertFalse(casilla.desocuparAire());
+	}
+
+	@Test
+	public void deberiaNoPoderDesocuparLaTierraSiSoloHayUnRecurso() {
+		Casilla casilla = new Casilla();
+		Recolectable mineral = new Mineral(100);
+		casilla.agregarRecurso(mineral);
+
+		Assert.assertFalse(casilla.desocuparTierra());
+	}
+
+	@Test
+	public void deberiaNoPoderDesocuparElAireSiSoloHayUnRecurso() {
+		Casilla casilla = new Casilla();
+		Recolectable mineral = new Mineral(100);
+		casilla.agregarRecurso(mineral);
+
+		Assert.assertFalse(casilla.desocuparAire());
+	}
+	
+	@Test
+	public void  debieriaNoPoderAgregarUnCentroMineralPorqueNoHayMineral(){
+		Casilla casilla = new Casilla();
+		Recolectable mineral = new Mineral(100);
+		Recolector centroMineral = new CentroDeMineral(mineral);
+		Assert.assertFalse(casilla.ocupar(centroMineral));
+	}
+	
+	@Test
+	public void  debieriaPoderAgregarUnCentroMineralPorqueHayMineral(){
+		Casilla casilla = new Casilla();
+		Recolectable mineral = new Mineral(100);
+		casilla.agregarRecurso(mineral);
+		Recolector centroMineral = new CentroDeMineral(mineral);
+		Assert.assertTrue(casilla.ocupar(centroMineral));
+	}
+	
+	@Test
+	public void deberiaNoPoderAgregarUnSoldadoPorqueYaHayUnMineral(){
+		Casilla casilla = new Casilla();
+		Recolectable mineral = new Mineral(100);
+		Unidad marine = new Marine();
+		casilla.agregarRecurso(mineral);
+		Assert.assertFalse(casilla.ocupar(marine));
+		
+	}
+	
+	public void deberianNoPoderAgregarUnMineralCuandoYaHayUnMarineEnLaCasilla(){
+		Casilla casilla = new Casilla();
+		Recolectable mineral = new Mineral(100);
+		Unidad marine = new Marine();
+		casilla.ocupar(marine);
+		Assert.assertFalse(casilla.agregarRecurso(mineral));
+		
+	}
+	
+	public void deberianNoPoderAgregarUnMarineCuandoYaHayUnCentroDeMineralEnLaCasilla(){
+		Casilla casilla = new Casilla();
+		Recolectable mineral = new Mineral(100);
+		Recolector centroMineral = new CentroDeMineral(mineral);
+		Unidad marine = new Marine();
+		casilla.agregarRecurso(mineral);
+		casilla.ocupar(centroMineral);
+		Assert.assertFalse(casilla.ocupar(marine));
+		
+	}
+
+	// Cuando tengamos implementado algun
+	// accionable aereo, vamos a tener que agregar mas
+	// tests de este estilo.
 
 }

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import accionables.Accionable;
 import excepciones.CoordenadaInvalidaError;
 
-public class Mapa  {
+public class Mapa {
 
 	HashMap<Coordenada, Casilla> tablero = new HashMap<Coordenada, Casilla>();
 	private int minFila = 1;
@@ -25,7 +25,7 @@ public class Mapa  {
 			for (int columna = this.minColumna; columna <= this.maxColumna; columna++) {
 
 				Coordenada coordenada = new Coordenada(fila, columna);
-				Casilla ocupable = new CasillaTerrestre();
+				Casilla ocupable = new Casilla();
 				ocupable.situar(coordenada, this);
 				tablero.put(coordenada, ocupable);
 			}
@@ -92,9 +92,9 @@ public class Mapa  {
 		elemento.posicionar(casillero);
 	}
 
-	public Accionable obtenerElementoEnPosicion(Coordenada coordenada) {
+	 public Accionable obtenerElementoTerrestreEnPosicion(Coordenada coordenada) {
 
-		Casilla casillero = tablero.get(coordenada);
-		return casillero.ocupante();
-	}
+	 Casilla casillero = tablero.get(coordenada);
+	 return casillero.getOcupanteTerrestre();
+	 }
 }

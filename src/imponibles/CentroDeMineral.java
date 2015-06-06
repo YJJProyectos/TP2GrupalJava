@@ -2,11 +2,9 @@ package imponibles;
 
 import recolectables.Recolectable;
 
-public class CentroDeMineral extends EstructuraRecoleccionMineral implements
-		Imponible {
+public class CentroDeMineral extends EstructuraRecoleccionMineral {
 
 	private int cantidadMineralRecolectado;
-	private int vida;
 
 	public CentroDeMineral(Recolectable recurso) {
 		super(recurso);
@@ -35,12 +33,7 @@ public class CentroDeMineral extends EstructuraRecoleccionMineral implements
 		return true;
 	}
 
-	public void recibirDanio(int cantidadDanio) {
-		vida -= cantidadDanio;
-
-	}
-
-	public int vidaRestante() {
-		return vida;
+	public boolean esTerrestre() {
+		return true;
 	}
 }

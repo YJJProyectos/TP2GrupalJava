@@ -63,7 +63,7 @@ public class MapaTest {
 		mapa.agregarElementoEnPosicion(marine, coordenadaMarine);
 
 		Assert.assertEquals(marine,
-				mapa.obtenerElementoEnPosicion(coordenadaMarine));
+				mapa.obtenerElementoTerrestreEnPosicion(coordenadaMarine));
 
 	}
 }

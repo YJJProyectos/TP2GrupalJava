@@ -11,4 +11,8 @@ public class Fabrica extends Estructura {
 		return true;
 	}
 
+	public boolean esTerrestre() {
+		return true;
+	}
+
 }

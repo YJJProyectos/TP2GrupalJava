@@ -1,7 +1,6 @@
 package tests;
 
 import mapa.Casilla;
-import mapa.CasillaTerrestre;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -34,7 +33,7 @@ public class UnidadTest {
 	@Test
 	public void deberiaGuardarSuPosicion() {
 
-		Casilla posicion = new CasillaTerrestre();
+		Casilla posicion = new Casilla();
 		Unidad soldado = new Marine();
 
 		soldado.posicionar(posicion);

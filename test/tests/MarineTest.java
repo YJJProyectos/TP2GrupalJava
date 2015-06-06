@@ -22,6 +22,7 @@ public class MarineTest {
 		Assert.assertEquals(119, soldadoEnemigo.vidaRestante());
 	}
 
+	/*
 	@Test
 	public void deberiaNoDaniarPorEstarFueraDelRango() {
 
@@ -39,6 +40,7 @@ public class MarineTest {
 		Assert.assertEquals(vidaInicial, soldadoEnemigo.vidaRestante());
 
 	}
+	*/
 
 	@Test
 	public void deberiaDaniarPorEstarEnElRango() {

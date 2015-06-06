@@ -8,21 +8,23 @@ public abstract class Unidad implements Accionable {
 	protected int vida;
 
 	public void recibirDanio(int danio) {
-		vida = vida - danio;
+		this.vida = this.vida - danio;
 	}
 
 	public int vidaRestante() {
-		return vida;
+		return this.vida;
 	}
 
 	public boolean estaDestruido() {
-		return (vida <= 0);
+		return (this.vida <= 0);
 	}
 
 	public Casilla posicion() {
-		return posicion;
+		return this.posicion;
 	}
-
+	
+	public abstract boolean esTerrestre();
+	
 	public void posicionar(Casilla casilla) {
 		if (casilla.ocupar(this))
 			this.posicion = casilla;

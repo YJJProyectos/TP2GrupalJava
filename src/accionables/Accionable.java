@@ -15,4 +15,6 @@ public interface Accionable {
 
 	public abstract Casilla posicion();
 
+	public abstract boolean esTerrestre();
+
 }
