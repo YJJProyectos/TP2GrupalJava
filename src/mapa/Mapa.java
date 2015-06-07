@@ -3,7 +3,6 @@ package mapa;
 import java.util.HashMap;
 
 import accionables.Accionable;
-import excepciones.CoordenadaInvalidaError;
 
 public class Mapa {
 

@@ -1,12 +1,12 @@
 package tests;
 
 import mapa.Coordenada;
+import mapa.CoordenadaInvalidaError;
 import mapa.Mapa;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import excepciones.CoordenadaInvalidaError;
 import peleables.Marine;
 
 public class MapaTest {

@@ -41,7 +41,7 @@ public class CasillaTest {
 	public void deberiaEstarOcupadaLaTierraAlAgregarUnMarineEnTierra() {
 		Casilla casilla = new Casilla();
 		Unidad marine = new Marine();
-		casilla.ocupar(marine);
+		casilla.ocuparTerrestre(marine);
 
 		Assert.assertTrue(casilla.estaOcupadaLaTierra());
 	}
@@ -50,7 +50,7 @@ public class CasillaTest {
 	public void deberiaGuardarALaUnidad() {
 		Casilla casilla = new Casilla();
 		Unidad marine = new Marine();
-		casilla.ocupar(marine);
+		casilla.ocuparTerrestre(marine);
 
 		Assert.assertEquals(marine, casilla.getOcupanteTerrestre());
 	}
@@ -60,8 +60,8 @@ public class CasillaTest {
 		Casilla casilla = new Casilla();
 		Unidad primerMarine = new Marine();
 		Unidad segundoMarine = new Marine();
-		casilla.ocupar(primerMarine);
-		casilla.ocupar(segundoMarine);
+		casilla.ocuparTerrestre(primerMarine);
+		casilla.ocuparTerrestre(segundoMarine);
 
 		Assert.assertEquals(primerMarine, casilla.getOcupanteTerrestre());
 	}
@@ -70,7 +70,7 @@ public class CasillaTest {
 	public void deberiaNoEstarOcupadoElAireAlAgregarUnMarineEnTierra() {
 		Casilla casilla = new Casilla();
 		Unidad marine = new Marine();
-		casilla.ocupar(marine);
+		casilla.ocuparTerrestre(marine);
 
 		Assert.assertFalse(casilla.estaOcupadoElAire());
 	}
@@ -79,7 +79,7 @@ public class CasillaTest {
 	public void deberiaNoEstarOcupadoElRecursoAlAgregarUnMarineEnTierra() {
 		Casilla casilla = new Casilla();
 		Unidad marine = new Marine();
-		casilla.ocupar(marine);
+		casilla.ocuparTerrestre(marine);
 
 		Assert.assertFalse(casilla.estaOcupadoElRecurso());
 	}
@@ -140,7 +140,7 @@ public class CasillaTest {
 	public void deberiaPoderDesocuparLaTierraSiSoloHayUnMarineEnTierra() {
 		Casilla casilla = new Casilla();
 		Unidad marine = new Marine();
-		casilla.ocupar(marine);
+		casilla.ocuparTerrestre(marine);
 
 		Assert.assertTrue(casilla.desocuparTierra());
 	}
@@ -149,7 +149,7 @@ public class CasillaTest {
 	public void deberiaNoPoderDesocuparElAireSiSoloHayUnMarineEnTierra() {
 		Casilla casilla = new Casilla();
 		Unidad marine = new Marine();
-		casilla.ocupar(marine);
+		casilla.ocuparTerrestre(marine);
 
 		Assert.assertFalse(casilla.desocuparAire());
 	}
@@ -173,7 +173,7 @@ public class CasillaTest {
 	}
 	
 	@Test
-	public void  debieriaNoPoderAgregarUnCentroMineralPorqueNoHayMineral(){
+	public void  deberiaNoPoderAgregarUnCentroMineralPorqueNoHayMineral(){
 		Casilla casilla = new Casilla();
 		Recolectable mineral = new Mineral(100);
 		Recolector centroMineral = new CentroDeMineral(mineral);
@@ -195,7 +195,7 @@ public class CasillaTest {
 		Recolectable mineral = new Mineral(100);
 		Unidad marine = new Marine();
 		casilla.agregarRecurso(mineral);
-		Assert.assertFalse(casilla.ocupar(marine));
+		Assert.assertFalse(casilla.ocuparTerrestre(marine));
 		
 	}
 	
@@ -203,7 +203,7 @@ public class CasillaTest {
 		Casilla casilla = new Casilla();
 		Recolectable mineral = new Mineral(100);
 		Unidad marine = new Marine();
-		casilla.ocupar(marine);
+		casilla.ocuparTerrestre(marine);
 		Assert.assertFalse(casilla.agregarRecurso(mineral));
 		
 	}
@@ -215,7 +215,7 @@ public class CasillaTest {
 		Unidad marine = new Marine();
 		casilla.agregarRecurso(mineral);
 		casilla.ocupar(centroMineral);
-		Assert.assertFalse(casilla.ocupar(marine));
+		Assert.assertFalse(casilla.ocuparTerrestre(marine));
 		
 	}
 

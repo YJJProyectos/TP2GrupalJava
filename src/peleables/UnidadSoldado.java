@@ -7,9 +7,6 @@ public abstract class UnidadSoldado extends Unidad implements Peleable {
 
 	protected int danioAereo;
 	protected int danioTerrestre;
-	protected int transporte;
-	protected int vision;
-	protected int suministro;
 	protected int rangoAereo;
 	protected int rangoTerrestre;
 

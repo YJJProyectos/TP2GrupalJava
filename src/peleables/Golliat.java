@@ -10,23 +10,14 @@ public class Golliat extends UnidadSoldado {
 		this.vida = 125;
 		this.rangoAereo = 5;
 		this.rangoTerrestre = 6;
-		this.suministro = 2;
-		this.vision = 8;
-		this.transporte = 2;
 	}
 
-	@Override
 	public boolean mover(Casilla casilla) {
-		if (!casilla.estaOcupadaLaTierra()) {
-			casilla.ocupar(this);
+		if (casilla.ocuparTerrestre(this)) {
+			this.posicion = casilla;
 			return true;
 		}
 		return false;
-	}
-
-	public void posicionar(Casilla casilla) {
-		if (casilla.ocupar(this))
-			this.posicion = casilla;
 	}
 
 	public boolean esTerrestre() {

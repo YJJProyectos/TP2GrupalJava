@@ -42,16 +42,16 @@ public class Casilla {
 		return this.recurso;
 	}
 
-	private boolean ocuparTerrestre(Accionable unidad) {
+	public boolean ocuparTerrestre(Accionable unidad) {
 		if ((this.ocupanteTerrestre == null) && (this.recurso == null)) {
-			this.ocupanteTerrestre = (Accionable) unidad;
+			this.ocupanteTerrestre = unidad;
 			return true;
 		}
 		return false;
 
 	}
 
-	private boolean ocuparAereo(Accionable unidad) {
+	public boolean ocuparAereo(Accionable unidad) {
 		if (this.ocupanteAereo == null) {
 			this.ocupanteAereo = (Accionable) unidad;
 			return true;

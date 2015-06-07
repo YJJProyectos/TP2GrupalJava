@@ -10,23 +10,14 @@ public class Marine extends UnidadSoldado {
 		this.vida = 40;
 		this.rangoAereo = 4;
 		this.rangoTerrestre = 4;
-		this.suministro = 1;
-		this.vision = 7;
-		this.transporte = 1;
 	}
 
-	@Override
 	public boolean mover(Casilla casilla) {
-		if (!casilla.estaOcupadaLaTierra()) {
-			casilla.ocupar(this);
+		if (casilla.ocuparTerrestre(this)) {
+			this.posicion = casilla;
 			return true;
 		}
 		return false;
-	}
-
-	public void posicionar(Casilla casilla) {
-		if (casilla.ocupar(this))
-			this.posicion = casilla;
 	}
 
 	public boolean esTerrestre() {
