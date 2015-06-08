@@ -3,12 +3,12 @@ package juego;
 
 public class Juego {
 	
-	private Jugador jugador1;
-	private Jugador jugador2;
-	private Jugador turnoActual;
+	private JugadorTerran jugador1;
+	private JugadorTerran jugador2;
+	private JugadorTerran turnoActual;
 	private TurnoState estadoTurno;
 
-	public Juego(Jugador jugador1, Jugador jugador2) {
+	public Juego(JugadorTerran jugador1, JugadorTerran jugador2) {
 		this.jugador1 = jugador1;
 		this.jugador2 = jugador2;
 		estadoTurno = new TurnoJugador1State();
@@ -18,7 +18,7 @@ public class Juego {
 		estadoTurno = estadoTurno.pasarTurno();
 	}
 
-	public Jugador turnoDeJugador() {
+	public JugadorTerran turnoDeJugador() {
 		switch ( estadoTurno.turnoDe() ){
 		case JUGADOR1: turnoActual = jugador1; break;
 		case JUGADOR2: turnoActual = jugador2; break;
