@@ -1,7 +1,8 @@
 package mapa;
 
-import imponibles.Recolector;
 import recolectables.Recolectable;
+import imponibles.Recolector;
+
 import accionables.Accionable;
 
 public class Casilla {
