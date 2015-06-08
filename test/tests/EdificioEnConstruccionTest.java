@@ -1,7 +1,5 @@
 package tests;
 
-import juego.Turno;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -17,9 +15,8 @@ public class EdificioEnConstruccionTest {
 	public void elTiempoDeConstruccionDeberiaSerDe5Turnos() {
 
 		Estructura edificio = new Barraca();
-		Turno turnoJuego = new Turno();
 		EdificioEnConstruccion construccion = new EdificioEnConstruccion(
-				edificio, turnoJuego, 5);
+				edificio, 5);
 		Assert.assertEquals(5, construccion.verTurnosRestantes());
 	}
 
@@ -27,19 +24,15 @@ public class EdificioEnConstruccionTest {
 	public void elTiempoDeConstruccionAlPasarUnTurnoDeberiaBajarDe5A4() {
 
 		Estructura edificio = new Barraca();
-		Turno turnoJuego = new Turno();
-		EdificioEnConstruccion construccion = new EdificioEnConstruccion(
-				edificio, turnoJuego, 5);
-		turnoJuego.pasarTurno();
+		EdificioEnConstruccion construccion = new EdificioEnConstruccion(edificio, 5);
+		construccion.continuarConstruccion();
 		Assert.assertEquals(4, construccion.verTurnosRestantes());
 	}
 
 	@Test
 	public void atacarUnaUnidadDeConstruccionLaDestruye() {
 		Estructura edificio = new Barraca();
-		Turno turnoJuego = new Turno();
-		EdificioEnConstruccion construccion = new EdificioEnConstruccion(
-				edificio, turnoJuego, 5);
+		EdificioEnConstruccion construccion = new EdificioEnConstruccion(edificio, 5);
 		Marine marine = new Marine();
 		marine.atacarEnemigo(construccion);
 		Assert.assertTrue(construccion.estaDestruido());

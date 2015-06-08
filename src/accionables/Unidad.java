@@ -25,8 +25,11 @@ public abstract class Unidad implements Accionable {
 	
 	public abstract boolean esTerrestre();
 	
-	public void posicionar(Casilla casilla) {
-		if (casilla.ocupar(this))
+	public boolean posicionar(Casilla casilla) {
+		if (casilla.ocupar(this)){
 			this.posicion = casilla;
+			return true;
+		}
+		return false;
 	}
 }

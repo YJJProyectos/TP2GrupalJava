@@ -5,7 +5,7 @@ import mapa.Casilla;
 
 public interface Accionable {
 
-	public abstract void posicionar(Casilla casilla);
+	public abstract boolean posicionar(Casilla casilla);
 
 	public abstract void recibirDanio(int cantidadDanio);
 

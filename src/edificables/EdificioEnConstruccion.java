@@ -1,23 +1,15 @@
 package edificables;
 
-import juego.Turno;
-import mapa.Casilla;
 import accionables.Unidad;
 
 public class EdificioEnConstruccion extends Unidad {
-
-	private Turno turnoActual;
-	private int turnoInicial;
-	private int tiempoDeConstruccion;
+	private int turnosRestantes;
 	private Unidad edificioTerminado;
-	private Casilla posicion;
 
-	public EdificioEnConstruccion(Unidad edificio, Turno turnoActual, int turnosNecesarios) {
+	public EdificioEnConstruccion(Unidad edificio, int turnosNecesarios) {
 		this.vida = 1;
 		this.edificioTerminado = edificio;
-		this.turnoActual = turnoActual;
-		this.turnoInicial = turnoActual.getTurno();
-		this.tiempoDeConstruccion = turnosNecesarios;	
+		this.turnosRestantes = turnosNecesarios;
 	}
 
 	public boolean esTerrestre() {
@@ -25,14 +17,15 @@ public class EdificioEnConstruccion extends Unidad {
 	}
 
 	public int verTurnosRestantes() {
-		return tiempoDeConstruccion - (turnoActual.getTurno() - turnoInicial);
+		return turnosRestantes;
 	}
 
-	public void continuarConstruccion(){
-		if(tiempoDeConstruccion == (turnoActual.getTurno() - turnoInicial)){
+	public void continuarConstruccion() {
+		this.turnosRestantes -= 1;
+		if (this.turnosRestantes == 0) {
 			posicion.desocuparTierra();
-			posicion.ocupar(edificioTerminado);
+			edificioTerminado.posicionar(posicion);
 		}
 	}
-	
+
 }
