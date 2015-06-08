@@ -1,14 +1,14 @@
 package tests;
 
-import mapa.Coordenada;
-import mapa.Mapa;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import accionables.Accionable;
-import peleables.Marine;
-import peleables.Golliat;
+import algo3.algocraft.modelo.accionables.Accionable;
+import algo3.algocraft.modelo.mapa.Coordenada;
+import algo3.algocraft.modelo.mapa.Mapa;
+import algo3.algocraft.modelo.peleables.Golliat;
+import algo3.algocraft.modelo.peleables.Marine;
 
 public class MarineTest {
 

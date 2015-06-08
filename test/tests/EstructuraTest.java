@@ -1,14 +1,15 @@
 package tests;
 
-import mapa.Casilla;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import peleables.Marine;
-import recolectables.Mineral;
+import algo3.algocraft.modelo.edificables.Barraca;
+import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.peleables.Marine;
+import algo3.algocraft.modelo.recolectables.Mineral;
 
-import edificables.Barraca;
+
 
 public class EstructuraTest {
 	

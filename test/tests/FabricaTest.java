@@ -3,8 +3,9 @@ package tests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import edificables.Fabrica;
-import edificables.Barraca;
+import algo3.algocraft.modelo.edificables.Barraca;
+import algo3.algocraft.modelo.edificables.Fabrica;
+
 
 public class FabricaTest {
 
@@ -22,5 +23,5 @@ public class FabricaTest {
 		
 		Assert.assertTrue(fabrica.entrenarGolliat());
 	}
-
+	
 }

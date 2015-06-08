@@ -3,7 +3,8 @@ package tests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import edificables.Acceso;
+import algo3.algocraft.modelo.edificables.Acceso;
+
 
 public class AccesoTest {
 

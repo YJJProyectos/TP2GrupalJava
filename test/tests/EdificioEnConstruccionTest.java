@@ -3,11 +3,12 @@ package tests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import edificables.Barraca;
-import edificables.EdificioEnConstruccion;
-import edificables.Estructura;
+import algo3.algocraft.modelo.edificables.Barraca;
+import algo3.algocraft.modelo.edificables.EdificioEnConstruccion;
+import algo3.algocraft.modelo.edificables.Estructura;
+import algo3.algocraft.modelo.peleables.Marine;
 
-import peleables.Marine;
+
 
 public class EdificioEnConstruccionTest {
 

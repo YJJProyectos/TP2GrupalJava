@@ -1,12 +1,13 @@
 package tests;
 
-import imponibles.CentroDeMineral;
-import imponibles.Recolector;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import recolectables.Mineral;
+import algo3.algocraft.modelo.imponibles.CentroDeMineral;
+import algo3.algocraft.modelo.imponibles.Recolector;
+import algo3.algocraft.modelo.recolectables.Mineral;
+
 
 public class RecoleccionTest {
 	@Test

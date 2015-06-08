@@ -1,12 +1,13 @@
 package tests;
 
-import mapa.Coordenada;
-import mapa.Mapa;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import peleables.Marine;
+import algo3.algocraft.modelo.mapa.Coordenada;
+import algo3.algocraft.modelo.mapa.Mapa;
+import algo3.algocraft.modelo.peleables.Marine;
+
 
 public class MapaTest {
 

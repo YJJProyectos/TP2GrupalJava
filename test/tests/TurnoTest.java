@@ -1,8 +1,9 @@
 package tests;
 
-import juego.Turno;
 import org.junit.Assert;
 import org.junit.Test;
+
+import algo3.algocraft.modelo.juego.Turno;
 
 public class TurnoTest {
 

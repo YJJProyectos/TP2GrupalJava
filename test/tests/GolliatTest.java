@@ -1,14 +1,15 @@
 package tests;
 
 
-import mapa.Casilla;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import peleables.Golliat;
-import peleables.Marine;
-import peleables.Peleable;
+import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.peleables.Golliat;
+import algo3.algocraft.modelo.peleables.Marine;
+import algo3.algocraft.modelo.peleables.Peleable;
+
 
 public class GolliatTest {
 

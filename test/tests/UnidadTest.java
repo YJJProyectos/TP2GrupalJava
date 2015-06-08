@@ -1,12 +1,12 @@
 package tests;
 
-import mapa.Casilla;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import accionables.Unidad;
-import peleables.Marine;
+import algo3.algocraft.modelo.accionables.Unidad;
+import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.peleables.Marine;
 
 public class UnidadTest {
 

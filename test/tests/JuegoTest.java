@@ -1,10 +1,11 @@
 package tests;
 
-import juego.Juego;
-import juego.JugadorTerran;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import algo3.algocraft.modelo.juego.Juego;
+import algo3.algocraft.modelo.juego.JugadorTerran;
 
 public class JuegoTest {
 	

@@ -1,18 +1,18 @@
 package tests;
 
-import imponibles.CentroDeMineral;
-import imponibles.Recolector;
-import mapa.Casilla;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import accionables.Unidad;
+import algo3.algocraft.modelo.accionables.Unidad;
+import algo3.algocraft.modelo.imponibles.CentroDeMineral;
+import algo3.algocraft.modelo.imponibles.Recolector;
+import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.peleables.Marine;
+import algo3.algocraft.modelo.recolectables.Mineral;
+import algo3.algocraft.modelo.recolectables.Recolectable;
 
 
-import peleables.Marine;
-import recolectables.Mineral;
-import recolectables.Recolectable;
 
 public class CasillaTest {
 

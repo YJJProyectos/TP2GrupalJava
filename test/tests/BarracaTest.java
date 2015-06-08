@@ -3,7 +3,8 @@ package tests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import edificables.Barraca;
+import algo3.algocraft.modelo.edificables.Barraca;
+
 
 public class BarracaTest {
 
