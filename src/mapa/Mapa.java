@@ -38,33 +38,6 @@ public class Mapa {
 		return tablero.size();
 	}
 
-	public int distanciaEntre(Coordenada coordenadaA, Coordenada coordenadaB)
-			throws CoordenadaInvalidaError {
-
-		int filaA = coordenadaA.getFila();
-		int columnaA = coordenadaA.getColumna();
-		int filaB = coordenadaB.getFila();
-		int columnaB = coordenadaB.getColumna();
-		this.validarCoordenada(coordenadaA);
-		this.validarCoordenada(coordenadaB);
-		double X = Math.pow((filaA - filaB), 2);
-		double Y = Math.pow((columnaA - columnaB), 2);
-		double resultadoRaiz = Math.sqrt(X + Y);
-		int distancia = (int) Math.round(resultadoRaiz);
-
-		return distancia;
-	}
-    /*
-	public int distanciaEntre(Casilla posicion1, Casilla posicion2) {
-		try {
-			int distancia = this.distanciaEntre(posicion1.posicion(),
-					posicion2.posicion());
-			return distancia;
-		} catch (CoordenadaInvalidaError error) {
-			return -1;
-		}
-	} */
-
 	private void validarCoordenada(Coordenada coordenada)
 			throws CoordenadaInvalidaError {
 
@@ -79,16 +52,17 @@ public class Mapa {
 
 	}
 
-	public void agregarElementoEnPosicion(Accionable elemento,
+	public boolean agregarElementoEnPosicion(Accionable elemento,
 			Coordenada coordenada) {
 
 		try {
 			validarCoordenada(coordenada);
 		} catch (CoordenadaInvalidaError error) {
-			return;
+			return false;
 		}
 		Casilla casillero = tablero.get(coordenada);
 		elemento.posicionar(casillero);
+		return true;
 	}
 
 	 public Accionable obtenerElementoTerrestreEnPosicion(Coordenada coordenada) {

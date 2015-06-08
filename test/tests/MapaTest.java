@@ -1,7 +1,6 @@
 package tests;
 
 import mapa.Coordenada;
-import mapa.CoordenadaInvalidaError;
 import mapa.Mapa;
 
 import org.junit.Assert;
@@ -18,41 +17,11 @@ public class MapaTest {
 	}
 
 	@Test
-	public void deberiaCalcularLasDistanciasDeLasCoordenadas()
-			throws CoordenadaInvalidaError {
-
+	public void noDeberiaAgregarUnMarineSiPasanCoordenadaInvalida(){
 		Mapa mapa = new Mapa(4);
-		int distancia;
-		Coordenada coordenadaA = new Coordenada(1, 1);
-		Coordenada coordenadaB = new Coordenada(2, 3);
-		distancia = mapa.distanciaEntre(coordenadaA, coordenadaB);
-		Assert.assertEquals(2, distancia);
-		coordenadaA = new Coordenada(1, 1);
-		coordenadaB = new Coordenada(4, 1);
-		distancia = mapa.distanciaEntre(coordenadaA, coordenadaB);
-		Assert.assertEquals(3, distancia);
-		coordenadaA = new Coordenada(1, 1);
-		coordenadaB = new Coordenada(3, 3);
-		distancia = mapa.distanciaEntre(coordenadaA, coordenadaB);
-		Assert.assertEquals(3, distancia);
-		coordenadaA.setFila(1);
-		coordenadaA.setColumna(2);
-		coordenadaB.setFila(3);
-		coordenadaB.setColumna(3);
-		distancia = mapa.distanciaEntre(coordenadaA, coordenadaB);
-		Assert.assertEquals(2, distancia);
-	}
-
-	@Test(expected = CoordenadaInvalidaError.class)
-	public void deberiaLanzarErrorDeCoordenadaSiPasanCoordenadaInvalida()
-			throws CoordenadaInvalidaError {
-		Mapa mapa = new Mapa(4);
-		Coordenada coordenadaA = new Coordenada(1, 1);
-		Coordenada coordenadaB = new Coordenada(500, 3);
-		mapa.distanciaEntre(coordenadaA, coordenadaB);
-		coordenadaA = new Coordenada(1, 1);
-		coordenadaB = new Coordenada(-1, 3);
-		mapa.distanciaEntre(coordenadaA, coordenadaB);
+		Marine marine = new Marine();
+		Coordenada coordenada = new Coordenada(-1, 3);
+		Assert.assertFalse(mapa.agregarElementoEnPosicion(marine, coordenada));
 	}
 
 	@Test
