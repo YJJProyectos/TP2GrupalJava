@@ -5,10 +5,12 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import algo3.algocraft.modelo.edificables.Barraca;
+import algo3.algocraft.modelo.edificables.DepositoDeSuministros;
 
 public class AlmacenadorEstructurasTerran {
 	
 	Collection<Barraca> listaDeBarracas = new ArrayList<Barraca>();
+	Collection<DepositoDeSuministros> listaDepositos = new ArrayList<DepositoDeSuministros>();
 
 	public void agregarBarraca(Barraca barraca) {
 		listaDeBarracas.add(barraca);
@@ -28,6 +30,14 @@ public class AlmacenadorEstructurasTerran {
 			cero ++;
 		}
 		return barraca;
+	}
+
+	public void agregarDepositoDeSuministros(DepositoDeSuministros deposito) {
+		listaDepositos.add(deposito);
+	}
+
+	public int cantidadDepositos() {
+		return listaDepositos.size();
 	}
 
 }

@@ -1,11 +1,13 @@
 package algo3.algocraft.modelo.juego;
 
 import algo3.algocraft.modelo.edificables.Barraca;
+import algo3.algocraft.modelo.edificables.DepositoDeSuministros;
 import algo3.algocraft.modelo.edificables.Fabrica;
 
 public class JugadorTerran {
 	
 	AlmacenadorEstructurasTerran almacenadorEstructuras;
+	int cantidadPoblacion = 0;
 	
 	public JugadorTerran(){
 		almacenadorEstructuras = new AlmacenadorEstructurasTerran();
@@ -29,6 +31,17 @@ public class JugadorTerran {
 		Barraca barraca = new Barraca();
 		almacenadorEstructuras.agregarBarraca(barraca);
 		return barraca;		
+	}
+
+	public int cantidadPoblacion() {
+		this.cantidadPoblacion = almacenadorEstructuras.cantidadDepositos() * 5;
+		return this.cantidadPoblacion;
+	}
+
+	public DepositoDeSuministros construirDepositoDeSuministros() {
+		DepositoDeSuministros deposito = new DepositoDeSuministros();
+		almacenadorEstructuras.agregarDepositoDeSuministros(deposito);
+		return deposito;
 	}
 
 }
