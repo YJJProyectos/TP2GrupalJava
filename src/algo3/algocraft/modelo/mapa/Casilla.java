@@ -11,8 +11,8 @@ public class Casilla {
 	private Unidad ocupanteAereo;
 	private Recolectable recurso;
 
-	public Casilla() {
-		this.ubicacion = null;
+	public Casilla(Coordenada coordenada) {
+		this.ubicacion = coordenada;
 		this.ocupanteTerrestre = null;
 		this.ocupanteAereo = null;
 		this.recurso = null;
@@ -97,12 +97,6 @@ public class Casilla {
 		}
 		this.ocupanteAereo = null;
 		return true;
-	}
-
-	// /
-
-	public void situar(Coordenada posicion) {
-		this.ubicacion = posicion;
 	}
 
 	public Coordenada posicion() {

@@ -24,8 +24,7 @@ public class Mapa {
 			for (int columna = this.minColumna; columna <= this.maxColumna; columna++) {
 
 				Coordenada coordenada = new Coordenada(fila, columna);
-				Casilla casilla = new Casilla();
-				casilla.situar(coordenada);
+				Casilla casilla = new Casilla(coordenada);
 				tablero.put(coordenada, casilla);
 			}
 

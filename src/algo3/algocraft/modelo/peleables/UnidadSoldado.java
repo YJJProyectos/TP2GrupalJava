@@ -12,11 +12,11 @@ public abstract class UnidadSoldado extends Unidad {
 
 	public void atacarEnemigo(Unidad enemigo) {
 
-		if (this.posicion == null
-				|| this.posicion.distanciaA(enemigo.posicion()) <= this.rangoTerrestre) {
+		if (this.posicion.distanciaA(enemigo.posicion()) <= this.rangoTerrestre) {
 			enemigo.recibirDanio(this.danioTerrestre);
 		}
 	}
+
 	public abstract boolean mover(Casilla casilla);
 
 }

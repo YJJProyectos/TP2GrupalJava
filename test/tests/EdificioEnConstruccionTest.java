@@ -6,6 +6,8 @@ import org.junit.Test;
 import algo3.algocraft.modelo.edificables.Barraca;
 import algo3.algocraft.modelo.edificables.EdificioEnConstruccion;
 import algo3.algocraft.modelo.edificables.UnidadEdificio;
+import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.peleables.Marine;
 
 
@@ -32,9 +34,17 @@ public class EdificioEnConstruccionTest {
 
 	@Test
 	public void atacarUnaUnidadDeConstruccionLaDestruye() {
+		
 		UnidadEdificio edificio = new Barraca();
-		EdificioEnConstruccion construccion = new EdificioEnConstruccion(edificio, 5);
 		Marine marine = new Marine();
+		Coordenada coordenadaCasillaEdificio = new Coordenada(1,1);
+		Coordenada coordenadaCasillaMarine = new Coordenada(1,2);		
+		Casilla casillaEdificio = new Casilla(coordenadaCasillaEdificio);
+		Casilla casillaMarine = new Casilla(coordenadaCasillaMarine);
+
+		EdificioEnConstruccion construccion = new EdificioEnConstruccion(edificio, 5);
+		marine.posicionar(casillaMarine);
+		construccion.posicionar(casillaEdificio);
 		marine.atacarEnemigo(construccion);
 		Assert.assertTrue(construccion.estaDestruido());
 
