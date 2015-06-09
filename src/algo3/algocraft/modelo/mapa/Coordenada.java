@@ -46,4 +46,15 @@ public class Coordenada {
 		}
 	}
 
+	public int distanciaA(Coordenada otraCoordenada) {
+
+		int otraFila = otraCoordenada.getFila();
+		int otraColumna = otraCoordenada.getColumna();
+		double X = Math.pow((this.fila - otraFila), 2);
+		double Y = Math.pow((this.columna - otraColumna), 2);
+		double resultadoRaiz = Math.sqrt(X + Y);
+		int distancia = (int) Math.round(resultadoRaiz);
+		return distancia;
+	}
+
 }
