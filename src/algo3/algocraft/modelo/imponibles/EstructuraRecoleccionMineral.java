@@ -1,9 +1,9 @@
 package algo3.algocraft.modelo.imponibles;
 
-import algo3.algocraft.modelo.accionables.Unidad;
+import algo3.algocraft.modelo.edificables.UnidadEdificio;
 import algo3.algocraft.modelo.recolectables.Recolectable;
 
-public abstract class EstructuraRecoleccionMineral extends Unidad implements Recolector{
+public abstract class EstructuraRecoleccionMineral extends UnidadEdificio {
 
 	protected Recolectable mineral;
 

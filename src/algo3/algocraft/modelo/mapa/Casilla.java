@@ -1,15 +1,14 @@
 package algo3.algocraft.modelo.mapa;
 
-
-import algo3.algocraft.modelo.accionables.Accionable;
+import algo3.algocraft.modelo.accionables.Unidad;
 import algo3.algocraft.modelo.imponibles.Recolector;
 import algo3.algocraft.modelo.recolectables.Recolectable;
 
 public class Casilla {
 
 	private Coordenada ubicacion;
-	private Accionable ocupanteTerrestre;
-	private Accionable ocupanteAereo;
+	private Unidad ocupanteTerrestre;
+	private Unidad ocupanteAereo;
 	private Recolectable recurso;
 
 	public Casilla() {
@@ -31,11 +30,11 @@ public class Casilla {
 		return (this.recurso != null);
 	}
 
-	public Accionable getOcupanteTerrestre() {
+	public Unidad getOcupanteTerrestre() {
 		return this.ocupanteTerrestre;
 	}
 
-	public Accionable getOcupanteAereo() {
+	public Unidad getOcupanteAereo() {
 		return this.ocupanteTerrestre;
 	}
 
@@ -43,7 +42,7 @@ public class Casilla {
 		return this.recurso;
 	}
 
-	public boolean ocuparTerrestre(Accionable unidad) {
+	public boolean ocuparTerrestre(Unidad unidad) {
 		if ((this.ocupanteTerrestre == null) && (this.recurso == null)) {
 			this.ocupanteTerrestre = unidad;
 			return true;
@@ -52,16 +51,16 @@ public class Casilla {
 
 	}
 
-	public boolean ocuparAereo(Accionable unidad) {
+	public boolean ocuparAereo(Unidad unidad) {
 		if (this.ocupanteAereo == null) {
-			this.ocupanteAereo = (Accionable) unidad;
+			this.ocupanteAereo = unidad;
 			return true;
 		}
 		return false;
 
 	}
 
-	public boolean ocupar(Accionable unidad) {
+	public boolean ocupar(Unidad unidad) {
 		if (unidad.esTerrestre()) {
 			return ocuparTerrestre(unidad);
 		}
@@ -70,7 +69,7 @@ public class Casilla {
 
 	public boolean ocupar(Recolector unidad) {
 		if ((this.ocupanteTerrestre == null) && (this.recurso != null)) {
-			this.ocupanteTerrestre = (Accionable) unidad;
+			this.ocupanteTerrestre = (Unidad) unidad;
 			return true;
 		}
 		return false;
@@ -115,7 +114,8 @@ public class Casilla {
 
 		return distanciaEntre(this.ubicacion, otraCoordenada);
 	}
-	private int distanciaEntre(Coordenada coordenadaA, Coordenada coordenadaB){
+
+	private int distanciaEntre(Coordenada coordenadaA, Coordenada coordenadaB) {
 		int filaA = coordenadaA.getFila();
 		int columnaA = coordenadaA.getColumna();
 		int filaB = coordenadaB.getFila();

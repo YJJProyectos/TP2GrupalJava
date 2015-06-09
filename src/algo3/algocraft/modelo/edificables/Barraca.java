@@ -1,7 +1,6 @@
 package algo3.algocraft.modelo.edificables;
 
-
-public class Barraca extends Estructura {
+public class Barraca extends UnidadEdificio {
 
 	public boolean entrenarMarine() {
 		return true;

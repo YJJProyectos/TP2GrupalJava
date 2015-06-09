@@ -8,7 +8,7 @@ import algo3.algocraft.modelo.edificables.Barraca;
 import algo3.algocraft.modelo.edificables.DepositoDeSuministros;
 
 public class AlmacenadorEstructurasTerran {
-	
+
 	Collection<Barraca> listaDeBarracas = new ArrayList<Barraca>();
 	Collection<DepositoDeSuministros> listaDepositos = new ArrayList<DepositoDeSuministros>();
 
@@ -17,17 +17,18 @@ public class AlmacenadorEstructurasTerran {
 	}
 
 	public int cantidadBarracas() {
-		
+
 		return listaDeBarracas.size();
 	}
 
 	public Barraca obtenerUnaBarraca() {
 		Barraca barraca = null;
-		int cero = 0 ; // esto es solo para que agarre la primera barraca ya alcanza
+		int cero = 0; // esto es solo para que agarre la primera barraca ya
+						// alcanza
 		Iterator<Barraca> iterador = listaDeBarracas.iterator();
-		while ( iterador.hasNext() && cero == 0 ){
+		while (iterador.hasNext() && cero == 0) {
 			barraca = iterador.next();
-			cero ++;
+			cero++;
 		}
 		return barraca;
 	}

@@ -2,7 +2,7 @@ package algo3.algocraft.modelo.accionables;
 
 import algo3.algocraft.modelo.mapa.Casilla;
 
-public abstract class Unidad implements Accionable {
+public abstract class Unidad {
 
 	protected Casilla posicion;
 	protected int vida;
@@ -22,11 +22,11 @@ public abstract class Unidad implements Accionable {
 	public Casilla posicion() {
 		return this.posicion;
 	}
-	
+
 	public abstract boolean esTerrestre();
-	
+
 	public boolean posicionar(Casilla casilla) {
-		if (casilla.ocupar(this)){
+		if (casilla.ocupar(this)) {
 			this.posicion = casilla;
 			return true;
 		}

@@ -1,9 +1,6 @@
 package algo3.algocraft.modelo.imponibles;
 
-import algo3.algocraft.modelo.edificables.Edificable;
-
-public interface Recolector extends Edificable {
-
+public interface Recolector {
 	public boolean recolectar();
 
 	public int getCantidadRecursoRecolectado();

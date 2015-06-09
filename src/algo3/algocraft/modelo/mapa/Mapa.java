@@ -2,7 +2,7 @@ package algo3.algocraft.modelo.mapa;
 
 import java.util.HashMap;
 
-import algo3.algocraft.modelo.accionables.Accionable;
+import algo3.algocraft.modelo.accionables.Unidad;
 
 public class Mapa {
 
@@ -52,7 +52,7 @@ public class Mapa {
 
 	}
 
-	public boolean agregarElementoEnPosicion(Accionable elemento,
+	public boolean agregarElementoEnPosicion(Unidad elemento,
 			Coordenada coordenada) {
 
 		try {
@@ -65,9 +65,9 @@ public class Mapa {
 		return true;
 	}
 
-	 public Accionable obtenerElementoTerrestreEnPosicion(Coordenada coordenada) {
+	public Unidad obtenerElementoTerrestreEnPosicion(Coordenada coordenada) {
 
-	 Casilla casillero = tablero.get(coordenada);
-	 return casillero.getOcupanteTerrestre();
-	 }
+		Casilla casillero = tablero.get(coordenada);
+		return casillero.getOcupanteTerrestre();
+	}
 }

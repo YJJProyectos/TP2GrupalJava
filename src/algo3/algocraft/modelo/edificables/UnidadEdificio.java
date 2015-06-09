@@ -3,7 +3,7 @@ package algo3.algocraft.modelo.edificables;
 import algo3.algocraft.modelo.accionables.Unidad;
 import algo3.algocraft.modelo.mapa.Casilla;
 
-public abstract class Estructura extends Unidad implements Edificable {
+public abstract class UnidadEdificio extends Unidad {
 
 	protected int tiempoDeConstruccion;
 

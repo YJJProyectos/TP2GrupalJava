@@ -1,6 +1,5 @@
 package algo3.algocraft.modelo.mapa;
 
-
 public class Coordenada {
 
 	protected int fila;

@@ -2,7 +2,7 @@ package algo3.algocraft.modelo.imponibles;
 
 import algo3.algocraft.modelo.recolectables.Recolectable;
 
-public class CentroDeMineral extends EstructuraRecoleccionMineral {
+public class CentroDeMineral extends EstructuraRecoleccionMineral implements Recolector {
 
 	private int cantidadMineralRecolectado;
 

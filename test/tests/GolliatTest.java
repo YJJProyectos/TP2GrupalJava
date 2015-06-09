@@ -8,7 +8,7 @@ import org.junit.Test;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.peleables.Golliat;
 import algo3.algocraft.modelo.peleables.Marine;
-import algo3.algocraft.modelo.peleables.Peleable;
+import algo3.algocraft.modelo.peleables.UnidadSoldado;
 
 
 public class GolliatTest {
@@ -17,7 +17,7 @@ public class GolliatTest {
 	public void deberiaDaniarEnemigo() {
 
 		Golliat soldadoAliado = new Golliat();
-		Peleable soldadoEnemigo = new Marine();
+		UnidadSoldado soldadoEnemigo = new Marine();
 		soldadoAliado.atacarEnemigo(soldadoEnemigo);
 
 		Assert.assertEquals(28, soldadoEnemigo.vidaRestante());
@@ -26,15 +26,15 @@ public class GolliatTest {
 	public void deberiaPoderMoverseSiNoHayNadieEnEseCasillero(){
 		Casilla casilleroLibre = new Casilla();
 		Casilla casillero = new Casilla();
-		Peleable golliat = new Golliat();
+		UnidadSoldado golliat = new Golliat();
 		golliat.posicionar(casillero);
 		Assert.assertTrue(golliat.mover(casilleroLibre));
 	}
 	@Test
 	public void noDeberiaPoderMoverseSiEstaOcupadoElCasillero(){
 		Casilla casillero = new Casilla();
-		Peleable golliat = new Golliat();
-		Peleable otroGolliat = new Golliat();
+		UnidadSoldado golliat = new Golliat();
+		UnidadSoldado otroGolliat = new Golliat();
 		otroGolliat.posicionar(casillero);
 		Assert.assertFalse(golliat.mover(casillero));
 	}
