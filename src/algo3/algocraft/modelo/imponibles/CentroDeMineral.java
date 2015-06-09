@@ -1,13 +1,15 @@
 package algo3.algocraft.modelo.imponibles;
 
+import algo3.algocraft.modelo.edificables.UnidadEdificio;
 import algo3.algocraft.modelo.recolectables.Recolectable;
 
-public class CentroDeMineral extends EstructuraRecoleccionMineral implements Recolector {
+public class CentroDeMineral extends UnidadEdificio implements Recolector {
 
 	private int cantidadMineralRecolectado;
+	private Recolectable mineral;
 
-	public CentroDeMineral(Recolectable recurso) {
-		super(recurso);
+	public CentroDeMineral(Recolectable unMineral) {
+		this.mineral = unMineral;
 		this.cantidadMineralRecolectado = 0;
 	}
 
@@ -15,7 +17,7 @@ public class CentroDeMineral extends EstructuraRecoleccionMineral implements Rec
 
 		boolean sePudoRecolectar = false;
 
-		int cantidadMineralSacado = super.mineral.extraerRecurso(10);
+		int cantidadMineralSacado = this.mineral.extraerRecurso(10);
 		if (cantidadMineralSacado > 0) { // ver si hacerlo en una excepcion
 			this.cantidadMineralRecolectado += cantidadMineralSacado;
 			sePudoRecolectar = true;
@@ -35,5 +37,9 @@ public class CentroDeMineral extends EstructuraRecoleccionMineral implements Rec
 
 	public boolean esTerrestre() {
 		return true;
+	}
+
+	public int tiempoDeConstruccion() {
+		return 4;
 	}
 }

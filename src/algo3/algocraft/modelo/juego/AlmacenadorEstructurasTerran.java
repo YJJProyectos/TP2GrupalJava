@@ -1,19 +1,31 @@
 package algo3.algocraft.modelo.juego;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-
+import algo3.algocraft.modelo.accionables.Unidad;
 import algo3.algocraft.modelo.edificables.Barraca;
 import algo3.algocraft.modelo.edificables.DepositoDeSuministros;
+import algo3.algocraft.modelo.edificables.EdificioEnConstruccion;
+import algo3.algocraft.modelo.edificables.Fabrica;
+import algo3.algocraft.modelo.edificables.UnidadEdificio;
+import algo3.algocraft.modelo.mapa.Casilla;
 
 public class AlmacenadorEstructurasTerran {
 
-	Collection<Barraca> listaDeBarracas = new ArrayList<Barraca>();
-	Collection<DepositoDeSuministros> listaDepositos = new ArrayList<DepositoDeSuministros>();
+	private ArrayList<UnidadEdificio> listaDeBarracas;
+	private ArrayList<UnidadEdificio> listaDeDepositos;
+	private ArrayList<UnidadEdificio> listaDeFabricas;
+	private ArrayList<Unidad> listaDeEdificiosEnConstruccion;
 
-	public void agregarBarraca(Barraca barraca) {
-		listaDeBarracas.add(barraca);
+	public AlmacenadorEstructurasTerran() {
+		this.listaDeBarracas = new ArrayList<UnidadEdificio>();
+		this.listaDeDepositos = new ArrayList<UnidadEdificio>();
+		this.listaDeFabricas = new ArrayList<UnidadEdificio>();
+		this.listaDeEdificiosEnConstruccion = new ArrayList<Unidad>();
+
+	}
+	
+	public int cantidadFabricas(){
+		return listaDeFabricas.size();
 	}
 
 	public int cantidadBarracas() {
@@ -21,24 +33,57 @@ public class AlmacenadorEstructurasTerran {
 		return listaDeBarracas.size();
 	}
 
-	public Barraca obtenerUnaBarraca() {
-		Barraca barraca = null;
-		int cero = 0; // esto es solo para que agarre la primera barraca ya
-						// alcanza
-		Iterator<Barraca> iterador = listaDeBarracas.iterator();
-		while (iterador.hasNext() && cero == 0) {
-			barraca = iterador.next();
-			cero++;
-		}
-		return barraca;
-	}
-
-	public void agregarDepositoDeSuministros(DepositoDeSuministros deposito) {
-		listaDepositos.add(deposito);
-	}
-
 	public int cantidadDepositos() {
-		return listaDepositos.size();
+		return listaDeDepositos.size();
+	}
+	
+	public int cantidadEdificiosEnConstruccion(){
+		return listaDeEdificiosEnConstruccion.size();
+	}
+
+	public boolean crearBarraca(Casilla casilla) {
+		Barraca barraca = new Barraca();
+		EdificioEnConstruccion construccion = new EdificioEnConstruccion(
+				barraca, this.listaDeBarracas, listaDeEdificiosEnConstruccion);
+		if (construccion.posicionar(casilla)) {
+			listaDeEdificiosEnConstruccion.add(construccion);
+			return true;
+		}
+		return false;
+	}
+
+	public boolean crearFabrica(Casilla casilla) {
+		if (listaDeBarracas.isEmpty()) {
+			return false;
+		}
+		Fabrica fabrica = new Fabrica();
+		EdificioEnConstruccion construccion = new EdificioEnConstruccion(
+				fabrica, this.listaDeFabricas, listaDeEdificiosEnConstruccion);
+		if (construccion.posicionar(casilla)) {
+			listaDeEdificiosEnConstruccion.add(construccion);
+			return true;
+		}
+		return false;
+	}
+
+	public boolean crearDepositoDeSuministros(Casilla casilla) {
+		DepositoDeSuministros deposito = new DepositoDeSuministros();
+		EdificioEnConstruccion construccion = new EdificioEnConstruccion(
+				deposito, this.listaDeDepositos,
+				this.listaDeEdificiosEnConstruccion);
+		if (construccion.posicionar(casilla)) {
+			listaDeEdificiosEnConstruccion.add(construccion);
+			return true;
+		}
+		return false;
+	}
+	
+	public void continuarConConstrucciones(){
+		for(int i = 0; i < listaDeEdificiosEnConstruccion.size(); i++){
+			EdificioEnConstruccion construccion = (EdificioEnConstruccion) listaDeEdificiosEnConstruccion.get(i);
+			construccion.continuarConstruccion();
+		}
+		
 	}
 
 }

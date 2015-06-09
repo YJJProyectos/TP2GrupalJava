@@ -14,4 +14,8 @@ public class Barraca extends UnidadEdificio {
 		return true;
 	}
 
+	public int tiempoDeConstruccion() {
+		return 12;
+	}
+
 }
