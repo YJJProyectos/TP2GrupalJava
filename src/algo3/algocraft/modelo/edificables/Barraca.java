@@ -6,10 +6,6 @@ public class Barraca extends UnidadEdificio {
 		return true;
 	}
 
-	public boolean edificar() {
-		return true;
-	}
-
 	public boolean esTerrestre() {
 		return true;
 	}

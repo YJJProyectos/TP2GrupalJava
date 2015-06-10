@@ -42,7 +42,7 @@ public class AlmacenadorEstructurasTerranTest {
 	}
 
 	@Test
-	public void luegoDe12DeConstruirLaBarracaTurnosNoHayMasEdificiosEnConstruccion() {
+	public void luegoDeConstruirLaBarracaNoHayMasEdificiosEnConstruccion() {
 		AlmacenadorEstructurasTerran almacenador = new AlmacenadorEstructurasTerran();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -137,7 +137,7 @@ public class AlmacenadorEstructurasTerranTest {
 	}
 
 	@Test
-	public void luegoDe12DeConstruirLaFabricaTurnosNoHayMasEdificiosEnConstruccion() {
+	public void luegoDeConstruirLaFabricaNoHayMasEdificiosEnConstruccion() {
 		AlmacenadorEstructurasTerran almacenador = new AlmacenadorEstructurasTerran();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
@@ -156,31 +156,52 @@ public class AlmacenadorEstructurasTerranTest {
 		Assert.assertEquals(0, almacenador.cantidadEdificiosEnConstruccion());
 
 	}
-	// faltaria test de "recursos que empieza el jugador" y agregarle costos a
-	// la creacion
-	// de estructuras
+/////
+	
+	@Test
+	public void deberiaPoderConstruirUnDepositoDeSuministro() {
+		AlmacenadorEstructurasTerran almacenador = new AlmacenadorEstructurasTerran();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		Assert.assertTrue(almacenador.crearDepositoDeSuministros(casilla));
+	}
 
-	// @Test
-	// public void noDeberiaPoderConstruirseLaFabricaSinAntesTenerBarraca() {
-	// JugadorTerran jugadorTerran = new JugadorTerran();
-	// Assert.assertEquals(null,jugadorTerran.construirFabrica());
-	// }
-	// @Test
-	// public void deberiaPoderConstruirseLaFabricaSiYaCreoUnaBarraca(){
-	// JugadorTerran jugadorTerran = new JugadorTerran();
-	// jugadorTerran.construirBarraca();
-	// Assert.assertNotEquals(null, jugadorTerran.construirFabrica());
-	// }
-	// @Test
-	// public void deberiaEmpezarConPoblacion0(){
-	// JugadorTerran jugadorTerran = new JugadorTerran();
-	// Assert.assertEquals(0,jugadorTerran.cantidadPoblacion());
-	// }
-	// @Test
-	// public void deberiaTenerPoblacion5AlCrearseUnDepositoDeSuministros(){
-	// JugadorTerran jugadorTerran = new JugadorTerran();
-	// jugadorTerran.construirDepositoDeSuministros();
-	// Assert.assertEquals(5,jugadorTerran.cantidadPoblacion());
-	// }
+	@Test
+	public void alConstruirUnDepositoPrimeroSeConstruyeunEdificioDeConstruccion() {
+		AlmacenadorEstructurasTerran almacenador = new AlmacenadorEstructurasTerran();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		almacenador.crearDepositoDeSuministros(casilla);
+		Assert.assertEquals(1, almacenador.cantidadEdificiosEnConstruccion());
+
+	}
+
+	@Test
+	public void luegoDe6TurnosSeAgregaElDepositoALosEdificiosConstruidos() {
+		AlmacenadorEstructurasTerran almacenador = new AlmacenadorEstructurasTerran();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		almacenador.crearDepositoDeSuministros(casilla);
+		for (int i = 0; i < 6; i++) {
+			almacenador.continuarConConstrucciones();
+		}
+
+		Assert.assertEquals(1, almacenador.cantidadDepositos());
+
+	}
+
+	@Test
+	public void luegoDeDeConstruirElDepositoNoHayMasEdificiosEnConstruccion() {
+		AlmacenadorEstructurasTerran almacenador = new AlmacenadorEstructurasTerran();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		almacenador.crearDepositoDeSuministros(casilla);
+		for (int i = 0; i < 6; i++) {
+			almacenador.continuarConConstrucciones();
+		}
+
+		Assert.assertEquals(0, almacenador.cantidadEdificiosEnConstruccion());
+
+	}
 
 }

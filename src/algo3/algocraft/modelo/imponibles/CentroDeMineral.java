@@ -14,22 +14,17 @@ public class CentroDeMineral extends UnidadEdificio implements Recolector {
 	}
 
 	public boolean recolectar() {
-
-		boolean sePudoRecolectar = false;
-
 		int cantidadMineralSacado = this.mineral.extraerRecurso(10);
-		if (cantidadMineralSacado > 0) { 
+		if (cantidadMineralSacado > 0) {
 			this.cantidadMineralRecolectado += cantidadMineralSacado;
-			sePudoRecolectar = true;
+			return true;
 		}
-
-		return sePudoRecolectar;
+		return false;
 	}
 
 	public int getCantidadRecursoRecolectado() {
 		return this.cantidadMineralRecolectado;
 	}
-
 
 	public boolean esTerrestre() {
 		return true;
