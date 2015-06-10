@@ -1,15 +1,15 @@
-package tests;
+package algo3.algocraft.modelo.tests;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import algo3.algocraft.modelo.edificables.Barraca;
-import algo3.algocraft.modelo.edificables.DepositoDeSuministros;
-import algo3.algocraft.modelo.edificables.Fabrica;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
-import algo3.algocraft.modelo.peleables.Marine;
 import algo3.algocraft.modelo.recolectables.MinaDeMinerales;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
+import algo3.algocraft.modelo.unidades.unidadesSoldados.Marine;
 
 public class UnidadEdificioTest {
 

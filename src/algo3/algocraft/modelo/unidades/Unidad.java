@@ -1,4 +1,4 @@
-package algo3.algocraft.modelo.accionables;
+package algo3.algocraft.modelo.unidades;
 
 import algo3.algocraft.modelo.mapa.Casilla;
 

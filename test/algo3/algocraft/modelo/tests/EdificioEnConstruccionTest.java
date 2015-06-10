@@ -1,17 +1,17 @@
-package tests;
+package algo3.algocraft.modelo.tests;
 
 import java.util.ArrayList;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import algo3.algocraft.modelo.accionables.Unidad;
-import algo3.algocraft.modelo.edificables.Barraca;
-import algo3.algocraft.modelo.edificables.EdificioEnConstruccion;
-import algo3.algocraft.modelo.edificables.UnidadEdificio;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
-import algo3.algocraft.modelo.peleables.Marine;
+import algo3.algocraft.modelo.unidades.Unidad;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.EdificioEnConstruccion;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
+import algo3.algocraft.modelo.unidades.unidadesSoldados.Marine;
 
 public class EdificioEnConstruccionTest {
 

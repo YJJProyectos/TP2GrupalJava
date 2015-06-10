@@ -1,8 +1,8 @@
-package algo3.algocraft.modelo.edificables;
+package algo3.algocraft.modelo.unidades.unidadesEdificios;
 
 import java.util.ArrayList;
 
-import algo3.algocraft.modelo.accionables.Unidad;
+import algo3.algocraft.modelo.unidades.Unidad;
 
 public class EdificioEnConstruccion extends Unidad {
 	private int turnosRestantes;

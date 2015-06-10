@@ -2,7 +2,7 @@ package algo3.algocraft.modelo.mapa;
 
 import java.util.HashMap;
 
-import algo3.algocraft.modelo.accionables.Unidad;
+import algo3.algocraft.modelo.unidades.Unidad;
 
 public class Mapa {
 

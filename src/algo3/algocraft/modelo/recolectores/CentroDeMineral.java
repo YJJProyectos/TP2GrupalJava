@@ -1,7 +1,7 @@
-package algo3.algocraft.modelo.imponibles;
+package algo3.algocraft.modelo.recolectores;
 
-import algo3.algocraft.modelo.edificables.UnidadEdificio;
 import algo3.algocraft.modelo.recolectables.Recolectable;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 
 public class CentroDeMineral extends UnidadEdificio implements Recolector {
 

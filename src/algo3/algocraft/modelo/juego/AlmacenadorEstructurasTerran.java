@@ -1,13 +1,14 @@
 package algo3.algocraft.modelo.juego;
 
 import java.util.ArrayList;
-import algo3.algocraft.modelo.accionables.Unidad;
-import algo3.algocraft.modelo.edificables.Barraca;
-import algo3.algocraft.modelo.edificables.DepositoDeSuministros;
-import algo3.algocraft.modelo.edificables.EdificioEnConstruccion;
-import algo3.algocraft.modelo.edificables.Fabrica;
-import algo3.algocraft.modelo.edificables.UnidadEdificio;
+
 import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.unidades.Unidad;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.EdificioEnConstruccion;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 
 public class AlmacenadorEstructurasTerran {
 

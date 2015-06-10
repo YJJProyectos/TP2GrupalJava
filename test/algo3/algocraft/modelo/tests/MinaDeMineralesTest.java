@@ -1,4 +1,4 @@
-package tests;
+package algo3.algocraft.modelo.tests;
 
 import org.junit.Assert;
 import org.junit.Test;

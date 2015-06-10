@@ -1,12 +1,12 @@
-package tests;
+package algo3.algocraft.modelo.tests;
 
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import algo3.algocraft.modelo.imponibles.CentroDeMineral;
-import algo3.algocraft.modelo.imponibles.Recolector;
 import algo3.algocraft.modelo.recolectables.MinaDeMinerales;
+import algo3.algocraft.modelo.recolectores.CentroDeMineral;
+import algo3.algocraft.modelo.recolectores.Recolector;
 
 
 public class RecoleccionTest {

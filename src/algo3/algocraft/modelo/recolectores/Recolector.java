@@ -1,4 +1,4 @@
-package algo3.algocraft.modelo.imponibles;
+package algo3.algocraft.modelo.recolectores;
 
 public interface Recolector {
 	public boolean recolectar();

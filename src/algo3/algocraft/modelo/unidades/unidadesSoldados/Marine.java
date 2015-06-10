@@ -1,4 +1,4 @@
-package algo3.algocraft.modelo.peleables;
+package algo3.algocraft.modelo.unidades.unidadesSoldados;
 
 import algo3.algocraft.modelo.mapa.Casilla;
 

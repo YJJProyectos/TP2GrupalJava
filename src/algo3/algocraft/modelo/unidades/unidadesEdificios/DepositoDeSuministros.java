@@ -1,4 +1,4 @@
-package algo3.algocraft.modelo.edificables;
+package algo3.algocraft.modelo.unidades.unidadesEdificios;
 
 public class DepositoDeSuministros extends UnidadEdificio {
 
