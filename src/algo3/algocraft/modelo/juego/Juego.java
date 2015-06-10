@@ -4,7 +4,6 @@ public class Juego {
 
 	private JugadorTerran jugador1;
 	private JugadorTerran jugador2;
-	private JugadorTerran turnoActual;
 	private TurnoState estadoTurno;
 
 	public Juego(JugadorTerran jugador1, JugadorTerran jugador2) {
@@ -18,6 +17,7 @@ public class Juego {
 	}
 
 	public JugadorTerran turnoDeJugador() {
+		JugadorTerran turnoActual = null;
 		switch (estadoTurno.turnoDe()) {
 		case JUGADOR1:
 			turnoActual = jugador1;

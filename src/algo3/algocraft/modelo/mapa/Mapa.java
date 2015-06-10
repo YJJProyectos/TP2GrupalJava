@@ -12,11 +12,8 @@ public class Mapa {
 	private int maxFila;
 	private int maxColumna;
 
-	// Ocupable[][] tablero;
-
 	public Mapa(int bases) {
 
-		// tablero = new Ocupable[bases * 5][bases * 5];
 		this.maxFila = (bases * 5);
 		this.maxColumna = (bases * 5);
 
@@ -33,7 +30,6 @@ public class Mapa {
 	}
 
 	public int tamanio() {
-		// return tablero.length * tablero[0].length;
 		return tablero.size();
 	}
 

@@ -18,7 +18,7 @@ public class CentroDeMineral extends UnidadEdificio implements Recolector {
 		boolean sePudoRecolectar = false;
 
 		int cantidadMineralSacado = this.mineral.extraerRecurso(10);
-		if (cantidadMineralSacado > 0) { // ver si hacerlo en una excepcion
+		if (cantidadMineralSacado > 0) { 
 			this.cantidadMineralRecolectado += cantidadMineralSacado;
 			sePudoRecolectar = true;
 		}
@@ -30,10 +30,6 @@ public class CentroDeMineral extends UnidadEdificio implements Recolector {
 		return this.cantidadMineralRecolectado;
 	}
 
-	public boolean edificar() {
-
-		return true;
-	}
 
 	public boolean esTerrestre() {
 		return true;
