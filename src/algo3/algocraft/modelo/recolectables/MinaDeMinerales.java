@@ -1,11 +1,11 @@
 package algo3.algocraft.modelo.recolectables;
 
 
-public class Mineral implements Recolectable {
+public class MinaDeMinerales implements Recolectable {
 
 	private int cantidadMineral;
 
-	public Mineral(int cantidad) {
+	public MinaDeMinerales(int cantidad) {
 
 		this.cantidadMineral = cantidad;
 	}

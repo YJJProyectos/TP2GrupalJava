@@ -7,7 +7,7 @@ import algo3.algocraft.modelo.edificables.Barraca;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.peleables.Marine;
-import algo3.algocraft.modelo.recolectables.Mineral;
+import algo3.algocraft.modelo.recolectables.MinaDeMinerales;
 
 public class UnidadEdificioTest {
 
@@ -42,7 +42,7 @@ public class UnidadEdificioTest {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Barraca barraca = new Barraca();
-		Mineral mineral = new Mineral(100);
+		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		casilla.agregarRecurso(mineral);
 		Assert.assertFalse(barraca.posicionar(casilla));
 	}

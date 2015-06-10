@@ -9,7 +9,7 @@ import algo3.algocraft.modelo.imponibles.Recolector;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.peleables.Marine;
-import algo3.algocraft.modelo.recolectables.Mineral;
+import algo3.algocraft.modelo.recolectables.MinaDeMinerales;
 import algo3.algocraft.modelo.recolectables.Recolectable;
 
 public class CasillaTest {
@@ -124,7 +124,7 @@ public class CasillaTest {
 	public void deberiaNoEstarOcupadaLaTierraAlAgregarUnRecurso() {
 		Coordenada coordenada = new Coordenada(1,1);
 		Casilla casilla = new Casilla(coordenada);
-		Recolectable mineral = new Mineral(100);
+		Recolectable mineral = new MinaDeMinerales(100);
 		casilla.agregarRecurso(mineral);
 
 		Assert.assertFalse(casilla.estaOcupadaLaTierra());
@@ -134,7 +134,7 @@ public class CasillaTest {
 	public void deberiaNoEstarOcupadoElAireAlAgregarUnRecurso() {
 		Coordenada coordenada = new Coordenada(1,1);
 		Casilla casilla = new Casilla(coordenada);
-		Recolectable mineral = new Mineral(100);
+		Recolectable mineral = new MinaDeMinerales(100);
 		casilla.agregarRecurso(mineral);
 
 		Assert.assertFalse(casilla.estaOcupadoElAire());
@@ -144,7 +144,7 @@ public class CasillaTest {
 	public void deberiaEstarOcupadoElRecursoAlAgregarUnRecurso() {
 		Coordenada coordenada = new Coordenada(1,1);
 		Casilla casilla = new Casilla(coordenada);
-		Recolectable mineral = new Mineral(100);
+		Recolectable mineral = new MinaDeMinerales(100);
 		casilla.agregarRecurso(mineral);
 
 		Assert.assertTrue(casilla.estaOcupadoElRecurso());
@@ -154,8 +154,8 @@ public class CasillaTest {
 	public void deberiaGuardarSoloElPrimerRecursoEntreDosRecursosAgregados() {
 		Coordenada coordenada = new Coordenada(1,1);
 		Casilla casilla = new Casilla(coordenada);
-		Recolectable primerMineral = new Mineral(100);
-		Recolectable segundoMineral = new Mineral(200);
+		Recolectable primerMineral = new MinaDeMinerales(100);
+		Recolectable segundoMineral = new MinaDeMinerales(200);
 		casilla.agregarRecurso(primerMineral);
 		casilla.agregarRecurso(segundoMineral);
 
@@ -222,7 +222,7 @@ public class CasillaTest {
 	public void deberiaNoPoderDesocuparLaTierraSiSoloHayUnRecurso() {
 		Coordenada coordenada = new Coordenada(1,1);
 		Casilla casilla = new Casilla(coordenada);
-		Recolectable mineral = new Mineral(100);
+		Recolectable mineral = new MinaDeMinerales(100);
 		casilla.agregarRecurso(mineral);
 
 		Assert.assertFalse(casilla.desocuparTierra());
@@ -232,7 +232,7 @@ public class CasillaTest {
 	public void deberiaNoPoderDesocuparElAireSiSoloHayUnRecurso() {
 		Coordenada coordenada = new Coordenada(1,1);
 		Casilla casilla = new Casilla(coordenada);
-		Recolectable mineral = new Mineral(100);
+		Recolectable mineral = new MinaDeMinerales(100);
 		casilla.agregarRecurso(mineral);
 
 		Assert.assertFalse(casilla.desocuparAire());
@@ -242,7 +242,7 @@ public class CasillaTest {
 	public void deberiaNoPoderAgregarUnCentroMineralPorqueNoHayMineral() {
 		Coordenada coordenada = new Coordenada(1,1);
 		Casilla casilla = new Casilla(coordenada);
-		Recolectable mineral = new Mineral(100);
+		Recolectable mineral = new MinaDeMinerales(100);
 		Recolector centroMineral = new CentroDeMineral(mineral);
 		Assert.assertFalse(casilla.ocupar(centroMineral));
 	}
@@ -251,7 +251,7 @@ public class CasillaTest {
 	public void debieriaPoderAgregarUnCentroMineralPorqueHayMineral() {
 		Coordenada coordenada = new Coordenada(1,1);
 		Casilla casilla = new Casilla(coordenada);
-		Recolectable mineral = new Mineral(100);
+		Recolectable mineral = new MinaDeMinerales(100);
 		casilla.agregarRecurso(mineral);
 		Recolector centroMineral = new CentroDeMineral(mineral);
 		Assert.assertTrue(casilla.ocupar(centroMineral));
@@ -261,7 +261,7 @@ public class CasillaTest {
 	public void deberiaNoPoderAgregarUnSoldadoPorqueYaHayUnMineral() {
 		Coordenada coordenada = new Coordenada(1,1);
 		Casilla casilla = new Casilla(coordenada);
-		Recolectable mineral = new Mineral(100);
+		Recolectable mineral = new MinaDeMinerales(100);
 		Unidad marine = new Marine();
 		casilla.agregarRecurso(mineral);
 		Assert.assertFalse(casilla.ocupar(marine));
@@ -271,7 +271,7 @@ public class CasillaTest {
 	public void deberianNoPoderAgregarUnMineralCuandoYaHayUnMarineEnLaCasilla() {
 		Coordenada coordenada = new Coordenada(1,1);
 		Casilla casilla = new Casilla(coordenada);
-		Recolectable mineral = new Mineral(100);
+		Recolectable mineral = new MinaDeMinerales(100);
 		Unidad marine = new Marine();
 		casilla.ocupar(marine);
 		Assert.assertFalse(casilla.agregarRecurso(mineral));
@@ -281,7 +281,7 @@ public class CasillaTest {
 	public void deberianNoPoderAgregarUnMarineCuandoYaHayUnCentroDeMineralEnLaCasilla() {
 		Coordenada coordenada = new Coordenada(1,1);
 		Casilla casilla = new Casilla(coordenada);
-		Recolectable mineral = new Mineral(100);
+		Recolectable mineral = new MinaDeMinerales(100);
 		Recolector centroMineral = new CentroDeMineral(mineral);
 		Unidad marine = new Marine();
 		casilla.agregarRecurso(mineral);
