@@ -22,4 +22,8 @@ public class Juego {
 		return jugadores.jugadorActual();
 	}
 
+	public void sacarJugador(Jugador jugador2) {
+		jugadores.sacarJugador(jugador2);
+	}
+
 }
