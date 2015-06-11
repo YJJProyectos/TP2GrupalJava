@@ -9,7 +9,7 @@ public class Juego {
 		this.jugadores.agregarJugador(jugador1);
 		this.jugadores.agregarJugador(jugador2);
 	}
-	
+
 	public void agregarJugador(Jugador jugador){
 		this.jugadores.agregarJugador(jugador);
 	}
@@ -22,8 +22,8 @@ public class Juego {
 		return jugadores.jugadorActual();
 	}
 
-	public void sacarJugador(Jugador jugador2) {
-		jugadores.sacarJugador(jugador2);
+	public void sacarJugador(Jugador jugador) {
+		jugadores.sacarJugador(jugador);
 	}
 
 }

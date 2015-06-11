@@ -15,16 +15,14 @@ public class ListaDeJugadores {
 	public void agregarJugador(Jugador jugador) {
 		this.jugadores.add(jugador);
 	}
-	
+
 	public void sacarJugador(Jugador jugador){
 		int posicionJugadorASacar = jugadores.indexOf(jugador);
-
 		if (  ( posicionJugadorASacar == this.jugadores.size() -1 ) ){
 
 			this.posicionActual = (this.jugadores.size() -1 ) -1 ;
 
 		} else if ( this.posicionActual != 0){
-
 			this.posicionActual --;
 		} 
 		jugadores.remove(jugador);
