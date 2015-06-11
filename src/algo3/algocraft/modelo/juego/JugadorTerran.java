@@ -1,6 +1,6 @@
 package algo3.algocraft.modelo.juego;
 
-public class JugadorTerran {
+public class JugadorTerran extends Jugador{
 
 	// AlmacenadorEstructurasTerran almacenadorEstructuras;
 	// int cantidadPoblacion = 0;
