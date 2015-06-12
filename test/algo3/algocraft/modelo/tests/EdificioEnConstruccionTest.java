@@ -8,6 +8,7 @@ import org.junit.Test;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.unidades.Unidad;
+import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.EdificioEnConstruccion;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
@@ -38,7 +39,7 @@ public class EdificioEnConstruccionTest {
 	}
 
 	@Test
-	public void atacarUnaUnidadDeConstruccionLaDestruye() {
+	public void atacarUnaUnidadDeConstruccionLaDestruye() throws YaEstaDestruidoError {
 
 		UnidadEdificio edificio = new Barraca();
 		Marine marine = new Marine();

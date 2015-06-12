@@ -6,12 +6,13 @@ import org.junit.Test;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.unidades.Unidad;
+import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.Marine;
 
 public class UnidadTest {
 
 	@Test
-	public void deberiaEstarDetruidaLaUnidad() {
+	public void deberiaEstarDetruidaLaUnidad() throws YaEstaDestruidoError {
 
 		Unidad soldado = new Marine();
 		soldado.recibirDanio(1000);
@@ -20,7 +21,7 @@ public class UnidadTest {
 	}
 
 	@Test
-	public void deberiaNoEstarDetruidaLaUnidad() {
+	public void deberiaNoEstarDetruidaLaUnidad() throws YaEstaDestruidoError {
 
 		Unidad soldado = new Marine();
 		soldado.recibirDanio(5);
@@ -29,7 +30,7 @@ public class UnidadTest {
 	}
 
 	@Test
-	public void deberiaRecibirDanio1() {
+	public void deberiaRecibirDanio1() throws YaEstaDestruidoError {
 
 		Unidad soldado = new Marine();
 		int vidaInicial = soldado.vidaRestante();
@@ -40,7 +41,7 @@ public class UnidadTest {
 	}
 
 	@Test
-	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaUnidadMarineEs39() {
+	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaUnidadMarineEs39() throws YaEstaDestruidoError {
 
 		Unidad soldado = new Marine();
 		soldado.recibirDanio(1);
@@ -83,11 +84,21 @@ public class UnidadTest {
 	}
 	
 	@Test
-	
 	public void unaUnidadTerrestreComoElMarineDeberiaSerTerrestre(){
 		Unidad soldado = new Marine();
 		
 		Assert.assertTrue(soldado.esTerrestre());
 	}
+	
+	@Test (expected = YaEstaDestruidoError.class)
+	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido() throws YaEstaDestruidoError{
+		
+		Unidad soldado = new Marine();
+		soldado.recibirDanio(100);
+		Assert.assertTrue(soldado.estaDestruido());
+		soldado.recibirDanio(2);
+		
+	}
+	
 
 }

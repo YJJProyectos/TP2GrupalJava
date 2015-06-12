@@ -7,6 +7,7 @@ import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.mapa.Mapa;
 import algo3.algocraft.modelo.unidades.Unidad;
+import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.Marine;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.UnidadSoldado;
@@ -28,7 +29,7 @@ public class UnidadSoldadoTest {
 	}
 
 	@Test
-	public void unMarineDeberiaNoDaniarAUnGoliatPorEstarFueraDelRango() {
+	public void unMarineDeberiaNoDaniarAUnGoliatPorEstarFueraDelRango() throws YaEstaDestruidoError {
 
 		Marine soldadoAliado = new Marine();
 		Unidad soldadoEnemigo = new Golliat();
@@ -46,7 +47,7 @@ public class UnidadSoldadoTest {
 	}
 
 	@Test
-	public void unMarineDeberiaDaniarAUnGoliatPorEstarElElRango() {
+	public void unMarineDeberiaDaniarAUnGoliatPorEstarElElRango() throws YaEstaDestruidoError {
 
 		Mapa mapa = new Mapa(2);
 		Marine soldadoAliado = new Marine();
@@ -62,7 +63,7 @@ public class UnidadSoldadoTest {
 	}
 
 	@Test
-	public void unGolliatNoDeberiaDaniarAUnMarinePorEstarFueraDelRango() {
+	public void unGolliatNoDeberiaDaniarAUnMarinePorEstarFueraDelRango() throws YaEstaDestruidoError {
 
 		Golliat soldadoAliado = new Golliat();
 		Unidad soldadoEnemigo = new Marine();
@@ -80,7 +81,7 @@ public class UnidadSoldadoTest {
 	}
 
 	@Test
-	public void unGolliatDeberiaDaniarAUnMarinePorEstarEnElRango() {
+	public void unGolliatDeberiaDaniarAUnMarinePorEstarEnElRango() throws YaEstaDestruidoError {
 
 		Golliat soldadoAliado = new Golliat();
 		Unidad soldadoEnemigo = new Marine();
