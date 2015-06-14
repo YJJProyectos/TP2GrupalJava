@@ -7,8 +7,8 @@ public abstract class Unidad {
 	protected Casilla posicion;
 	protected int vida;
 
-	public void recibirDanio(int danio) throws YaEstaDestruidoError{
-		if ( this.vida <= 0){
+	public void recibirDanio(int danio) throws YaEstaDestruidoError {
+		if (this.vida <= 0) {
 			throw new YaEstaDestruidoError();
 		}
 		this.vida = this.vida - danio;
@@ -35,4 +35,6 @@ public abstract class Unidad {
 		}
 		return false;
 	}
+
+	public abstract void pasarTurno();
 }

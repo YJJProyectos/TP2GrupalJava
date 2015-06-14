@@ -33,4 +33,8 @@ public class CentroDeMineral extends UnidadEdificio implements Recolector {
 	public int tiempoDeConstruccion() {
 		return 4;
 	}
+
+	public void pasarTurno() {
+		
+	}
 }

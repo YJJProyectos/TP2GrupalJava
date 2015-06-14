@@ -20,4 +20,8 @@ public abstract class UnidadSoldado extends Unidad {
 
 	public abstract boolean mover(Casilla casilla);
 
+	public void pasarTurno() {
+
+	}
+
 }

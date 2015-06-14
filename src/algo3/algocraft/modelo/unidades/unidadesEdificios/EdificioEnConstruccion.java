@@ -7,17 +7,14 @@ import algo3.algocraft.modelo.unidades.Unidad;
 public class EdificioEnConstruccion extends Unidad {
 	private int turnosRestantes;
 	private Unidad edificioTerminado;
-	private ArrayList<UnidadEdificio> listaQueAlmacenaEdificiosTerminados;
-	private ArrayList<Unidad> listaQueAlmacenaEdificiosEnConstruccion;
+	private ArrayList<Unidad> listaUnidades;
 
 	public EdificioEnConstruccion(UnidadEdificio edificio,
-			ArrayList<UnidadEdificio> listaEdificiosTerminados,
-			ArrayList<Unidad> listaEdificiosEnCOnstruccion) {
+			ArrayList<Unidad> listaUnidadesJugador) {
 		this.vida = 1;
 		this.edificioTerminado = edificio;
 		this.turnosRestantes = edificio.tiempoDeConstruccion();
-		this.listaQueAlmacenaEdificiosTerminados = listaEdificiosTerminados;
-		this.listaQueAlmacenaEdificiosEnConstruccion = listaEdificiosEnCOnstruccion;
+		this.listaUnidades = listaUnidadesJugador;
 	}
 
 	public boolean esTerrestre() {
@@ -28,13 +25,14 @@ public class EdificioEnConstruccion extends Unidad {
 		return turnosRestantes;
 	}
 
-	public void continuarConstruccion() {
+	public void pasarTurno() {
 		this.turnosRestantes -= 1;
 		if (this.turnosRestantes == 0) {
 			posicion.desocuparTierra();
 			edificioTerminado.posicionar(posicion);
-			listaQueAlmacenaEdificiosTerminados.add((UnidadEdificio) edificioTerminado);
-			listaQueAlmacenaEdificiosEnConstruccion.remove(this);
+			listaUnidades.remove(this);
+			listaUnidades.add(edificioTerminado);
+
 		}
 	}
 
