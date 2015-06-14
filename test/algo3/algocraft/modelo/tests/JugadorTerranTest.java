@@ -7,10 +7,13 @@ import algo3.algocraft.modelo.juego.BarracaNoConstruidaError;
 import algo3.algocraft.modelo.juego.JugadorTerran;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
+import algo3.algocraft.modelo.recolectables.MinaDeMinerales;
+import algo3.algocraft.modelo.recolectables.Recolectable;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.PerteneceAOtroJugadorError;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 
 public class JugadorTerranTest {
 
@@ -153,6 +156,19 @@ public class JugadorTerranTest {
 
 		Assert.assertFalse(deposito.enConstruccion());
 
+	}
+	@Test
+	public void alPasar4TurnosElCentroDeMineralEstaConstruido(){
+		JugadorTerran jugador = new JugadorTerran();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		Recolectable minaDeMinerales = new MinaDeMinerales(1000);
+		casilla.agregarRecurso(minaDeMinerales);
+		CentroDeMineral centroDeMineral = jugador.crearCentroDeMineral(casilla);
+		for (int i = 0; i < 4; i++){
+			centroDeMineral.pasarTurno();
+		}
+		Assert.assertFalse(centroDeMineral.enConstruccion());
 	}
 	@Test
 	public void elJugadorDeberiaEmpezarCon400DeMineral(){

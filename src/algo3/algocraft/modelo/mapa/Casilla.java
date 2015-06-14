@@ -1,8 +1,8 @@
 package algo3.algocraft.modelo.mapa;
 
 import algo3.algocraft.modelo.recolectables.Recolectable;
-import algo3.algocraft.modelo.recolectores.Recolector;
 import algo3.algocraft.modelo.unidades.Unidad;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Recolector;
 
 public class Casilla {
 

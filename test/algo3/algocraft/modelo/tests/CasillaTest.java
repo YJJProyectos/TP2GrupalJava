@@ -8,9 +8,9 @@ import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recolectables.MinaDeMinerales;
 import algo3.algocraft.modelo.recolectables.Recolectable;
-import algo3.algocraft.modelo.recolectores.CentroDeMineral;
-import algo3.algocraft.modelo.recolectores.Recolector;
 import algo3.algocraft.modelo.unidades.Unidad;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Recolector;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.Marine;
 
 public class CasillaTest {

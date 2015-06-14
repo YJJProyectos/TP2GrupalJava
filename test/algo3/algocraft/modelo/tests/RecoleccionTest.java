@@ -5,8 +5,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.recolectables.MinaDeMinerales;
-import algo3.algocraft.modelo.recolectores.CentroDeMineral;
-import algo3.algocraft.modelo.recolectores.Recolector;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Recolector;
 
 
 public class RecoleccionTest {

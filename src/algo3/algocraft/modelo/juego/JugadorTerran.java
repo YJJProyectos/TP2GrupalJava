@@ -8,6 +8,7 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.PerteneceAOtroJugadorError;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 
 public class JugadorTerran extends Jugador {
 
@@ -55,6 +56,17 @@ public class JugadorTerran extends Jugador {
 			unidad.pasarTurno();
 		}
 
+	}
+
+	public CentroDeMineral crearCentroDeMineral(Casilla casilla) {
+		
+		if ( casilla.estaOcupadoElRecurso() ){
+		CentroDeMineral centroDeMineral = new CentroDeMineral(casilla.getRecurso());
+		centroDeMineral.posicionar(casilla);
+		this.listaDeUnidades.add(centroDeMineral);
+		return centroDeMineral;
+		}
+		return null; //por ahora asi , verlo poner una excepcion despues
 	}
 
 
