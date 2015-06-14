@@ -1,5 +1,6 @@
 package algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores;
 
+import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.recolectables.Recolectable;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 
@@ -16,6 +17,15 @@ public class CentroDeMineral extends UnidadEdificio implements Recolector {
 		this.vida = 1;
 		this.turnosRestantes = 4;
 		this.enConstruccion = true;
+	}
+	// despues borrar el otro constructor y modificiar los test
+	public CentroDeMineral(Recolectable unMineral, Jugador jugador) {
+		this.mineral = unMineral;
+		this.cantidadMineralRecolectado = 0;
+		this.vida = 1;
+		this.turnosRestantes = 4;
+		this.enConstruccion = true;
+		this.jugador = jugador;
 	}
 
 	public boolean recolectar() {
@@ -49,6 +59,10 @@ public class CentroDeMineral extends UnidadEdificio implements Recolector {
 	public void pasarTurno() {
 		if (this.enConstruccion) {
 			this.continuarConstruccion();
+		} else {
+			this.recolectar();
+			jugador.aumentarMineral(this.cantidadMineralRecolectado);
+			this.cantidadMineralRecolectado = 0;
 		}
 	}
 

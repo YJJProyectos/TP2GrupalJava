@@ -166,7 +166,7 @@ public class JugadorTerranTest {
 		casilla.agregarRecurso(minaDeMinerales);
 		CentroDeMineral centroDeMineral = jugador.crearCentroDeMineral(casilla);
 		for (int i = 0; i < 4; i++){
-			centroDeMineral.pasarTurno();
+			jugador.pasarTurno();
 		}
 		Assert.assertFalse(centroDeMineral.enConstruccion());
 	}
@@ -174,6 +174,21 @@ public class JugadorTerranTest {
 	public void elJugadorDeberiaEmpezarCon400DeMineral(){
 		JugadorTerran jugador = new JugadorTerran();
 		Assert.assertEquals(400,jugador.cantidadMineral());
+	}
+	@Test
+	public void despuesDeCrearseUnCentroDeMineralYPasarUn2TurnoAumentaEn20LosMinerales(){
+		JugadorTerran jugador = new JugadorTerran();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		Recolectable minaDeMinerales = new MinaDeMinerales(1000);
+		casilla.agregarRecurso(minaDeMinerales);
+		jugador.crearCentroDeMineral(casilla);
+		for (int i = 0; i < 4; i++){
+			jugador.pasarTurno();
+		}
+		jugador.pasarTurno();
+		jugador.pasarTurno();
+		Assert.assertEquals(420,jugador.cantidadMineral());
 	}
 
 }

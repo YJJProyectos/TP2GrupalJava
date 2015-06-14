@@ -61,7 +61,7 @@ public class JugadorTerran extends Jugador {
 	public CentroDeMineral crearCentroDeMineral(Casilla casilla) {
 		
 		if ( casilla.estaOcupadoElRecurso() ){
-		CentroDeMineral centroDeMineral = new CentroDeMineral(casilla.getRecurso());
+		CentroDeMineral centroDeMineral = new CentroDeMineral(casilla.getRecurso(),this);
 		centroDeMineral.posicionar(casilla);
 		this.listaDeUnidades.add(centroDeMineral);
 		return centroDeMineral;

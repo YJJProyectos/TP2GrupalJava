@@ -8,4 +8,8 @@ public class Jugador {
 		return this.cantidadMineral;
 	}
 
+	public void aumentarMineral(int cantidadMineralRecolectado) {
+		this.cantidadMineral += cantidadMineralRecolectado;
+	}
+
 }
