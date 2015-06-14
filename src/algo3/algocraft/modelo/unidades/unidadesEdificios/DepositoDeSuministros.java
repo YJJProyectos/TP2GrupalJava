@@ -1,11 +1,14 @@
 package algo3.algocraft.modelo.unidades.unidadesEdificios;
 
+import algo3.algocraft.modelo.juego.Jugador;
+
 public class DepositoDeSuministros extends UnidadEdificio {
 
 	private boolean enConstruccion;
 	private int turnosRestantes;
 
-	public DepositoDeSuministros() {
+	public DepositoDeSuministros(Jugador unJugador) {
+		this.jugador = unJugador;
 		this.vida = 1;
 		this.enConstruccion = true;
 		this.turnosRestantes = 12;

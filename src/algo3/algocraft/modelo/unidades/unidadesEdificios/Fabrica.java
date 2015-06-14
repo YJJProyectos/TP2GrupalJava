@@ -1,12 +1,18 @@
 package algo3.algocraft.modelo.unidades.unidadesEdificios;
 
+import algo3.algocraft.modelo.juego.Jugador;
+
 public class Fabrica extends UnidadEdificio {
 
 	private Barraca barraca;
 	private boolean enConstruccion;
 	private int turnosRestantes;
 
-	public Fabrica(Barraca unaBarraca) {
+	public Fabrica(Jugador unJugador, Barraca unaBarraca) throws PerteneceAOtroJugadorError {
+		if (unJugador != unaBarraca.getJugador() ){
+			throw new PerteneceAOtroJugadorError();
+		}
+		this.jugador = unJugador;
 		this.barraca = unaBarraca;
 		this.vida = 1;
 		this.enConstruccion = true;

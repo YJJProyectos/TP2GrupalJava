@@ -7,8 +7,9 @@ import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.PerteneceAOtroJugadorError;
 
-public class JugadorTerran extends Jugador{
+public class JugadorTerran extends Jugador {
 
 	private ArrayList<Unidad> listaDeUnidades;
 
@@ -24,24 +25,25 @@ public class JugadorTerran extends Jugador{
 	}
 
 	public Barraca crearBarraca(Casilla casilla) {
-		Barraca barraca = new Barraca();
+		Barraca barraca = new Barraca(this);
 		barraca.posicionar(casilla);
 		this.listaDeUnidades.add(barraca);
 		return barraca;
 	}
 
-	public Fabrica crearFabrica(Casilla casilla, Barraca barraca) throws BarracaNoConstruidaError {
-		if(barraca.enConstruccion()){
+	public Fabrica crearFabrica(Casilla casilla, Barraca barraca)
+			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError {
+		if (barraca.enConstruccion()) {
 			throw new BarracaNoConstruidaError();
 		}
-		Fabrica fabrica = new Fabrica(barraca);
+		Fabrica fabrica = new Fabrica(this, barraca);
 		fabrica.posicionar(casilla);
 		this.listaDeUnidades.add(fabrica);
 		return fabrica;
 	}
 
 	public DepositoDeSuministros crearDepositoDeSuministros(Casilla casilla) {
-		DepositoDeSuministros deposito = new DepositoDeSuministros();
+		DepositoDeSuministros deposito = new DepositoDeSuministros(this);
 		deposito.posicionar(casilla);
 		this.listaDeUnidades.add(deposito);
 		return deposito;

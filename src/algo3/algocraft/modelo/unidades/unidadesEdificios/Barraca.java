@@ -1,11 +1,14 @@
 package algo3.algocraft.modelo.unidades.unidadesEdificios;
 
+import algo3.algocraft.modelo.juego.Jugador;
+
 public class Barraca extends UnidadEdificio {
 
 	private boolean enConstruccion;
 	private int turnosRestantes;
 
-	public Barraca() {
+	public Barraca(Jugador unJugador) {
+		this.jugador = unJugador;
 		this.vida = 1;
 		this.enConstruccion = true;
 		this.turnosRestantes = 12;

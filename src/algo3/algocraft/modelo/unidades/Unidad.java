@@ -1,9 +1,11 @@
 package algo3.algocraft.modelo.unidades;
 
+import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
 
 public abstract class Unidad {
 
+	protected Jugador jugador;
 	protected Casilla posicion;
 	protected int vida;
 
@@ -37,4 +39,12 @@ public abstract class Unidad {
 	}
 
 	public abstract void pasarTurno();
+	
+	public Jugador getJugador(){
+		return this.jugador;
+	}
+	
+	public boolean esAliado(Unidad otro){
+		return (this.jugador == otro.getJugador());
+	}
 }

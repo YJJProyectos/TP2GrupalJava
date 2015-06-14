@@ -11,8 +11,11 @@ public abstract class UnidadSoldado extends Unidad {
 	protected int rangoAereo;
 	protected int rangoTerrestre;
 
-	public void atacarEnemigo(Unidad enemigo) throws YaEstaDestruidoError {
-
+	public void atacarEnemigo(Unidad enemigo) throws YaEstaDestruidoError, PerteneceAlMismoJugadorError {
+		if (this.jugador == enemigo.getJugador()){
+			throw new PerteneceAlMismoJugadorError();
+		}
+		
 		if (this.posicion.distanciaA(enemigo.posicion()) <= this.rangoTerrestre) {
 			enemigo.recibirDanio(this.danioTerrestre);
 		}

@@ -1,10 +1,12 @@
 package algo3.algocraft.modelo.unidades.unidadesSoldados;
 
+import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
 
 public class Golliat extends UnidadSoldado {
 
-	public Golliat() {
+	public Golliat(Jugador unJugador) {
+		this.jugador = unJugador;
 		this.danioAereo = 10;
 		this.danioTerrestre = 12;
 		this.vida = 125;

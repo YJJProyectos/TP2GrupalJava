@@ -10,6 +10,7 @@ import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.PerteneceAOtroJugadorError;
 
 public class JugadorTerranTest {
 
@@ -50,7 +51,7 @@ public class JugadorTerranTest {
 
 	@Test(expected = BarracaNoConstruidaError.class)
 	public void siSeEmpezoACrearUnaBarracaPeroSigueEnConstruccionNoSePuedeConstruirUnaFabrica()
-			throws BarracaNoConstruidaError {
+			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError {
 		JugadorTerran jugador = new JugadorTerran();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -62,7 +63,7 @@ public class JugadorTerranTest {
 
 	@Test
 	public void siSePudoCrearUnaBarraSePuedeConstruirUnaFabrica()
-			throws BarracaNoConstruidaError {
+			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError {
 		JugadorTerran jugador = new JugadorTerran();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -79,7 +80,7 @@ public class JugadorTerranTest {
 
 	@Test
 	public void laFabricaSeEncuentraInicialmenteEnconstruccion()
-			throws BarracaNoConstruidaError {
+			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError {
 		JugadorTerran jugador = new JugadorTerran();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -97,7 +98,7 @@ public class JugadorTerranTest {
 
 	@Test
 	public void luegoDe12TurnoslaFabricaEstaConstruida()
-			throws BarracaNoConstruidaError {
+			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError {
 		JugadorTerran jugador = new JugadorTerran();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
