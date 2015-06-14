@@ -153,5 +153,10 @@ public class JugadorTerranTest {
 		Assert.assertFalse(deposito.enConstruccion());
 
 	}
+	@Test
+	public void elJugadorDeberiaEmpezarCon400DeMineral(){
+		JugadorTerran jugador = new JugadorTerran();
+		Assert.assertEquals(400,jugador.cantidadMineral());
+	}
 
 }

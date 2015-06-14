@@ -15,6 +15,7 @@ public class JugadorTerran extends Jugador{
 	public JugadorTerran() {
 
 		listaDeUnidades = new ArrayList<Unidad>();
+		cantidadMineral = 400;
 
 	}
 
@@ -53,5 +54,6 @@ public class JugadorTerran extends Jugador{
 		}
 
 	}
+
 
 }
