@@ -12,6 +12,7 @@ public class Marine extends UnidadSoldado {
 		this.vida = 40;
 		this.rangoAereo = 4;
 		this.rangoTerrestre = 4;
+		this.yaAtaco = false;
 	}
 
 	public boolean mover(Casilla casilla) {

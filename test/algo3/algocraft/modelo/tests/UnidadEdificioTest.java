@@ -14,6 +14,7 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.EdificioEnConstruccionE
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.Marine;
+import algo3.algocraft.modelo.unidades.unidadesSoldados.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.PerteneceAlMismoJugadorError;
 
 public class UnidadEdificioTest {
@@ -83,7 +84,8 @@ public class UnidadEdificioTest {
 
 	@Test
 	public void siUnMarineAtacaUnaBarracaEnConstruccionLaDestruye()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError {
+			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError {
 
 		JugadorTerran jugadorAliado = new JugadorTerran();
 		JugadorTerran jugadorEnemigo = new JugadorTerran();
@@ -102,7 +104,8 @@ public class UnidadEdificioTest {
 
 	@Test
 	public void siUnMarineAtacaUnaBarracaYaConstruidaNoLaDestruye()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError {
+			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError {
 
 		JugadorTerran jugadorAliado = new JugadorTerran();
 		JugadorTerran jugadorEnemigo = new JugadorTerran();

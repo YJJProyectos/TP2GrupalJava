@@ -11,6 +11,7 @@ import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.Marine;
+import algo3.algocraft.modelo.unidades.unidadesSoldados.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.PerteneceAlMismoJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.UnidadSoldado;
 
@@ -34,7 +35,8 @@ public class UnidadSoldadoTest {
 
 	@Test(expected = PerteneceAlMismoJugadorError.class)
 	public void unMarineDeberiaNoDaniarAUnGoliatPorPertenecerAlMismoJugador()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError {
+			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError {
 		JugadorTerran jugador = new JugadorTerran();
 		Marine soldado = new Marine(jugador);
 		Unidad soldadoAliado = new Golliat(jugador);
@@ -52,17 +54,16 @@ public class UnidadSoldadoTest {
 
 	@Test
 	public void unMarineDeberiaNoDaniarAUnGoliatPorEstarFueraDelRango()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError {
+			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError {
 		JugadorTerran jugadorAliado = new JugadorTerran();
 		JugadorTerran jugadorEnemigo = new JugadorTerran();
 		Marine soldadoAliado = new Marine(jugadorAliado);
 		Unidad soldadoEnemigo = new Golliat(jugadorEnemigo);
-		Coordenada coordenadaCasillaSoldadoAliado = new Coordenada(1, 1);
-		Coordenada coordenadaCasillaSoldadoEnemigo = new Coordenada(10, 10);
-		Casilla casillaSoldadoAliado = new Casilla(
-				coordenadaCasillaSoldadoAliado);
-		Casilla casillaSoldadoEnemigo = new Casilla(
-				coordenadaCasillaSoldadoEnemigo);
+		Coordenada coordenadaSoldadoAliado = new Coordenada(1, 1);
+		Coordenada coordenadaSoldadoEnemigo = new Coordenada(10, 10);
+		Casilla casillaSoldadoAliado = new Casilla(coordenadaSoldadoAliado);
+		Casilla casillaSoldadoEnemigo = new Casilla(coordenadaSoldadoEnemigo);
 
 		soldadoAliado.posicionar(casillaSoldadoAliado);
 		soldadoEnemigo.posicionar(casillaSoldadoEnemigo);
@@ -74,7 +75,8 @@ public class UnidadSoldadoTest {
 
 	@Test
 	public void unMarineDeberiaDaniarAUnGoliatPorEstarElElRango()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError {
+			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError {
 		Mapa mapa = new Mapa(2);
 		JugadorTerran jugadorAliado = new JugadorTerran();
 		JugadorTerran jugadorEnemigo = new JugadorTerran();
@@ -92,7 +94,8 @@ public class UnidadSoldadoTest {
 
 	@Test
 	public void unGolliatNoDeberiaDaniarAUnMarinePorEstarFueraDelRango()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError {
+			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError {
 		JugadorTerran jugadorAliado = new JugadorTerran();
 		JugadorTerran jugadorEnemigo = new JugadorTerran();
 		Golliat soldadoAliado = new Golliat(jugadorAliado);
@@ -114,7 +117,8 @@ public class UnidadSoldadoTest {
 
 	@Test
 	public void unGolliatDeberiaDaniarAUnMarinePorEstarEnElRango()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError {
+			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError {
 		JugadorTerran jugadorAliado = new JugadorTerran();
 		JugadorTerran jugadorEnemigo = new JugadorTerran();
 		Golliat soldadoAliado = new Golliat(jugadorAliado);
@@ -178,6 +182,78 @@ public class UnidadSoldadoTest {
 		UnidadSoldado otroMarine = new Marine(jugador);
 		otroMarine.posicionar(casillero);
 		Assert.assertFalse(marine.mover(casillero));
+	}
+
+	@Test(expected = NoPuedeAtacarMultiplesVecesError.class)
+	public void unMarineNoDeberiaPoderAtacarMasDeUnaVez()
+			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError {
+		Mapa mapa = new Mapa(2);
+		JugadorTerran jugadorAliado = new JugadorTerran();
+		JugadorTerran jugadorEnemigo = new JugadorTerran();
+		Marine soldadoAliado = new Marine(jugadorAliado);
+		Unidad soldadoEnemigo = new Golliat(jugadorEnemigo);
+		Coordenada coordenadaAliado = new Coordenada(1, 1);
+		Coordenada coordenadaEnemigo = new Coordenada(2, 1);
+		mapa.agregarElementoEnPosicion(soldadoAliado, coordenadaAliado);
+		mapa.agregarElementoEnPosicion(soldadoEnemigo, coordenadaEnemigo);
+		soldadoAliado.atacarEnemigo(soldadoEnemigo);
+		soldadoAliado.atacarEnemigo(soldadoEnemigo);
+	}
+	
+	public void unMarinePuedeVolverAAtacarLuegoDePasarUnTurno()
+			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError {
+		Mapa mapa = new Mapa(2);
+		JugadorTerran jugadorAliado = new JugadorTerran();
+		JugadorTerran jugadorEnemigo = new JugadorTerran();
+		Marine soldadoAliado = new Marine(jugadorAliado);
+		Unidad soldadoEnemigo = new Golliat(jugadorEnemigo);
+		Coordenada coordenadaAliado = new Coordenada(1, 1);
+		Coordenada coordenadaEnemigo = new Coordenada(2, 1);
+		mapa.agregarElementoEnPosicion(soldadoAliado, coordenadaAliado);
+		mapa.agregarElementoEnPosicion(soldadoEnemigo, coordenadaEnemigo);
+		soldadoAliado.atacarEnemigo(soldadoEnemigo);
+		soldadoAliado.pasarTurno();
+		soldadoAliado.atacarEnemigo(soldadoEnemigo);
+		
+		Assert.assertEquals(115, soldadoEnemigo.vidaRestante());
+	}
+	
+	@Test(expected = NoPuedeAtacarMultiplesVecesError.class)
+	public void unGolliatNoDeberiaPoderAtacarMasDeUnaVez()
+			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError {
+		Mapa mapa = new Mapa(2);
+		JugadorTerran jugadorAliado = new JugadorTerran();
+		JugadorTerran jugadorEnemigo = new JugadorTerran();
+		Golliat soldadoAliado = new Golliat(jugadorAliado);
+		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
+		Coordenada coordenadaAliado = new Coordenada(1, 1);
+		Coordenada coordenadaEnemigo = new Coordenada(2, 1);
+		mapa.agregarElementoEnPosicion(soldadoAliado, coordenadaAliado);
+		mapa.agregarElementoEnPosicion(soldadoEnemigo, coordenadaEnemigo);
+		soldadoAliado.atacarEnemigo(soldadoEnemigo);
+		soldadoAliado.atacarEnemigo(soldadoEnemigo);
+	}
+	
+	public void unGolliatPuedeVolverAAtacarLuegoDePasarUnTurno()
+			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError {
+		Mapa mapa = new Mapa(2);
+		JugadorTerran jugadorAliado = new JugadorTerran();
+		JugadorTerran jugadorEnemigo = new JugadorTerran();
+		Golliat soldadoAliado = new Golliat(jugadorAliado);
+		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
+		Coordenada coordenadaAliado = new Coordenada(1, 1);
+		Coordenada coordenadaEnemigo = new Coordenada(2, 1);
+		mapa.agregarElementoEnPosicion(soldadoAliado, coordenadaAliado);
+		mapa.agregarElementoEnPosicion(soldadoEnemigo, coordenadaEnemigo);
+		soldadoAliado.atacarEnemigo(soldadoEnemigo);
+		soldadoAliado.pasarTurno();
+		soldadoAliado.atacarEnemigo(soldadoEnemigo);
+		
+		Assert.assertEquals(16, soldadoEnemigo.vidaRestante());
 	}
 
 }

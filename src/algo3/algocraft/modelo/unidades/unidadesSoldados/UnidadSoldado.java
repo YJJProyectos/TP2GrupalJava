@@ -10,21 +10,27 @@ public abstract class UnidadSoldado extends Unidad {
 	protected int danioTerrestre;
 	protected int rangoAereo;
 	protected int rangoTerrestre;
+	protected boolean yaAtaco;
 
-	public void atacarEnemigo(Unidad enemigo) throws YaEstaDestruidoError, PerteneceAlMismoJugadorError {
-		if (this.jugador == enemigo.getJugador()){
+	public void atacarEnemigo(Unidad enemigo) throws YaEstaDestruidoError,
+			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError {
+		if (this.jugador == enemigo.getJugador()) {
 			throw new PerteneceAlMismoJugadorError();
 		}
-		
+		if (this.yaAtaco) {
+			throw new NoPuedeAtacarMultiplesVecesError();
+		}
+
 		if (this.posicion.distanciaA(enemigo.posicion()) <= this.rangoTerrestre) {
 			enemigo.recibirDanio(this.danioTerrestre);
+			this.yaAtaco = true;
 		}
 	}
 
 	public abstract boolean mover(Casilla casilla);
 
 	public void pasarTurno() {
-
+		this.yaAtaco = false;
 	}
 
 }
