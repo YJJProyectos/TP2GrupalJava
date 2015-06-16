@@ -151,7 +151,7 @@ public class JugadorTerranTest {
 		Casilla casilla = new Casilla(coordenada);
 		DepositoDeSuministros deposito = jugador
 				.crearDepositoDeSuministros(casilla);
-		for (int i = 0; i < 12; i++) {
+		for (int i = 0; i < 6; i++) {
 			deposito.pasarTurno();
 		}
 
@@ -223,5 +223,39 @@ public class JugadorTerranTest {
 		jugador.pasarTurno();
 		Assert.assertEquals(420, jugador.cantidadMineral());
 	}
-
+	
+	@Test
+	public void elJugadorDeberiaEmpezarCon10DePoblacion(){
+		JugadorTerran jugador = new JugadorTerran();
+		Assert.assertEquals(10, jugador.cantidadPoblacion());
+	}
+	
+	@Test
+	public void despuesDeCrearseElDepositoEn6TurnosYEjecutarOtroTurnoLaPoblacionAumentaEn10(){
+		JugadorTerran jugador = new JugadorTerran();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		jugador.crearDepositoDeSuministros(casilla);
+		for (int i = 0; i < 6; i++) {
+			jugador.pasarTurno();
+		}
+		jugador.pasarTurno();
+		Assert.assertEquals(20, jugador.cantidadPoblacion());
+	}
+	@Test
+	public void alCrear2DepositosYEjecutarVariosTurnosMasLaPoblacionDeberiaSerDe30(){
+		JugadorTerran jugador = new JugadorTerran();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Coordenada otraCoordenada = new Coordenada(1, 2);
+		Casilla casilla = new Casilla(coordenada);
+		Casilla otraCasilla = new Casilla(otraCoordenada);
+		jugador.crearDepositoDeSuministros(casilla);
+		jugador.crearDepositoDeSuministros(otraCasilla);
+		for (int i = 0; i < 6; i++) {
+			jugador.pasarTurno();
+		}
+		jugador.pasarTurno();
+		jugador.pasarTurno();
+		Assert.assertEquals(30, jugador.cantidadPoblacion());
+	}
 }

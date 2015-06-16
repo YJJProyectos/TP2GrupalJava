@@ -11,7 +11,7 @@ public class DepositoDeSuministros extends UnidadEdificio {
 		this.jugador = unJugador;
 		this.vida = 1;
 		this.enConstruccion = true;
-		this.turnosRestantes = 12;
+		this.turnosRestantes = 6;
 	}
 
 	public boolean esTerrestre() {
@@ -33,6 +33,8 @@ public class DepositoDeSuministros extends UnidadEdificio {
 	public void pasarTurno() {
 		if (this.enConstruccion) {
 			this.continuarConstruccion();
+		} else {
+			jugador.aumentarPoblacion();
 		}
 	}
 

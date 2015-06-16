@@ -17,6 +17,7 @@ public class JugadorTerran extends Jugador {
 	public JugadorTerran() {
 		listaDeUnidades = new ArrayList<Unidad>();
 		cantidadMineral = 400;
+		poblacion = 10;
 	}
 
 	public int cantidadUnidades() {
@@ -62,6 +63,7 @@ public class JugadorTerran extends Jugador {
 	}
 
 	public void pasarTurno() {
+		this.poblacion = 10;
 		for (int i = 0; i < this.listaDeUnidades.size(); i++) {
 			Unidad unidad = this.listaDeUnidades.get(i);
 			unidad.pasarTurno();
