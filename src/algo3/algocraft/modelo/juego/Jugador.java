@@ -17,6 +17,8 @@ public class Jugador {
 	}
 	public void aumentarPoblacion(){
 		this.poblacion += 10;
+		if (this.poblacion > 200){
+			this.poblacion = 200;		}
 	}
 
 }
