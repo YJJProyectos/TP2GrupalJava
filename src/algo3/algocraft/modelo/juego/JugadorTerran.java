@@ -12,22 +12,22 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMi
 
 public class JugadorTerran extends Jugador {
 
-	private ArrayList<Unidad> listaDeUnidades;
+	private ArrayList<Unidad> unidades;
 
 	public JugadorTerran() {
-		listaDeUnidades = new ArrayList<Unidad>();
+		unidades = new ArrayList<Unidad>();
 		cantidadMineral = 400;
 		poblacion = 10;
 	}
 
 	public int cantidadUnidades() {
-		return this.listaDeUnidades.size();
+		return this.unidades.size();
 	}
 
 	public Barraca crearBarraca(Casilla casilla) {
 		Barraca barraca = new Barraca(this);
 		barraca.posicionar(casilla);
-		this.listaDeUnidades.add(barraca);
+		this.unidades.add(barraca);
 		return barraca;
 	}
 
@@ -38,14 +38,14 @@ public class JugadorTerran extends Jugador {
 		}
 		Fabrica fabrica = new Fabrica(this, barraca);
 		fabrica.posicionar(casilla);
-		this.listaDeUnidades.add(fabrica);
+		this.unidades.add(fabrica);
 		return fabrica;
 	}
 
 	public DepositoDeSuministros crearDepositoDeSuministros(Casilla casilla) {
 		DepositoDeSuministros deposito = new DepositoDeSuministros(this);
 		deposito.posicionar(casilla);
-		this.listaDeUnidades.add(deposito);
+		this.unidades.add(deposito);
 		return deposito;
 	}
 
@@ -58,14 +58,14 @@ public class JugadorTerran extends Jugador {
 		CentroDeMineral centroDeMineral = new CentroDeMineral(
 				casilla.getRecurso(), this);
 		centroDeMineral.posicionar(casilla);
-		this.listaDeUnidades.add(centroDeMineral);
+		this.unidades.add(centroDeMineral);
 		return centroDeMineral;
 	}
 
 	public void pasarTurno() {
 		this.poblacion = 10;
-		for (int i = 0; i < this.listaDeUnidades.size(); i++) {
-			Unidad unidad = this.listaDeUnidades.get(i);
+		for (int i = 0; i < this.unidades.size(); i++) {
+			Unidad unidad = this.unidades.get(i);
 			unidad.pasarTurno();
 		}
 

@@ -8,25 +8,25 @@ import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
 
 public class VolcanDeGasVespenoTest {
 	@Test
-	public void sePuedeExtraer10LitrosDeGasDelVolcanCon100Litros() {
+	public void sePuedeExtraer10DeGasDelVolcanCon100DeGas() {
 		Recurso volcan = new VolcanDeGasVespeno(100);
 		Assert.assertEquals(10, volcan.extraerRecurso(10));
 	}
 
 	@Test
-	public void siLaMinaTiene4MineralesYSeQuierenExtraer6SeExtraen4Minerales() {
+	public void siElVolcanTiene4DeGasYSeQuierenExtraer6SeExtraen4DelGas() {
 		Recurso volcan = new VolcanDeGasVespeno(4);
 		Assert.assertEquals(4, volcan.extraerRecurso(6));
 	}
 
 	@Test
-	public void unaminaQueSeInicializaCon10MineralesTiene10Minerales() {
+	public void unVolcanQueSeInicializaCon10DeGasTiene10Gases() {
 		Recurso volcan = new VolcanDeGasVespeno(10);
 		Assert.assertEquals(10, volcan.getCantidad());
 	}
 
 	@Test
-	public void unaminaQueSeInicializaCon10MineralesYSeLeQuitan2Tiene8Minerales() {
+	public void unVolcanQueSeInicializaCon10DeGasYSeLeQuitan2LeQueda8DeGas() {
 		Recurso volcan = new VolcanDeGasVespeno(10);
 		volcan.extraerRecurso(2);
 		Assert.assertEquals(8, volcan.getCantidad());
