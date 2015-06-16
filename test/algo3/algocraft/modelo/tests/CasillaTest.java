@@ -176,7 +176,7 @@ public class CasillaTest {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 
-		Assert.assertFalse(casilla.desocuparTierra());
+		Assert.assertEquals(null, casilla.desocuparTierra());
 	}
 
 	@Test
@@ -184,29 +184,29 @@ public class CasillaTest {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 
-		Assert.assertFalse(casilla.desocuparAire());
+		Assert.assertEquals(null, casilla.desocuparAire());
 	}
 
 	@Test
 	public void deberiaPoderDesocuparLaTierraSiSoloHayUnMarineEnTierra() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
-		Unidad marine = new Marine(jugador);
+		Unidad marine = new Marine(null);
+	
 		casilla.ocuparTerrestre(marine);
 
-		Assert.assertTrue(casilla.desocuparTierra());
+		Assert.assertEquals(marine, casilla.desocuparTierra());
 	}
 
 	@Test
 	public void deberiaPoderDesocuparLaTierraSiSoloHayUnMarine() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
-		Unidad marine = new Marine(jugador);
+		Unidad marine = new Marine(null);
+		
 		casilla.ocupar(marine);
 
-		Assert.assertTrue(casilla.desocuparTierra());
+		Assert.assertEquals(marine, casilla.desocuparTierra());
 	}
 
 	@Test
@@ -217,7 +217,7 @@ public class CasillaTest {
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
 
-		Assert.assertFalse(casilla.desocuparAire());
+		Assert.assertEquals(null, casilla.desocuparAire());
 	}
 
 	@Test
@@ -228,7 +228,7 @@ public class CasillaTest {
 		Unidad marine = new Marine(jugador);
 		casilla.ocupar(marine);
 
-		Assert.assertFalse(casilla.desocuparAire());
+		Assert.assertEquals(null,casilla.desocuparAire());
 	}
 
 	@Test
@@ -238,7 +238,7 @@ public class CasillaTest {
 		Recurso mineral = new MinaDeMinerales(100);
 		casilla.agregarRecurso(mineral);
 
-		Assert.assertFalse(casilla.desocuparTierra());
+		Assert.assertEquals(null, casilla.desocuparTierra());
 	}
 
 	@Test
@@ -248,7 +248,7 @@ public class CasillaTest {
 		Recurso mineral = new MinaDeMinerales(100);
 		casilla.agregarRecurso(mineral);
 
-		Assert.assertFalse(casilla.desocuparAire());
+		Assert.assertEquals(null, casilla.desocuparAire());
 	}
 
 	@Test

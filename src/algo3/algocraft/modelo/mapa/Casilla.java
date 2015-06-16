@@ -13,9 +13,6 @@ public class Casilla {
 
 	public Casilla(Coordenada coordenada) {
 		this.ubicacion = coordenada;
-		this.ocupanteTerrestre = null;
-		this.ocupanteAereo = null;
-		this.recurso = null;
 	}
 
 	public boolean estaOcupadaLaTierra() {
@@ -83,20 +80,16 @@ public class Casilla {
 		return false;
 	}
 
-	public boolean desocuparTierra() {
-		if (this.ocupanteTerrestre == null) {
-			return false;
-		}
+	public Unidad desocuparTierra() {
+		Unidad ocupante = this.ocupanteTerrestre;
 		this.ocupanteTerrestre = null;
-		return true;
+		return ocupante;
 	}
 
-	public boolean desocuparAire() {
-		if (this.ocupanteAereo == null) {
-			return false;
-		}
+	public Unidad desocuparAire() {
+		Unidad ocupante = this.ocupanteAereo;
 		this.ocupanteAereo = null;
-		return true;
+		return ocupante;
 	}
 
 	public Coordenada posicion() {
