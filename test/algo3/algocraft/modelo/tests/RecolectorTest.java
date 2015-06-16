@@ -4,39 +4,18 @@ package algo3.algocraft.modelo.tests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import algo3.algocraft.modelo.recolectables.MinaDeMinerales;
+import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Recolector;
 
 
-public class RecoleccionTest {
+public class RecolectorTest {
 	@Test
 	public void deberiaRecolectarMineralElCentroDeMineral() {
 		MinaDeMinerales mineral = new MinaDeMinerales(30);
 		Recolector centroDeMineral = new CentroDeMineral(mineral);
 		Assert.assertTrue(centroDeMineral.recolectar());
 	}
-
-	// @Test
-	// public void deberiaRecolectarGasLaRefineria() {
-	// GasVespeno gas = new GasVespeno();
-	// Recolectante refineria = new Refineria(gas);
-	// Assert.assertTrue(refineria.recolectar());
-	// }
-
-	// @Test
-	// public void deberiaRecolectarGasElAsimilador() {
-	// GasVespeno gas = new GasVespeno();
-	// Recolectante asimilador = new Asimilador(gas);
-	// Assert.assertTrue(asimilador.recolectar());
-	// }
-
-	// @Test
-	// public void deberiaRecolectarMineralElNexoMineral() {
-	// Mineral mineral = new Mineral(10);
-	// Recolectante nexoMineral = new NexoMineral(mineral);
-	// Assert.assertTrue(nexoMineral.recolectar());
-	// }
 
 	@Test
 	public void deberiaNoPoderRecolectarElCentroDeMineralSiSeAcabaElMineral() {
@@ -70,6 +49,6 @@ public class RecoleccionTest {
 		MinaDeMinerales mineral = new MinaDeMinerales(30);
 		Recolector centroDeMineral = new CentroDeMineral(mineral);
 		centroDeMineral.recolectar();
-		Assert.assertEquals(20, mineral.getCantidadMineral());
+		Assert.assertEquals(20, mineral.getCantidad());
 	}
 }

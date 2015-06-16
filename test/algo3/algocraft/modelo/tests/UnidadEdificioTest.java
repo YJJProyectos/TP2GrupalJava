@@ -6,7 +6,7 @@ import org.junit.Test;
 import algo3.algocraft.modelo.juego.JugadorTerran;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
-import algo3.algocraft.modelo.recolectables.MinaDeMinerales;
+import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;

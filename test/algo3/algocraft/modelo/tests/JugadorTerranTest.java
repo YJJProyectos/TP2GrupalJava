@@ -8,8 +8,8 @@ import algo3.algocraft.modelo.juego.JugadorTerran;
 import algo3.algocraft.modelo.juego.PosicionNoOcipadaPorRecursoError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
-import algo3.algocraft.modelo.recolectables.MinaDeMinerales;
-import algo3.algocraft.modelo.recolectables.Recolectable;
+import algo3.algocraft.modelo.recursos.MinaDeMinerales;
+import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
@@ -177,7 +177,7 @@ public class JugadorTerranTest {
 		JugadorTerran jugador = new JugadorTerran();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		Recolectable minaDeMinerales = new MinaDeMinerales(1000);
+		Recurso minaDeMinerales = new MinaDeMinerales(1000);
 		casilla.agregarRecurso(minaDeMinerales);
 		CentroDeMineral centro = jugador.crearCentroDeMineral(casilla);
 
@@ -191,7 +191,7 @@ public class JugadorTerranTest {
 		JugadorTerran jugador = new JugadorTerran();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		Recolectable minaDeMinerales = new MinaDeMinerales(1000);
+		Recurso minaDeMinerales = new MinaDeMinerales(1000);
 		casilla.agregarRecurso(minaDeMinerales);
 		CentroDeMineral centroDeMineral = jugador.crearCentroDeMineral(casilla);
 		for (int i = 0; i < 4; i++) {
@@ -213,7 +213,7 @@ public class JugadorTerranTest {
 		JugadorTerran jugador = new JugadorTerran();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		Recolectable minaDeMinerales = new MinaDeMinerales(1000);
+		Recurso minaDeMinerales = new MinaDeMinerales(1000);
 		casilla.agregarRecurso(minaDeMinerales);
 		jugador.crearCentroDeMineral(casilla);
 		for (int i = 0; i < 4; i++) {

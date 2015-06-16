@@ -1,6 +1,6 @@
 package algo3.algocraft.modelo.mapa;
 
-import algo3.algocraft.modelo.recolectables.Recolectable;
+import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Recolector;
 
@@ -9,7 +9,7 @@ public class Casilla {
 	private Coordenada ubicacion;
 	private Unidad ocupanteTerrestre;
 	private Unidad ocupanteAereo;
-	private Recolectable recurso;
+	private Recurso recurso;
 
 	public Casilla(Coordenada coordenada) {
 		this.ubicacion = coordenada;
@@ -38,7 +38,7 @@ public class Casilla {
 		return this.ocupanteTerrestre;
 	}
 
-	public Recolectable getRecurso() {
+	public Recurso getRecurso() {
 		return this.recurso;
 	}
 
@@ -75,7 +75,7 @@ public class Casilla {
 		return false;
 	}
 
-	public boolean agregarRecurso(Recolectable unRecurso) {
+	public boolean agregarRecurso(Recurso unRecurso) {
 		if ((this.ocupanteTerrestre == null) && (this.recurso == null)) {
 			this.recurso = unRecurso;
 			return true;

@@ -1,17 +1,17 @@
 package algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores;
 
 import algo3.algocraft.modelo.juego.Jugador;
-import algo3.algocraft.modelo.recolectables.Recolectable;
+import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 
 public class CentroDeMineral extends UnidadEdificio implements Recolector {
 
 	private int cantidadMineralRecolectado;
-	private Recolectable mineral;
+	private Recurso mineral;
 	private int turnosRestantes;
 	private boolean enConstruccion;
 
-	public CentroDeMineral(Recolectable unMineral) {
+	public CentroDeMineral(Recurso unMineral) {
 		this.mineral = unMineral;
 		this.cantidadMineralRecolectado = 0;
 		this.vida = 1;
@@ -19,7 +19,7 @@ public class CentroDeMineral extends UnidadEdificio implements Recolector {
 		this.enConstruccion = true;
 	}
 	// despues borrar el otro constructor y modificiar los test
-	public CentroDeMineral(Recolectable unMineral, Jugador jugador) {
+	public CentroDeMineral(Recurso unMineral, Jugador jugador) {
 		this.mineral = unMineral;
 		this.cantidadMineralRecolectado = 0;
 		this.vida = 1;
