@@ -1,7 +1,6 @@
 package algo3.algocraft.modelo.recursos;
 
-
-public class VolcanDeGasVespeno extends Recurso{
+public class VolcanDeGasVespeno extends Recurso {
 
 	public VolcanDeGasVespeno(int cantidadDeGas) {
 

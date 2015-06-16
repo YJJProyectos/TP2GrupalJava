@@ -1,10 +1,10 @@
 package algo3.algocraft.modelo.recursos;
 
 public abstract class Recurso {
-	
+
 	protected int cantidadRecurso;
-	
-	public int extraerRecurso(int cantidadDeRecurso){
+
+	public int extraerRecurso(int cantidadDeRecurso) {
 		int cantidadRecursoSacado = 0;
 
 		if (this.cantidadRecurso > 0) {
@@ -17,9 +17,9 @@ public abstract class Recurso {
 
 		return cantidadRecursoSacado;
 	}
+
 	public int getCantidad() {
 		return this.cantidadRecurso;
 	}
-	
 
 }

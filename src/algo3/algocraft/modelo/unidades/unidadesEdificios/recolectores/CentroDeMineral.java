@@ -11,14 +11,6 @@ public class CentroDeMineral extends UnidadEdificio implements Recolector {
 	private int turnosRestantes;
 	private boolean enConstruccion;
 
-	public CentroDeMineral(Recurso unMineral) {
-		this.mineral = unMineral;
-		this.cantidadMineralRecolectado = 0;
-		this.vida = 1;
-		this.turnosRestantes = 4;
-		this.enConstruccion = true;
-	}
-	// despues borrar el otro constructor y modificiar los test
 	public CentroDeMineral(Recurso unMineral, Jugador jugador) {
 		this.mineral = unMineral;
 		this.cantidadMineralRecolectado = 0;
@@ -48,6 +40,7 @@ public class CentroDeMineral extends UnidadEdificio implements Recolector {
 	public int tiempoDeConstruccion() {
 		return 4;
 	}
+
 	public void continuarConstruccion() {
 		this.turnosRestantes -= 1;
 		if (this.turnosRestantes == 0) {

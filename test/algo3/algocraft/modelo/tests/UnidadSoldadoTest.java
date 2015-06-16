@@ -200,7 +200,7 @@ public class UnidadSoldadoTest {
 		soldadoAliado.atacarEnemigo(soldadoEnemigo);
 		soldadoAliado.atacarEnemigo(soldadoEnemigo);
 	}
-	
+
 	public void unMarinePuedeVolverAAtacarLuegoDePasarUnTurno()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError {
@@ -216,10 +216,10 @@ public class UnidadSoldadoTest {
 		soldadoAliado.atacarEnemigo(soldadoEnemigo);
 		soldadoAliado.pasarTurno();
 		soldadoAliado.atacarEnemigo(soldadoEnemigo);
-		
+
 		Assert.assertEquals(115, soldadoEnemigo.vidaRestante());
 	}
-	
+
 	@Test(expected = NoPuedeAtacarMultiplesVecesError.class)
 	public void unGolliatNoDeberiaPoderAtacarMasDeUnaVez()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
@@ -236,7 +236,7 @@ public class UnidadSoldadoTest {
 		soldadoAliado.atacarEnemigo(soldadoEnemigo);
 		soldadoAliado.atacarEnemigo(soldadoEnemigo);
 	}
-	
+
 	public void unGolliatPuedeVolverAAtacarLuegoDePasarUnTurno()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError {
@@ -252,7 +252,7 @@ public class UnidadSoldadoTest {
 		soldadoAliado.atacarEnemigo(soldadoEnemigo);
 		soldadoAliado.pasarTurno();
 		soldadoAliado.atacarEnemigo(soldadoEnemigo);
-		
+
 		Assert.assertEquals(16, soldadoEnemigo.vidaRestante());
 	}
 

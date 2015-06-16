@@ -8,8 +8,9 @@ public class Fabrica extends UnidadEdificio {
 	private boolean enConstruccion;
 	private int turnosRestantes;
 
-	public Fabrica(Jugador unJugador, Barraca unaBarraca) throws PerteneceAOtroJugadorError {
-		if (unJugador != unaBarraca.getJugador() ){
+	public Fabrica(Jugador unJugador, Barraca unaBarraca)
+			throws PerteneceAOtroJugadorError {
+		if (unJugador != unaBarraca.getJugador()) {
 			throw new PerteneceAOtroJugadorError();
 		}
 		this.jugador = unJugador;

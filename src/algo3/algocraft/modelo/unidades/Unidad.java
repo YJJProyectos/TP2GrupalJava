@@ -39,12 +39,12 @@ public abstract class Unidad {
 	}
 
 	public abstract void pasarTurno();
-	
-	public Jugador getJugador(){
+
+	public Jugador getJugador() {
 		return this.jugador;
 	}
-	
-	public boolean esAliado(Unidad otro){
+
+	public boolean esAliado(Unidad otro) {
 		return (this.jugador == otro.getJugador());
 	}
 }

@@ -7,7 +7,7 @@ public class ListaDeJugadores {
 	private ArrayList<Jugador> jugadores;
 	private int posicionActual;
 
-	public ListaDeJugadores(){
+	public ListaDeJugadores() {
 		this.jugadores = new ArrayList<Jugador>();
 		this.posicionActual = 0;
 	}
@@ -16,20 +16,20 @@ public class ListaDeJugadores {
 		this.jugadores.add(jugador);
 	}
 
-	public void sacarJugador(Jugador jugador){
+	public void sacarJugador(Jugador jugador) {
 		int posicionJugadorASacar = jugadores.indexOf(jugador);
-		if (  ( posicionJugadorASacar == this.jugadores.size() -1 ) ){
+		if ((posicionJugadorASacar == this.jugadores.size() - 1)) {
 
-			this.posicionActual = (this.jugadores.size() -1 ) -1 ;
+			this.posicionActual = (this.jugadores.size() - 1) - 1;
 
-		} else if ( this.posicionActual != 0){
-			this.posicionActual --;
-		} 
+		} else if (this.posicionActual != 0) {
+			this.posicionActual--;
+		}
 		jugadores.remove(jugador);
 	}
 
 	public void pasarTurno() {
-		this.posicionActual = (this.posicionActual + 1)% this.jugadores.size();
+		this.posicionActual = (this.posicionActual + 1) % this.jugadores.size();
 	}
 
 	public Jugador jugadorActual() {

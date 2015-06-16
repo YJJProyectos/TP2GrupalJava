@@ -1,6 +1,5 @@
 package algo3.algocraft.modelo.tests;
 
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,7 +8,6 @@ import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.mapa.Mapa;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.Marine;
-
 
 public class MapaTest {
 
@@ -20,7 +18,7 @@ public class MapaTest {
 	}
 
 	@Test
-	public void noDeberiaAgregarUnMarineSiPasanCoordenadaInvalida(){
+	public void noDeberiaAgregarUnMarineSiPasanCoordenadaInvalida() {
 		Mapa mapa = new Mapa(4);
 		JugadorTerran jugador = new JugadorTerran();
 		Unidad marine = new Marine(jugador);
