@@ -164,9 +164,9 @@ public class JugadorTerranTest {
 	// /IMPORTANTE: NO PASA ESTE TEST
 	/*
 	 * @Test public void deberiaPoderConstruirUnCentroDeMineral() throws
-	 * PosicionNoOcipadaPorRecursoError { JugadorTerran jugador = new
+	 * PosicionNoOcupadaPorRecursoError { JugadorTerran jugador = new
 	 * JugadorTerran(); Coordenada coordenada = new Coordenada(1, 1); Casilla
-	 * casilla = new Casilla(coordenada); Recolectable minaDeMinerales = new
+	 * casilla = new Casilla(coordenada); Recurso minaDeMinerales = new
 	 * MinaDeMinerales(1000); casilla.agregarRecurso(minaDeMinerales);
 	 * CentroDeMineral centro = jugador.crearCentroDeMineral(casilla);
 	 * 
@@ -188,7 +188,7 @@ public class JugadorTerranTest {
 	}
 
 	@Test
-	public void luegoDe4TurnoselCentroDeMineralEstaConstruido()
+	public void luegoDe4TurnosElCentroDeMineralEstaConstruido()
 			throws PosicionNoOcupadaPorRecursoError {
 		JugadorTerran jugador = new JugadorTerran();
 		Coordenada coordenada = new Coordenada(1, 1);
@@ -285,38 +285,69 @@ public class JugadorTerranTest {
 		jugador.pasarTurno();
 		Assert.assertEquals(200, jugador.cantidadPoblacion());
 	}
+
 	@Test
-	public void elJugadorDeberiaEmpezarCon100DeGas(){
+	public void elJugadorDeberiaEmpezarCon100DeGas() {
 		JugadorTerran jugador = new JugadorTerran();
 		Assert.assertEquals(100, jugador.cantidadGas());
 	}
+
+	// /IMPORTANTE: NO PASA ESTE TEST
+	/*
+	 * @Test public void deberiaPoderConstruirUnCentroDeMineral() throws
+	 * PosicionNoOcipadaPorRecursoError { JugadorTerran jugador = new
+	 * JugadorTerran(); Coordenada coordenada = new Coordenada(1, 1); Casilla
+	 * casilla = new Casilla(coordenada); Recolectable minaDeMinerales = new
+	 * MinaDeMinerales(1000); casilla.agregarRecurso(minaDeMinerales);
+	 * CentroDeMineral centro = jugador.crearCentroDeMineral(casilla);
+	 * 
+	 * Assert.assertEquals(casilla.getOcupanteTerrestre(), centro); }
+	 */
+
 	@Test
-	public void despuesDe4TurnosSeCreaLaRefineria() throws PosicionNoOcupadaPorRecursoError{
+	public void laRefineriaSeEncuentraInicialmenteEnconstruccion()
+			throws PosicionNoOcupadaPorRecursoError {
 		JugadorTerran jugador = new JugadorTerran();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso volcan = new VolcanDeGasVespeno(1000);
 		casilla.agregarRecurso(volcan);
 		Refineria refineria = jugador.crearRefineria(casilla);
-		for (int i = 0; i < 4; i++){
+
+		Assert.assertTrue(refineria.enConstruccion());
+
+	}
+
+	@Test
+	public void luegoDe6TurnosLaRefineriaEstaConstruida()
+			throws PosicionNoOcupadaPorRecursoError {
+		JugadorTerran jugador = new JugadorTerran();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		Recurso volcan = new VolcanDeGasVespeno(1000);
+		casilla.agregarRecurso(volcan);
+		Refineria refineria = jugador.crearRefineria(casilla);
+		for (int i = 0; i < 6; i++) {
 			jugador.pasarTurno();
 		}
 		Assert.assertFalse(refineria.enConstruccion());
 	}
+
 	@Test
-	public void despuesDeCrearseLaRefineriaYPasar2TurnosAumentaEn20LaCantidadDeGas() 
-			throws PosicionNoOcupadaPorRecursoError{
+	public void despuesDeCrearseLaRefineriaYPasar6TurnosAumentaEn20LaCantidadDeGas()
+			throws PosicionNoOcupadaPorRecursoError {
 		JugadorTerran jugador = new JugadorTerran();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso volcan = new VolcanDeGasVespeno(1000);
 		casilla.agregarRecurso(volcan);
 		jugador.crearRefineria(casilla);
-		for (int i = 0; i < 4; i++){
+		for (int i = 0; i < 6; i++) {
 			jugador.pasarTurno();
 		}
 		jugador.pasarTurno();
 		jugador.pasarTurno();
 		Assert.assertEquals(120, jugador.cantidadGas());
 	}
+
 }

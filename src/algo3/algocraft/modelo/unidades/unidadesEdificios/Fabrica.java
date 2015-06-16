@@ -21,7 +21,7 @@ public class Fabrica extends UnidadEdificio {
 	}
 
 	public boolean entrenarGolliat() {
-		if (this.enConstruccion || barraca.estaDestruido()) {
+		if (this.enConstruccion || barraca.estaDestruido() || barraca.enConstruccion()) {
 			return false;
 		}
 		return true;
