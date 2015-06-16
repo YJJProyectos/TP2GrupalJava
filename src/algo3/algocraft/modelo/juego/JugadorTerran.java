@@ -9,6 +9,7 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 
 public class JugadorTerran extends Jugador {
 
@@ -17,6 +18,7 @@ public class JugadorTerran extends Jugador {
 	public JugadorTerran() {
 		unidades = new ArrayList<Unidad>();
 		cantidadMineral = 400;
+		cantidadGas = 100;
 		poblacion = 10;
 	}
 
@@ -50,16 +52,29 @@ public class JugadorTerran extends Jugador {
 	}
 
 	public CentroDeMineral crearCentroDeMineral(Casilla casilla)
-			throws PosicionNoOcipadaPorRecursoError {
+			throws PosicionNoOcupadaPorRecursoError {
 
 		if (!casilla.estaOcupadoElRecurso()) {
-			throw new PosicionNoOcipadaPorRecursoError();
+			throw new PosicionNoOcupadaPorRecursoError();
 		}
 		CentroDeMineral centroDeMineral = new CentroDeMineral(
 				casilla.getRecurso(), this);
 		centroDeMineral.posicionar(casilla);
 		this.unidades.add(centroDeMineral);
 		return centroDeMineral;
+	}
+	
+	public Refineria crearRefineria(Casilla casilla) 
+			throws PosicionNoOcupadaPorRecursoError {
+
+		if (!casilla.estaOcupadoElRecurso()) {
+			throw new PosicionNoOcupadaPorRecursoError();
+		}
+		Refineria refineria = new Refineria(casilla.getRecurso(), this);
+		refineria.posicionar(casilla);
+		this.unidades.add(refineria);
+		return refineria;
+
 	}
 
 	public void pasarTurno() {

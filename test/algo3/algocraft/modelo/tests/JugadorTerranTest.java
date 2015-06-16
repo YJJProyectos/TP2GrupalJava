@@ -5,16 +5,18 @@ import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.BarracaNoConstruidaError;
 import algo3.algocraft.modelo.juego.JugadorTerran;
-import algo3.algocraft.modelo.juego.PosicionNoOcipadaPorRecursoError;
+import algo3.algocraft.modelo.juego.PosicionNoOcupadaPorRecursoError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.recursos.Recurso;
+import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 
 public class JugadorTerranTest {
 
@@ -173,7 +175,7 @@ public class JugadorTerranTest {
 
 	@Test
 	public void elCentroDeMineralSeEncuentraInicialmenteEnconstruccion()
-			throws PosicionNoOcipadaPorRecursoError {
+			throws PosicionNoOcupadaPorRecursoError {
 		JugadorTerran jugador = new JugadorTerran();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -187,7 +189,7 @@ public class JugadorTerranTest {
 
 	@Test
 	public void luegoDe4TurnoselCentroDeMineralEstaConstruido()
-			throws PosicionNoOcipadaPorRecursoError {
+			throws PosicionNoOcupadaPorRecursoError {
 		JugadorTerran jugador = new JugadorTerran();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -208,8 +210,8 @@ public class JugadorTerranTest {
 	}
 
 	@Test
-	public void despuesDeCrearseUnCentroDeMineralYPasarUn2TurnoAumentaEn20LosMinerales()
-			throws PosicionNoOcipadaPorRecursoError {
+	public void despuesDeCrearseUnCentroDeMineralYPasar2TurnosAumentaEn20LosMinerales()
+			throws PosicionNoOcupadaPorRecursoError {
 		JugadorTerran jugador = new JugadorTerran();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -276,5 +278,39 @@ public class JugadorTerranTest {
 		jugador.pasarTurno();
 		jugador.pasarTurno();
 		Assert.assertEquals(200, jugador.cantidadPoblacion());
+	}
+	@Test
+	public void elJugadorDeberiaEmpezarCon100DeGas(){
+		JugadorTerran jugador = new JugadorTerran();
+		Assert.assertEquals(100, jugador.cantidadGas());
+	}
+	@Test
+	public void despuesDe4TurnosSeCreaLaRefineria() throws PosicionNoOcupadaPorRecursoError{
+		JugadorTerran jugador = new JugadorTerran();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		Recurso volcan = new VolcanDeGasVespeno(1000);
+		casilla.agregarRecurso(volcan);
+		Refineria refineria = jugador.crearRefineria(casilla);
+		for (int i = 0; i < 4; i++){
+			jugador.pasarTurno();
+		}
+		Assert.assertFalse(refineria.enConstruccion());
+	}
+	@Test
+	public void despuesDeCrearseLaRefineriaYPasar2TurnosAumentaEn20LaCantidadDeGas() 
+			throws PosicionNoOcupadaPorRecursoError{
+		JugadorTerran jugador = new JugadorTerran();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		Recurso volcan = new VolcanDeGasVespeno(1000);
+		casilla.agregarRecurso(volcan);
+		jugador.crearRefineria(casilla);
+		for (int i = 0; i < 4; i++){
+			jugador.pasarTurno();
+		}
+		jugador.pasarTurno();
+		jugador.pasarTurno();
+		Assert.assertEquals(120, jugador.cantidadGas());
 	}
 }

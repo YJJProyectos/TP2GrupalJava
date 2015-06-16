@@ -5,8 +5,10 @@ import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.JugadorTerran;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
+import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Recolector;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 
 public class RecolectorTest {
 	@Test
@@ -56,4 +58,28 @@ public class RecolectorTest {
 		centroDeMineral.recolectar();
 		Assert.assertEquals(20, mineral.getCantidad());
 	}
+	@Test
+	public void deberiaNoTenerNingunGasRecolectadoLaRefineriaAlSerCreada(){
+		JugadorTerran jugador = new JugadorTerran();
+		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
+		Recolector refineria = new Refineria(volcan, jugador);
+		Assert.assertEquals(0, refineria.getCantidadRecursoRecolectado());
+	}
+	@Test
+	public void deberiaRecolectar7DeGasSiElVolcanTiene7DeGas(){
+		JugadorTerran jugador = new JugadorTerran();
+		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(7);
+		Recolector refineria = new Refineria(volcan, jugador);
+		refineria.recolectar();
+		Assert.assertEquals(7, refineria.getCantidadRecursoRecolectado());
+	}
+	@Test
+	public void deberiaDecrementarEn10ElVolcanDeGasAlSerRecolectadoPorLaRefineria(){
+		JugadorTerran jugador = new JugadorTerran();
+		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
+		Recolector refineria = new Refineria(volcan, jugador);
+		refineria.recolectar();
+		Assert.assertEquals(90, volcan.getCantidad());
+	}
+	
 }
