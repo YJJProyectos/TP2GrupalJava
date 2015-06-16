@@ -227,7 +227,7 @@ public class JugadorTerranTest {
 	}
 
 	@Test
-	public void elJugadorDeberiaEmpezarCon10DePoblacion() {
+	public void elJugadorDeberiaEmpezarCon10DePoblacionDebidoQueEmpiezaConUnDeposito() {
 		JugadorTerran jugador = new JugadorTerran();
 		Assert.assertEquals(10, jugador.cantidadPoblacion());
 	}

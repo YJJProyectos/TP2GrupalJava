@@ -20,6 +20,11 @@ public class JugadorTerran extends Jugador {
 		cantidadMineral = 400;
 		cantidadGas = 100;
 		poblacion = 10;
+		// agrego que jugador empieza con un deposito
+		// despues ver si en donde posicionarla en el mapa 
+		// y tambien deberia empezar con un marine (despues se agregaria)
+		DepositoDeSuministros deposito = new DepositoDeSuministros(this);
+		unidades.add(deposito);
 	}
 
 	public int cantidadUnidades() {
@@ -78,7 +83,7 @@ public class JugadorTerran extends Jugador {
 	}
 
 	public void pasarTurno() {
-		this.poblacion = 10;
+		this.poblacion = 0;
 		for (int i = 0; i < this.unidades.size(); i++) {
 			Unidad unidad = this.unidades.get(i);
 			unidad.pasarTurno();
