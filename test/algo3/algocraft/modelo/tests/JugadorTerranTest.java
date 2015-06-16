@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.BarracaNoConstruidaError;
 import algo3.algocraft.modelo.juego.JugadorTerran;
+import algo3.algocraft.modelo.juego.PosicionNoOcipadaPorRecursoError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recolectables.MinaDeMinerales;
@@ -45,7 +46,7 @@ public class JugadorTerranTest {
 		Casilla casilla = new Casilla(coordenada);
 		Barraca barraca = jugador.crearBarraca(casilla);
 		for (int i = 0; i < 12; i++) {
-			barraca.pasarTurno();
+			jugador.pasarTurno();
 		}
 
 		Assert.assertFalse(barraca.enConstruccion());
@@ -74,7 +75,7 @@ public class JugadorTerranTest {
 		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
 		Barraca barraca = jugador.crearBarraca(casillaBarraca);
 		for (int i = 0; i < 12; i++) {
-			barraca.pasarTurno();
+			jugador.pasarTurno();
 		}
 		Fabrica fabrica = jugador.crearFabrica(casillaFabrica, barraca);
 
@@ -91,7 +92,7 @@ public class JugadorTerranTest {
 		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
 		Barraca barraca = jugador.crearBarraca(casillaBarraca);
 		for (int i = 0; i < 12; i++) {
-			barraca.pasarTurno();
+			jugador.pasarTurno();
 		}
 		Fabrica fabrica = jugador.crearFabrica(casillaFabrica, barraca);
 
@@ -109,11 +110,11 @@ public class JugadorTerranTest {
 		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
 		Barraca barraca = jugador.crearBarraca(casillaBarraca);
 		for (int i = 0; i < 12; i++) {
-			barraca.pasarTurno();
+			jugador.pasarTurno();
 		}
 		Fabrica fabrica = jugador.crearFabrica(casillaFabrica, barraca);
 		for (int i = 0; i < 12; i++) {
-			fabrica.pasarTurno();
+			jugador.pasarTurno();
 		}
 
 		Assert.assertFalse(fabrica.enConstruccion());
@@ -157,38 +158,70 @@ public class JugadorTerranTest {
 		Assert.assertFalse(deposito.enConstruccion());
 
 	}
+
+	// /IMPORTANTE: NO PASA ESTE TEST
+	/*
+	 * @Test public void deberiaPoderConstruirUnCentroDeMineral() throws
+	 * PosicionNoOcipadaPorRecursoError { JugadorTerran jugador = new
+	 * JugadorTerran(); Coordenada coordenada = new Coordenada(1, 1); Casilla
+	 * casilla = new Casilla(coordenada); Recolectable minaDeMinerales = new
+	 * MinaDeMinerales(1000); casilla.agregarRecurso(minaDeMinerales);
+	 * CentroDeMineral centro = jugador.crearCentroDeMineral(casilla);
+	 * 
+	 * Assert.assertEquals(casilla.getOcupanteTerrestre(), centro); }
+	 */
+
 	@Test
-	public void alPasar4TurnosElCentroDeMineralEstaConstruido(){
+	public void elCentroDeMineralSeEncuentraInicialmenteEnconstruccion()
+			throws PosicionNoOcipadaPorRecursoError {
+		JugadorTerran jugador = new JugadorTerran();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		Recolectable minaDeMinerales = new MinaDeMinerales(1000);
+		casilla.agregarRecurso(minaDeMinerales);
+		CentroDeMineral centro = jugador.crearCentroDeMineral(casilla);
+
+		Assert.assertTrue(centro.enConstruccion());
+
+	}
+
+	@Test
+	public void luegoDe4TurnoselCentroDeMineralEstaConstruido()
+			throws PosicionNoOcipadaPorRecursoError {
 		JugadorTerran jugador = new JugadorTerran();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recolectable minaDeMinerales = new MinaDeMinerales(1000);
 		casilla.agregarRecurso(minaDeMinerales);
 		CentroDeMineral centroDeMineral = jugador.crearCentroDeMineral(casilla);
-		for (int i = 0; i < 4; i++){
+		for (int i = 0; i < 4; i++) {
 			jugador.pasarTurno();
 		}
 		Assert.assertFalse(centroDeMineral.enConstruccion());
+
 	}
+
 	@Test
-	public void elJugadorDeberiaEmpezarCon400DeMineral(){
+	public void elJugadorDeberiaEmpezarCon400DeMineral() {
 		JugadorTerran jugador = new JugadorTerran();
-		Assert.assertEquals(400,jugador.cantidadMineral());
+		Assert.assertEquals(400, jugador.cantidadMineral());
 	}
+
 	@Test
-	public void despuesDeCrearseUnCentroDeMineralYPasarUn2TurnoAumentaEn20LosMinerales(){
+	public void despuesDeCrearseUnCentroDeMineralYPasarUn2TurnoAumentaEn20LosMinerales()
+			throws PosicionNoOcipadaPorRecursoError {
 		JugadorTerran jugador = new JugadorTerran();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recolectable minaDeMinerales = new MinaDeMinerales(1000);
 		casilla.agregarRecurso(minaDeMinerales);
 		jugador.crearCentroDeMineral(casilla);
-		for (int i = 0; i < 4; i++){
+		for (int i = 0; i < 4; i++) {
 			jugador.pasarTurno();
 		}
 		jugador.pasarTurno();
 		jugador.pasarTurno();
-		Assert.assertEquals(420,jugador.cantidadMineral());
+		Assert.assertEquals(420, jugador.cantidadMineral());
 	}
 
 }

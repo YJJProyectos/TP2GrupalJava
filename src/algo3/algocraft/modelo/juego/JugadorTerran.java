@@ -15,10 +15,8 @@ public class JugadorTerran extends Jugador {
 	private ArrayList<Unidad> listaDeUnidades;
 
 	public JugadorTerran() {
-
 		listaDeUnidades = new ArrayList<Unidad>();
 		cantidadMineral = 400;
-
 	}
 
 	public int cantidadUnidades() {
@@ -50,6 +48,19 @@ public class JugadorTerran extends Jugador {
 		return deposito;
 	}
 
+	public CentroDeMineral crearCentroDeMineral(Casilla casilla)
+			throws PosicionNoOcipadaPorRecursoError {
+
+		if (!casilla.estaOcupadoElRecurso()) {
+			throw new PosicionNoOcipadaPorRecursoError();
+		}
+		CentroDeMineral centroDeMineral = new CentroDeMineral(
+				casilla.getRecurso(), this);
+		centroDeMineral.posicionar(casilla);
+		this.listaDeUnidades.add(centroDeMineral);
+		return centroDeMineral;
+	}
+
 	public void pasarTurno() {
 		for (int i = 0; i < this.listaDeUnidades.size(); i++) {
 			Unidad unidad = this.listaDeUnidades.get(i);
@@ -57,17 +68,5 @@ public class JugadorTerran extends Jugador {
 		}
 
 	}
-
-	public CentroDeMineral crearCentroDeMineral(Casilla casilla) {
-		
-		if ( casilla.estaOcupadoElRecurso() ){
-		CentroDeMineral centroDeMineral = new CentroDeMineral(casilla.getRecurso(),this);
-		centroDeMineral.posicionar(casilla);
-		this.listaDeUnidades.add(centroDeMineral);
-		return centroDeMineral;
-		}
-		return null; //por ahora asi , verlo poner una excepcion despues
-	}
-
 
 }
