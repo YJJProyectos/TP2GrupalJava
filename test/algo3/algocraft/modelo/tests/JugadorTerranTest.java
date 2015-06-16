@@ -231,6 +231,12 @@ public class JugadorTerranTest {
 		JugadorTerran jugador = new JugadorTerran();
 		Assert.assertEquals(10, jugador.cantidadPoblacion());
 	}
+	@Test
+	public void alPasarUnTurnoDesdeQueEmpezoDeberiaSeguirCon10DePoblacion(){
+		JugadorTerran jugador = new JugadorTerran();
+		jugador.pasarTurno();
+		Assert.assertEquals(10, jugador.cantidadPoblacion());
+	}
 
 	@Test
 	public void despuesDeCrearseElDepositoEn6TurnosYEjecutarOtroTurnoLaPoblacionAumentaEn10() {

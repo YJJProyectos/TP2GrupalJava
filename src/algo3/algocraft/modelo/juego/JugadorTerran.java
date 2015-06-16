@@ -24,6 +24,9 @@ public class JugadorTerran extends Jugador {
 		// despues ver si en donde posicionarla en el mapa 
 		// y tambien deberia empezar con un marine (despues se agregaria)
 		DepositoDeSuministros deposito = new DepositoDeSuministros(this);
+		for (int i = 0; i < 6; i++){
+			deposito.continuarConstruccion();
+		}
 		unidades.add(deposito);
 	}
 
