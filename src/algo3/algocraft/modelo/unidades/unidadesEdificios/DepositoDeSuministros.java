@@ -19,13 +19,13 @@ public class DepositoDeSuministros extends UnidadEdificio {
 	}
 
 	public int tiempoDeConstruccion() {
-		return 6;
+		return this.turnosRestantes;
 	}
 
 	public void continuarConstruccion() {
 		this.turnosRestantes -= 1;
 		if (this.turnosRestantes == 0) {
-			this.vida = 1000;
+			this.vida = 500;
 			this.enConstruccion = false;
 		}
 	}

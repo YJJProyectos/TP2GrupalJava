@@ -17,7 +17,7 @@ public class Refineria extends UnidadEdificio implements Recolector {
 		this.jugador = jugador;
 		this.cantidadGasRecolectado = 0;
 		this.vida = 1;
-		this.turnosRestantes = 4;
+		this.turnosRestantes = 6;
 		this.enConstruccion = true;
 	}
 
@@ -38,13 +38,13 @@ public class Refineria extends UnidadEdificio implements Recolector {
 
 	@Override
 	public int tiempoDeConstruccion() {
-		return 4;
+		return this.turnosRestantes;
 	}
 	
 	private void continuarConstruccion() {
 		this.turnosRestantes -= 1;
 		if (this.turnosRestantes == 0) {
-			this.vida = 1000;
+			this.vida = 750;
 			this.enConstruccion = false;
 		}
 	}

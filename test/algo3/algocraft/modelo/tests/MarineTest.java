@@ -13,24 +13,99 @@ import algo3.algocraft.modelo.unidades.unidadesSoldados.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.Marine;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.PerteneceAlMismoJugadorError;
-import algo3.algocraft.modelo.unidades.unidadesSoldados.UnidadSoldado;
 
-public class UnidadSoldadoTest {
+public class MarineTest {
 
 	@Test
-	public void unMarineEsUnaUnidadTerrestre() {
+	public void deberiaEstarDetruidoElMarine() throws YaEstaDestruidoError {
 		JugadorTerran jugador = new JugadorTerran();
-		Marine soldado = new Marine(jugador);
+		Marine marine = new Marine(jugador);
+		marine.recibirDanio(1000);
 
-		Assert.assertTrue(soldado.esTerrestre());
+		Assert.assertTrue(marine.estaDestruido());
 	}
 
 	@Test
-	public void unGolliatEsUnaUnidadTerrestre() {
+	public void deberiaNoEstarDetruidoElMarine() throws YaEstaDestruidoError {
 		JugadorTerran jugador = new JugadorTerran();
-		Golliat soldado = new Golliat(jugador);
+		Marine marine = new Marine(jugador);
+		marine.recibirDanio(5);
 
-		Assert.assertTrue(soldado.esTerrestre());
+		Assert.assertFalse(marine.estaDestruido());
+	}
+
+	@Test
+	public void deberiaRecibirDanio1() throws YaEstaDestruidoError {
+		JugadorTerran jugador = new JugadorTerran();
+		Marine marine = new Marine(jugador);
+		int vidaInicial = marine.vidaRestante();
+		marine.recibirDanio(1);
+		int vidaFinal = marine.vidaRestante();
+
+		Assert.assertEquals(1, vidaInicial - vidaFinal);
+	}
+
+	@Test
+	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaUnidadMarineEs39()
+			throws YaEstaDestruidoError {
+		JugadorTerran jugador = new JugadorTerran();
+		Marine marine = new Marine(jugador);
+		marine.recibirDanio(1);
+
+		Assert.assertEquals(39, marine.vidaRestante());
+	}
+
+	@Test
+	public void deberiaPoderPosicionarseUnaUnidadEnUnaCasillaDesocupada() {
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		JugadorTerran jugador = new JugadorTerran();
+		Marine marine = new Marine(jugador);
+
+		Assert.assertTrue(marine.posicionar(casilla));
+	}
+
+	@Test
+	public void deberiaNoPoderPosicionarseUnMarineEnUnaCasillaOcupada() {
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		JugadorTerran jugador = new JugadorTerran();
+		Marine primerMarine = new Marine(jugador);
+		Marine segundoMarine = new Marine(jugador);
+		primerMarine.posicionar(casilla);
+
+		Assert.assertFalse(segundoMarine.posicionar(casilla));
+	}
+
+	@Test
+	public void deberiaGuardarSuPosicion() {
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		JugadorTerran jugador = new JugadorTerran();
+		Marine marine = new Marine(jugador);
+
+		marine.posicionar(casilla);
+
+		Assert.assertEquals(casilla, marine.posicion());
+	}
+
+	@Test
+	public void elMarineEsUnaUnidadTerrestre() {
+		JugadorTerran jugador = new JugadorTerran();
+		Marine marine = new Marine(jugador);
+
+		Assert.assertTrue(marine.esTerrestre());
+	}
+
+	@Test(expected = YaEstaDestruidoError.class)
+	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
+			throws YaEstaDestruidoError {
+		JugadorTerran jugador = new JugadorTerran();
+		Marine marine = new Marine(jugador);
+		marine.recibirDanio(100);
+		Assert.assertTrue(marine.estaDestruido());
+		marine.recibirDanio(2);
+
 	}
 
 	@Test(expected = PerteneceAlMismoJugadorError.class)
@@ -93,82 +168,13 @@ public class UnidadSoldadoTest {
 	}
 
 	@Test
-	public void unGolliatNoDeberiaDaniarAUnMarinePorEstarFueraDelRango()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
-		JugadorTerran jugadorAliado = new JugadorTerran();
-		JugadorTerran jugadorEnemigo = new JugadorTerran();
-		Golliat soldadoAliado = new Golliat(jugadorAliado);
-		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
-		Coordenada coordenadaCasillaSoldadoAliado = new Coordenada(1, 1);
-		Coordenada coordenadaCasillaSoldadoEnemigo = new Coordenada(10, 10);
-		Casilla casillaSoldadoAliado = new Casilla(
-				coordenadaCasillaSoldadoAliado);
-		Casilla casillaSoldadoEnemigo = new Casilla(
-				coordenadaCasillaSoldadoEnemigo);
-
-		soldadoAliado.posicionar(casillaSoldadoAliado);
-		soldadoEnemigo.posicionar(casillaSoldadoEnemigo);
-		soldadoAliado.atacarEnemigo(soldadoEnemigo);
-
-		Assert.assertEquals(40, soldadoEnemigo.vidaRestante());
-
-	}
-
-	@Test
-	public void unGolliatDeberiaDaniarAUnMarinePorEstarEnElRango()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
-		JugadorTerran jugadorAliado = new JugadorTerran();
-		JugadorTerran jugadorEnemigo = new JugadorTerran();
-		Golliat soldadoAliado = new Golliat(jugadorAliado);
-		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
-		Coordenada coordenadaCasillaSoldadoAliado = new Coordenada(1, 1);
-		Coordenada coordenadaCasillaSoldadoEnemigo = new Coordenada(2, 1);
-		Casilla casillaSoldadoAliado = new Casilla(
-				coordenadaCasillaSoldadoAliado);
-		Casilla casillaSoldadoEnemigo = new Casilla(
-				coordenadaCasillaSoldadoEnemigo);
-
-		soldadoAliado.posicionar(casillaSoldadoAliado);
-		soldadoEnemigo.posicionar(casillaSoldadoEnemigo);
-		soldadoAliado.atacarEnemigo(soldadoEnemigo);
-
-		Assert.assertEquals(28, soldadoEnemigo.vidaRestante());
-
-	}
-
-	@Test
-	public void deberiaPoderMoverseUnGolliatSiNoHayNadieEnEseCasillero() {
-		Coordenada coordenadaCasilleroLibre = new Coordenada(1, 2);
-		Coordenada coordenadaCasillero = new Coordenada(1, 1);
-		Casilla casilleroLibre = new Casilla(coordenadaCasilleroLibre);
-		Casilla casillero = new Casilla(coordenadaCasillero);
-		JugadorTerran jugador = new JugadorTerran();
-		UnidadSoldado golliat = new Golliat(jugador);
-		golliat.posicionar(casillero);
-		Assert.assertTrue(golliat.mover(casilleroLibre));
-	}
-
-	@Test
-	public void noDeberiaPoderMoverseUnGolliatSiEstaOcupadoElCasillero() {
-		Coordenada coordenadaCasillero = new Coordenada(1, 1);
-		Casilla casillero = new Casilla(coordenadaCasillero);
-		JugadorTerran jugador = new JugadorTerran();
-		UnidadSoldado golliat = new Golliat(jugador);
-		UnidadSoldado otroGolliat = new Golliat(jugador);
-		otroGolliat.posicionar(casillero);
-		Assert.assertFalse(golliat.mover(casillero));
-	}
-
-	@Test
 	public void deberiaPoderMoverseUnMarineSiNoHayNadieEnEseCasillero() {
 		Coordenada coordenadaCasilleroLibre = new Coordenada(1, 2);
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
 		Casilla casilleroLibre = new Casilla(coordenadaCasilleroLibre);
 		Casilla casillero = new Casilla(coordenadaCasillero);
 		JugadorTerran jugador = new JugadorTerran();
-		UnidadSoldado marine = new Marine(jugador);
+		Marine marine = new Marine(jugador);
 		marine.posicionar(casillero);
 		Assert.assertTrue(marine.mover(casilleroLibre));
 	}
@@ -178,8 +184,8 @@ public class UnidadSoldadoTest {
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
 		Casilla casillero = new Casilla(coordenadaCasillero);
 		JugadorTerran jugador = new JugadorTerran();
-		UnidadSoldado marine = new Golliat(jugador);
-		UnidadSoldado otroMarine = new Marine(jugador);
+		Marine marine = new Marine(jugador);
+		Unidad otroMarine = new Marine(jugador);
 		otroMarine.posicionar(casillero);
 		Assert.assertFalse(marine.mover(casillero));
 	}
