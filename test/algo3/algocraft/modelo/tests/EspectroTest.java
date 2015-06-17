@@ -103,7 +103,7 @@ public class EspectroTest {
 		JugadorTerran jugador = new JugadorTerran();
 		UnidadSoldado espectro = new UnidadSoldado(ComportamientoEspectro.getInstancia(),jugador);
 
-		Assert.assertTrue(espectro.esTerrestre());
+		Assert.assertFalse(espectro.esTerrestre());
 	}
 
 	@Test
