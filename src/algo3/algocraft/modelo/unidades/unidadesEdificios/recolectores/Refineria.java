@@ -3,9 +3,8 @@ package algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores;
 import algo3.algocraft.modelo.juego.JugadorTerran;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.recursos.Recurso;
-import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 
-public class Refineria extends UnidadEdificio implements Recolector {
+public class Refineria extends Recolector {
 	
 	protected Recurso volcanDeGas;
 	protected int cantidadGasRecolectado;
@@ -20,7 +19,6 @@ public class Refineria extends UnidadEdificio implements Recolector {
 		this.enConstruccion = true;
 	}
 
-	@Override
 	public boolean recolectar() {
 		int cantidadGasSacado = this.volcanDeGas.extraerRecurso(10);
 		if (cantidadGasSacado > 0) {
@@ -30,7 +28,6 @@ public class Refineria extends UnidadEdificio implements Recolector {
 		return false;
 	}
 
-	@Override
 	public int getCantidadRecursoRecolectado() {
 		return this.cantidadGasRecolectado;
 	}
@@ -63,7 +60,7 @@ public class Refineria extends UnidadEdificio implements Recolector {
 	}
 	@Override
 	public boolean posicionar(Casilla casilla) {
-		if (casilla.ocupar((Recolector)this)) {
+		if (casilla.ocupar(this)) {
 			this.posicion = casilla;
 			return true;
 		}

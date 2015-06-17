@@ -3,9 +3,8 @@ package algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores;
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.recursos.Recurso;
-import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 
-public class CentroDeMineral extends UnidadEdificio implements Recolector {
+public class CentroDeMineral extends Recolector {
 
 	private int cantidadMineralRecolectado;
 	private Recurso mineral;
@@ -65,7 +64,7 @@ public class CentroDeMineral extends UnidadEdificio implements Recolector {
 	
 	@Override
 	public boolean posicionar(Casilla casilla) {
-		if (casilla.ocupar((Recolector)this)) {
+		if (casilla.ocupar(this)) {
 			this.posicion = casilla;
 			return true;
 		}
