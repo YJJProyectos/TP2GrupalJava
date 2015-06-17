@@ -8,8 +8,7 @@ public class DepositoDeSuministros extends UnidadEdificio {
 	private int turnosRestantes;
 
 	public DepositoDeSuministros(Jugador unJugador) {
-		this.jugador = unJugador;
-		this.vida = 1;
+		super(unJugador,1);
 		this.enConstruccion = true;
 		this.turnosRestantes = 6;
 	}

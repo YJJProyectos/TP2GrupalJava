@@ -12,12 +12,11 @@ public class CentroDeMineral extends UnidadEdificio implements Recolector {
 	private boolean enConstruccion;
 
 	public CentroDeMineral(Recurso unMineral, Jugador jugador) {
+		super(jugador,1);
 		this.mineral = unMineral;
 		this.cantidadMineralRecolectado = 0;
-		this.vida = 1;
 		this.turnosRestantes = 4;
 		this.enConstruccion = true;
-		this.jugador = jugador;
 	}
 
 	public boolean recolectar() {

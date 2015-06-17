@@ -13,12 +13,11 @@ public class Fabrica extends UnidadEdificio {
 
 	public Fabrica(Jugador unJugador, Barraca unaBarraca)
 			throws PerteneceAOtroJugadorError {
+		super(unJugador,1);
 		if (unJugador != unaBarraca.getJugador()) {
 			throw new PerteneceAOtroJugadorError();
 		}
-		this.jugador = unJugador;
 		this.barraca = unaBarraca;
-		this.vida = 1;
 		this.enConstruccion = true;
 		this.turnosRestantes = 12;
 		this.golliatEnEntrenamiento = null;

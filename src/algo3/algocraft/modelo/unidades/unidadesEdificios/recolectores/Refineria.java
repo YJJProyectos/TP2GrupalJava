@@ -6,17 +6,15 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 
 public class Refineria extends UnidadEdificio implements Recolector {
 	
-	private Recurso volcanDeGas;
-	private JugadorTerran jugador;
-	private int cantidadGasRecolectado;
-	private boolean enConstruccion;
-	private int turnosRestantes;
+	protected Recurso volcanDeGas;
+	protected int cantidadGasRecolectado;
+	protected boolean enConstruccion;
+	protected int turnosRestantes;
 
 	public Refineria(Recurso recurso, JugadorTerran jugador) {
+		super(jugador,1);
 		this.volcanDeGas = recurso;
-		this.jugador = jugador;
 		this.cantidadGasRecolectado = 0;
-		this.vida = 1;
 		this.turnosRestantes = 6;
 		this.enConstruccion = true;
 	}
@@ -49,19 +47,13 @@ public class Refineria extends UnidadEdificio implements Recolector {
 		}
 	}
 	
-	@Override
-	public boolean esTerrestre() {
-		return true;
-	}
-
-	@Override
 	public void pasarTurno() {
 		if (this.enConstruccion) {
 			this.continuarConstruccion();
 		} else {
 			this.recolectar();
-			jugador.aumentarGas(this.cantidadGasRecolectado);
-			this.cantidadGasRecolectado = 0;
+			jugador.aumentarGas(cantidadGasRecolectado);
+			cantidadGasRecolectado = 0;
 		}
 	}
 

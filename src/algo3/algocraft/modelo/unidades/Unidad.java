@@ -8,6 +8,11 @@ public abstract class Unidad {
 	protected Jugador jugador;
 	protected Casilla posicion;
 	protected int vida;
+	
+	protected Unidad(Jugador jugador, int vida){
+		this.vida = vida;
+		this.jugador = jugador;
+	}
 
 	public void recibirDanio(int danio) throws YaEstaDestruidoError {
 		if (this.vida <= 0) {

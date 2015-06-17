@@ -8,8 +8,7 @@ public class Barraca extends UnidadEdificio {
 	private int turnosRestantes;
 
 	public Barraca(Jugador unJugador) {
-		this.jugador = unJugador;
-		this.vida = 1;
+		super(unJugador,1);
 		this.enConstruccion = true;
 		this.turnosRestantes = 12;
 	}

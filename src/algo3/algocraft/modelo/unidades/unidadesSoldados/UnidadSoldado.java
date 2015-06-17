@@ -12,11 +12,10 @@ public class UnidadSoldado extends Unidad {
 	
 	public UnidadSoldado (ComportamientoSoldado comportamiento, Jugador jugador) {
 		
-		this.vida = comportamiento.getVida();
+		super(jugador,comportamiento.getVida());
 		this.comportamiento = comportamiento;
-		this.jugador = jugador;
 		this.estadoDeAtaque = new EstadoNoAtaco();
-		
+				
 	}
 	
 	public void atacarEnemigo(Unidad enemigo) throws YaEstaDestruidoError,
