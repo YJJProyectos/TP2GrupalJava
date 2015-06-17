@@ -1,26 +1,39 @@
 package algo3.algocraft.modelo.unidades.unidadesSoldados;
 
+import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 
-public abstract class UnidadSoldado extends Unidad {
+public class UnidadSoldado extends Unidad {
 
-	protected int danioAereo;
-	protected int danioTerrestre;
-	protected int rangoAereo;
-	protected int rangoTerrestre;
+	protected ComportamientoSoldado comportamiento;
 	protected EstadoDeAtaque estadoDeAtaque;
-
+	
+	public UnidadSoldado (ComportamientoSoldado comportamiento, Jugador jugador) {
+		
+		this.vida = comportamiento.getVida();
+		this.comportamiento = comportamiento;
+		this.jugador = jugador;
+		this.estadoDeAtaque = new EstadoNoAtaco();
+		
+	}
+	
 	public void atacarEnemigo(Unidad enemigo) throws YaEstaDestruidoError,
 			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError {
 		if (this.jugador == enemigo.getJugador()) {
 			throw new PerteneceAlMismoJugadorError();
 		}
-		estadoDeAtaque.atacarEnemigo(this, enemigo, this.danioTerrestre);
+		estadoDeAtaque.atacarEnemigo(this, enemigo, comportamiento.getDanioTerrestre());
 	}
 
-	public abstract boolean mover(Casilla casilla);
+	public boolean mover(Casilla casilla) {
+		if (comportamiento.mover(this, casilla)) {
+			this.posicion = casilla;
+			return true;
+		}
+		return false;
+	}
 
 	public void pasarTurno() {
 		this.nuevoEstadoDeAtaque(new EstadoNoAtaco());
@@ -31,15 +44,11 @@ public abstract class UnidadSoldado extends Unidad {
 	}
 	
 	public boolean alcanzaPosicion(Casilla posicion) {
-		return (this.posicion.distanciaA(posicion) <= this.rangoTerrestre);
+		return (this.posicion.distanciaA(posicion) <= comportamiento.getRangoTerrestre());
 	}
-	
-	protected void settearInfo (int danioAereo, int danioTerrestre, int vida, int rangoAereo, int rangoTerrestre) {
-		this.danioAereo = danioAereo;
-		this.danioTerrestre = danioTerrestre;
-		this.vida = vida;
-		this.rangoAereo = rangoAereo;
-		this.rangoTerrestre = rangoTerrestre;
+
+	public boolean esTerrestre() {
+		return comportamiento.esTerrestre();
 	}
 	
 }

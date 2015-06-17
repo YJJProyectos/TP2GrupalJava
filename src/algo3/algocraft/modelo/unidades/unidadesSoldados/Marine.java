@@ -6,16 +6,10 @@ import algo3.algocraft.modelo.mapa.Casilla;
 public class Marine extends UnidadSoldado {
 
 	public Marine(Jugador unJugador) {
-		this.jugador = unJugador;
-		this.danioAereo = 6;
-		this.danioTerrestre = 6;
-		this.vida = 40;
-		this.rangoAereo = 4;
-		this.rangoTerrestre = 4;
-		this.estadoDeAtaque = new EstadoNoAtaco();
+		super(ComportamientoMarine.getInstancia(), unJugador);
 	}
 
-	public boolean mover(Casilla casilla) {
+	/*public boolean mover(Casilla casilla) {
 		if (casilla.ocuparTerrestre(this)) {
 			this.posicion = casilla;
 			return true;
@@ -25,5 +19,5 @@ public class Marine extends UnidadSoldado {
 
 	public boolean esTerrestre() {
 		return true;
-	}
+	}*/
 }

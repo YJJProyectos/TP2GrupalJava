@@ -6,16 +6,10 @@ import algo3.algocraft.modelo.mapa.Casilla;
 public class Golliat extends UnidadSoldado {
 
 	public Golliat(Jugador unJugador) {
-		this.jugador = unJugador;
-		this.danioAereo = 10;
-		this.danioTerrestre = 12;
-		this.vida = 125;
-		this.rangoAereo = 5;
-		this.rangoTerrestre = 6;
-		this.estadoDeAtaque = new EstadoNoAtaco();
+		super(ComportamientoGolliat.getInstancia(), unJugador);
 	}
 
-	public boolean mover(Casilla casilla) {
+	/*public boolean mover(Casilla casilla) {
 		if (casilla.ocuparTerrestre(this)) {
 			this.posicion = casilla;
 			return true;
@@ -25,5 +19,5 @@ public class Golliat extends UnidadSoldado {
 
 	public boolean esTerrestre() {
 		return true;
-	}
+	}*/
 }
