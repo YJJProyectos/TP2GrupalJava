@@ -9,7 +9,6 @@ import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
-import algo3.algocraft.modelo.unidades.unidadesEdificios.EdificioEnConstruccionError;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.Marine;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.PerteneceAlMismoJugadorError;
@@ -191,8 +190,7 @@ public class BarracaTest {
 	}
 
 	@Test
-	public void deberiaNoPoderEntrenarUnSoldadoMarinePorqueNoTerminoDeConstruirse()
-			throws EdificioEnConstruccionError {
+	public void deberiaNoPoderEntrenarUnSoldadoMarinePorqueNoTerminoDeConstruirse() {
 		JugadorTerran jugador = new JugadorTerran();
 		Barraca barraca = new Barraca(jugador);
 
@@ -200,8 +198,7 @@ public class BarracaTest {
 	}
 
 	@Test
-	public void deberiaEntrenarUnSoldadoMarine()
-			throws EdificioEnConstruccionError {
+	public void deberiaEntrenarUnSoldadoMarine() {
 		JugadorTerran jugador = new JugadorTerran();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 13; i++) {
