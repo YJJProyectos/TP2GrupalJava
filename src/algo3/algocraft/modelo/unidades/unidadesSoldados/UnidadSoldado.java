@@ -23,7 +23,7 @@ public abstract class UnidadSoldado extends Unidad {
 	public abstract boolean mover(Casilla casilla);
 
 	public void pasarTurno() {
-		this.estadoDeAtaque = new EstadoNoAtaco();
+		this.nuevoEstadoDeAtaque(new EstadoNoAtaco());
 	}
 		
 	public void nuevoEstadoDeAtaque(EstadoDeAtaque estado) {

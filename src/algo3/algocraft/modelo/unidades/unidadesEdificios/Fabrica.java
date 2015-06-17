@@ -27,10 +27,6 @@ public class Fabrica extends UnidadEdificio {
 		return true;
 	}
 
-	public boolean esTerrestre() {
-		return true;
-	}
-
 	public int tiempoDeConstruccion() {
 		return turnosRestantes;
 	}

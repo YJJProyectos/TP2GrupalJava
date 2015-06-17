@@ -14,10 +14,6 @@ public class DepositoDeSuministros extends UnidadEdificio {
 		this.turnosRestantes = 6;
 	}
 
-	public boolean esTerrestre() {
-		return true;
-	}
-
 	public int tiempoDeConstruccion() {
 		return this.turnosRestantes;
 	}

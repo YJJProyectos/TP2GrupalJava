@@ -6,5 +6,9 @@ public abstract class UnidadEdificio extends Unidad {
 
 	protected int tiempoDeConstruccion;
 
+	public boolean esTerrestre() {
+		return true;
+	}
+	
 	public abstract int tiempoDeConstruccion();
 }
