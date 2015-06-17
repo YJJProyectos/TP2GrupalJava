@@ -1,7 +1,7 @@
-package algo3.algocraft.modelo.unidades.unidadesSoldados;
+package algo3.algocraft.modelo.unidades.unidadesMoviles;
 
 import algo3.algocraft.modelo.juego.Jugador;
-import algo3.algocraft.modelo.unidades.unidadesSoldados.comportamientos.ComportamientoTransporte;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.ComportamientoTransporte;
 
 public class UnidadTransporte extends UnidadMovil{
 
@@ -25,6 +25,7 @@ public class UnidadTransporte extends UnidadMovil{
 		for (int i = 0; i<comportamiento.capacidad(); i++) {
 			if (soldadosCargados[i] == null) {
 				soldadosCargados[i] = soldado;
+				soldado.posicionar(null);
 				return true;
 			}
 		}

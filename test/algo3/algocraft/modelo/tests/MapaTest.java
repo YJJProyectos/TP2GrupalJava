@@ -7,7 +7,7 @@ import algo3.algocraft.modelo.juego.JugadorTerran;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.mapa.Mapa;
 import algo3.algocraft.modelo.unidades.Unidad;
-import algo3.algocraft.modelo.unidades.unidadesSoldados.Marine;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 
 public class MapaTest {
 

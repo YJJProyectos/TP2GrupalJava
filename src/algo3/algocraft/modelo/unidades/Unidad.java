@@ -36,6 +36,10 @@ public abstract class Unidad {
 	public abstract boolean esTerrestre();
 
 	public boolean posicionar(Casilla casilla) {
+		if (casilla == null) {
+			this.posicion = null;
+			return true;
+		}
 		if (casilla.ocupar(this)) {
 			this.posicion = casilla;
 			return true;

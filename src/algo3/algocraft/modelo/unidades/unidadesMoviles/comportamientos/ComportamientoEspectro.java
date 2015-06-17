@@ -1,4 +1,4 @@
-package algo3.algocraft.modelo.unidades.unidadesSoldados.comportamientos;
+package algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos;
 
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.unidades.Unidad;
@@ -6,6 +6,8 @@ import algo3.algocraft.modelo.unidades.Unidad;
 public class ComportamientoEspectro extends ComportamientoSoldado {
 
 	private static final ComportamientoEspectro INSTANCIA= new ComportamientoEspectro();
+	
+	private ComportamientoEspectro() {}
 	
 	public static ComportamientoEspectro getInstancia () {
 		return INSTANCIA;

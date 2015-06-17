@@ -10,7 +10,7 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
-import algo3.algocraft.modelo.unidades.unidadesSoldados.UnidadSoldado;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 public class JugadorTerran extends Jugador {
 

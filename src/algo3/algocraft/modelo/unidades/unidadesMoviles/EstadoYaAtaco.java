@@ -1,4 +1,4 @@
-package algo3.algocraft.modelo.unidades.unidadesSoldados;
+package algo3.algocraft.modelo.unidades.unidadesMoviles;
 
 import algo3.algocraft.modelo.unidades.Unidad;
 

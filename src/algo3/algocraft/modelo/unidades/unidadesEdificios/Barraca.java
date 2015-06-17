@@ -1,7 +1,7 @@
 package algo3.algocraft.modelo.unidades.unidadesEdificios;
 
 import algo3.algocraft.modelo.juego.Jugador;
-import algo3.algocraft.modelo.unidades.unidadesSoldados.Marine;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 
 public class Barraca extends UnidadEdificio {
 

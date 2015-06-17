@@ -11,7 +11,7 @@ import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Recolector;
-import algo3.algocraft.modelo.unidades.unidadesSoldados.Marine;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 
 public class CasillaTest {
 

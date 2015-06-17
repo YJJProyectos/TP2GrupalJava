@@ -1,4 +1,4 @@
-package algo3.algocraft.modelo.unidades.unidadesSoldados.comportamientos;
+package algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos;
 
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.unidades.Unidad;

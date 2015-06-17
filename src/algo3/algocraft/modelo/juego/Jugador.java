@@ -2,7 +2,7 @@ package algo3.algocraft.modelo.juego;
 
 import java.util.ArrayList;
 
-import algo3.algocraft.modelo.unidades.unidadesSoldados.UnidadSoldado;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 public class Jugador {
 

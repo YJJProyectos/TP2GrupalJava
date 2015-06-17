@@ -11,9 +11,9 @@ import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.PerteneceAOtroJugadorError;
-import algo3.algocraft.modelo.unidades.unidadesSoldados.Marine;
-import algo3.algocraft.modelo.unidades.unidadesSoldados.NoPuedeAtacarMultiplesVecesError;
-import algo3.algocraft.modelo.unidades.unidadesSoldados.PerteneceAlMismoJugadorError;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorError;
 
 public class FabricaTest {
 

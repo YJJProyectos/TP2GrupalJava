@@ -1,7 +1,7 @@
-package algo3.algocraft.modelo.unidades.unidadesSoldados;
+package algo3.algocraft.modelo.unidades.unidadesMoviles;
 
 import algo3.algocraft.modelo.juego.Jugador;
-import algo3.algocraft.modelo.unidades.unidadesSoldados.comportamientos.ComportamientoMarine;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.ComportamientoMarine;
 
 public class Marine extends UnidadSoldado {
 
