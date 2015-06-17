@@ -242,4 +242,14 @@ public class FabricaTest {
 
 	}
 
+	@Test(expected = PerteneceAOtroJugadorError.class)
+	public void deberiaLanzarLaExcepcionPerteneceAOtroJugadorErrorSiLaBarracaPerteneceAOtroJugador()
+			throws PerteneceAOtroJugadorError {
+		JugadorTerran jugadorAliado = new JugadorTerran();
+		JugadorTerran jugadorEnemigo = new JugadorTerran();
+		Barraca barraca = new Barraca(jugadorEnemigo);
+		Fabrica fabrica = new Fabrica(jugadorAliado, barraca);
+		fabrica.pasarTurno();
+	}
+
 }
