@@ -241,6 +241,43 @@ public class FabricaTest {
 		Assert.assertTrue(fabrica.entrenarGolliat());
 
 	}
+	
+	@Test
+	public void noDeberiaPoderComenzarAEntrenarAUnGolliatMientrasEsteEntrenandoAOtroGolliat()
+			throws PerteneceAOtroJugadorError {
+		JugadorTerran jugador = new JugadorTerran();
+		Barraca barraca = new Barraca(jugador);
+		for (int i = 0; i < 13; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, barraca);
+		for (int j = 0; j < 13; j++) {
+			fabrica.pasarTurno();
+		}
+		fabrica.entrenarGolliat();
+		Assert.assertFalse(fabrica.entrenarGolliat());
+
+	}
+	
+	@Test
+	public void deberiaPoderEntrenarAUnGolliatLuegoDeFinalizarElEntrenamientoDeOtroGolliat()
+			throws PerteneceAOtroJugadorError {
+		JugadorTerran jugador = new JugadorTerran();
+		Barraca barraca = new Barraca(jugador);
+		for (int i = 0; i < 13; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, barraca);
+		for (int j = 0; j < 13; j++) {
+			fabrica.pasarTurno();
+		}
+		fabrica.entrenarGolliat();
+		for (int j = 0; j < 6; j++) {
+			fabrica.pasarTurno();
+		}
+		Assert.assertTrue(fabrica.entrenarGolliat());
+
+	}
 
 	@Test(expected = PerteneceAOtroJugadorError.class)
 	public void deberiaLanzarLaExcepcionPerteneceAOtroJugadorErrorSiLaBarracaPerteneceAOtroJugador()

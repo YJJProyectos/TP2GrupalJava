@@ -10,6 +10,7 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
+import algo3.algocraft.modelo.unidades.unidadesSoldados.UnidadSoldado;
 
 public class JugadorTerran extends Jugador {
 
@@ -20,11 +21,12 @@ public class JugadorTerran extends Jugador {
 		cantidadMineral = 400;
 		cantidadGas = 100;
 		poblacion = 10;
+		this.soldadosParaPosicionar = new ArrayList<UnidadSoldado>();
 		// agrego que jugador empieza con un deposito
-		// despues ver si en donde posicionarla en el mapa 
+		// despues ver si en donde posicionarla en el mapa
 		// y tambien deberia empezar con un marine (despues se agregaria)
 		DepositoDeSuministros deposito = new DepositoDeSuministros(this);
-		for (int i = 0; i < 6; i++){
+		for (int i = 0; i < 6; i++) {
 			deposito.continuarConstruccion();
 		}
 		unidades.add(deposito);
@@ -71,8 +73,8 @@ public class JugadorTerran extends Jugador {
 		this.unidades.add(centroDeMineral);
 		return centroDeMineral;
 	}
-	
-	public Refineria crearRefineria(Casilla casilla) 
+
+	public Refineria crearRefineria(Casilla casilla)
 			throws PosicionNoOcupadaPorRecursoError {
 
 		if (!casilla.estaOcupadoElRecurso()) {
