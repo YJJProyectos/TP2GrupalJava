@@ -226,6 +226,21 @@ public class FabricaTest {
 	}
 
 	@Test
+	public void deberiaNoPoderEntrenarUnSoldadoGolliaPorqueLaBarracaEstaDestruida()
+			throws PerteneceAOtroJugadorError, YaEstaDestruidoError {
+		JugadorTerran jugador = new JugadorTerran();
+		Barraca barraca = new Barraca(jugador);
+		for (int i = 0; i < 13; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, barraca);
+
+		barraca.recibirDanio(2000);
+
+		Assert.assertFalse(fabrica.entrenarGolliat());
+	}
+
+	@Test
 	public void deberiaEntrenarUnSoldadoGolliat()
 			throws PerteneceAOtroJugadorError {
 		JugadorTerran jugador = new JugadorTerran();
@@ -241,7 +256,7 @@ public class FabricaTest {
 		Assert.assertTrue(fabrica.entrenarGolliat());
 
 	}
-	
+
 	@Test
 	public void noDeberiaPoderComenzarAEntrenarAUnGolliatMientrasEsteEntrenandoAOtroGolliat()
 			throws PerteneceAOtroJugadorError {
@@ -258,7 +273,7 @@ public class FabricaTest {
 		Assert.assertFalse(fabrica.entrenarGolliat());
 
 	}
-	
+
 	@Test
 	public void deberiaPoderEntrenarAUnGolliatLuegoDeFinalizarElEntrenamientoDeOtroGolliat()
 			throws PerteneceAOtroJugadorError {
