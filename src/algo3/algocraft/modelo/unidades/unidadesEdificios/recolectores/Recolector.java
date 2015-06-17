@@ -1,9 +1,16 @@
 package algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores;
 
-public interface Recolector {
+import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 
-	public boolean recolectar();
+public abstract class Recolector extends UnidadEdificio{
 
-	public int getCantidadRecursoRecolectado();
+	protected Recolector(Jugador jugador, int vida) {
+		super(jugador, vida);
+	}
+
+	public abstract boolean recolectar();
+
+	public abstract int getCantidadRecursoRecolectado();
 
 }

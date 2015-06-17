@@ -14,7 +14,7 @@ public class Fabrica extends UnidadEdificio {
 	public Fabrica(Jugador unJugador, Barraca unaBarraca)
 			throws PerteneceAOtroJugadorError {
 		super(unJugador,1);
-		if (unJugador != unaBarraca.getJugador()) {
+		if (! this.esAliado(unaBarraca)) {
 			throw new PerteneceAOtroJugadorError();
 		}
 		this.barraca = unaBarraca;

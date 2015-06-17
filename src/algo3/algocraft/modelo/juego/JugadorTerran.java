@@ -9,7 +9,6 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
-import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Recolector;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.UnidadSoldado;
 
@@ -78,7 +77,7 @@ public class JugadorTerran extends Jugador {
 			throw new PosicionNoOcupadaPorRecursoError();
 		}
 		Refineria refineria = new Refineria(casilla.getRecurso(), this);
-		casilla.ocupar((Recolector)refineria);
+		refineria.posicionar(casilla);
 		this.unidades.add(refineria);
 		return refineria;
 

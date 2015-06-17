@@ -161,17 +161,17 @@ public class JugadorTerranTest {
 
 	}
 
-	// /IMPORTANTE: NO PASA ESTE TEST
-	/*
-	 * @Test public void deberiaPoderConstruirUnCentroDeMineral() throws
-	 * PosicionNoOcupadaPorRecursoError { JugadorTerran jugador = new
-	 * JugadorTerran(); Coordenada coordenada = new Coordenada(1, 1); Casilla
-	 * casilla = new Casilla(coordenada); Recurso minaDeMinerales = new
-	 * MinaDeMinerales(1000); casilla.agregarRecurso(minaDeMinerales);
-	 * CentroDeMineral centro = jugador.crearCentroDeMineral(casilla);
-	 * 
-	 * Assert.assertEquals(casilla.getOcupanteTerrestre(), centro); }
-	 */
+	@Test
+	public void deberiaPoderConstruirUnCentroDeMineral() 
+			throws PosicionNoOcupadaPorRecursoError {
+		JugadorTerran jugador = new JugadorTerran();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		Recurso minaDeMinerales = new MinaDeMinerales(1000);
+		casilla.agregarRecurso(minaDeMinerales);
+		CentroDeMineral centro = jugador.crearCentroDeMineral(casilla);
+		Assert.assertEquals(casilla.getOcupanteTerrestre(), centro);
+	}
 
 	@Test
 	public void elCentroDeMineralSeEncuentraInicialmenteEnconstruccion()
