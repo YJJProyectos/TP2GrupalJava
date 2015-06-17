@@ -302,16 +302,17 @@ public class JugadorTerranTest {
 	}
 
 	// /IMPORTANTE: NO PASA ESTE TEST
-	/*
-	 * @Test public void deberiaPoderConstruirUnaRefineria() throws
-	 * PosicionNoOcipadaPorRecursoError { JugadorTerran jugador = new
-	 * JugadorTerran(); Coordenada coordenada = new Coordenada(1, 1); Casilla
-	 * casilla = new Casilla(coordenada); Recurso volcan = new
-	 * VolcanDeGasVespeno(1000); casilla.agregarRecurso(volcan);
-	 * Refineria refineria = jugador.crearRefineria(casilla);
-	 * 
-	 * Assert.assertEquals(casilla.getOcupanteTerrestre(), refineria); }
-	 */
+	@Test 
+	public void deberiaPoderConstruirUnaRefineria() throws PosicionNoOcupadaPorRecursoError { 
+		JugadorTerran jugador = new JugadorTerran();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		Recurso volcan = new VolcanDeGasVespeno(1000);
+		casilla.agregarRecurso(volcan);
+		Refineria refineria = jugador.crearRefineria(casilla);
+		Assert.assertEquals(casilla.getOcupanteTerrestre(), refineria); 
+	}
+
 
 	@Test
 	public void laRefineriaSeEncuentraInicialmenteEnconstruccion()
