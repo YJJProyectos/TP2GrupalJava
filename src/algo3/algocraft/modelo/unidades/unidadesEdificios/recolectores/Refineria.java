@@ -1,6 +1,7 @@
 package algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores;
 
 import algo3.algocraft.modelo.juego.JugadorTerran;
+import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 
@@ -59,5 +60,13 @@ public class Refineria extends UnidadEdificio implements Recolector {
 
 	public boolean enConstruccion() {
 		return enConstruccion;
+	}
+	@Override
+	public boolean posicionar(Casilla casilla) {
+		if (casilla.ocupar((Recolector)this)) {
+			this.posicion = casilla;
+			return true;
+		}
+		return false;
 	}
 }
