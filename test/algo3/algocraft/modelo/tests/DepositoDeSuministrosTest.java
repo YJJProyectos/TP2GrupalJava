@@ -3,7 +3,7 @@ package algo3.algocraft.modelo.tests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import algo3.algocraft.modelo.juego.JugadorTerran;
+import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
@@ -17,7 +17,7 @@ public class DepositoDeSuministrosTest {
 
 	@Test
 	public void elTiempoDeConstruccionDeUnDepositoEsde6Turnos() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 
 		Assert.assertEquals(6, deposito.tiempoDeConstruccion());
@@ -25,7 +25,7 @@ public class DepositoDeSuministrosTest {
 
 	@Test
 	public void elTiempoDeConstruccionDeUnDepositoLuegoDePasarUnTUrnoEsde5Turnos() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 		deposito.pasarTurno();
 
@@ -34,7 +34,7 @@ public class DepositoDeSuministrosTest {
 
 	@Test
 	public void elDepositoDeSuministrosSeEncuentraInicialmenteEnConstruccion() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 
 		Assert.assertTrue(deposito.enConstruccion());
@@ -42,7 +42,7 @@ public class DepositoDeSuministrosTest {
 
 	@Test
 	public void luegoDe6TurnosElDepositoDeSuministrosEstaConstuido() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 		for (int i = 0; i < 6; i++) {
 			deposito.pasarTurno();
@@ -56,8 +56,8 @@ public class DepositoDeSuministrosTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError {
 
-		JugadorTerran jugadorAliado = new JugadorTerran();
-		JugadorTerran jugadorEnemigo = new JugadorTerran();
+		Jugador jugadorAliado = new Jugador();
+		Jugador jugadorEnemigo = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(
 				jugadorAliado);
 		Marine marine = new Marine(jugadorEnemigo);
@@ -77,8 +77,8 @@ public class DepositoDeSuministrosTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError {
 
-		JugadorTerran jugadorAliado = new JugadorTerran();
-		JugadorTerran jugadorEnemigo = new JugadorTerran();
+		Jugador jugadorAliado = new Jugador();
+		Jugador jugadorEnemigo = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(
 				jugadorAliado);
 		Marine marine = new Marine(jugadorEnemigo);
@@ -101,7 +101,7 @@ public class DepositoDeSuministrosTest {
 	@Test
 	public void elDepositoDeSuministrosConstruidoDeberiaRecibirDanio1()
 			throws YaEstaDestruidoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 		for (int i = 0; i < 6; i++) {
 			deposito.pasarTurno();
@@ -116,7 +116,7 @@ public class DepositoDeSuministrosTest {
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaDepositoDeSuministrosConstruidoEs499()
 			throws YaEstaDestruidoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 		for (int i = 0; i < 13; i++) {
 			deposito.pasarTurno();
@@ -130,7 +130,7 @@ public class DepositoDeSuministrosTest {
 	public void deberiaPoderPosicionarseUnDepositoEnUnaCasillaDesocupada() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 
 		Assert.assertTrue(deposito.posicionar(casilla));
@@ -140,7 +140,7 @@ public class DepositoDeSuministrosTest {
 	public void deberiaNoPoderPosicionarseUnDepositoEnUnaCasillaOcupadaPorUnaunidad() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		DepositoDeSuministros primerDeposito = new DepositoDeSuministros(
 				jugador);
 		DepositoDeSuministros segundoDeposito = new DepositoDeSuministros(
@@ -154,7 +154,7 @@ public class DepositoDeSuministrosTest {
 	public void deberiaNoPoderPosicionarseUnDepositoEnUnaCasillaOcupadaPorUnRecurso() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		casilla.agregarRecurso(mineral);
@@ -166,7 +166,7 @@ public class DepositoDeSuministrosTest {
 	public void deberiaGuardarSuPosicion() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 
 		deposito.posicionar(casilla);
@@ -176,7 +176,7 @@ public class DepositoDeSuministrosTest {
 
 	@Test
 	public void unaDepositoDeSuministrosEsInicialmenteTerrestre() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 
 		Assert.assertTrue(deposito.esTerrestre());
@@ -185,7 +185,7 @@ public class DepositoDeSuministrosTest {
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
 			throws YaEstaDestruidoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 		deposito.recibirDanio(2000);
 		Assert.assertTrue(deposito.estaDestruido());

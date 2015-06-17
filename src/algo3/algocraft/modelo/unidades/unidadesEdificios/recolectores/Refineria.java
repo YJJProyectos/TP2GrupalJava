@@ -1,6 +1,6 @@
 package algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores;
 
-import algo3.algocraft.modelo.juego.JugadorTerran;
+import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.recursos.Recurso;
 
@@ -11,7 +11,7 @@ public class Refineria extends Recolector {
 	protected boolean enConstruccion;
 	protected int turnosRestantes;
 
-	public Refineria(Recurso recurso, JugadorTerran jugador) {
+	public Refineria(Recurso recurso, Jugador jugador) {
 		super(jugador,1);
 		this.volcanDeGas = recurso;
 		this.cantidadGasRecolectado = 0;

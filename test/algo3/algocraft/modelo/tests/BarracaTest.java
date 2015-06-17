@@ -3,7 +3,7 @@ package algo3.algocraft.modelo.tests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import algo3.algocraft.modelo.juego.JugadorTerran;
+import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
@@ -18,7 +18,7 @@ public class BarracaTest {
 
 	@Test
 	public void elTiempoDeConstruccionDeUnaBarracaEsde12Turnos() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 
 		Assert.assertEquals(12, barraca.tiempoDeConstruccion());
@@ -26,7 +26,7 @@ public class BarracaTest {
 
 	@Test
 	public void elTiempoDeConstruccionDeUnaBarracaLuegoDePasarUnTUrnoEsde11Turnos() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		barraca.pasarTurno();
 
@@ -35,7 +35,7 @@ public class BarracaTest {
 
 	@Test
 	public void laBarracaSeEncuentraInicialmenteEnConstruccion() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 
 		Assert.assertTrue(barraca.enConstruccion());
@@ -43,7 +43,7 @@ public class BarracaTest {
 
 	@Test
 	public void luegoDe12TurnosLaBarracaEstaConstuida() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 13; i++) {
 			barraca.pasarTurno();
@@ -57,8 +57,8 @@ public class BarracaTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError {
 
-		JugadorTerran jugadorAliado = new JugadorTerran();
-		JugadorTerran jugadorEnemigo = new JugadorTerran();
+		Jugador jugadorAliado = new Jugador();
+		Jugador jugadorEnemigo = new Jugador();
 		Barraca barraca = new Barraca(jugadorAliado);
 		Marine marine = new Marine(jugadorEnemigo);
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
@@ -77,8 +77,8 @@ public class BarracaTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError {
 
-		JugadorTerran jugadorAliado = new JugadorTerran();
-		JugadorTerran jugadorEnemigo = new JugadorTerran();
+		Jugador jugadorAliado = new Jugador();
+		Jugador jugadorEnemigo = new Jugador();
 		Barraca barraca = new Barraca(jugadorAliado);
 		Marine marine = new Marine(jugadorEnemigo);
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
@@ -100,7 +100,7 @@ public class BarracaTest {
 	@Test
 	public void laBarracaConstruidaDeberiaRecibirDanio1()
 			throws YaEstaDestruidoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 13; i++) {
 			barraca.pasarTurno();
@@ -115,7 +115,7 @@ public class BarracaTest {
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaBarracaConstruidaEs999()
 			throws YaEstaDestruidoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 13; i++) {
 			barraca.pasarTurno();
@@ -129,7 +129,7 @@ public class BarracaTest {
 	public void deberiaPoderPosicionarseUnaBarracaEnUnaCasillaDesocupada() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 
 		Assert.assertTrue(barraca.posicionar(casilla));
@@ -139,7 +139,7 @@ public class BarracaTest {
 	public void deberiaNoPoderPosicionarseUnaBarracaEnUnaCasillaOcupadaPorUnaunidad() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca primeraBarraca = new Barraca(jugador);
 		Barraca segundaBarraca = new Barraca(jugador);
 		primeraBarraca.posicionar(casilla);
@@ -151,7 +151,7 @@ public class BarracaTest {
 	public void deberiaNoPoderPosicionarseUnaBarracaEnUnaCasillaOcupadaPorUnRecurso() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		casilla.agregarRecurso(mineral);
@@ -163,7 +163,7 @@ public class BarracaTest {
 	public void deberiaGuardarSuPosicion() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 
 		barraca.posicionar(casilla);
@@ -173,7 +173,7 @@ public class BarracaTest {
 
 	@Test
 	public void unaBarracaEsInicialmenteTerrestre() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 
 		Assert.assertTrue(barraca.esTerrestre());
@@ -182,7 +182,7 @@ public class BarracaTest {
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
 			throws YaEstaDestruidoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		barraca.recibirDanio(2000);
 		Assert.assertTrue(barraca.estaDestruido());
@@ -192,7 +192,7 @@ public class BarracaTest {
 
 	@Test
 	public void deberiaNoPoderEntrenarUnSoldadoMarinePorqueNoTerminoDeConstruirse() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 
 		Assert.assertFalse(barraca.entrenarMarine());
@@ -200,7 +200,7 @@ public class BarracaTest {
 
 	@Test
 	public void deberiaEntrenarUnSoldadoMarine() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 13; i++) {
 			barraca.pasarTurno();
@@ -211,7 +211,7 @@ public class BarracaTest {
 
 	@Test
 	public void noDeberiaPoderComenzarAEntrenarAUnMarineMientrasEsteEntrenandoAOtroMarine() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
@@ -225,7 +225,7 @@ public class BarracaTest {
 	@Test
 	public void deberiaPoderEntrenarAUnGolliatLuegoDeFinalizarElEntrenamientoDeOtroGolliat()
 			throws PerteneceAOtroJugadorError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();

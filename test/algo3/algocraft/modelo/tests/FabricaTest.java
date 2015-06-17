@@ -3,7 +3,7 @@ package algo3.algocraft.modelo.tests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import algo3.algocraft.modelo.juego.JugadorTerran;
+import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
@@ -20,7 +20,7 @@ public class FabricaTest {
 	@Test
 	public void elTiempoDeConstruccionDeUnaFabricaEsde12Turnos()
 			throws PerteneceAOtroJugadorError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
 
@@ -30,7 +30,7 @@ public class FabricaTest {
 	@Test
 	public void elTiempoDeConstruccionDeUnaFabricaLuegoDePasarUnTUrnoEsde11Turnos()
 			throws PerteneceAOtroJugadorError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
 		fabrica.pasarTurno();
@@ -41,7 +41,7 @@ public class FabricaTest {
 	@Test
 	public void laFabricaSeEncuentraInicialmenteEnConstruccion()
 			throws PerteneceAOtroJugadorError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
 
@@ -51,7 +51,7 @@ public class FabricaTest {
 	@Test
 	public void luegoDe12TurnosLaFabricaEstaConstuida()
 			throws PerteneceAOtroJugadorError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
 		for (int i = 0; i < 12; i++) {
@@ -66,8 +66,8 @@ public class FabricaTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, PerteneceAOtroJugadorError {
 
-		JugadorTerran jugadorAliado = new JugadorTerran();
-		JugadorTerran jugadorEnemigo = new JugadorTerran();
+		Jugador jugadorAliado = new Jugador();
+		Jugador jugadorEnemigo = new Jugador();
 		Barraca barraca = new Barraca(jugadorAliado);
 		Fabrica fabrica = new Fabrica(jugadorAliado, barraca);
 		Marine marine = new Marine(jugadorEnemigo);
@@ -87,8 +87,8 @@ public class FabricaTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, PerteneceAOtroJugadorError {
 
-		JugadorTerran jugadorAliado = new JugadorTerran();
-		JugadorTerran jugadorEnemigo = new JugadorTerran();
+		Jugador jugadorAliado = new Jugador();
+		Jugador jugadorEnemigo = new Jugador();
 		Barraca barraca = new Barraca(jugadorAliado);
 		Fabrica fabrica = new Fabrica(jugadorAliado, barraca);
 		Marine marine = new Marine(jugadorEnemigo);
@@ -111,7 +111,7 @@ public class FabricaTest {
 	@Test
 	public void laFabricaConstruidaDeberiaRecibirDanio1()
 			throws YaEstaDestruidoError, PerteneceAOtroJugadorError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
 		for (int i = 0; i < 12; i++) {
@@ -127,7 +127,7 @@ public class FabricaTest {
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaFabricaConstruidaEs1249()
 			throws YaEstaDestruidoError, PerteneceAOtroJugadorError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
 		for (int i = 0; i < 12; i++) {
@@ -143,7 +143,7 @@ public class FabricaTest {
 			throws PerteneceAOtroJugadorError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
 
@@ -155,7 +155,7 @@ public class FabricaTest {
 			throws PerteneceAOtroJugadorError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
 		barraca.posicionar(casilla);
@@ -168,7 +168,7 @@ public class FabricaTest {
 			throws PerteneceAOtroJugadorError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
@@ -181,7 +181,7 @@ public class FabricaTest {
 	public void deberiaGuardarSuPosicion() throws PerteneceAOtroJugadorError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
 
@@ -193,7 +193,7 @@ public class FabricaTest {
 	@Test
 	public void unaFabricaEsInicialmenteTerrestre()
 			throws PerteneceAOtroJugadorError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
 
@@ -203,7 +203,7 @@ public class FabricaTest {
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
 			throws YaEstaDestruidoError, PerteneceAOtroJugadorError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
 		fabrica.recibirDanio(2000);
@@ -215,7 +215,7 @@ public class FabricaTest {
 	@Test
 	public void deberiaNoPoderEntrenarUnSoldadoGolliaPorqueNoTerminoDeConstruirse()
 			throws PerteneceAOtroJugadorError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
@@ -228,7 +228,7 @@ public class FabricaTest {
 	@Test
 	public void deberiaNoPoderEntrenarUnSoldadoGolliaPorqueLaBarracaEstaDestruida()
 			throws PerteneceAOtroJugadorError, YaEstaDestruidoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
@@ -245,7 +245,7 @@ public class FabricaTest {
 	@Test
 	public void deberiaNoPoderEntrenarUnSoldadoGolliaPorqueLaBarracaEstaEnCOnstruccion()
 			throws PerteneceAOtroJugadorError, YaEstaDestruidoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
 		for (int i = 0; i < 12; i++) {
@@ -258,7 +258,7 @@ public class FabricaTest {
 	@Test
 	public void deberiaEntrenarUnSoldadoGolliat()
 			throws PerteneceAOtroJugadorError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
@@ -275,7 +275,7 @@ public class FabricaTest {
 	@Test
 	public void noDeberiaPoderComenzarAEntrenarAUnGolliatMientrasEsteEntrenandoAOtroGolliat()
 			throws PerteneceAOtroJugadorError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
@@ -292,7 +292,7 @@ public class FabricaTest {
 	@Test
 	public void deberiaPoderEntrenarAUnGolliatLuegoDeFinalizarElEntrenamientoDeOtroGolliat()
 			throws PerteneceAOtroJugadorError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
@@ -312,8 +312,8 @@ public class FabricaTest {
 	@Test(expected = PerteneceAOtroJugadorError.class)
 	public void deberiaLanzarLaExcepcionPerteneceAOtroJugadorErrorSiLaBarracaPerteneceAOtroJugador()
 			throws PerteneceAOtroJugadorError {
-		JugadorTerran jugadorAliado = new JugadorTerran();
-		JugadorTerran jugadorEnemigo = new JugadorTerran();
+		Jugador jugadorAliado = new Jugador();
+		Jugador jugadorEnemigo = new Jugador();
 		Barraca barraca = new Barraca(jugadorEnemigo);
 		Fabrica fabrica = new Fabrica(jugadorAliado, barraca);
 		fabrica.pasarTurno();

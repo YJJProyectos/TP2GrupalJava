@@ -3,15 +3,15 @@ package algo3.algocraft.modelo.tests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import algo3.algocraft.modelo.juego.JugadorTerran;
+import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.ListaDeJugadores;
 
 public class ListaDeJugadoresTest {
 
 	@Test
 	public void elJugadorActualDeberiaSerElJugador1() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
 		ListaDeJugadores lista = new ListaDeJugadores();
 		lista.agregarJugador(jugador1);
 		lista.agregarJugador(jugador2);
@@ -20,8 +20,8 @@ public class ListaDeJugadoresTest {
 
 	@Test
 	public void deberiaPasarTurnosDeJugador1AJugador2YViceversa() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
 		ListaDeJugadores lista = new ListaDeJugadores();
 		lista.agregarJugador(jugador1);
 		lista.agregarJugador(jugador2);
@@ -33,9 +33,9 @@ public class ListaDeJugadoresTest {
 
 	@Test
 	public void deberiaGenerarseUnCicloAlPasarTurnosEmpezandoPorElJugador1() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
-		JugadorTerran jugador3 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
 		ListaDeJugadores lista = new ListaDeJugadores();
 		lista.agregarJugador(jugador1);
 		lista.agregarJugador(jugador2);
@@ -51,9 +51,9 @@ public class ListaDeJugadoresTest {
 
 	@Test
 	public void deberiaPoderSacarAUnJugadorYSeguirConLosRestantes() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
-		JugadorTerran jugador3 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
 		ListaDeJugadores lista = new ListaDeJugadores();
 		lista.agregarJugador(jugador1);
 		lista.agregarJugador(jugador2);
@@ -75,9 +75,9 @@ public class ListaDeJugadoresTest {
 
 	@Test
 	public void deberiaSacarseElJugador1YTendriaQueJugarElJugadorAgregado() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
-		JugadorTerran jugador3 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
 		ListaDeJugadores lista = new ListaDeJugadores();
 		lista.agregarJugador(jugador1);
 		lista.agregarJugador(jugador2);
@@ -92,9 +92,9 @@ public class ListaDeJugadoresTest {
 
 	@Test
 	public void deberiaPoderSacarAlJugadorQueSeAgregoEntre2Jugadores() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
-		JugadorTerran jugador3 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
 		ListaDeJugadores lista = new ListaDeJugadores();
 		lista.agregarJugador(jugador1);
 		lista.agregarJugador(jugador2);
@@ -112,10 +112,10 @@ public class ListaDeJugadoresTest {
 
 	@Test
 	public void deberiaPoderSacarAlJugadorQueSeAgregoEntre3Jugadores() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
-		JugadorTerran jugador3 = new JugadorTerran();
-		JugadorTerran jugador4 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
+		Jugador jugador4 = new Jugador();
 		ListaDeJugadores lista = new ListaDeJugadores();
 		lista.agregarJugador(jugador1);
 		lista.agregarJugador(jugador2);
@@ -133,10 +133,10 @@ public class ListaDeJugadoresTest {
 
 	@Test
 	public void alQuedarUnUnicoJugadorAlSiquienteTurnoLeTocaAEl() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
-		JugadorTerran jugador3 = new JugadorTerran();
-		JugadorTerran jugador4 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
+		Jugador jugador4 = new Jugador();
 		ListaDeJugadores lista = new ListaDeJugadores();
 		lista.agregarJugador(jugador1);
 		lista.agregarJugador(jugador2);
@@ -164,9 +164,9 @@ public class ListaDeJugadoresTest {
 
 	@Test
 	public void deberiaSacarAlJugadorQuePerdioYSeguirConLosOtrosJugadores() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
-		JugadorTerran jugador3 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
 		ListaDeJugadores lista = new ListaDeJugadores();
 		lista.agregarJugador(jugador1);
 		lista.agregarJugador(jugador2);
@@ -186,10 +186,10 @@ public class ListaDeJugadoresTest {
 
 	@Test
 	public void deberiaVolverAlJugador1SiSeSacaronALosOtrosJugadores() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
-		JugadorTerran jugador3 = new JugadorTerran();
-		JugadorTerran jugador4 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
+		Jugador jugador4 = new Jugador();
 		ListaDeJugadores lista = new ListaDeJugadores();
 		lista.agregarJugador(jugador1);
 		lista.agregarJugador(jugador2);

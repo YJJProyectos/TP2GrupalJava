@@ -3,7 +3,7 @@ package algo3.algocraft.modelo.tests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import algo3.algocraft.modelo.juego.JugadorTerran;
+import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
@@ -18,7 +18,7 @@ public class CentroDeMineralTest {
 
 	@Test
 	public void elTiempoDeConstruccionDeUnCentroDeMineralEsde4Turnos() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
 
@@ -27,7 +27,7 @@ public class CentroDeMineralTest {
 
 	@Test
 	public void elTiempoDeConstruccionDeUnCentroDeMineralLuegoDePasarUnTurnoEsde3Turnos() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
 		centro.pasarTurno();
@@ -37,7 +37,7 @@ public class CentroDeMineralTest {
 
 	@Test
 	public void elCentroDeMineralSeEncuentraInicialmenteEnConstruccion() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
 
@@ -46,7 +46,7 @@ public class CentroDeMineralTest {
 
 	@Test
 	public void luegoDe4TurnosELCentroDeMineralEstaConstuido() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
 		for (int i = 0; i < 4; i++) {
@@ -61,8 +61,8 @@ public class CentroDeMineralTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError {
 
-		JugadorTerran jugadorAliado = new JugadorTerran();
-		JugadorTerran jugadorEnemigo = new JugadorTerran();
+		Jugador jugadorAliado = new Jugador();
+		Jugador jugadorEnemigo = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugadorAliado);
 		Marine marine = new Marine(jugadorEnemigo);
@@ -83,8 +83,8 @@ public class CentroDeMineralTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError {
 
-		JugadorTerran jugadorAliado = new JugadorTerran();
-		JugadorTerran jugadorEnemigo = new JugadorTerran();
+		Jugador jugadorAliado = new Jugador();
+		Jugador jugadorEnemigo = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugadorAliado);
 		Marine marine = new Marine(jugadorEnemigo);
@@ -108,7 +108,7 @@ public class CentroDeMineralTest {
 	@Test
 	public void elCentroDeMineralConstruidoDeberiaRecibirDanio1()
 			throws YaEstaDestruidoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
 		for (int i = 0; i < 4; i++) {
@@ -124,7 +124,7 @@ public class CentroDeMineralTest {
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaAlCentroDeMineralConstruidoEs499()
 			throws YaEstaDestruidoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
 		for (int i = 0; i < 4; i++) {
@@ -139,7 +139,7 @@ public class CentroDeMineralTest {
 	public void deberiaPoderPosicionarseUnCentroDeMineralEnUnaCasillaDesocupada() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
@@ -151,7 +151,7 @@ public class CentroDeMineralTest {
 	public void deberiaNoPoderPosicionarseUnCentroDeMineralEnUnaCasillaOcupadaPorUnaunidad() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
 		Barraca barraca = new Barraca(jugador);
@@ -164,7 +164,7 @@ public class CentroDeMineralTest {
 	public void deberiaPoderPosicionarseUnaBarracaEnUnaCasillaOcupadaPorUnRecurso() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
 		casilla.agregarRecurso(mineral);
@@ -176,7 +176,7 @@ public class CentroDeMineralTest {
 	public void unCentroDeMineraldeberiaGuardarSuPosicion() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
 		casilla.agregarRecurso(mineral);
@@ -187,7 +187,7 @@ public class CentroDeMineralTest {
 
 	@Test
 	public void unCentroDeMineralEsInicialmenteTerrestre() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
 
@@ -197,7 +197,7 @@ public class CentroDeMineralTest {
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
 			throws YaEstaDestruidoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
 		centro.recibirDanio(2000);
@@ -209,7 +209,7 @@ public class CentroDeMineralTest {
 	@Test
 	public void deberiaRecolectarMineralElCentroDeMineral() {
 		MinaDeMinerales mineral = new MinaDeMinerales(30);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		CentroDeMineral centroDeMineral = new CentroDeMineral(mineral, jugador);
 		Assert.assertTrue(centroDeMineral.recolectar());
 	}
@@ -217,7 +217,7 @@ public class CentroDeMineralTest {
 	@Test
 	public void deberiaNoPoderRecolectarElCentroDeMineralSiSeAcabaElMineral() {
 		MinaDeMinerales mineral = new MinaDeMinerales(1000);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		CentroDeMineral centroDeMineral = new CentroDeMineral(mineral, jugador);
 		for (int i = 1; i <= 100; i++) { // 100 turnos , se saca todo el mineral
 			centroDeMineral.recolectar();
@@ -228,7 +228,7 @@ public class CentroDeMineralTest {
 	@Test
 	public void deberiaRecolectar50MineralEn5TurnosElCentroDeMineral() {
 		MinaDeMinerales mineral = new MinaDeMinerales(1000);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		CentroDeMineral centroDeMineral = new CentroDeMineral(mineral, jugador);
 		for (int i = 1; i <= 5; i++) {
 			centroDeMineral.recolectar();
@@ -239,7 +239,7 @@ public class CentroDeMineralTest {
 	@Test
 	public void deberiaRecolectarSiElMineralTiene7() {
 		MinaDeMinerales mineral = new MinaDeMinerales(7);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		CentroDeMineral centroDeMineral = new CentroDeMineral(mineral, jugador);
 		centroDeMineral.recolectar();
 		Assert.assertEquals(7, centroDeMineral.getCantidadRecursoRecolectado());
@@ -248,7 +248,7 @@ public class CentroDeMineralTest {
 	@Test
 	public void deberiaDecrementarEn10ElMineralAlSerRecolectado() {
 		MinaDeMinerales mineral = new MinaDeMinerales(30);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		CentroDeMineral centroDeMineral = new CentroDeMineral(mineral, jugador);
 		centroDeMineral.recolectar();
 		Assert.assertEquals(20, mineral.getCantidad());

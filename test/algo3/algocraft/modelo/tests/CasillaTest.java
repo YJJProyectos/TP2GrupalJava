@@ -3,7 +3,7 @@ package algo3.algocraft.modelo.tests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import algo3.algocraft.modelo.juego.JugadorTerran;
+import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
@@ -43,7 +43,7 @@ public class CasillaTest {
 	public void deberiaEstarOcupadaLaTierraAlAgregarUnMarineEnTierra() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
 
@@ -54,7 +54,7 @@ public class CasillaTest {
 	public void deberiaEstarOcupadaLaTierraAlAgregarUnMarine() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
 		casilla.ocupar(marine);
 
@@ -65,7 +65,7 @@ public class CasillaTest {
 	public void deberiaGuardarALaUnidad() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
 
@@ -76,7 +76,7 @@ public class CasillaTest {
 	public void deberiaGuardarSoloLaPrimeraUnidadEntreDosUnidadesTerrestres() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Unidad primerMarine = new Marine(jugador);
 		Unidad segundoMarine = new Marine(jugador);
 		casilla.ocuparTerrestre(primerMarine);
@@ -89,7 +89,7 @@ public class CasillaTest {
 	public void deberiaNoEstarOcupadoElAireAlAgregarUnMarineEnTierra() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
 
@@ -100,7 +100,7 @@ public class CasillaTest {
 	public void deberiaNoEstarOcupadoElAireAlAgregarUnMarine() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
 		casilla.ocupar(marine);
 
@@ -111,7 +111,7 @@ public class CasillaTest {
 	public void deberiaNoEstarOcupadoElRecursoAlAgregarUnMarineEnTierra() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
 
@@ -122,7 +122,7 @@ public class CasillaTest {
 	public void deberiaNoEstarOcupadoElRecursoAlAgregarUnMarine() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
 		casilla.ocupar(marine);
 
@@ -213,7 +213,7 @@ public class CasillaTest {
 	public void deberiaNoPoderDesocuparElAireSiSoloHayUnMarineEnTierra() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
 
@@ -224,7 +224,7 @@ public class CasillaTest {
 	public void deberiaNoPoderDesocuparElAireSiSoloHayUnMarine() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
 		casilla.ocupar(marine);
 
@@ -256,7 +256,7 @@ public class CasillaTest {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Recolector centroMineral = new CentroDeMineral(mineral, jugador);
 		Assert.assertFalse(casilla.ocupar(centroMineral));
 	}
@@ -267,7 +267,7 @@ public class CasillaTest {
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
 		casilla.agregarRecurso(mineral);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Recolector centroMineral = new CentroDeMineral(mineral, jugador);
 		Assert.assertTrue(casilla.ocupar(centroMineral));
 	}
@@ -277,7 +277,7 @@ public class CasillaTest {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
 		casilla.agregarRecurso(mineral);
 		Assert.assertFalse(casilla.ocupar(marine));
@@ -289,7 +289,7 @@ public class CasillaTest {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
 		casilla.ocupar(marine);
 		Assert.assertFalse(casilla.agregarRecurso(mineral));
@@ -301,7 +301,7 @@ public class CasillaTest {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Recolector centroMineral = new CentroDeMineral(mineral, jugador);
 		Unidad marine = new Marine(jugador);
 		casilla.agregarRecurso(mineral);

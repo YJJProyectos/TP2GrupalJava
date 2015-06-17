@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.BarracaNoConstruidaError;
-import algo3.algocraft.modelo.juego.JugadorTerran;
+import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.PosicionNoOcupadaPorRecursoError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
@@ -18,11 +18,11 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.PerteneceAOtroJugadorEr
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 
-public class JugadorTerranTest {
+public class JugadorTest {
 
 	@Test
 	public void deberiaPoderConstruirUnaBarraca() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Barraca barraca = jugador.crearBarraca(casilla);
@@ -32,7 +32,7 @@ public class JugadorTerranTest {
 
 	@Test
 	public void laBarracaSeEncuentraInicialmenteEnconstruccion() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Barraca barraca = jugador.crearBarraca(casilla);
@@ -43,7 +43,7 @@ public class JugadorTerranTest {
 
 	@Test
 	public void luegoDe12TurnoslaBarracaEstaConstruida() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Barraca barraca = jugador.crearBarraca(casilla);
@@ -58,7 +58,7 @@ public class JugadorTerranTest {
 	@Test(expected = BarracaNoConstruidaError.class)
 	public void siSeEmpezoACrearUnaBarracaPeroSigueEnConstruccionNoSePuedeConstruirUnaFabrica()
 			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
@@ -70,7 +70,7 @@ public class JugadorTerranTest {
 	@Test
 	public void siSePudoCrearUnaBarraSePuedeConstruirUnaFabrica()
 			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
@@ -87,7 +87,7 @@ public class JugadorTerranTest {
 	@Test
 	public void laFabricaSeEncuentraInicialmenteEnconstruccion()
 			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
@@ -105,7 +105,7 @@ public class JugadorTerranTest {
 	@Test
 	public void luegoDe12TurnoslaFabricaEstaConstruida()
 			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
@@ -125,7 +125,7 @@ public class JugadorTerranTest {
 
 	@Test
 	public void deberiaPoderConstruirUnDepositoDeSuministro() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		DepositoDeSuministros deposito = jugador
@@ -136,7 +136,7 @@ public class JugadorTerranTest {
 
 	@Test
 	public void elDepositoSeEncuentraInicialmenteEnconstruccion() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		DepositoDeSuministros deposito = jugador
@@ -148,7 +148,7 @@ public class JugadorTerranTest {
 
 	@Test
 	public void luegoDe6TurnoselDepositoEstaConstruido() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		DepositoDeSuministros deposito = jugador
@@ -164,7 +164,7 @@ public class JugadorTerranTest {
 	@Test
 	public void deberiaPoderConstruirUnCentroDeMineral() 
 			throws PosicionNoOcupadaPorRecursoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso minaDeMinerales = new MinaDeMinerales(1000);
@@ -176,7 +176,7 @@ public class JugadorTerranTest {
 	@Test
 	public void elCentroDeMineralSeEncuentraInicialmenteEnconstruccion()
 			throws PosicionNoOcupadaPorRecursoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso minaDeMinerales = new MinaDeMinerales(1000);
@@ -190,7 +190,7 @@ public class JugadorTerranTest {
 	@Test
 	public void luegoDe4TurnosElCentroDeMineralEstaConstruido()
 			throws PosicionNoOcupadaPorRecursoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso minaDeMinerales = new MinaDeMinerales(1000);
@@ -205,14 +205,14 @@ public class JugadorTerranTest {
 
 	@Test
 	public void elJugadorDeberiaEmpezarCon400DeMineral() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Assert.assertEquals(400, jugador.cantidadMineral());
 	}
 
 	@Test
 	public void despuesDeCrearseUnCentroDeMineralYPasar2TurnosAumentaEn20LosMinerales()
 			throws PosicionNoOcupadaPorRecursoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso minaDeMinerales = new MinaDeMinerales(1000);
@@ -229,7 +229,7 @@ public class JugadorTerranTest {
 	@Test(expected = PosicionNoOcupadaPorRecursoError.class)
 	public void siSeIntentaPosicionarUnCentroDeMineralEnUnaPosicionSinUnaMinaSeLanzaUnaExcepcion()
 			throws PosicionNoOcupadaPorRecursoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		jugador.crearCentroDeMineral(casilla);
@@ -237,19 +237,19 @@ public class JugadorTerranTest {
 
 	@Test
 	public void elJugadorDeberiaEmpezarCon10DePoblacionDebidoQueEmpiezaConUnDeposito() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Assert.assertEquals(10, jugador.cantidadPoblacion());
 	}
 	@Test
 	public void alPasarUnTurnoDesdeQueEmpezoDeberiaSeguirCon10DePoblacion(){
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		jugador.pasarTurno();
 		Assert.assertEquals(10, jugador.cantidadPoblacion());
 	}
 
 	@Test
 	public void despuesDeCrearseElDepositoEn6TurnosYEjecutarOtroTurnoLaPoblacionAumentaEn10() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		jugador.crearDepositoDeSuministros(casilla);
@@ -262,7 +262,7 @@ public class JugadorTerranTest {
 
 	@Test
 	public void alCrear2DepositosYEjecutarVariosTurnosMasLaPoblacionDeberiaSerDe30() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Coordenada otraCoordenada = new Coordenada(1, 2);
 		Casilla casilla = new Casilla(coordenada);
@@ -279,7 +279,7 @@ public class JugadorTerranTest {
 
 	@Test
 	public void alCrear30DepositosYEjecutarVariosTurnosMasLaPoblacionDeberiaSerDe200() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada;
 		Casilla casilla;
 		for (int i = 0; i < 30; i++) {
@@ -297,14 +297,14 @@ public class JugadorTerranTest {
 
 	@Test
 	public void elJugadorDeberiaEmpezarCon100DeGas() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Assert.assertEquals(100, jugador.cantidadGas());
 	}
 
 	// /IMPORTANTE: NO PASA ESTE TEST
 	@Test 
 	public void deberiaPoderConstruirUnaRefineria() throws PosicionNoOcupadaPorRecursoError { 
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso volcan = new VolcanDeGasVespeno(1000);
@@ -317,7 +317,7 @@ public class JugadorTerranTest {
 	@Test
 	public void laRefineriaSeEncuentraInicialmenteEnconstruccion()
 			throws PosicionNoOcupadaPorRecursoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso volcan = new VolcanDeGasVespeno(1000);
@@ -331,7 +331,7 @@ public class JugadorTerranTest {
 	@Test
 	public void luegoDe6TurnosLaRefineriaEstaConstruida()
 			throws PosicionNoOcupadaPorRecursoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso volcan = new VolcanDeGasVespeno(1000);
@@ -346,7 +346,7 @@ public class JugadorTerranTest {
 	@Test
 	public void despuesDeCrearseLaRefineriaYPasar6TurnosAumentaEn20LaCantidadDeGas()
 			throws PosicionNoOcupadaPorRecursoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso volcan = new VolcanDeGasVespeno(1000);
@@ -363,7 +363,7 @@ public class JugadorTerranTest {
 	@Test(expected = PosicionNoOcupadaPorRecursoError.class)
 	public void siSeIntentaPosicionarUnaRefineriaEnUnaPosicionSinUnVolcanSeLanzaUnaExcepcion()
 			throws PosicionNoOcupadaPorRecursoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		jugador.crearRefineria(casilla);

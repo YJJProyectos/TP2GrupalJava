@@ -4,22 +4,22 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Juego;
-import algo3.algocraft.modelo.juego.JugadorTerran;
+import algo3.algocraft.modelo.juego.Jugador;
 
 public class JuegoTest {
 
 	@Test
 	public void deberiaEmpezarConTurnoJugador1() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
 		Juego juego = new Juego(jugador1, jugador2);
 		Assert.assertEquals(jugador1, juego.turnoDeJugador());
 	}
 
 	@Test
 	public void deberiaPasarTurnosDeJugador1AJugador2YViceversa() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.pasarTurno();
 		Assert.assertEquals(jugador2, juego.turnoDeJugador());
@@ -29,9 +29,9 @@ public class JuegoTest {
 
 	@Test
 	public void deberiaGenerarseUnCicloAlPasarTurnosEmpezandoPorElJugador1() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
-		JugadorTerran jugador3 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.agregarJugador(jugador3);
 		Assert.assertEquals(jugador1, juego.turnoDeJugador());
@@ -45,9 +45,9 @@ public class JuegoTest {
 
 	@Test
 	public void deberiaPoderSacarAUnJugadorYSeguirConLosRestantes() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
-		JugadorTerran jugador3 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.agregarJugador(jugador3);
 		Assert.assertEquals(jugador1, juego.turnoDeJugador());
@@ -67,9 +67,9 @@ public class JuegoTest {
 
 	@Test
 	public void deberiaSacarseElJugador1YTendriaQueJugarElJugadorAgregado() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
-		JugadorTerran jugador3 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.agregarJugador(jugador3);
 		juego.sacarJugador(jugador1);
@@ -82,9 +82,9 @@ public class JuegoTest {
 
 	@Test
 	public void deberiaPoderSacarAlJugadorQueSeAgregoEntre2Jugadores() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
-		JugadorTerran jugador3 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.agregarJugador(jugador3);
 		Assert.assertEquals(jugador1, juego.turnoDeJugador());
@@ -100,10 +100,10 @@ public class JuegoTest {
 
 	@Test
 	public void deberiaPoderSacarAlJugadorQueSeAgregoEntre3Jugadores() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
-		JugadorTerran jugador3 = new JugadorTerran();
-		JugadorTerran jugador4 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
+		Jugador jugador4 = new Jugador();
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.agregarJugador(jugador3);
 		juego.agregarJugador(jugador4);
@@ -119,10 +119,10 @@ public class JuegoTest {
 
 	@Test
 	public void alQuedarUnUnicoJugadorAlSiquienteTurnoLeTocaAEl() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
-		JugadorTerran jugador3 = new JugadorTerran();
-		JugadorTerran jugador4 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
+		Jugador jugador4 = new Jugador();
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.agregarJugador(jugador3);
 		juego.agregarJugador(jugador4);
@@ -148,9 +148,9 @@ public class JuegoTest {
 
 	@Test
 	public void deberiaSacarAlJugadorQuePerdioYSeguirConLosOtrosJugadores() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
-		JugadorTerran jugador3 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.agregarJugador(jugador3);
 		Assert.assertEquals(jugador1, juego.turnoDeJugador());
@@ -169,10 +169,10 @@ public class JuegoTest {
 	// este test deberia ser que gano el jugador1 el juego, algo asi
 	@Test
 	public void deberiaVolverAlJugador1SiSeSacaronALosOtrosJugadores() {
-		JugadorTerran jugador1 = new JugadorTerran();
-		JugadorTerran jugador2 = new JugadorTerran();
-		JugadorTerran jugador3 = new JugadorTerran();
-		JugadorTerran jugador4 = new JugadorTerran();
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
+		Jugador jugador4 = new Jugador();
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.agregarJugador(jugador3);
 		juego.agregarJugador(jugador4);

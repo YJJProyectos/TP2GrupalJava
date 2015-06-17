@@ -3,7 +3,7 @@ package algo3.algocraft.modelo.tests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import algo3.algocraft.modelo.juego.JugadorTerran;
+import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
@@ -18,7 +18,7 @@ public class RefineriaTest {
 
 	@Test
 	public void elTiempoDeConstruccionDeUnaRefineriaEsde6Turnos() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
 
@@ -27,7 +27,7 @@ public class RefineriaTest {
 
 	@Test
 	public void elTiempoDeConstruccionDeUnaRefineriaLuegoDePasarUnTurnoEsde5Turnos() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
 		refineria.pasarTurno();
@@ -37,7 +37,7 @@ public class RefineriaTest {
 
 	@Test
 	public void LaRefineriaSeEncuentraInicialmenteEnConstruccion() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
 
@@ -46,7 +46,7 @@ public class RefineriaTest {
 
 	@Test
 	public void luegoDe4TurnosLaRefineriaEstaConstuido() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
 		for (int i = 0; i < 6; i++) {
@@ -61,8 +61,8 @@ public class RefineriaTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError {
 
-		JugadorTerran jugadorAliado = new JugadorTerran();
-		JugadorTerran jugadorEnemigo = new JugadorTerran();
+		Jugador jugadorAliado = new Jugador();
+		Jugador jugadorEnemigo = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugadorAliado);
 		Marine marine = new Marine(jugadorEnemigo);
@@ -83,8 +83,8 @@ public class RefineriaTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError {
 
-		JugadorTerran jugadorAliado = new JugadorTerran();
-		JugadorTerran jugadorEnemigo = new JugadorTerran();
+		Jugador jugadorAliado = new Jugador();
+		Jugador jugadorEnemigo = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugadorAliado);
 		Marine marine = new Marine(jugadorEnemigo);
@@ -108,7 +108,7 @@ public class RefineriaTest {
 	@Test
 	public void LaRefineriaConstruidaDeberiaRecibirDanio1()
 			throws YaEstaDestruidoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
 		for (int i = 0; i < 6; i++) {
@@ -124,7 +124,7 @@ public class RefineriaTest {
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaRefineriaConstruidaEs749()
 			throws YaEstaDestruidoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
 		for (int i = 0; i < 6; i++) {
@@ -139,7 +139,7 @@ public class RefineriaTest {
 	public void deberiaPoderPosicionarseUnaRefineriaEnUnaCasillaDesocupada() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
 		casilla.agregarRecurso(volcan);
@@ -150,7 +150,7 @@ public class RefineriaTest {
 	public void deberiaNoPoderPosicionarseUnaRefineriaEnUnaCasillaOcupadaPorUnaunidad() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
 		Barraca barraca = new Barraca(jugador);
@@ -163,7 +163,7 @@ public class RefineriaTest {
 	public void deberiaPoderPosicionarseUnaRefineriaEnUnaCasillaOcupadaPorUnRecurso() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
 		casilla.agregarRecurso(volcan);
@@ -175,7 +175,7 @@ public class RefineriaTest {
 	public void unRefineriadeberiaGuardarSuPosicion() {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		casilla.agregarRecurso(volcan);
 		Refineria refineria = new Refineria(volcan, jugador);
@@ -187,7 +187,7 @@ public class RefineriaTest {
 
 	@Test
 	public void unRefineriaEsInicialmenteTerrestre() {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
 
@@ -197,7 +197,7 @@ public class RefineriaTest {
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruida()
 			throws YaEstaDestruidoError {
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
 		refineria.recibirDanio(2000);
@@ -209,7 +209,7 @@ public class RefineriaTest {
 	@Test
 	public void deberiaRecolectarMineralLaRefineria() {
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(30);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Refineria centroDeMineral = new Refineria(volcan, jugador);
 		Assert.assertTrue(centroDeMineral.recolectar());
 	}
@@ -217,7 +217,7 @@ public class RefineriaTest {
 	@Test
 	public void deberiaNoPoderRecolectarLaRefineriaSiSeAcabaElMineral() {
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(1000);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Refineria centroDeMineral = new Refineria(volcan, jugador);
 		for (int i = 1; i <= 100; i++) { // 100 turnos , se saca todo el volcan
 			centroDeMineral.recolectar();
@@ -228,7 +228,7 @@ public class RefineriaTest {
 	@Test
 	public void deberiaRecolectar50MineralEn5TurnosLaRefineria() {
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(1000);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Refineria centroDeMineral = new Refineria(volcan, jugador);
 		for (int i = 1; i <= 5; i++) {
 			centroDeMineral.recolectar();
@@ -239,7 +239,7 @@ public class RefineriaTest {
 	@Test
 	public void deberiaRecolectarSiElMineralTiene7() {
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(7);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Refineria centroDeMineral = new Refineria(volcan, jugador);
 		centroDeMineral.recolectar();
 		Assert.assertEquals(7, centroDeMineral.getCantidadRecursoRecolectado());
@@ -248,7 +248,7 @@ public class RefineriaTest {
 	@Test
 	public void deberiaDecrementarEn10ElMineralAlSerRecolectado() {
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(30);
-		JugadorTerran jugador = new JugadorTerran();
+		Jugador jugador = new Jugador();
 		Refineria centroDeMineral = new Refineria(volcan, jugador);
 		centroDeMineral.recolectar();
 		Assert.assertEquals(20, volcan.getCantidad());
