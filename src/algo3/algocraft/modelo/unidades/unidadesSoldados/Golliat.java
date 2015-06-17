@@ -12,7 +12,7 @@ public class Golliat extends UnidadSoldado {
 		this.vida = 125;
 		this.rangoAereo = 5;
 		this.rangoTerrestre = 6;
-		this.estadoDeAtaque = new EstadoNoAtaco(this);
+		this.estadoDeAtaque = new EstadoNoAtaco();
 	}
 
 	public boolean mover(Casilla casilla) {

@@ -17,14 +17,17 @@ public abstract class UnidadSoldado extends Unidad {
 		if (this.jugador == enemigo.getJugador()) {
 			throw new PerteneceAlMismoJugadorError();
 		}
-		estadoDeAtaque.atacarEnemigo(enemigo);
-		estadoDeAtaque = new EstadoYaAtaco();
+		estadoDeAtaque.atacarEnemigo(this, enemigo);
 	}
 
 	public abstract boolean mover(Casilla casilla);
 
 	public void pasarTurno() {
-		this.estadoDeAtaque = new EstadoNoAtaco(this);
+		this.estadoDeAtaque = new EstadoNoAtaco();
+	}
+	
+	public void nuevoEstadoDeAtaque(EstadoDeAtaque estado) {
+		this.estadoDeAtaque = estado;
 	}
 	
 	public int getRangoTerrestre(){
