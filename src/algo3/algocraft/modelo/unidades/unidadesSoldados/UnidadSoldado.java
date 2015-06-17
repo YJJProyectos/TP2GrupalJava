@@ -5,7 +5,7 @@ import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 
-public class UnidadSoldado extends Unidad {
+public class UnidadSoldado extends UnidadMovil {
 
 	protected ComportamientoSoldado comportamiento;
 	protected EstadoDeAtaque estadoDeAtaque;
