@@ -71,6 +71,7 @@ public class CentroDeMineralTest {
 		Casilla casillaCentroDeMineral = new Casilla(coordenadaCentroDeMineral);
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		marine.posicionar(casillaMarine);
+		casillaCentroDeMineral.agregarRecurso(mineral);
 		centro.posicionar(casillaCentroDeMineral);
 		marine.atacarEnemigo(centro);
 		Assert.assertTrue(centro.estaDestruido());
@@ -92,6 +93,7 @@ public class CentroDeMineralTest {
 		Casilla casillaCentroDeMineral = new Casilla(coordenadaCentroDeMineral);
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		marine.posicionar(casillaMarine);
+		casillaCentroDeMineral.agregarRecurso(mineral);
 		centro.posicionar(casillaCentroDeMineral);
 
 		for (int i = 0; i < 4; i++) {
@@ -139,8 +141,9 @@ public class CentroDeMineralTest {
 		Casilla casilla = new Casilla(coordenada);
 		JugadorTerran jugador = new JugadorTerran();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
+		
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
-
+		casilla.agregarRecurso(mineral);
 		Assert.assertTrue(centro.posicionar(casilla));
 	}
 
@@ -166,7 +169,7 @@ public class CentroDeMineralTest {
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
 		casilla.agregarRecurso(mineral);
 
-		Assert.assertFalse(centro.posicionar(casilla));
+		Assert.assertTrue(centro.posicionar(casilla));
 	}
 
 	@Test
@@ -176,7 +179,7 @@ public class CentroDeMineralTest {
 		JugadorTerran jugador = new JugadorTerran();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
-
+		casilla.agregarRecurso(mineral);
 		centro.posicionar(casilla);
 
 		Assert.assertEquals(casilla, centro.posicion());

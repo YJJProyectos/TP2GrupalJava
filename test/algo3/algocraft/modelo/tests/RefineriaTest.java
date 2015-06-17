@@ -71,6 +71,7 @@ public class RefineriaTest {
 		Casilla casillaRefineria = new Casilla(coordenadaRefineria);
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		marine.posicionar(casillaMarine);
+		casillaRefineria.agregarRecurso(volcan);
 		refineria.posicionar(casillaRefineria);
 		marine.atacarEnemigo(refineria);
 		Assert.assertTrue(refineria.estaDestruido());
@@ -92,6 +93,7 @@ public class RefineriaTest {
 		Casilla casillaRefineria = new Casilla(coordenadaRefineria);
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		marine.posicionar(casillaMarine);
+		casillaRefineria.agregarRecurso(volcan);
 		refineria.posicionar(casillaRefineria);
 
 		for (int i = 0; i < 6; i++) {
@@ -140,7 +142,7 @@ public class RefineriaTest {
 		JugadorTerran jugador = new JugadorTerran();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
-
+		casilla.agregarRecurso(volcan);
 		Assert.assertTrue(refineria.posicionar(casilla));
 	}
 
@@ -166,7 +168,7 @@ public class RefineriaTest {
 		Refineria refineria = new Refineria(volcan, jugador);
 		casilla.agregarRecurso(volcan);
 
-		Assert.assertFalse(refineria.posicionar(casilla));
+		Assert.assertTrue(refineria.posicionar(casilla));
 	}
 
 	@Test
@@ -175,8 +177,9 @@ public class RefineriaTest {
 		Casilla casilla = new Casilla(coordenada);
 		JugadorTerran jugador = new JugadorTerran();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
+		casilla.agregarRecurso(volcan);
 		Refineria refineria = new Refineria(volcan, jugador);
-
+		casilla.agregarRecurso(volcan);
 		refineria.posicionar(casilla);
 
 		Assert.assertEquals(casilla, refineria.posicion());
