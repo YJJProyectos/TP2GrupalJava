@@ -9,6 +9,7 @@ import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.Marine;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.PerteneceAlMismoJugadorError;
@@ -206,6 +207,35 @@ public class BarracaTest {
 		}
 
 		Assert.assertTrue(barraca.entrenarMarine());
+	}
+
+	@Test
+	public void noDeberiaPoderComenzarAEntrenarAUnMarineMientrasEsteEntrenandoAOtroMarine() {
+		JugadorTerran jugador = new JugadorTerran();
+		Barraca barraca = new Barraca(jugador);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+
+		barraca.entrenarMarine();
+		Assert.assertFalse(barraca.entrenarMarine());
+
+	}
+
+	@Test
+	public void deberiaPoderEntrenarAUnGolliatLuegoDeFinalizarElEntrenamientoDeOtroGolliat()
+			throws PerteneceAOtroJugadorError {
+		JugadorTerran jugador = new JugadorTerran();
+		Barraca barraca = new Barraca(jugador);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		barraca.entrenarMarine();
+		for (int j = 0; j < 3; j++) {
+			barraca.pasarTurno();
+		}
+		Assert.assertTrue(barraca.entrenarMarine());
+
 	}
 
 }
