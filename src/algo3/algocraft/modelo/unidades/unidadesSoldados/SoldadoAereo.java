@@ -3,22 +3,20 @@ package algo3.algocraft.modelo.unidades.unidadesSoldados;
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
 
-public class SoldadoTerrestre extends UnidadSoldado {
-
-	public SoldadoTerrestre (String tipo, Jugador jugador) {
+public class SoldadoAereo extends UnidadSoldado {
+	
+	public SoldadoAereo (String tipo, Jugador jugador) {
 		
 		switch (tipo) {
-		case "Marine": this.settearInfo(6, 6, 40, 4, 4);
-			break;
-		case "Golliat": this.settearInfo(10, 12, 125, 5, 6);
-			break;
+		case "Espectro": this.settearInfo(20, 8, 120, 5, 5);
 		}
+		
 		this.jugador = jugador;
 		this.estadoDeAtaque = new EstadoNoAtaco();
 	}
 	
 	public boolean mover(Casilla casilla) {
-		if (casilla.ocuparTerrestre(this)) {
+		if (casilla.ocuparAereo(this)) {
 			this.posicion = casilla;
 			return true;
 		}
@@ -26,7 +24,6 @@ public class SoldadoTerrestre extends UnidadSoldado {
 	}
 
 	public boolean esTerrestre() {
-		return true;
+		return false;
 	}
-
 }

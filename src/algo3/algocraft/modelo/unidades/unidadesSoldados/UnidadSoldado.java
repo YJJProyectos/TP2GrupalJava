@@ -34,4 +34,12 @@ public abstract class UnidadSoldado extends Unidad {
 		return (this.posicion.distanciaA(posicion) <= this.rangoTerrestre);
 	}
 	
+	protected void settearInfo (int danioAereo, int danioTerrestre, int vida, int rangoAereo, int rangoTerrestre) {
+		this.danioAereo = danioAereo;
+		this.danioTerrestre = danioTerrestre;
+		this.vida = vida;
+		this.rangoAereo = rangoAereo;
+		this.rangoTerrestre = rangoTerrestre;
+	}
+	
 }
