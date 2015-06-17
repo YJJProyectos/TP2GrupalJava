@@ -54,7 +54,7 @@ public class FabricaTest {
 		JugadorTerran jugador = new JugadorTerran();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
-		for (int i = 0; i < 13; i++) {
+		for (int i = 0; i < 12; i++) {
 			fabrica.pasarTurno();
 		}
 
@@ -99,7 +99,7 @@ public class FabricaTest {
 		marine.posicionar(casillaMarine);
 		fabrica.posicionar(casillaFabrica);
 
-		for (int i = 0; i < 13; i++) {
+		for (int i = 0; i < 12; i++) {
 			fabrica.pasarTurno();
 		}
 
@@ -114,7 +114,7 @@ public class FabricaTest {
 		JugadorTerran jugador = new JugadorTerran();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
-		for (int i = 0; i < 13; i++) {
+		for (int i = 0; i < 12; i++) {
 			fabrica.pasarTurno();
 		}
 		int vidaInicial = fabrica.vidaRestante();
@@ -130,7 +130,7 @@ public class FabricaTest {
 		JugadorTerran jugador = new JugadorTerran();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
-		for (int i = 0; i < 13; i++) {
+		for (int i = 0; i < 12; i++) {
 			fabrica.pasarTurno();
 		}
 		fabrica.recibirDanio(1);
@@ -217,7 +217,7 @@ public class FabricaTest {
 			throws PerteneceAOtroJugadorError {
 		JugadorTerran jugador = new JugadorTerran();
 		Barraca barraca = new Barraca(jugador);
-		for (int i = 0; i < 13; i++) {
+		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
 		}
 		Fabrica fabrica = new Fabrica(jugador, barraca);
@@ -230,26 +230,41 @@ public class FabricaTest {
 			throws PerteneceAOtroJugadorError, YaEstaDestruidoError {
 		JugadorTerran jugador = new JugadorTerran();
 		Barraca barraca = new Barraca(jugador);
-		for (int i = 0; i < 13; i++) {
+		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
 		}
 		Fabrica fabrica = new Fabrica(jugador, barraca);
-
+		for (int i = 0; i < 12; i++) {
+			fabrica.pasarTurno();
+		}
 		barraca.recibirDanio(2000);
 
 		Assert.assertFalse(fabrica.entrenarGolliat());
 	}
 
 	@Test
+	public void deberiaNoPoderEntrenarUnSoldadoGolliaPorqueLaBarracaEstaEnCOnstruccion()
+			throws PerteneceAOtroJugadorError, YaEstaDestruidoError {
+		JugadorTerran jugador = new JugadorTerran();
+		Barraca barraca = new Barraca(jugador);
+		Fabrica fabrica = new Fabrica(jugador, barraca);
+		for (int i = 0; i < 12; i++) {
+			fabrica.pasarTurno();
+		}
+
+		Assert.assertFalse(fabrica.entrenarGolliat());
+	}
+	
+	@Test
 	public void deberiaEntrenarUnSoldadoGolliat()
 			throws PerteneceAOtroJugadorError {
 		JugadorTerran jugador = new JugadorTerran();
 		Barraca barraca = new Barraca(jugador);
-		for (int i = 0; i < 13; i++) {
+		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
 		}
 		Fabrica fabrica = new Fabrica(jugador, barraca);
-		for (int j = 0; j < 13; j++) {
+		for (int j = 0; j < 12; j++) {
 			fabrica.pasarTurno();
 		}
 
@@ -262,11 +277,11 @@ public class FabricaTest {
 			throws PerteneceAOtroJugadorError {
 		JugadorTerran jugador = new JugadorTerran();
 		Barraca barraca = new Barraca(jugador);
-		for (int i = 0; i < 13; i++) {
+		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
 		}
 		Fabrica fabrica = new Fabrica(jugador, barraca);
-		for (int j = 0; j < 13; j++) {
+		for (int j = 0; j < 12; j++) {
 			fabrica.pasarTurno();
 		}
 		fabrica.entrenarGolliat();
@@ -279,11 +294,11 @@ public class FabricaTest {
 			throws PerteneceAOtroJugadorError {
 		JugadorTerran jugador = new JugadorTerran();
 		Barraca barraca = new Barraca(jugador);
-		for (int i = 0; i < 13; i++) {
+		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
 		}
 		Fabrica fabrica = new Fabrica(jugador, barraca);
-		for (int j = 0; j < 13; j++) {
+		for (int j = 0; j < 12; j++) {
 			fabrica.pasarTurno();
 		}
 		fabrica.entrenarGolliat();
