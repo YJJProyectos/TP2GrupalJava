@@ -10,7 +10,6 @@ import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
-import algo3.algocraft.modelo.unidades.unidadesEdificios.EdificioEnConstruccionError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.Marine;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.NoPuedeAtacarMultiplesVecesError;
@@ -29,7 +28,8 @@ public class FabricaTest {
 	}
 
 	@Test
-	public void elTiempoDeConstruccionDeUnaFabricaLuegoDePasarUnTUrnoEsde11Turnos() throws PerteneceAOtroJugadorError {
+	public void elTiempoDeConstruccionDeUnaFabricaLuegoDePasarUnTUrnoEsde11Turnos()
+			throws PerteneceAOtroJugadorError {
 		JugadorTerran jugador = new JugadorTerran();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
@@ -39,7 +39,8 @@ public class FabricaTest {
 	}
 
 	@Test
-	public void laFabricaSeEncuentraInicialmenteEnConstruccion() throws PerteneceAOtroJugadorError {
+	public void laFabricaSeEncuentraInicialmenteEnConstruccion()
+			throws PerteneceAOtroJugadorError {
 		JugadorTerran jugador = new JugadorTerran();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
@@ -48,7 +49,8 @@ public class FabricaTest {
 	}
 
 	@Test
-	public void luegoDe12TurnosLaFabricaEstaConstuida() throws PerteneceAOtroJugadorError {
+	public void luegoDe12TurnosLaFabricaEstaConstuida()
+			throws PerteneceAOtroJugadorError {
 		JugadorTerran jugador = new JugadorTerran();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
@@ -137,7 +139,8 @@ public class FabricaTest {
 	}
 
 	@Test
-	public void deberiaPoderPosicionarseUnaFabricaEnUnaCasillaDesocupada() throws PerteneceAOtroJugadorError {
+	public void deberiaPoderPosicionarseUnaFabricaEnUnaCasillaDesocupada()
+			throws PerteneceAOtroJugadorError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		JugadorTerran jugador = new JugadorTerran();
@@ -148,7 +151,8 @@ public class FabricaTest {
 	}
 
 	@Test
-	public void deberiaNoPoderPosicionarseUnaFabricaEnUnaCasillaOcupadaPorUnaunidad() throws PerteneceAOtroJugadorError {
+	public void deberiaNoPoderPosicionarseUnaFabricaEnUnaCasillaOcupadaPorUnaunidad()
+			throws PerteneceAOtroJugadorError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		JugadorTerran jugador = new JugadorTerran();
@@ -160,7 +164,8 @@ public class FabricaTest {
 	}
 
 	@Test
-	public void deberiaNoPoderPosicionarseUnaFabricaEnUnaCasillaOcupadaPorUnRecurso() throws PerteneceAOtroJugadorError {
+	public void deberiaNoPoderPosicionarseUnaFabricaEnUnaCasillaOcupadaPorUnRecurso()
+			throws PerteneceAOtroJugadorError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		JugadorTerran jugador = new JugadorTerran();
@@ -186,7 +191,8 @@ public class FabricaTest {
 	}
 
 	@Test
-	public void unaFabricaEsInicialmenteTerrestre() throws PerteneceAOtroJugadorError {
+	public void unaFabricaEsInicialmenteTerrestre()
+			throws PerteneceAOtroJugadorError {
 		JugadorTerran jugador = new JugadorTerran();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
@@ -208,7 +214,7 @@ public class FabricaTest {
 
 	@Test
 	public void deberiaNoPoderEntrenarUnSoldadoGolliaPorqueNoTerminoDeConstruirse()
-			throws EdificioEnConstruccionError, PerteneceAOtroJugadorError {
+			throws PerteneceAOtroJugadorError {
 		JugadorTerran jugador = new JugadorTerran();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 13; i++) {
@@ -221,7 +227,7 @@ public class FabricaTest {
 
 	@Test
 	public void deberiaEntrenarUnSoldadoGolliat()
-			throws EdificioEnConstruccionError, PerteneceAOtroJugadorError {
+			throws PerteneceAOtroJugadorError {
 		JugadorTerran jugador = new JugadorTerran();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 13; i++) {
