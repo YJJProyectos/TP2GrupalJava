@@ -225,6 +225,15 @@ public class JugadorTerranTest {
 		jugador.pasarTurno();
 		Assert.assertEquals(420, jugador.cantidadMineral());
 	}
+	
+	@Test(expected = PosicionNoOcupadaPorRecursoError.class)
+	public void siSeIntentaPosicionarUnCentroDeMineralEnUnaPosicionSinUnaMinaSeLanzaUnaExcepcion()
+			throws PosicionNoOcupadaPorRecursoError {
+		JugadorTerran jugador = new JugadorTerran();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		jugador.crearCentroDeMineral(casilla);
+	}
 
 	@Test
 	public void elJugadorDeberiaEmpezarCon10DePoblacionDebidoQueEmpiezaConUnDeposito() {
@@ -348,6 +357,15 @@ public class JugadorTerranTest {
 		jugador.pasarTurno();
 		jugador.pasarTurno();
 		Assert.assertEquals(120, jugador.cantidadGas());
+	}
+	
+	@Test(expected = PosicionNoOcupadaPorRecursoError.class)
+	public void siSeIntentaPosicionarUnaRefineriaEnUnaPosicionSinUnVolcanSeLanzaUnaExcepcion()
+			throws PosicionNoOcupadaPorRecursoError {
+		JugadorTerran jugador = new JugadorTerran();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		jugador.crearRefineria(casilla);
 	}
 
 }

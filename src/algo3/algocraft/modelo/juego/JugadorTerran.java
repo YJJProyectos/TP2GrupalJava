@@ -32,10 +32,6 @@ public class JugadorTerran extends Jugador {
 		unidades.add(deposito);
 	}
 
-	public int cantidadUnidades() {
-		return this.unidades.size();
-	}
-
 	public Barraca crearBarraca(Casilla casilla) {
 		Barraca barraca = new Barraca(this);
 		barraca.posicionar(casilla);
