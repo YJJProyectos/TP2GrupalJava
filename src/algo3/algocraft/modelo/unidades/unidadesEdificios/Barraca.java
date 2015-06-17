@@ -1,6 +1,7 @@
 package algo3.algocraft.modelo.unidades.unidadesEdificios;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 
 public class Barraca extends UnidadEdificio {
@@ -9,12 +10,17 @@ public class Barraca extends UnidadEdificio {
 	private int turnosRestantes;
 	private Marine marineEnEntrenamiento;
 	private int turnosRestantesParaTerminarMarine;
+	private int costoMineral;
+	private int costoGas;
 
-	public Barraca(Jugador unJugador) {
-		super(unJugador,1);
+	public Barraca(Jugador unJugador) throws RecursosInsuficientesError {
+		super(unJugador, 1);
+		this.jugador.pagar(this.costoMineral, this.costoGas);
 		this.enConstruccion = true;
 		this.turnosRestantes = 12;
 		this.turnosRestantesParaTerminarMarine = 3;
+		this.costoMineral = 150;
+		this.costoGas = 0;
 	}
 
 	public boolean entrenarMarine() {
@@ -36,14 +42,15 @@ public class Barraca extends UnidadEdificio {
 			this.enConstruccion = false;
 		}
 	}
-	
-	public void continuarEntrenamientoDeMarine(){
+
+	public void continuarEntrenamientoDeMarine() {
 		if (this.marineEnEntrenamiento != null)
 			this.turnosRestantesParaTerminarMarine -= 1;
-			if (this.turnosRestantesParaTerminarMarine == 0){
-				this.jugador.agregarSoldadoParaPosicionar(this.marineEnEntrenamiento );
-				this.marineEnEntrenamiento = null;
-				this.turnosRestantesParaTerminarMarine = 3;
+		if (this.turnosRestantesParaTerminarMarine == 0) {
+			this.jugador
+					.agregarSoldadoParaPosicionar(this.marineEnEntrenamiento);
+			this.marineEnEntrenamiento = null;
+			this.turnosRestantesParaTerminarMarine = 3;
 		}
 	}
 

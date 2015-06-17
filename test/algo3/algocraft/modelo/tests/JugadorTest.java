@@ -6,6 +6,7 @@ import org.junit.Test;
 import algo3.algocraft.modelo.juego.BarracaNoConstruidaError;
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.PosicionNoOcupadaPorRecursoError;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
@@ -21,7 +22,8 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 public class JugadorTest {
 
 	@Test
-	public void deberiaPoderConstruirUnaBarraca() {
+	public void deberiaPoderConstruirUnaBarraca()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -31,7 +33,8 @@ public class JugadorTest {
 	}
 
 	@Test
-	public void laBarracaSeEncuentraInicialmenteEnconstruccion() {
+	public void laBarracaSeEncuentraInicialmenteEnconstruccion()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -42,7 +45,8 @@ public class JugadorTest {
 	}
 
 	@Test
-	public void luegoDe12TurnoslaBarracaEstaConstruida() {
+	public void luegoDe12TurnoslaBarracaEstaConstruida()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -57,7 +61,8 @@ public class JugadorTest {
 
 	@Test(expected = BarracaNoConstruidaError.class)
 	public void siSeEmpezoACrearUnaBarracaPeroSigueEnConstruccionNoSePuedeConstruirUnaFabrica()
-			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError {
+			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
+			RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -69,7 +74,8 @@ public class JugadorTest {
 
 	@Test
 	public void siSePudoCrearUnaBarraSePuedeConstruirUnaFabrica()
-			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError {
+			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
+			RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -86,7 +92,8 @@ public class JugadorTest {
 
 	@Test
 	public void laFabricaSeEncuentraInicialmenteEnconstruccion()
-			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError {
+			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
+			RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -104,7 +111,8 @@ public class JugadorTest {
 
 	@Test
 	public void luegoDe12TurnoslaFabricaEstaConstruida()
-			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError {
+			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
+			RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -162,7 +170,7 @@ public class JugadorTest {
 	}
 
 	@Test
-	public void deberiaPoderConstruirUnCentroDeMineral() 
+	public void deberiaPoderConstruirUnCentroDeMineral()
 			throws PosicionNoOcupadaPorRecursoError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
@@ -225,7 +233,7 @@ public class JugadorTest {
 		jugador.pasarTurno();
 		Assert.assertEquals(420, jugador.cantidadMineral());
 	}
-	
+
 	@Test(expected = PosicionNoOcupadaPorRecursoError.class)
 	public void siSeIntentaPosicionarUnCentroDeMineralEnUnaPosicionSinUnaMinaSeLanzaUnaExcepcion()
 			throws PosicionNoOcupadaPorRecursoError {
@@ -240,8 +248,9 @@ public class JugadorTest {
 		Jugador jugador = new Jugador();
 		Assert.assertEquals(10, jugador.cantidadPoblacion());
 	}
+
 	@Test
-	public void alPasarUnTurnoDesdeQueEmpezoDeberiaSeguirCon10DePoblacion(){
+	public void alPasarUnTurnoDesdeQueEmpezoDeberiaSeguirCon10DePoblacion() {
 		Jugador jugador = new Jugador();
 		jugador.pasarTurno();
 		Assert.assertEquals(10, jugador.cantidadPoblacion());
@@ -302,17 +311,17 @@ public class JugadorTest {
 	}
 
 	// /IMPORTANTE: NO PASA ESTE TEST
-	@Test 
-	public void deberiaPoderConstruirUnaRefineria() throws PosicionNoOcupadaPorRecursoError { 
+	@Test
+	public void deberiaPoderConstruirUnaRefineria()
+			throws PosicionNoOcupadaPorRecursoError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso volcan = new VolcanDeGasVespeno(1000);
 		casilla.agregarRecurso(volcan);
 		Refineria refineria = jugador.crearRefineria(casilla);
-		Assert.assertEquals(casilla.getOcupanteTerrestre(), refineria); 
+		Assert.assertEquals(casilla.getOcupanteTerrestre(), refineria);
 	}
-
 
 	@Test
 	public void laRefineriaSeEncuentraInicialmenteEnconstruccion()
@@ -359,7 +368,7 @@ public class JugadorTest {
 		jugador.pasarTurno();
 		Assert.assertEquals(120, jugador.cantidadGas());
 	}
-	
+
 	@Test(expected = PosicionNoOcupadaPorRecursoError.class)
 	public void siSeIntentaPosicionarUnaRefineriaEnUnaPosicionSinUnVolcanSeLanzaUnaExcepcion()
 			throws PosicionNoOcupadaPorRecursoError {

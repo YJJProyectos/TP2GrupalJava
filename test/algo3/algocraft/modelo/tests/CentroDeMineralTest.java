@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
@@ -141,14 +142,15 @@ public class CentroDeMineralTest {
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
-		
+
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
 		casilla.agregarRecurso(mineral);
 		Assert.assertTrue(centro.posicionar(casilla));
 	}
 
 	@Test
-	public void deberiaNoPoderPosicionarseUnCentroDeMineralEnUnaCasillaOcupadaPorUnaunidad() {
+	public void deberiaNoPoderPosicionarseUnCentroDeMineralEnUnaCasillaOcupadaPorUnaunidad()
+			throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();

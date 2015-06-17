@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
@@ -15,9 +16,18 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVec
 import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorError;
 
 public class BarracaTest {
+	
+	@Test
+	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnaBarraca() throws RecursosInsuficientesError{
+		Jugador jugador = new Jugador();
+		jugador.pagar(400, 100);
+		Barraca barraca = new Barraca(jugador);
+		barraca.pasarTurno();
+	}
 
 	@Test
-	public void elTiempoDeConstruccionDeUnaBarracaEsde12Turnos() {
+	public void elTiempoDeConstruccionDeUnaBarracaEsde12Turnos()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 
@@ -25,7 +35,8 @@ public class BarracaTest {
 	}
 
 	@Test
-	public void elTiempoDeConstruccionDeUnaBarracaLuegoDePasarUnTUrnoEsde11Turnos() {
+	public void elTiempoDeConstruccionDeUnaBarracaLuegoDePasarUnTUrnoEsde11Turnos()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		barraca.pasarTurno();
@@ -34,7 +45,8 @@ public class BarracaTest {
 	}
 
 	@Test
-	public void laBarracaSeEncuentraInicialmenteEnConstruccion() {
+	public void laBarracaSeEncuentraInicialmenteEnConstruccion()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 
@@ -42,7 +54,8 @@ public class BarracaTest {
 	}
 
 	@Test
-	public void luegoDe12TurnosLaBarracaEstaConstuida() {
+	public void luegoDe12TurnosLaBarracaEstaConstuida()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 13; i++) {
@@ -55,7 +68,7 @@ public class BarracaTest {
 	@Test
 	public void siUnMarineAtacaUnaBarracaEnConstruccionLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
+			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -75,7 +88,7 @@ public class BarracaTest {
 	@Test
 	public void siUnMarineAtacaUnaBarracaYaConstruidaNoLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
+			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -99,7 +112,7 @@ public class BarracaTest {
 
 	@Test
 	public void laBarracaConstruidaDeberiaRecibirDanio1()
-			throws YaEstaDestruidoError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 13; i++) {
@@ -114,7 +127,7 @@ public class BarracaTest {
 
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaBarracaConstruidaEs999()
-			throws YaEstaDestruidoError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 13; i++) {
@@ -126,7 +139,8 @@ public class BarracaTest {
 	}
 
 	@Test
-	public void deberiaPoderPosicionarseUnaBarracaEnUnaCasillaDesocupada() {
+	public void deberiaPoderPosicionarseUnaBarracaEnUnaCasillaDesocupada()
+			throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -136,7 +150,8 @@ public class BarracaTest {
 	}
 
 	@Test
-	public void deberiaNoPoderPosicionarseUnaBarracaEnUnaCasillaOcupadaPorUnaunidad() {
+	public void deberiaNoPoderPosicionarseUnaBarracaEnUnaCasillaOcupadaPorUnaunidad()
+			throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -148,7 +163,8 @@ public class BarracaTest {
 	}
 
 	@Test
-	public void deberiaNoPoderPosicionarseUnaBarracaEnUnaCasillaOcupadaPorUnRecurso() {
+	public void deberiaNoPoderPosicionarseUnaBarracaEnUnaCasillaOcupadaPorUnRecurso()
+			throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -160,7 +176,7 @@ public class BarracaTest {
 	}
 
 	@Test
-	public void deberiaGuardarSuPosicion() {
+	public void deberiaGuardarSuPosicion() throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -172,7 +188,8 @@ public class BarracaTest {
 	}
 
 	@Test
-	public void unaBarracaEsInicialmenteTerrestre() {
+	public void unaBarracaEsInicialmenteTerrestre()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 
@@ -181,7 +198,7 @@ public class BarracaTest {
 
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
-			throws YaEstaDestruidoError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		barraca.recibirDanio(2000);
@@ -191,7 +208,8 @@ public class BarracaTest {
 	}
 
 	@Test
-	public void deberiaNoPoderEntrenarUnSoldadoMarinePorqueNoTerminoDeConstruirse() {
+	public void deberiaNoPoderEntrenarUnSoldadoMarinePorqueNoTerminoDeConstruirse()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 
@@ -199,7 +217,8 @@ public class BarracaTest {
 	}
 
 	@Test
-	public void deberiaEntrenarUnSoldadoMarine() {
+	public void deberiaEntrenarUnSoldadoMarine()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 13; i++) {
@@ -210,7 +229,8 @@ public class BarracaTest {
 	}
 
 	@Test
-	public void noDeberiaPoderComenzarAEntrenarAUnMarineMientrasEsteEntrenandoAOtroMarine() {
+	public void noDeberiaPoderComenzarAEntrenarAUnMarineMientrasEsteEntrenandoAOtroMarine()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 12; i++) {
@@ -224,7 +244,7 @@ public class BarracaTest {
 
 	@Test
 	public void deberiaPoderEntrenarAUnGolliatLuegoDeFinalizarElEntrenamientoDeOtroGolliat()
-			throws PerteneceAOtroJugadorError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		for (int i = 0; i < 12; i++) {

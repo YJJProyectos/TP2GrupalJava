@@ -68,7 +68,7 @@ public class Jugador {
 
 	}
 
-	public Barraca crearBarraca(Casilla casilla) {
+	public Barraca crearBarraca(Casilla casilla) throws RecursosInsuficientesError {
 		Barraca barraca = new Barraca(this);
 		barraca.posicionar(casilla);
 		this.unidades.add(barraca);
@@ -126,6 +126,15 @@ public class Jugador {
 			unidad.pasarTurno();
 		}
 
+	}
+
+	public void pagar(int costoMineral, int costoGas)
+			throws RecursosInsuficientesError {
+		if (costoMineral > this.cantidadMineral || costoGas > this.cantidadGas) {
+			throw new RecursosInsuficientesError();
+		}
+		this.cantidadMineral -= costoMineral;
+		this.cantidadGas -= costoGas;
 	}
 
 }
