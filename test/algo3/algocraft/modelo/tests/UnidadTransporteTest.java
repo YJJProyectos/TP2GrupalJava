@@ -26,4 +26,23 @@ public class UnidadTransporteTest {
 		
 		Assert.assertFalse(nave.cargarSoldado(soldado));
 	}
+	
+	@Test
+	public void deberiaDescargarUnSoldado () {
+		UnidadTransporte nave = new UnidadTransporte(null, new ComportamientoTransporteTerran());
+		UnidadSoldado soldado = new UnidadSoldado(ComportamientoMarine.getInstancia(), null);
+		nave.cargarSoldado(soldado);
+		
+		Assert.assertEquals(nave.descargarSoldado(), soldado);
+	}
+	
+	@Test
+	public void deberiaNoDescargarAlMismoSoldadoDosVeces () {
+		UnidadTransporte nave = new UnidadTransporte(null, new ComportamientoTransporteTerran());
+		UnidadSoldado soldado = new UnidadSoldado(ComportamientoMarine.getInstancia(), null);
+		nave.cargarSoldado(soldado);
+		nave.descargarSoldado();
+		
+		Assert.assertNotEquals(nave.descargarSoldado(), soldado);
+	}
 }

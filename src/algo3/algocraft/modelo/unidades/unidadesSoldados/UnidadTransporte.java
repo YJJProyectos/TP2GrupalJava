@@ -31,7 +31,14 @@ public class UnidadTransporte extends UnidadMovil{
 		return false;
 	}
 
-	public UnidadSoldado descargarSoldado(int pos) {
+	public UnidadSoldado descargarSoldado() {
+		for (int i = 0; i<comportamiento.capacidad(); i++) {
+			if (soldadosCargados[i] != null) {
+				UnidadSoldado descargado = soldadosCargados[i];
+				soldadosCargados[i] = null;
+				return descargado;
+			}
+		}
 		return null;		
 	}
 	
