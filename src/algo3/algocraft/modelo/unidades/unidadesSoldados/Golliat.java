@@ -1,6 +1,7 @@
 package algo3.algocraft.modelo.unidades.unidadesSoldados;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.unidades.unidadesSoldados.comportamientos.ComportamientoGolliat;
 
 public class Golliat extends UnidadSoldado {
 

@@ -4,6 +4,7 @@ import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
+import algo3.algocraft.modelo.unidades.unidadesSoldados.comportamientos.ComportamientoSoldado;
 
 public class UnidadSoldado extends UnidadMovil {
 
@@ -33,7 +34,7 @@ public class UnidadSoldado extends UnidadMovil {
 		}
 		return false;
 	}
-
+	
 	public void pasarTurno() {
 		this.nuevoEstadoDeAtaque(new EstadoNoAtaco());
 	}

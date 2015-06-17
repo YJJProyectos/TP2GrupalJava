@@ -8,5 +8,5 @@ public abstract class UnidadMovil extends Unidad {
 	protected UnidadMovil(Jugador jugador, int vida) {
 		super(jugador, vida);
 	}
-
+	
 }

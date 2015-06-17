@@ -8,12 +8,12 @@ import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
-import algo3.algocraft.modelo.unidades.unidadesSoldados.ComportamientoEspectro;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.Marine;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.PerteneceAlMismoJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesSoldados.UnidadSoldado;
+import algo3.algocraft.modelo.unidades.unidadesSoldados.comportamientos.ComportamientoEspectro;
 
 public class EspectroTest {
 	

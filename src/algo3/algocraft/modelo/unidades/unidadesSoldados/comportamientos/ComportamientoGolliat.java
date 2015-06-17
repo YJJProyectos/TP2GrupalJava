@@ -1,35 +1,34 @@
-package algo3.algocraft.modelo.unidades.unidadesSoldados;
+package algo3.algocraft.modelo.unidades.unidadesSoldados.comportamientos;
 
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.unidades.Unidad;
 
-public class ComportamientoMarine extends ComportamientoSoldado {
-	private static final ComportamientoMarine INSTANCIA = new ComportamientoMarine();
+public class ComportamientoGolliat extends ComportamientoSoldado{
+
+	private static final ComportamientoGolliat INSTANCIA= new ComportamientoGolliat();
 	
-	private ComportamientoMarine() {}
-	
-	public static ComportamientoMarine getInstancia() {
+	public static ComportamientoGolliat getInstancia () {
 		return INSTANCIA;
 	}
 	
 	public int getDanioAereo() {
-		return 6;
+		return 10;
 	}
 
 	public int getDanioTerrestre() {
-		return 6;
+		return 12;
 	}
 
 	public int getRangoAereo() {
-		return 4;
+		return 5;
 	}
 
 	public int getRangoTerrestre() {
-		return 4;
+		return 6;
 	}
 
 	public int getVida() {
-		return 40;
+		return 125;
 	}
 
 	public boolean esTerrestre() {
@@ -39,6 +38,5 @@ public class ComportamientoMarine extends ComportamientoSoldado {
 	public boolean mover(Unidad marine, Casilla casilla) {
 		return casilla.ocuparTerrestre(marine);
 	}
-	
 
 }
