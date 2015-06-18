@@ -16,54 +16,48 @@ public class CoordenadaRecurso {
 		this.coordenadasDeMinerales = new ArrayList<Coordenada>();
 		this.coordenadasDeGas = new ArrayList<Coordenada>();
 
-		Coordenada coordenadaMineral = new Coordenada(minFila,minColumna);
-		this.coordenadasDeMinerales.add(coordenadaMineral);
-		coordenadaMineral = new Coordenada(minFila,maxColumna);
-		this.coordenadasDeMinerales.add(coordenadaMineral);
-		coordenadaMineral = new Coordenada(maxFila,minColumna);
-		this.coordenadasDeMinerales.add(coordenadaMineral);
-		coordenadaMineral = new Coordenada(maxFila,maxColumna);
-		this.coordenadasDeMinerales.add(coordenadaMineral);
+		this.agregarCoordenadasMineral(minFila, minColumna);
+		this.agregarCoordenadasMineral(minFila, maxColumna);
+		this.agregarCoordenadasMineral(maxFila, minFila);
+		this.agregarCoordenadasMineral(maxFila, maxColumna);
 
 		this.iteradorMinerales = this.coordenadasDeMinerales.iterator();
 
-		Coordenada coordenadaGas = new Coordenada(minFila, minColumna + 1);
-		this.coordenadasDeGas.add(coordenadaGas);
-		coordenadaGas = new Coordenada(minFila, maxColumna - 1);
-		this.coordenadasDeGas.add(coordenadaGas);
-		coordenadaGas = new Coordenada(maxFila, minColumna + 1);
-		this.coordenadasDeGas.add(coordenadaGas);
-		coordenadaGas = new Coordenada(maxFila, maxColumna - 1);
-		this.coordenadasDeGas.add(coordenadaGas);
+		this.agregarCoordenadasGas(minFila, minColumna + 1);
+		this.agregarCoordenadasGas(minFila, maxColumna - 1);
+		this.agregarCoordenadasGas(maxFila, minColumna + 1);
+		this.agregarCoordenadasGas(maxFila, maxColumna - 1);
 
 		this.iteradorGas = this.coordenadasDeGas.iterator();
 
 	}
 
-	public int cantidadDeCoordenadasMinerales() {
-		return this.coordenadasDeMinerales.size();
-	}
-
-	public int cantidadDeCoordenadasDeGas(){
-		return this.coordenadasDeGas.size();
-	}
-
 	public Coordenada sacarCoordenadaDeMineral() {
-
-		Coordenada coordenadaMineral = null ;
-		if ( this.iteradorMinerales.hasNext()){
-			coordenadaMineral = this.iteradorMinerales.next();
-		}
-		return coordenadaMineral;
+		
+		return this.iteradorMinerales.next();
 	}
 
 	public Coordenada sacarCoordenadaDeGas() {
 
-		Coordenada coordenadaGas = null;
-		if ( this.iteradorGas.hasNext()){
-			coordenadaGas = this.iteradorGas.next();
-		}
-		return coordenadaGas;
+		return this.iteradorGas.next();
+	}
+	
+	private void agregarCoordenadasMineral(int fila, int columna){
+		Coordenada coordenadaMineral = new Coordenada(fila,columna);
+		this.coordenadasDeMinerales.add(coordenadaMineral);
+	}
+	
+	private void agregarCoordenadasGas(int fila, int columna){
+		Coordenada coordenadaGas = new Coordenada(fila, columna);
+		this.coordenadasDeGas.add(coordenadaGas);
+	}
+
+	public boolean tieneCoordenadaMineral() {
+		return this.iteradorMinerales.hasNext();
+	}
+
+	public boolean tieneCoordenadaGas() {
+		return this.iteradorGas.hasNext();
 	}
 
 }

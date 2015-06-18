@@ -70,13 +70,13 @@ public class Mapa {
 
 	public void setCoordenadaMineralYVolcanDeGas(){
 		CoordenadaRecurso coordenadaRecurso = new CoordenadaRecurso(minFila,minColumna,maxFila,maxColumna);
-		for (int i = 1; i <= coordenadaRecurso.cantidadDeCoordenadasMinerales(); i++){
+		while (coordenadaRecurso.tieneCoordenadaMineral()){
 			MinaDeMinerales mina = new MinaDeMinerales(1000);
 			Coordenada coordenadaDeMina = coordenadaRecurso.sacarCoordenadaDeMineral();
 			Casilla casilla = tablero.get(coordenadaDeMina);
 			casilla.agregarRecurso(mina);
 		}
-		for (int i = 1; i <= coordenadaRecurso.cantidadDeCoordenadasDeGas(); i++){
+		while (coordenadaRecurso.tieneCoordenadaGas()){
 			VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(1000);
 			Coordenada coordenadaDeGas = coordenadaRecurso.sacarCoordenadaDeGas();
 			Casilla casilla = tablero.get(coordenadaDeGas);

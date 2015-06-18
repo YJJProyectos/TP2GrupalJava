@@ -7,7 +7,17 @@ import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.mapa.CoordenadaRecurso;
 
 public class CoordenadaRecursoTest {
-
+	
+	@Test
+	public void deberiaTener4CoordenadasMinerales(){
+		CoordenadaRecurso coordenadaRecurso = new CoordenadaRecurso(1,1,10,10);
+		for ( int i = 0; i < 4; i++){
+			Assert.assertTrue(coordenadaRecurso.tieneCoordenadaMineral());
+			coordenadaRecurso.sacarCoordenadaDeMineral();
+		}
+		Assert.assertFalse(coordenadaRecurso.tieneCoordenadaMineral());
+	}
+	
 	@Test
 	public void deberiaDarCoordenadaDeLosMineralesEnLos4Puntos() {
 		CoordenadaRecurso coordenadaRecurso = new CoordenadaRecurso(1,1,10,10);
@@ -20,6 +30,17 @@ public class CoordenadaRecursoTest {
 		coordenada = new Coordenada(10,10);
 		Assert.assertEquals(coordenada, coordenadaRecurso.sacarCoordenadaDeMineral());
 	}
+	
+	@Test
+	public void deberiaTener4CoordenadasDeGas(){
+		CoordenadaRecurso coordenadaRecurso = new CoordenadaRecurso(1,1,10,10);
+		for ( int i = 0; i < 4; i++){
+			Assert.assertTrue(coordenadaRecurso.tieneCoordenadaGas());
+			coordenadaRecurso.sacarCoordenadaDeGas();
+		}
+		Assert.assertFalse(coordenadaRecurso.tieneCoordenadaGas());
+	}
+	
 	@Test
 	public void deberiaDarCoordenadasDeLosGasesAlLadoDeLosMineralesPuestos(){
 		CoordenadaRecurso coordenadaRecurso = new CoordenadaRecurso(1,1,10,10);
