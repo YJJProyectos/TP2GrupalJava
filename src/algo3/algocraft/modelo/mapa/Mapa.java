@@ -28,7 +28,7 @@ public class Mapa {
 			}
 
 		}
-		
+
 	}
 
 	public int tamanio() {
@@ -67,7 +67,7 @@ public class Mapa {
 		Casilla casillero = tablero.get(coordenada);
 		return casillero.getOcupanteTerrestre();
 	}
-	
+
 	public void setCoordenadaMineralYVolcanDeGas(){
 		CoordenadaRecurso coordenadaRecurso = new CoordenadaRecurso(minFila,minColumna,maxFila,maxColumna);
 		for (int i = 1; i <= coordenadaRecurso.cantidadDeCoordenadasMinerales(); i++){

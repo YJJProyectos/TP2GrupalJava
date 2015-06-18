@@ -40,7 +40,7 @@ public class MapaTest {
 				mapa.obtenerElementoTerrestreEnPosicion(coordenadaMarine));
 
 	}
-	
+
 	@Test
 	public void deberiaSetearseLosMineralesEnLaPuntaDelMapa() throws CoordenadaInvalidaError{
 		Mapa mapa = new Mapa(4);
@@ -57,9 +57,9 @@ public class MapaTest {
 		coordenadaMineral = new Coordenada(20, 20);
 		casillaMineral = mapa.getCasilla(coordenadaMineral);
 		Assert.assertTrue(casillaMineral.estaOcupadoElRecurso());
-		
+
 	}
-	
+
 	@Test
 	public void deberiaSetearseLosVolcanesAlLadoDeLosMinerales() throws CoordenadaInvalidaError{
 		Mapa mapa = new Mapa(4);
@@ -76,6 +76,6 @@ public class MapaTest {
 		coordenadaGas = new Coordenada(20, 19);
 		casillaGas = mapa.getCasilla(coordenadaGas);
 		Assert.assertTrue(casillaGas.estaOcupadoElRecurso());
-		
+
 	}
 }
