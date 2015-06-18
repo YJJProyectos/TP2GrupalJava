@@ -8,6 +8,7 @@ import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.PosicionNoOcupadaPorRecursoError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.recursos.Recurso;
@@ -174,7 +175,8 @@ public class JugadorTest {
 
 	@Test
 	public void deberiaPoderConstruirUnCentroDeMineral()
-			throws PosicionNoOcupadaPorRecursoError, RecursosInsuficientesError {
+			throws PosicionNoOcupadaPorRecursoError,
+			RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -186,7 +188,8 @@ public class JugadorTest {
 
 	@Test
 	public void elCentroDeMineralSeEncuentraInicialmenteEnconstruccion()
-			throws PosicionNoOcupadaPorRecursoError, RecursosInsuficientesError {
+			throws PosicionNoOcupadaPorRecursoError,
+			RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -200,7 +203,8 @@ public class JugadorTest {
 
 	@Test
 	public void luegoDe4TurnosElCentroDeMineralEstaConstruido()
-			throws PosicionNoOcupadaPorRecursoError, RecursosInsuficientesError {
+			throws PosicionNoOcupadaPorRecursoError,
+			RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -222,7 +226,8 @@ public class JugadorTest {
 
 	@Test
 	public void despuesDeCrearseUnCentroDeMineralAlTomarEnCuentaSuCostoYPasar2TurnosAumentaEn20LosMinerales()
-			throws PosicionNoOcupadaPorRecursoError, RecursosInsuficientesError {
+			throws PosicionNoOcupadaPorRecursoError,
+			RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -320,7 +325,8 @@ public class JugadorTest {
 	// /IMPORTANTE: NO PASA ESTE TEST
 	@Test
 	public void deberiaPoderConstruirUnaRefineria()
-			throws PosicionNoOcupadaPorRecursoError, RecursosInsuficientesError {
+			throws PosicionNoOcupadaPorRecursoError,
+			RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -332,7 +338,8 @@ public class JugadorTest {
 
 	@Test
 	public void laRefineriaSeEncuentraInicialmenteEnconstruccion()
-			throws PosicionNoOcupadaPorRecursoError, RecursosInsuficientesError {
+			throws PosicionNoOcupadaPorRecursoError,
+			RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -346,7 +353,8 @@ public class JugadorTest {
 
 	@Test
 	public void luegoDe6TurnosLaRefineriaEstaConstruida()
-			throws PosicionNoOcupadaPorRecursoError, RecursosInsuficientesError {
+			throws PosicionNoOcupadaPorRecursoError,
+			RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -361,7 +369,8 @@ public class JugadorTest {
 
 	@Test
 	public void despuesDeCrearseLaRefineriaYPasar6TurnosAumentaEn20LaCantidadDeGas()
-			throws PosicionNoOcupadaPorRecursoError, RecursosInsuficientesError {
+			throws PosicionNoOcupadaPorRecursoError,
+			RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);

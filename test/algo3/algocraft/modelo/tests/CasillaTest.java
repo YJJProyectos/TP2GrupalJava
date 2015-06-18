@@ -6,6 +6,7 @@ import org.junit.Test;
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.recursos.Recurso;
@@ -131,7 +132,8 @@ public class CasillaTest {
 	}
 
 	@Test
-	public void deberiaNoEstarOcupadaLaTierraAlAgregarUnRecurso() {
+	public void deberiaNoEstarOcupadaLaTierraAlAgregarUnRecurso()
+			throws CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
@@ -141,7 +143,8 @@ public class CasillaTest {
 	}
 
 	@Test
-	public void deberiaNoEstarOcupadoElAireAlAgregarUnRecurso() {
+	public void deberiaNoEstarOcupadoElAireAlAgregarUnRecurso()
+			throws CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
@@ -151,7 +154,8 @@ public class CasillaTest {
 	}
 
 	@Test
-	public void deberiaEstarOcupadoElRecursoAlAgregarUnRecurso() {
+	public void deberiaEstarOcupadoElRecursoAlAgregarUnRecurso()
+			throws CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
@@ -160,16 +164,15 @@ public class CasillaTest {
 		Assert.assertTrue(casilla.estaOcupadoElRecurso());
 	}
 
-	@Test
-	public void deberiaGuardarSoloElPrimerRecursoEntreDosRecursosAgregados() {
+	@Test(expected = CasillaOcupadaError.class)
+	public void deberiaGuardarSoloElPrimerRecursoEntreDosRecursosAgregados()
+			throws CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso primerMineral = new MinaDeMinerales(100);
 		Recurso segundoMineral = new MinaDeMinerales(200);
 		casilla.agregarRecurso(primerMineral);
 		casilla.agregarRecurso(segundoMineral);
-
-		Assert.assertEquals(primerMineral, casilla.getRecurso());
 	}
 
 	@Test
@@ -233,7 +236,8 @@ public class CasillaTest {
 	}
 
 	@Test
-	public void deberiaNoPoderDesocuparLaTierraSiSoloHayUnRecurso() {
+	public void deberiaNoPoderDesocuparLaTierraSiSoloHayUnRecurso()
+			throws CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
@@ -243,7 +247,8 @@ public class CasillaTest {
 	}
 
 	@Test
-	public void deberiaNoPoderDesocuparElAireSiSoloHayUnRecurso() {
+	public void deberiaNoPoderDesocuparElAireSiSoloHayUnRecurso()
+			throws CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
@@ -265,7 +270,7 @@ public class CasillaTest {
 
 	@Test
 	public void debieriaPoderAgregarUnCentroMineralPorqueHayMineral()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
@@ -276,7 +281,8 @@ public class CasillaTest {
 	}
 
 	@Test
-	public void deberiaNoPoderAgregarUnSoldadoPorqueYaHayUnMineral() {
+	public void deberiaNoPoderAgregarUnSoldadoPorqueYaHayUnMineral()
+			throws CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
@@ -287,21 +293,22 @@ public class CasillaTest {
 
 	}
 
-	@Test
-	public void deberianNoPoderAgregarUnMineralCuandoYaHayUnMarineEnLaCasilla() {
+	@Test(expected = CasillaOcupadaError.class)
+	public void deberianLanzarUnaExcepcionAlAgregarUnMineralSiYaHayUnMarineEnLaCasilla()
+			throws CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
 		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
 		casilla.ocupar(marine);
-		Assert.assertFalse(casilla.agregarRecurso(mineral));
+		casilla.agregarRecurso(mineral);
 
 	}
 
 	@Test
 	public void deberianNoPoderAgregarUnMarineCuandoYaHayUnCentroDeMineralEnLaCasilla()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);

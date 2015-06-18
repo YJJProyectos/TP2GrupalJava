@@ -68,23 +68,27 @@ public class Mapa {
 		return casillero.getOcupanteTerrestre();
 	}
 
-	public void setCoordenadaMineralYVolcanDeGas(){
-		CoordenadaRecurso coordenadaRecurso = new CoordenadaRecurso(minFila,minColumna,maxFila,maxColumna);
-		while (coordenadaRecurso.tieneCoordenadaMineral()){
+	public void setCoordenadaMineralYVolcanDeGas() throws CasillaOcupadaError {
+		CoordenadaRecurso coordenadaRecurso = new CoordenadaRecurso(minFila,
+				minColumna, maxFila, maxColumna);
+		while (coordenadaRecurso.tieneCoordenadaMineral()) {
 			MinaDeMinerales mina = new MinaDeMinerales(1000);
-			Coordenada coordenadaDeMina = coordenadaRecurso.sacarCoordenadaDeMineral();
+			Coordenada coordenadaDeMina = coordenadaRecurso
+					.sacarCoordenadaDeMineral();
 			Casilla casilla = tablero.get(coordenadaDeMina);
 			casilla.agregarRecurso(mina);
 		}
-		while (coordenadaRecurso.tieneCoordenadaGas()){
+		while (coordenadaRecurso.tieneCoordenadaGas()) {
 			VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(1000);
-			Coordenada coordenadaDeGas = coordenadaRecurso.sacarCoordenadaDeGas();
+			Coordenada coordenadaDeGas = coordenadaRecurso
+					.sacarCoordenadaDeGas();
 			Casilla casilla = tablero.get(coordenadaDeGas);
 			casilla.agregarRecurso(volcan);
 		}
 	}
 
-	public Casilla getCasilla(Coordenada coordenada) throws CoordenadaInvalidaError {
+	public Casilla getCasilla(Coordenada coordenada)
+			throws CoordenadaInvalidaError {
 		this.validarCoordenada(coordenada);
 		return tablero.get(coordenada);
 	}

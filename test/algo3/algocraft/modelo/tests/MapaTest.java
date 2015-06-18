@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.mapa.CoordenadaInvalidaError;
 import algo3.algocraft.modelo.mapa.Mapa;
@@ -42,7 +43,8 @@ public class MapaTest {
 	}
 
 	@Test
-	public void deberiaSetearseLosMineralesEnLaPuntaDelMapa() throws CoordenadaInvalidaError{
+	public void deberiaSetearseLosMineralesEnLaPuntaDelMapa()
+			throws CoordenadaInvalidaError, CasillaOcupadaError {
 		Mapa mapa = new Mapa(4);
 		mapa.setCoordenadaMineralYVolcanDeGas();
 		Coordenada coordenadaMineral = new Coordenada(1, 1);
@@ -61,7 +63,8 @@ public class MapaTest {
 	}
 
 	@Test
-	public void deberiaSetearseLosVolcanesAlLadoDeLosMinerales() throws CoordenadaInvalidaError{
+	public void deberiaSetearseLosVolcanesAlLadoDeLosMinerales()
+			throws CoordenadaInvalidaError, CasillaOcupadaError {
 		Mapa mapa = new Mapa(4);
 		mapa.setCoordenadaMineralYVolcanDeGas();
 		Coordenada coordenadaGas = new Coordenada(1, 2);

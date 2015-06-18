@@ -6,6 +6,7 @@ import org.junit.Test;
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
@@ -74,7 +75,8 @@ public class RefineriaTest {
 	@Test
 	public void siUnMarineAtacaUnaRefineriaEnConstruccionLoDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError {
+			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
+			CasillaOcupadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -96,7 +98,8 @@ public class RefineriaTest {
 	@Test
 	public void siUnMarineAtacaUnaRefineriaYaConstruidaNoLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError {
+			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
+			CasillaOcupadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -152,7 +155,7 @@ public class RefineriaTest {
 
 	@Test
 	public void deberiaPoderPosicionarseUnaRefineriaEnUnaCasillaDesocupada()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -178,7 +181,7 @@ public class RefineriaTest {
 
 	@Test
 	public void deberiaPoderPosicionarseUnaRefineriaEnUnaCasillaOcupadaPorUnRecurso()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -191,12 +194,11 @@ public class RefineriaTest {
 
 	@Test
 	public void unRefineriadeberiaGuardarSuPosicion()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
-		casilla.agregarRecurso(volcan);
 		Refineria refineria = new Refineria(volcan, jugador);
 		casilla.agregarRecurso(volcan);
 		refineria.posicionar(casilla);

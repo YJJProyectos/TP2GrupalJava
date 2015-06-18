@@ -72,12 +72,11 @@ public class Casilla {
 		return false;
 	}
 
-	public boolean agregarRecurso(Recurso unRecurso) {
-		if ((this.ocupanteTerrestre == null) && (this.recurso == null)) {
-			this.recurso = unRecurso;
-			return true;
+	public void agregarRecurso(Recurso unRecurso) throws CasillaOcupadaError {
+		if ((this.ocupanteTerrestre != null) || (this.recurso != null)) {
+			throw new CasillaOcupadaError();
 		}
-		return false;
+		this.recurso = unRecurso;
 	}
 
 	public Unidad desocuparTierra() {

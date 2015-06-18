@@ -3,8 +3,13 @@ package algo3.algocraft.modelo.tests;
 import org.junit.Assert;
 import org.junit.Test;
 
+import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
+import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 
 public class VolcanDeGasVespenoTest {
 	@Test
@@ -31,4 +36,38 @@ public class VolcanDeGasVespenoTest {
 		volcan.extraerRecurso(2);
 		Assert.assertEquals(8, volcan.getCantidad());
 	}
+
+	@Test
+	public void sePuedePosicionarUnVolcanEnUnaCasillaVacia()
+			throws CasillaOcupadaError {
+		Coordenada coordeanda = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordeanda);
+		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(10);
+		volcan.posicionar(casilla);
+		Assert.assertEquals(casilla, volcan.posicion());
+	}
+
+	@Test(expected = CasillaOcupadaError.class)
+	public void noSePuedePosicionarUnVolcanEnUnaCasillaConUnRecurso()
+			throws CasillaOcupadaError {
+		Coordenada coordeanda = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordeanda);
+		VolcanDeGasVespeno primerVolcan = new VolcanDeGasVespeno(10);
+		VolcanDeGasVespeno segundoVolcan = new VolcanDeGasVespeno(10);
+		primerVolcan.posicionar(casilla);
+		segundoVolcan.posicionar(casilla);
+	}
+
+	@Test(expected = CasillaOcupadaError.class)
+	public void noSePuedePosicionarUnaMinaDeMineralesEnUnaCasillaConUnMarie()
+			throws CasillaOcupadaError {
+		Jugador jugador = new Jugador();
+		Coordenada coordeanda = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordeanda);
+		Marine marine = new Marine(jugador);
+		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(10);
+		marine.posicionar(casilla);
+		volcan.posicionar(casilla);
+	}
+
 }
