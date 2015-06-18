@@ -1,6 +1,7 @@
 package algo3.algocraft.modelo.unidades.unidadesEdificios;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
 
 public class Fabrica extends UnidadEdificio {
@@ -10,11 +11,13 @@ public class Fabrica extends UnidadEdificio {
 	private int turnosRestantes;
 	private Golliat golliatEnEntrenamiento;
 	private int turnosRestantesParaTerminarGolliat;
+	private int costoMineral;
+	private int costoGas;
 
 	public Fabrica(Jugador unJugador, Barraca unaBarraca)
-			throws PerteneceAOtroJugadorError {
-		super(unJugador,1);
-		if (! this.esAliado(unaBarraca)) {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError {
+		super(unJugador, 1);
+		if (!this.esAliado(unaBarraca)) {
 			throw new PerteneceAOtroJugadorError();
 		}
 		this.barraca = unaBarraca;
@@ -22,6 +25,9 @@ public class Fabrica extends UnidadEdificio {
 		this.turnosRestantes = 12;
 		this.golliatEnEntrenamiento = null;
 		this.turnosRestantesParaTerminarGolliat = 6;
+		this.costoMineral = 200;
+		this.costoGas = 100;
+		this.jugador.pagar(this.costoMineral, this.costoGas);
 	}
 
 	public boolean entrenarGolliat() {
@@ -45,14 +51,15 @@ public class Fabrica extends UnidadEdificio {
 			this.enConstruccion = false;
 		}
 	}
-	
-	public void continuarEntrenamientoDeGolliat(){
+
+	public void continuarEntrenamientoDeGolliat() {
 		if (this.golliatEnEntrenamiento != null)
 			this.turnosRestantesParaTerminarGolliat -= 1;
-			if (this.turnosRestantesParaTerminarGolliat == 0){
-				this.jugador.agregarSoldadoParaPosicionar(this.golliatEnEntrenamiento );
-				this.golliatEnEntrenamiento = null;
-				this.turnosRestantesParaTerminarGolliat = 6;
+		if (this.turnosRestantesParaTerminarGolliat == 0) {
+			this.jugador
+					.agregarSoldadoParaPosicionar(this.golliatEnEntrenamiento);
+			this.golliatEnEntrenamiento = null;
+			this.turnosRestantesParaTerminarGolliat = 6;
 		}
 	}
 

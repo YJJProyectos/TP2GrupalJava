@@ -1,6 +1,7 @@
 package algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.recursos.Recurso;
 
@@ -10,13 +11,19 @@ public class CentroDeMineral extends Recolector {
 	private Recurso mineral;
 	private int turnosRestantes;
 	private boolean enConstruccion;
+	private int costoMineral;
+	private int costoGas;
 
-	public CentroDeMineral(Recurso unMineral, Jugador jugador) {
-		super(jugador,1);
+	public CentroDeMineral(Recurso unMineral, Jugador jugador)
+			throws RecursosInsuficientesError {
+		super(jugador, 1);
 		this.mineral = unMineral;
 		this.cantidadMineralRecolectado = 0;
 		this.turnosRestantes = 4;
 		this.enConstruccion = true;
+		this.costoMineral = 50;
+		this.costoGas = 0;
+		this.jugador.pagar(this.costoMineral, this.costoGas);
 	}
 
 	public boolean recolectar() {
@@ -61,7 +68,7 @@ public class CentroDeMineral extends Recolector {
 	public boolean enConstruccion() {
 		return enConstruccion;
 	}
-	
+
 	@Override
 	public boolean posicionar(Casilla casilla) {
 		if (casilla.ocupar(this)) {

@@ -17,8 +17,19 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorEr
 
 public class CentroDeMineralTest {
 
+	@Test(expected = RecursosInsuficientesError.class)
+	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnCentro()
+			throws RecursosInsuficientesError {
+		Jugador jugador = new Jugador();
+		jugador.pagar(400, 0);
+		MinaDeMinerales mineral = new MinaDeMinerales(100);
+		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
+		centro.pasarTurno();
+	}
+
 	@Test
-	public void elTiempoDeConstruccionDeUnCentroDeMineralEsde4Turnos() {
+	public void elTiempoDeConstruccionDeUnCentroDeMineralEsde4Turnos()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
@@ -27,7 +38,8 @@ public class CentroDeMineralTest {
 	}
 
 	@Test
-	public void elTiempoDeConstruccionDeUnCentroDeMineralLuegoDePasarUnTurnoEsde3Turnos() {
+	public void elTiempoDeConstruccionDeUnCentroDeMineralLuegoDePasarUnTurnoEsde3Turnos()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
@@ -37,7 +49,8 @@ public class CentroDeMineralTest {
 	}
 
 	@Test
-	public void elCentroDeMineralSeEncuentraInicialmenteEnConstruccion() {
+	public void elCentroDeMineralSeEncuentraInicialmenteEnConstruccion()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
@@ -46,7 +59,8 @@ public class CentroDeMineralTest {
 	}
 
 	@Test
-	public void luegoDe4TurnosELCentroDeMineralEstaConstuido() {
+	public void luegoDe4TurnosELCentroDeMineralEstaConstuido()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
@@ -60,7 +74,7 @@ public class CentroDeMineralTest {
 	@Test
 	public void siUnMarineAtacaUnCentroDeMineralEnConstruccionLoDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
+			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -82,7 +96,7 @@ public class CentroDeMineralTest {
 	@Test
 	public void siUnMarineAtacaUnCentroDeMineralYaConstruidoNoLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
+			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -108,7 +122,7 @@ public class CentroDeMineralTest {
 
 	@Test
 	public void elCentroDeMineralConstruidoDeberiaRecibirDanio1()
-			throws YaEstaDestruidoError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
@@ -124,7 +138,7 @@ public class CentroDeMineralTest {
 
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaAlCentroDeMineralConstruidoEs499()
-			throws YaEstaDestruidoError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
@@ -137,7 +151,8 @@ public class CentroDeMineralTest {
 	}
 
 	@Test
-	public void deberiaPoderPosicionarseUnCentroDeMineralEnUnaCasillaDesocupada() {
+	public void deberiaPoderPosicionarseUnCentroDeMineralEnUnaCasillaDesocupada()
+			throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -163,7 +178,8 @@ public class CentroDeMineralTest {
 	}
 
 	@Test
-	public void deberiaPoderPosicionarseUnaBarracaEnUnaCasillaOcupadaPorUnRecurso() {
+	public void deberiaPoderPosicionarseUnaBarracaEnUnaCasillaOcupadaPorUnRecurso()
+			throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -175,7 +191,8 @@ public class CentroDeMineralTest {
 	}
 
 	@Test
-	public void unCentroDeMineraldeberiaGuardarSuPosicion() {
+	public void unCentroDeMineraldeberiaGuardarSuPosicion()
+			throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -188,7 +205,8 @@ public class CentroDeMineralTest {
 	}
 
 	@Test
-	public void unCentroDeMineralEsInicialmenteTerrestre() {
+	public void unCentroDeMineralEsInicialmenteTerrestre()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
@@ -198,7 +216,7 @@ public class CentroDeMineralTest {
 
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
-			throws YaEstaDestruidoError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
@@ -209,7 +227,8 @@ public class CentroDeMineralTest {
 	}
 
 	@Test
-	public void deberiaRecolectarMineralElCentroDeMineral() {
+	public void deberiaRecolectarMineralElCentroDeMineral()
+			throws RecursosInsuficientesError {
 		MinaDeMinerales mineral = new MinaDeMinerales(30);
 		Jugador jugador = new Jugador();
 		CentroDeMineral centroDeMineral = new CentroDeMineral(mineral, jugador);
@@ -217,7 +236,8 @@ public class CentroDeMineralTest {
 	}
 
 	@Test
-	public void deberiaNoPoderRecolectarElCentroDeMineralSiSeAcabaElMineral() {
+	public void deberiaNoPoderRecolectarElCentroDeMineralSiSeAcabaElMineral()
+			throws RecursosInsuficientesError {
 		MinaDeMinerales mineral = new MinaDeMinerales(1000);
 		Jugador jugador = new Jugador();
 		CentroDeMineral centroDeMineral = new CentroDeMineral(mineral, jugador);
@@ -228,7 +248,8 @@ public class CentroDeMineralTest {
 	}
 
 	@Test
-	public void deberiaRecolectar50MineralEn5TurnosElCentroDeMineral() {
+	public void deberiaRecolectar50MineralEn5TurnosElCentroDeMineral()
+			throws RecursosInsuficientesError {
 		MinaDeMinerales mineral = new MinaDeMinerales(1000);
 		Jugador jugador = new Jugador();
 		CentroDeMineral centroDeMineral = new CentroDeMineral(mineral, jugador);
@@ -239,7 +260,8 @@ public class CentroDeMineralTest {
 	}
 
 	@Test
-	public void deberiaRecolectarSiElMineralTiene7() {
+	public void deberiaRecolectarSiElMineralTiene7()
+			throws RecursosInsuficientesError {
 		MinaDeMinerales mineral = new MinaDeMinerales(7);
 		Jugador jugador = new Jugador();
 		CentroDeMineral centroDeMineral = new CentroDeMineral(mineral, jugador);
@@ -248,7 +270,8 @@ public class CentroDeMineralTest {
 	}
 
 	@Test
-	public void deberiaDecrementarEn10ElMineralAlSerRecolectado() {
+	public void deberiaDecrementarEn10ElMineralAlSerRecolectado()
+			throws RecursosInsuficientesError {
 		MinaDeMinerales mineral = new MinaDeMinerales(30);
 		Jugador jugador = new Jugador();
 		CentroDeMineral centroDeMineral = new CentroDeMineral(mineral, jugador);

@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
@@ -15,8 +16,18 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorEr
 
 public class DepositoDeSuministrosTest {
 
+	@Test(expected = RecursosInsuficientesError.class)
+	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnDeposito()
+			throws RecursosInsuficientesError {
+		Jugador jugador = new Jugador();
+		jugador.pagar(400, 0);
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
+		deposito.pasarTurno();
+	}
+
 	@Test
-	public void elTiempoDeConstruccionDeUnDepositoEsde6Turnos() {
+	public void elTiempoDeConstruccionDeUnDepositoEsde6Turnos()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 
@@ -24,7 +35,8 @@ public class DepositoDeSuministrosTest {
 	}
 
 	@Test
-	public void elTiempoDeConstruccionDeUnDepositoLuegoDePasarUnTUrnoEsde5Turnos() {
+	public void elTiempoDeConstruccionDeUnDepositoLuegoDePasarUnTUrnoEsde5Turnos()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 		deposito.pasarTurno();
@@ -33,7 +45,8 @@ public class DepositoDeSuministrosTest {
 	}
 
 	@Test
-	public void elDepositoDeSuministrosSeEncuentraInicialmenteEnConstruccion() {
+	public void elDepositoDeSuministrosSeEncuentraInicialmenteEnConstruccion()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 
@@ -41,7 +54,8 @@ public class DepositoDeSuministrosTest {
 	}
 
 	@Test
-	public void luegoDe6TurnosElDepositoDeSuministrosEstaConstuido() {
+	public void luegoDe6TurnosElDepositoDeSuministrosEstaConstuido()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 		for (int i = 0; i < 6; i++) {
@@ -54,7 +68,7 @@ public class DepositoDeSuministrosTest {
 	@Test
 	public void siUnMarineAtacaUnDepositoEnConstruccionLoDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
+			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -75,7 +89,7 @@ public class DepositoDeSuministrosTest {
 	@Test
 	public void siUnMarineAtacaUnDepositoYaConstruidoNoLoDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
+			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -100,7 +114,7 @@ public class DepositoDeSuministrosTest {
 
 	@Test
 	public void elDepositoDeSuministrosConstruidoDeberiaRecibirDanio1()
-			throws YaEstaDestruidoError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 		for (int i = 0; i < 6; i++) {
@@ -115,7 +129,7 @@ public class DepositoDeSuministrosTest {
 
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaDepositoDeSuministrosConstruidoEs499()
-			throws YaEstaDestruidoError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 		for (int i = 0; i < 13; i++) {
@@ -127,7 +141,8 @@ public class DepositoDeSuministrosTest {
 	}
 
 	@Test
-	public void deberiaPoderPosicionarseUnDepositoEnUnaCasillaDesocupada() {
+	public void deberiaPoderPosicionarseUnDepositoEnUnaCasillaDesocupada()
+			throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -137,7 +152,8 @@ public class DepositoDeSuministrosTest {
 	}
 
 	@Test
-	public void deberiaNoPoderPosicionarseUnDepositoEnUnaCasillaOcupadaPorUnaunidad() {
+	public void deberiaNoPoderPosicionarseUnDepositoEnUnaCasillaOcupadaPorUnaunidad()
+			throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -151,7 +167,8 @@ public class DepositoDeSuministrosTest {
 	}
 
 	@Test
-	public void deberiaNoPoderPosicionarseUnDepositoEnUnaCasillaOcupadaPorUnRecurso() {
+	public void deberiaNoPoderPosicionarseUnDepositoEnUnaCasillaOcupadaPorUnRecurso()
+			throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -163,7 +180,7 @@ public class DepositoDeSuministrosTest {
 	}
 
 	@Test
-	public void deberiaGuardarSuPosicion() {
+	public void deberiaGuardarSuPosicion() throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -175,7 +192,8 @@ public class DepositoDeSuministrosTest {
 	}
 
 	@Test
-	public void unaDepositoDeSuministrosEsInicialmenteTerrestre() {
+	public void unaDepositoDeSuministrosEsInicialmenteTerrestre()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 
@@ -184,7 +202,7 @@ public class DepositoDeSuministrosTest {
 
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
-			throws YaEstaDestruidoError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 		deposito.recibirDanio(2000);

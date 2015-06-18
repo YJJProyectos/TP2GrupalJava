@@ -18,6 +18,26 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorEr
 
 public class FabricaTest {
 
+	@Test(expected = RecursosInsuficientesError.class)
+	public void deberiaLanzarUnErrorSiElJugadornoTieneLosMineralesParaCrearUnaFabrica()
+			throws RecursosInsuficientesError, PerteneceAOtroJugadorError {
+		Jugador jugador = new Jugador();
+		Barraca barraca = new Barraca(jugador);
+		jugador.pagar(250, 0);
+		Fabrica fabrica = new Fabrica(jugador, barraca);
+		fabrica.pasarTurno();
+	}
+
+	@Test(expected = RecursosInsuficientesError.class)
+	public void deberiaLanzarUnErrorSiElJugadornoTieneElGasesParaCrearUnaFabrica()
+			throws RecursosInsuficientesError, PerteneceAOtroJugadorError {
+		Jugador jugador = new Jugador();
+		Barraca barraca = new Barraca(jugador);
+		jugador.pagar(0, 100);
+		Fabrica fabrica = new Fabrica(jugador, barraca);
+		fabrica.pasarTurno();
+	}
+
 	@Test
 	public void elTiempoDeConstruccionDeUnaFabricaEsde12Turnos()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError {

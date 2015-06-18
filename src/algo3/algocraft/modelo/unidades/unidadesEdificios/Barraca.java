@@ -15,12 +15,12 @@ public class Barraca extends UnidadEdificio {
 
 	public Barraca(Jugador unJugador) throws RecursosInsuficientesError {
 		super(unJugador, 1);
-		this.jugador.pagar(this.costoMineral, this.costoGas);
 		this.enConstruccion = true;
 		this.turnosRestantes = 12;
 		this.turnosRestantesParaTerminarMarine = 3;
 		this.costoMineral = 150;
 		this.costoGas = 0;
+		this.jugador.pagar(this.costoMineral, this.costoGas);
 	}
 
 	public boolean entrenarMarine() {

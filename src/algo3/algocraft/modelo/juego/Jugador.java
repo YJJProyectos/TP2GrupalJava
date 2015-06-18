@@ -24,16 +24,18 @@ public class Jugador {
 		unidades = new ArrayList<Unidad>();
 		cantidadMineral = 400;
 		cantidadGas = 100;
-		poblacion = 10;
+		poblacion = 0;
 		this.soldadosParaPosicionar = new ArrayList<UnidadSoldado>();
 		// agrego que jugador empieza con un deposito
 		// despues ver si en donde posicionarla en el mapa
 		// y tambien deberia empezar con un marine (despues se agregaria)
-		DepositoDeSuministros deposito = new DepositoDeSuministros(this);
-		for (int i = 0; i < 6; i++) {
-			deposito.continuarConstruccion();
-		}
-		unidades.add(deposito);
+
+		// Hay que pasar esto a la inicializacion del jugador en el juego
+		// DepositoDeSuministros deposito = new DepositoDeSuministros(this);
+		// for (int i = 0; i < 6; i++) {
+		// deposito.continuarConstruccion();
+		// }
+		// unidades.add(deposito);
 	}
 
 	public int cantidadMineral() {
@@ -68,7 +70,8 @@ public class Jugador {
 
 	}
 
-	public Barraca crearBarraca(Casilla casilla) throws RecursosInsuficientesError {
+	public Barraca crearBarraca(Casilla casilla)
+			throws RecursosInsuficientesError {
 		Barraca barraca = new Barraca(this);
 		barraca.posicionar(casilla);
 		this.unidades.add(barraca);
@@ -76,7 +79,8 @@ public class Jugador {
 	}
 
 	public Fabrica crearFabrica(Casilla casilla, Barraca barraca)
-			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError {
+			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
+			RecursosInsuficientesError {
 		if (barraca.enConstruccion()) {
 			throw new BarracaNoConstruidaError();
 		}
@@ -86,7 +90,8 @@ public class Jugador {
 		return fabrica;
 	}
 
-	public DepositoDeSuministros crearDepositoDeSuministros(Casilla casilla) {
+	public DepositoDeSuministros crearDepositoDeSuministros(Casilla casilla)
+			throws RecursosInsuficientesError {
 		DepositoDeSuministros deposito = new DepositoDeSuministros(this);
 		deposito.posicionar(casilla);
 		this.unidades.add(deposito);
@@ -94,7 +99,7 @@ public class Jugador {
 	}
 
 	public CentroDeMineral crearCentroDeMineral(Casilla casilla)
-			throws PosicionNoOcupadaPorRecursoError {
+			throws PosicionNoOcupadaPorRecursoError, RecursosInsuficientesError {
 
 		if (!casilla.estaOcupadoElRecurso()) {
 			throw new PosicionNoOcupadaPorRecursoError();
@@ -107,7 +112,7 @@ public class Jugador {
 	}
 
 	public Refineria crearRefineria(Casilla casilla)
-			throws PosicionNoOcupadaPorRecursoError {
+			throws PosicionNoOcupadaPorRecursoError, RecursosInsuficientesError {
 
 		if (!casilla.estaOcupadoElRecurso()) {
 			throw new PosicionNoOcupadaPorRecursoError();

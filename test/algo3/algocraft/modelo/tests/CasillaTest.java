@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
@@ -192,7 +193,7 @@ public class CasillaTest {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Unidad marine = new Marine(null);
-	
+
 		casilla.ocuparTerrestre(marine);
 
 		Assert.assertEquals(marine, casilla.desocuparTierra());
@@ -203,7 +204,7 @@ public class CasillaTest {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Unidad marine = new Marine(null);
-		
+
 		casilla.ocupar(marine);
 
 		Assert.assertEquals(marine, casilla.desocuparTierra());
@@ -228,7 +229,7 @@ public class CasillaTest {
 		Unidad marine = new Marine(jugador);
 		casilla.ocupar(marine);
 
-		Assert.assertEquals(null,casilla.desocuparAire());
+		Assert.assertEquals(null, casilla.desocuparAire());
 	}
 
 	@Test
@@ -252,7 +253,8 @@ public class CasillaTest {
 	}
 
 	@Test
-	public void deberiaNoPoderAgregarUnCentroMineralPorqueNoHayMineral() {
+	public void deberiaNoPoderAgregarUnCentroMineralPorqueNoHayMineral()
+			throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
@@ -262,7 +264,8 @@ public class CasillaTest {
 	}
 
 	@Test
-	public void debieriaPoderAgregarUnCentroMineralPorqueHayMineral() {
+	public void debieriaPoderAgregarUnCentroMineralPorqueHayMineral()
+			throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
@@ -297,7 +300,8 @@ public class CasillaTest {
 	}
 
 	@Test
-	public void deberianNoPoderAgregarUnMarineCuandoYaHayUnCentroDeMineralEnLaCasilla() {
+	public void deberianNoPoderAgregarUnMarineCuandoYaHayUnCentroDeMineralEnLaCasilla()
+			throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);

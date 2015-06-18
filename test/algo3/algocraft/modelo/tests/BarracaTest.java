@@ -16,11 +16,12 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVec
 import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorError;
 
 public class BarracaTest {
-	
-	@Test
-	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnaBarraca() throws RecursosInsuficientesError{
+
+	@Test(expected = RecursosInsuficientesError.class)
+	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnaBarraca()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
-		jugador.pagar(400, 100);
+		jugador.pagar(400, 0);
 		Barraca barraca = new Barraca(jugador);
 		barraca.pasarTurno();
 	}

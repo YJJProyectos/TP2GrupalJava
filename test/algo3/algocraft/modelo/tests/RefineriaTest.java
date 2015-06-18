@@ -17,8 +17,19 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorEr
 
 public class RefineriaTest {
 
+	@Test(expected = RecursosInsuficientesError.class)
+	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnaRefineria()
+			throws RecursosInsuficientesError {
+		Jugador jugador = new Jugador();
+		jugador.pagar(400, 0);
+		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
+		Refineria refineria = new Refineria(volcan, jugador);
+		refineria.pasarTurno();
+	}
+
 	@Test
-	public void elTiempoDeConstruccionDeUnaRefineriaEsde6Turnos() {
+	public void elTiempoDeConstruccionDeUnaRefineriaEsde6Turnos()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
@@ -27,7 +38,8 @@ public class RefineriaTest {
 	}
 
 	@Test
-	public void elTiempoDeConstruccionDeUnaRefineriaLuegoDePasarUnTurnoEsde5Turnos() {
+	public void elTiempoDeConstruccionDeUnaRefineriaLuegoDePasarUnTurnoEsde5Turnos()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
@@ -37,7 +49,8 @@ public class RefineriaTest {
 	}
 
 	@Test
-	public void LaRefineriaSeEncuentraInicialmenteEnConstruccion() {
+	public void LaRefineriaSeEncuentraInicialmenteEnConstruccion()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
@@ -46,7 +59,8 @@ public class RefineriaTest {
 	}
 
 	@Test
-	public void luegoDe4TurnosLaRefineriaEstaConstuido() {
+	public void luegoDe4TurnosLaRefineriaEstaConstuido()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
@@ -60,7 +74,7 @@ public class RefineriaTest {
 	@Test
 	public void siUnMarineAtacaUnaRefineriaEnConstruccionLoDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
+			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -82,7 +96,7 @@ public class RefineriaTest {
 	@Test
 	public void siUnMarineAtacaUnaRefineriaYaConstruidaNoLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
+			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -108,7 +122,7 @@ public class RefineriaTest {
 
 	@Test
 	public void LaRefineriaConstruidaDeberiaRecibirDanio1()
-			throws YaEstaDestruidoError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
@@ -124,7 +138,7 @@ public class RefineriaTest {
 
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaRefineriaConstruidaEs749()
-			throws YaEstaDestruidoError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
@@ -137,7 +151,8 @@ public class RefineriaTest {
 	}
 
 	@Test
-	public void deberiaPoderPosicionarseUnaRefineriaEnUnaCasillaDesocupada() {
+	public void deberiaPoderPosicionarseUnaRefineriaEnUnaCasillaDesocupada()
+			throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -148,7 +163,8 @@ public class RefineriaTest {
 	}
 
 	@Test
-	public void deberiaNoPoderPosicionarseUnaRefineriaEnUnaCasillaOcupadaPorUnaunidad() throws RecursosInsuficientesError {
+	public void deberiaNoPoderPosicionarseUnaRefineriaEnUnaCasillaOcupadaPorUnaunidad()
+			throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -161,7 +177,8 @@ public class RefineriaTest {
 	}
 
 	@Test
-	public void deberiaPoderPosicionarseUnaRefineriaEnUnaCasillaOcupadaPorUnRecurso() {
+	public void deberiaPoderPosicionarseUnaRefineriaEnUnaCasillaOcupadaPorUnRecurso()
+			throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -173,7 +190,8 @@ public class RefineriaTest {
 	}
 
 	@Test
-	public void unRefineriadeberiaGuardarSuPosicion() {
+	public void unRefineriadeberiaGuardarSuPosicion()
+			throws RecursosInsuficientesError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -187,7 +205,8 @@ public class RefineriaTest {
 	}
 
 	@Test
-	public void unRefineriaEsInicialmenteTerrestre() {
+	public void unRefineriaEsInicialmenteTerrestre()
+			throws RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
@@ -197,7 +216,7 @@ public class RefineriaTest {
 
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruida()
-			throws YaEstaDestruidoError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
@@ -208,7 +227,8 @@ public class RefineriaTest {
 	}
 
 	@Test
-	public void deberiaRecolectarMineralLaRefineria() {
+	public void deberiaRecolectarMineralLaRefineria()
+			throws RecursosInsuficientesError {
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(30);
 		Jugador jugador = new Jugador();
 		Refineria centroDeMineral = new Refineria(volcan, jugador);
@@ -216,7 +236,8 @@ public class RefineriaTest {
 	}
 
 	@Test
-	public void deberiaNoPoderRecolectarLaRefineriaSiSeAcabaElMineral() {
+	public void deberiaNoPoderRecolectarLaRefineriaSiSeAcabaElMineral()
+			throws RecursosInsuficientesError {
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(1000);
 		Jugador jugador = new Jugador();
 		Refineria centroDeMineral = new Refineria(volcan, jugador);
@@ -227,7 +248,8 @@ public class RefineriaTest {
 	}
 
 	@Test
-	public void deberiaRecolectar50MineralEn5TurnosLaRefineria() {
+	public void deberiaRecolectar50MineralEn5TurnosLaRefineria()
+			throws RecursosInsuficientesError {
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(1000);
 		Jugador jugador = new Jugador();
 		Refineria centroDeMineral = new Refineria(volcan, jugador);
@@ -238,7 +260,8 @@ public class RefineriaTest {
 	}
 
 	@Test
-	public void deberiaRecolectarSiElMineralTiene7() {
+	public void deberiaRecolectarSiElMineralTiene7()
+			throws RecursosInsuficientesError {
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(7);
 		Jugador jugador = new Jugador();
 		Refineria centroDeMineral = new Refineria(volcan, jugador);
@@ -247,7 +270,8 @@ public class RefineriaTest {
 	}
 
 	@Test
-	public void deberiaDecrementarEn10ElMineralAlSerRecolectado() {
+	public void deberiaDecrementarEn10ElMineralAlSerRecolectado()
+			throws RecursosInsuficientesError {
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(30);
 		Jugador jugador = new Jugador();
 		Refineria centroDeMineral = new Refineria(volcan, jugador);
