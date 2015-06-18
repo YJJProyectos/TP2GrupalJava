@@ -4,7 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.Coordenada;
+import algo3.algocraft.modelo.mapa.CoordenadaInvalidaError;
 import algo3.algocraft.modelo.mapa.Mapa;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
@@ -37,5 +39,43 @@ public class MapaTest {
 		Assert.assertEquals(marine,
 				mapa.obtenerElementoTerrestreEnPosicion(coordenadaMarine));
 
+	}
+	
+	@Test
+	public void deberiaSetearseLosMineralesEnLaPuntaDelMapa() throws CoordenadaInvalidaError{
+		Mapa mapa = new Mapa(4);
+		mapa.setCoordenadaMineralYVolcanDeGas();
+		Coordenada coordenadaMineral = new Coordenada(1, 1);
+		Casilla casillaMineral = mapa.getCasilla(coordenadaMineral);
+		Assert.assertTrue(casillaMineral.estaOcupadoElRecurso());
+		coordenadaMineral = new Coordenada(1, 20);
+		casillaMineral = mapa.getCasilla(coordenadaMineral);
+		Assert.assertTrue(casillaMineral.estaOcupadoElRecurso());
+		coordenadaMineral = new Coordenada(20, 1);
+		casillaMineral = mapa.getCasilla(coordenadaMineral);
+		Assert.assertTrue(casillaMineral.estaOcupadoElRecurso());
+		coordenadaMineral = new Coordenada(20, 20);
+		casillaMineral = mapa.getCasilla(coordenadaMineral);
+		Assert.assertTrue(casillaMineral.estaOcupadoElRecurso());
+		
+	}
+	
+	@Test
+	public void deberiaSetearseLosVolcanesAlLadoDeLosMinerales() throws CoordenadaInvalidaError{
+		Mapa mapa = new Mapa(4);
+		mapa.setCoordenadaMineralYVolcanDeGas();
+		Coordenada coordenadaGas = new Coordenada(1, 2);
+		Casilla casillaGas = mapa.getCasilla(coordenadaGas);
+		Assert.assertTrue(casillaGas.estaOcupadoElRecurso());
+		coordenadaGas = new Coordenada(1, 19);
+		casillaGas = mapa.getCasilla(coordenadaGas);
+		Assert.assertTrue(casillaGas.estaOcupadoElRecurso());
+		coordenadaGas = new Coordenada(20, 2);
+		casillaGas = mapa.getCasilla(coordenadaGas);
+		Assert.assertTrue(casillaGas.estaOcupadoElRecurso());
+		coordenadaGas = new Coordenada(20, 19);
+		casillaGas = mapa.getCasilla(coordenadaGas);
+		Assert.assertTrue(casillaGas.estaOcupadoElRecurso());
+		
 	}
 }

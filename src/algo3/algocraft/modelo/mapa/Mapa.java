@@ -2,6 +2,8 @@ package algo3.algocraft.modelo.mapa;
 
 import java.util.HashMap;
 
+import algo3.algocraft.modelo.recursos.MinaDeMinerales;
+import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
 import algo3.algocraft.modelo.unidades.Unidad;
 
 public class Mapa {
@@ -26,7 +28,7 @@ public class Mapa {
 			}
 
 		}
-
+		
 	}
 
 	public int tamanio() {
@@ -64,5 +66,26 @@ public class Mapa {
 
 		Casilla casillero = tablero.get(coordenada);
 		return casillero.getOcupanteTerrestre();
+	}
+	
+	public void setCoordenadaMineralYVolcanDeGas(){
+		CoordenadaRecurso coordenadaRecurso = new CoordenadaRecurso(minFila,minColumna,maxFila,maxColumna);
+		for (int i = 1; i <= coordenadaRecurso.cantidadDeCoordenadasMinerales(); i++){
+			MinaDeMinerales mina = new MinaDeMinerales(1000);
+			Coordenada coordenadaDeMina = coordenadaRecurso.sacarCoordenadaDeMineral();
+			Casilla casilla = tablero.get(coordenadaDeMina);
+			casilla.agregarRecurso(mina);
+		}
+		for (int i = 1; i <= coordenadaRecurso.cantidadDeCoordenadasDeGas(); i++){
+			VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(1000);
+			Coordenada coordenadaDeGas = coordenadaRecurso.sacarCoordenadaDeGas();
+			Casilla casilla = tablero.get(coordenadaDeGas);
+			casilla.agregarRecurso(volcan);
+		}
+	}
+
+	public Casilla getCasilla(Coordenada coordenada) throws CoordenadaInvalidaError {
+		this.validarCoordenada(coordenada);
+		return tablero.get(coordenada);
 	}
 }
