@@ -4,11 +4,15 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
+import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 
 public class VolcanDeGasVespenoTest {
@@ -68,6 +72,32 @@ public class VolcanDeGasVespenoTest {
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(10);
 		marine.posicionar(casilla);
 		volcan.posicionar(casilla);
+	}
+
+	@Test(expected = RecolectorInvalidoError.class)
+	public void unVolcanNoPuedeAgregarUnCentroDeMineralEnSuPosicion()
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			RecolectorInvalidoError {
+		Jugador jugador = new Jugador();
+		Coordenada coordeanda = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordeanda);
+		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(10);
+		volcan.posicionar(casilla);
+		CentroDeMineral centro = new CentroDeMineral(volcan, jugador);
+		centro.pasarTurno();
+	}
+
+	@Test
+	public void unVolcanPuedeAgregarUnaRefineriaEnSuPosicion()
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			RecolectorInvalidoError {
+		Jugador jugador = new Jugador();
+		Coordenada coordeanda = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordeanda);
+		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(10);
+		volcan.posicionar(casilla);
+		Refineria refineria = new Refineria(volcan, jugador);
+		Assert.assertEquals(casilla, refineria.posicion());
 	}
 
 }

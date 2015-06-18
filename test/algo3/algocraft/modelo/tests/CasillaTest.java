@@ -9,6 +9,7 @@ import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
+import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
@@ -258,26 +259,16 @@ public class CasillaTest {
 	}
 
 	@Test
-	public void deberiaNoPoderAgregarUnCentroMineralPorqueNoHayMineral()
-			throws RecursosInsuficientesError {
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		Recurso mineral = new MinaDeMinerales(100);
-		Jugador jugador = new Jugador();
-		Recolector centroMineral = new CentroDeMineral(mineral, jugador);
-		Assert.assertFalse(casilla.ocupar(centroMineral));
-	}
-
-	@Test
 	public void debieriaPoderAgregarUnCentroMineralPorqueHayMineral()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			RecolectorInvalidoError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
-		casilla.agregarRecurso(mineral);
+		mineral.posicionar(casilla);
 		Jugador jugador = new Jugador();
 		Recolector centroMineral = new CentroDeMineral(mineral, jugador);
-		Assert.assertTrue(casilla.ocupar(centroMineral));
+		Assert.assertEquals(casilla, centroMineral.posicion());
 	}
 
 	@Test
@@ -308,19 +299,19 @@ public class CasillaTest {
 
 	@Test
 	public void deberianNoPoderAgregarUnMarineCuandoYaHayUnCentroDeMineralEnLaCasilla()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			RecolectorInvalidoError {
+		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
-		Jugador jugador = new Jugador();
+		mineral.posicionar(casilla);
 		Recolector centroMineral = new CentroDeMineral(mineral, jugador);
+		centroMineral.pasarTurno();
 		Unidad marine = new Marine(jugador);
-		casilla.agregarRecurso(mineral);
-		casilla.ocupar(centroMineral);
 		Assert.assertFalse(casilla.ocupar(marine));
 
 	}
-
 	// Cuando tengamos implementado algun
 	// accionable aereo, vamos a tener que agregar mas
 	// tests de este estilo.
