@@ -5,11 +5,11 @@ import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 
 public class EstadoNoAtaco extends EstadoDeAtaque {
 	
-	public void atacarEnemigo(UnidadSoldado atacante, Unidad enemigo, int danioAereo, int danioTerrestre) throws YaEstaDestruidoError {
+	public void atacarEnemigo(UnidadSoldado atacante, Unidad enemigo) throws YaEstaDestruidoError {
 		
-		if (atacante.alcanzaPosicion(enemigo.posicion())){
+		if (enemigo.entraEnElRango(atacante.posicion(),atacante.getRangoAereo(), atacante.getRangoTerrestre())){
 			
-			enemigo.recibirDanio(danioAereo, danioTerrestre);
+			enemigo.recibirDanio(atacante.getDanioAereo(), atacante.getDanioTerrestre());
 			atacante.nuevoEstadoDeAtaque(new EstadoYaAtaco());
 		
 		}

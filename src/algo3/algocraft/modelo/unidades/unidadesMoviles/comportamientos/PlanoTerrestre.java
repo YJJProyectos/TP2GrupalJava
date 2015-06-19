@@ -21,4 +21,8 @@ public class PlanoTerrestre extends PlanoAccion{
 		return danioTerrestre;
 	}
 
+	public int entraEnElRango(int rangoAereo, int rangoTerrestre) {
+		return rangoTerrestre;
+	}
+
 }

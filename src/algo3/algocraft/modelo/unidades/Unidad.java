@@ -53,4 +53,8 @@ public abstract class Unidad {
 	public boolean esAliado(Unidad otro) {
 		return (this.jugador == otro.getJugador());
 	}
+	
+	public boolean entraEnElRango(Casilla posicion, int rangoAereo, int rangoTerrestre) {
+		return (this.posicion.distanciaA(posicion) <= plano.entraEnElRango(rangoAereo, rangoTerrestre));
+	}
 }

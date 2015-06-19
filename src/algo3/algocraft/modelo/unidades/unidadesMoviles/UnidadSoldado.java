@@ -32,9 +32,9 @@ public class UnidadSoldado extends UnidadMovil {
 		if (this.getJugador() == enemigo.getJugador()) {
 			throw new PerteneceAlMismoJugadorError();
 		}
-		estadoDeAtaque.atacarEnemigo(this, enemigo, danioAereo, danioTerrestre);
+		estadoDeAtaque.atacarEnemigo(this, enemigo);
 	}
-
+	
 	public boolean mover(Casilla casilla) {
 		if (plano.mover(this, casilla)) {
 			this.posicion = casilla;
@@ -51,8 +51,20 @@ public class UnidadSoldado extends UnidadMovil {
 		this.estadoDeAtaque = estado;
 	}
 	
-	public boolean alcanzaPosicion(Casilla posicion) {
-		return (this.posicion.distanciaA(posicion) <= rangoTerrestre);
+	public int getRangoAereo() {
+		return rangoAereo;
 	}
-
+	
+	public int getRangoTerrestre() {
+		return rangoTerrestre;
+	}
+	
+	public int getDanioAereo() {
+		return danioAereo;
+	}
+	
+	public int getDanioTerrestre() {
+		return danioTerrestre;
+	}
+	
 }

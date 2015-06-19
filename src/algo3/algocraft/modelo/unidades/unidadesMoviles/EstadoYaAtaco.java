@@ -4,7 +4,7 @@ import algo3.algocraft.modelo.unidades.Unidad;
 
 public class EstadoYaAtaco extends EstadoDeAtaque {
 
-	public void atacarEnemigo(UnidadSoldado atacante, Unidad enemigo, int danioAereo, int danioTerrestre) throws NoPuedeAtacarMultiplesVecesError {
+	public void atacarEnemigo(UnidadSoldado atacante, Unidad enemigo) throws NoPuedeAtacarMultiplesVecesError {
 		throw new NoPuedeAtacarMultiplesVecesError();
 	}
 
