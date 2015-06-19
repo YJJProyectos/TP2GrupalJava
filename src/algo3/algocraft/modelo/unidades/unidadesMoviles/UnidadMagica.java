@@ -1,18 +1,15 @@
-package algo3.algocraft.modelo.unidades.unidadesMoviles;
+/*package algo3.algocraft.modelo.unidades.unidadesMoviles;
 
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.unidades.Unidad;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.ComportamientoMagico;
 
 public class UnidadMagica extends UnidadMovil{
 	
-	protected ComportamientoMagico comportamiento;
 	protected int energia;
 	
-	protected UnidadMagica(Jugador jugador, ComportamientoMagico comportamiento) {
-		super(jugador, comportamiento.getVida());
-		this.comportamiento = comportamiento;
+	protected UnidadMagica(Jugador jugador, PlanoAccion plano, int vida, int energia) {
+		super(jugador, vida, plano);
 	}
 
 	public boolean esTerrestre() {
@@ -42,4 +39,4 @@ public class UnidadMagica extends UnidadMovil{
 	}
 	
 
-}
+}*/

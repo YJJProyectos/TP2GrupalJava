@@ -6,7 +6,7 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoAere
 public class TransporteTerran extends UnidadTransporte{
 	
 	public TransporteTerran(Jugador jugador) {
-		super(jugador, PlanoAereo.getInstancia(), 8);
+		super(jugador, PlanoAereo.getInstancia(), 8, 150);
 	}
 
 }

@@ -7,8 +7,8 @@ public abstract class UnidadTransporte extends UnidadMovil{
 
 	protected UnidadSoldado[] soldadosCargados; 
 	
-	public UnidadTransporte(Jugador jugador, PlanoAccion plano, int capacidad) {
-		super(jugador, 150, plano);
+	public UnidadTransporte(Jugador jugador, PlanoAccion plano, int capacidad, int vida) {
+		super(jugador, vida, plano);
 		soldadosCargados = new UnidadSoldado[capacidad];
 	}
 
