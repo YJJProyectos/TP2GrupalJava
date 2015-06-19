@@ -121,7 +121,7 @@ public class BarracaTest {
 			barraca.pasarTurno();
 		}
 		int vidaInicial = barraca.vidaRestante();
-		barraca.recibirDanio(1,1);
+		barraca.recibirDanio(1);
 		int vidaFinal = barraca.vidaRestante();
 
 		Assert.assertEquals(1, vidaInicial - vidaFinal);
@@ -135,7 +135,7 @@ public class BarracaTest {
 		for (int i = 0; i < 13; i++) {
 			barraca.pasarTurno();
 		}
-		barraca.recibirDanio(1,1);
+		barraca.recibirDanio(1);
 
 		Assert.assertEquals(999, barraca.vidaRestante());
 	}
@@ -203,9 +203,9 @@ public class BarracaTest {
 			throws YaEstaDestruidoError, RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
-		barraca.recibirDanio(2000,2000);
+		barraca.recibirDanio(2000);
 		Assert.assertTrue(barraca.estaDestruido());
-		barraca.recibirDanio(2,2);
+		barraca.recibirDanio(2);
 
 	}
 

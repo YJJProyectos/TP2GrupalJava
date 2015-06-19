@@ -20,7 +20,7 @@ public class MarineTest {
 	public void deberiaEstarDetruidoElMarine() throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
-		marine.recibirDanio(1000,1000);
+		marine.recibirDanio(1000);
 
 		Assert.assertTrue(marine.estaDestruido());
 	}
@@ -29,7 +29,7 @@ public class MarineTest {
 	public void deberiaNoEstarDetruidoElMarine() throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
-		marine.recibirDanio(5,5);
+		marine.recibirDanio(5);
 
 		Assert.assertFalse(marine.estaDestruido());
 	}
@@ -39,7 +39,7 @@ public class MarineTest {
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
 		int vidaInicial = marine.vidaRestante();
-		marine.recibirDanio(1,1);
+		marine.recibirDanio(1);
 		int vidaFinal = marine.vidaRestante();
 
 		Assert.assertEquals(1, vidaInicial - vidaFinal);
@@ -50,7 +50,7 @@ public class MarineTest {
 			throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
-		marine.recibirDanio(1,1);
+		marine.recibirDanio(1);
 
 		Assert.assertEquals(39, marine.vidaRestante());
 	}
@@ -94,9 +94,9 @@ public class MarineTest {
 			throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
-		marine.recibirDanio(100,100);
+		marine.recibirDanio(100);
 		Assert.assertTrue(marine.estaDestruido());
-		marine.recibirDanio(2,2);
+		marine.recibirDanio(2);
 
 	}
 

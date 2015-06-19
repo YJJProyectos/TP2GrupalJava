@@ -21,7 +21,7 @@ public class GolliatTest {
 	public void deberiaEstarDetruidoElGolliat() throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
-		golliat.recibirDanio(1000,1000);
+		golliat.recibirDanio(1000);
 
 		Assert.assertTrue(golliat.estaDestruido());
 	}
@@ -30,7 +30,7 @@ public class GolliatTest {
 	public void deberiaNoEstarDetruidoElGolliat() throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
-		golliat.recibirDanio(5,5);
+		golliat.recibirDanio(5);
 
 		Assert.assertFalse(golliat.estaDestruido());
 	}
@@ -40,7 +40,7 @@ public class GolliatTest {
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
 		int vidaInicial = golliat.vidaRestante();
-		golliat.recibirDanio(1,1);
+		golliat.recibirDanio(1);
 		int vidaFinal = golliat.vidaRestante();
 
 		Assert.assertEquals(1, vidaInicial - vidaFinal);
@@ -51,7 +51,7 @@ public class GolliatTest {
 			throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
-		golliat.recibirDanio(1,1);
+		golliat.recibirDanio(1);
 
 		Assert.assertEquals(124, golliat.vidaRestante());
 	}
@@ -93,9 +93,9 @@ public class GolliatTest {
 			throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
-		golliat.recibirDanio(200,200);
+		golliat.recibirDanio(200);
 		Assert.assertTrue(golliat.estaDestruido());
-		golliat.recibirDanio(2,2);
+		golliat.recibirDanio(2);
 
 	}
 

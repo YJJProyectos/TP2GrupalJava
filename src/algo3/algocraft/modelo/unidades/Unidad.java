@@ -17,11 +17,11 @@ public abstract class Unidad {
 		this.jugador = jugador;
 	}
 
-	public void recibirDanio(int danioAereo, int danioTerrestre) throws YaEstaDestruidoError {
+	public void recibirDanio(int danio) throws YaEstaDestruidoError {
 		if (this.vida <= 0) {
 			throw new YaEstaDestruidoError();
 		}
-		this.vida = this.vida - plano.recibirDanio(danioAereo, danioTerrestre);
+		this.vida = this.vida - danio;
 	}
 
 	public int vidaRestante() {
@@ -57,4 +57,9 @@ public abstract class Unidad {
 	public boolean entraEnElRango(Casilla posicion, int rangoAereo, int rangoTerrestre) {
 		return (this.posicion.distanciaA(posicion) <= plano.entraEnElRango(rangoAereo, rangoTerrestre));
 	}
+
+	public PlanoAccion getPlano() {
+		return this.plano;
+	}
+
 }

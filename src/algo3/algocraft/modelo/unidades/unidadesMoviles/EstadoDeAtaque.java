@@ -7,6 +7,6 @@ public abstract class EstadoDeAtaque {
 	
 	UnidadSoldado unidad;
 
-	public abstract void atacarEnemigo(UnidadSoldado atacante, Unidad enemigo)
+	public abstract void atacar(UnidadSoldado atacante, Unidad enemigo)
 			throws NoPuedeAtacarMultiplesVecesError, YaEstaDestruidoError;
 }

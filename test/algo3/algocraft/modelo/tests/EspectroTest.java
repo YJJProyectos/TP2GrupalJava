@@ -21,7 +21,7 @@ public class EspectroTest {
 	public void deberiaEstarDetruido() throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugador);
-		espectro.recibirDanio(1000,1000);
+		espectro.recibirDanio(1000);
 
 		Assert.assertTrue(espectro.estaDestruido());
 	}
@@ -30,7 +30,7 @@ public class EspectroTest {
 	public void deberiaNoEstarDetruido() throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugador);
-		espectro.recibirDanio(5,5);
+		espectro.recibirDanio(5);
 
 		Assert.assertFalse(espectro.estaDestruido());
 	}
@@ -40,7 +40,7 @@ public class EspectroTest {
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugador);
 		int vidaInicial = espectro.vidaRestante();
-		espectro.recibirDanio(1,1);
+		espectro.recibirDanio(1);
 		int vidaFinal = espectro.vidaRestante();
 
 		Assert.assertEquals(1, vidaInicial - vidaFinal);
@@ -51,7 +51,7 @@ public class EspectroTest {
 			throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugador);
-		espectro.recibirDanio(1,1);
+		espectro.recibirDanio(1);
 
 		Assert.assertEquals(119, espectro.vidaRestante());
 	}

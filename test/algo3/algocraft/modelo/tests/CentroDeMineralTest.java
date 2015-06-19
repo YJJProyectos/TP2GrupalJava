@@ -155,7 +155,7 @@ public class CentroDeMineralTest {
 			centro.pasarTurno();
 		}
 		int vidaInicial = centro.vidaRestante();
-		centro.recibirDanio(1,1);
+		centro.recibirDanio(1);
 		int vidaFinal = centro.vidaRestante();
 
 		Assert.assertEquals(1, vidaInicial - vidaFinal);
@@ -174,7 +174,7 @@ public class CentroDeMineralTest {
 		for (int i = 0; i < 4; i++) {
 			centro.pasarTurno();
 		}
-		centro.recibirDanio(1,1);
+		centro.recibirDanio(1);
 
 		Assert.assertEquals(499, centro.vidaRestante());
 	}
@@ -260,9 +260,9 @@ public class CentroDeMineralTest {
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		mineral.posicionar(casilla);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
-		centro.recibirDanio(2000,2000);
+		centro.recibirDanio(2000);
 		Assert.assertTrue(centro.estaDestruido());
-		centro.recibirDanio(2,2);
+		centro.recibirDanio(2);
 
 	}
 

@@ -32,7 +32,7 @@ public class UnidadSoldado extends UnidadMovil {
 		if (this.getJugador() == enemigo.getJugador()) {
 			throw new PerteneceAlMismoJugadorError();
 		}
-		estadoDeAtaque.atacarEnemigo(this, enemigo);
+		estadoDeAtaque.atacar(this, enemigo);
 	}
 	
 	public boolean mover(Casilla casilla) {
