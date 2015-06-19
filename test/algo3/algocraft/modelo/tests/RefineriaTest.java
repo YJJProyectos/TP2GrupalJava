@@ -133,7 +133,7 @@ public class RefineriaTest {
 			refineria.pasarTurno();
 		}
 		int vidaInicial = refineria.vidaRestante();
-		refineria.recibirDanio(1);
+		refineria.recibirDanio(1,1);
 		int vidaFinal = refineria.vidaRestante();
 
 		Assert.assertEquals(1, vidaInicial - vidaFinal);
@@ -148,7 +148,7 @@ public class RefineriaTest {
 		for (int i = 0; i < 6; i++) {
 			refineria.pasarTurno();
 		}
-		refineria.recibirDanio(1);
+		refineria.recibirDanio(1,1);
 
 		Assert.assertEquals(749, refineria.vidaRestante());
 	}
@@ -222,9 +222,9 @@ public class RefineriaTest {
 		Jugador jugador = new Jugador();
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		Refineria refineria = new Refineria(volcan, jugador);
-		refineria.recibirDanio(2000);
+		refineria.recibirDanio(2000,2000);
 		Assert.assertTrue(refineria.estaDestruido());
-		refineria.recibirDanio(2);
+		refineria.recibirDanio(2,2);
 
 	}
 

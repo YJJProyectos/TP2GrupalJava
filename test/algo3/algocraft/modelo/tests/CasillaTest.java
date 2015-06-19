@@ -58,7 +58,7 @@ public class CasillaTest {
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
-		casilla.ocupar(marine);
+		casilla.ocuparTerrestre(marine);
 
 		Assert.assertTrue(casilla.estaOcupadaLaTierra());
 	}
@@ -104,7 +104,7 @@ public class CasillaTest {
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
-		casilla.ocupar(marine);
+		casilla.ocuparTerrestre(marine);
 
 		Assert.assertFalse(casilla.estaOcupadoElAire());
 	}
@@ -126,7 +126,7 @@ public class CasillaTest {
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
-		casilla.ocupar(marine);
+		casilla.ocuparTerrestre(marine);
 
 		Assert.assertFalse(casilla.estaOcupadoElRecurso());
 	}
@@ -208,7 +208,7 @@ public class CasillaTest {
 		Casilla casilla = new Casilla(coordenada);
 		Unidad marine = new Marine(null);
 
-		casilla.ocupar(marine);
+		casilla.ocuparTerrestre(marine);
 
 		Assert.assertEquals(marine, casilla.desocuparTierra());
 	}
@@ -230,7 +230,7 @@ public class CasillaTest {
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
-		casilla.ocupar(marine);
+		casilla.ocuparTerrestre(marine);
 
 		Assert.assertEquals(null, casilla.desocuparAire());
 	}
@@ -265,7 +265,7 @@ public class CasillaTest {
 		Recurso mineral = new MinaDeMinerales(100);
 		Jugador jugador = new Jugador();
 		Recolector centroMineral = new CentroDeMineral(mineral, jugador);
-		Assert.assertFalse(casilla.ocupar(centroMineral));
+		Assert.assertFalse(casilla.ocuparRecurso(centroMineral));
 	}
 
 	@Test
@@ -277,7 +277,7 @@ public class CasillaTest {
 		casilla.agregarRecurso(mineral);
 		Jugador jugador = new Jugador();
 		Recolector centroMineral = new CentroDeMineral(mineral, jugador);
-		Assert.assertTrue(casilla.ocupar(centroMineral));
+		Assert.assertTrue(casilla.ocuparRecurso(centroMineral));
 	}
 
 	@Test
@@ -289,19 +289,19 @@ public class CasillaTest {
 		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
 		casilla.agregarRecurso(mineral);
-		Assert.assertFalse(casilla.ocupar(marine));
+		Assert.assertFalse(casilla.ocuparTerrestre(marine));
 
 	}
 
 	@Test(expected = CasillaOcupadaError.class)
-	public void deberianLanzarUnaExcepcionAlAgregarUnMineralSiYaHayUnMarineEnLaCasilla()
+	public void deberiaLanzarUnaExcepcionAlAgregarUnMineralSiYaHayUnMarineEnLaCasilla()
 			throws CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
 		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
-		casilla.ocupar(marine);
+		casilla.ocuparTerrestre(marine);
 		casilla.agregarRecurso(mineral);
 
 	}
@@ -316,8 +316,8 @@ public class CasillaTest {
 		Recolector centroMineral = new CentroDeMineral(mineral, jugador);
 		Unidad marine = new Marine(jugador);
 		casilla.agregarRecurso(mineral);
-		casilla.ocupar(centroMineral);
-		Assert.assertFalse(casilla.ocupar(marine));
+		casilla.ocuparRecurso(centroMineral);
+		Assert.assertFalse(casilla.ocuparTerrestre(marine));
 
 	}
 

@@ -68,7 +68,7 @@ public class Refineria extends Recolector {
 
 	@Override
 	public boolean posicionar(Casilla casilla) {
-		if (casilla.ocupar(this)) {
+		if (casilla.ocuparRecurso(this)) {
 			this.posicion = casilla;
 			return true;
 		}

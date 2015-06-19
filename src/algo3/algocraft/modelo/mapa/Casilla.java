@@ -42,6 +42,7 @@ public class Casilla {
 	public boolean ocuparTerrestre(Unidad unidad) {
 		if ((this.ocupanteTerrestre == null) && (this.recurso == null)) {
 			this.ocupanteTerrestre = unidad;
+			unidad.nuevaPosicion(this);
 			return true;
 		}
 		return false;
@@ -51,20 +52,14 @@ public class Casilla {
 	public boolean ocuparAereo(Unidad unidad) {
 		if (this.ocupanteAereo == null) {
 			this.ocupanteAereo = unidad;
+			unidad.nuevaPosicion(this);
 			return true;
 		}
 		return false;
 
 	}
 
-	public boolean ocupar(Unidad unidad) {
-		if (unidad.esTerrestre()) {
-			return ocuparTerrestre(unidad);
-		}
-		return ocuparAereo(unidad);
-	}
-
-	public boolean ocupar(Recolector unidad) {
+	public boolean ocuparRecurso(Recolector unidad) {
 		if ((this.ocupanteTerrestre == null) && (this.recurso != null)) {
 			this.ocupanteTerrestre = (Unidad) unidad;
 			return true;

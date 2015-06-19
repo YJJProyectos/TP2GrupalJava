@@ -20,7 +20,7 @@ public class GolliatTest {
 	public void deberiaEstarDetruidoElGolliat() throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
-		golliat.recibirDanio(1000);
+		golliat.recibirDanio(1000,1000);
 
 		Assert.assertTrue(golliat.estaDestruido());
 	}
@@ -29,7 +29,7 @@ public class GolliatTest {
 	public void deberiaNoEstarDetruidoElGolliat() throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
-		golliat.recibirDanio(5);
+		golliat.recibirDanio(5,5);
 
 		Assert.assertFalse(golliat.estaDestruido());
 	}
@@ -39,26 +39,25 @@ public class GolliatTest {
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
 		int vidaInicial = golliat.vidaRestante();
-		golliat.recibirDanio(1);
+		golliat.recibirDanio(1,1);
 		int vidaFinal = golliat.vidaRestante();
 
 		Assert.assertEquals(1, vidaInicial - vidaFinal);
 	}
 
 	@Test
-	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaUnidadGolliatEs124()
+	public void deberiaQuedarle124DeVida()
 			throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
-		golliat.recibirDanio(1);
+		golliat.recibirDanio(1,1);
 
 		Assert.assertEquals(124, golliat.vidaRestante());
 	}
 
 	@Test
-	public void deberiaPoderPosicionarseUnGollatEnUnaCasillaDesocupada() {
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
+	public void deberiaPoderPosicionarse() {
+		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
 
@@ -67,8 +66,7 @@ public class GolliatTest {
 
 	@Test
 	public void deberiaNoPoderPosicionarseUnGolliatEnUnaCasillaOcupada() {
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
+		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
 		Golliat primerGolliat = new Golliat(jugador);
 		Golliat segundoGolliat = new Golliat(jugador);
@@ -89,22 +87,14 @@ public class GolliatTest {
 		Assert.assertEquals(casilla, golliat.posicion());
 	}
 
-	@Test
-	public void elGolliatEsUnaUnidadTerrestre() {
-		Jugador jugador = new Jugador();
-		Golliat golliat = new Golliat(jugador);
-
-		Assert.assertTrue(golliat.esTerrestre());
-	}
-
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
 			throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
-		golliat.recibirDanio(200);
+		golliat.recibirDanio(200,200);
 		Assert.assertTrue(golliat.estaDestruido());
-		golliat.recibirDanio(2);
+		golliat.recibirDanio(2,2);
 
 	}
 

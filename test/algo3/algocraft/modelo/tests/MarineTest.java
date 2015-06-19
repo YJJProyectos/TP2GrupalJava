@@ -20,7 +20,7 @@ public class MarineTest {
 	public void deberiaEstarDetruidoElMarine() throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
-		marine.recibirDanio(1000);
+		marine.recibirDanio(1000,1000);
 
 		Assert.assertTrue(marine.estaDestruido());
 	}
@@ -29,7 +29,7 @@ public class MarineTest {
 	public void deberiaNoEstarDetruidoElMarine() throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
-		marine.recibirDanio(5);
+		marine.recibirDanio(5,5);
 
 		Assert.assertFalse(marine.estaDestruido());
 	}
@@ -39,18 +39,18 @@ public class MarineTest {
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
 		int vidaInicial = marine.vidaRestante();
-		marine.recibirDanio(1);
+		marine.recibirDanio(1,1);
 		int vidaFinal = marine.vidaRestante();
 
 		Assert.assertEquals(1, vidaInicial - vidaFinal);
 	}
 
 	@Test
-	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaUnidadMarineEs39()
+	public void deberiaQuedarle39DeVida()
 			throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
-		marine.recibirDanio(1);
+		marine.recibirDanio(1,1);
 
 		Assert.assertEquals(39, marine.vidaRestante());
 	}
@@ -89,22 +89,14 @@ public class MarineTest {
 		Assert.assertEquals(casilla, marine.posicion());
 	}
 
-	@Test
-	public void elMarineEsUnaUnidadTerrestre() {
-		Jugador jugador = new Jugador();
-		Marine marine = new Marine(jugador);
-
-		Assert.assertTrue(marine.esTerrestre());
-	}
-
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
 			throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
-		marine.recibirDanio(100);
+		marine.recibirDanio(100,100);
 		Assert.assertTrue(marine.estaDestruido());
-		marine.recibirDanio(2);
+		marine.recibirDanio(2,2);
 
 	}
 
@@ -224,42 +216,6 @@ public class MarineTest {
 		soldadoAliado.atacarEnemigo(soldadoEnemigo);
 
 		Assert.assertEquals(115, soldadoEnemigo.vidaRestante());
-	}
-
-	@Test(expected = NoPuedeAtacarMultiplesVecesError.class)
-	public void unGolliatNoDeberiaPoderAtacarMasDeUnaVez()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
-		Mapa mapa = new Mapa(2);
-		Jugador jugadorAliado = new Jugador();
-		Jugador jugadorEnemigo = new Jugador();
-		Golliat soldadoAliado = new Golliat(jugadorAliado);
-		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
-		Coordenada coordenadaAliado = new Coordenada(1, 1);
-		Coordenada coordenadaEnemigo = new Coordenada(2, 1);
-		mapa.agregarElementoEnPosicion(soldadoAliado, coordenadaAliado);
-		mapa.agregarElementoEnPosicion(soldadoEnemigo, coordenadaEnemigo);
-		soldadoAliado.atacarEnemigo(soldadoEnemigo);
-		soldadoAliado.atacarEnemigo(soldadoEnemigo);
-	}
-
-	public void unGolliatPuedeVolverAAtacarLuegoDePasarUnTurno()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
-		Mapa mapa = new Mapa(2);
-		Jugador jugadorAliado = new Jugador();
-		Jugador jugadorEnemigo = new Jugador();
-		Golliat soldadoAliado = new Golliat(jugadorAliado);
-		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
-		Coordenada coordenadaAliado = new Coordenada(1, 1);
-		Coordenada coordenadaEnemigo = new Coordenada(2, 1);
-		mapa.agregarElementoEnPosicion(soldadoAliado, coordenadaAliado);
-		mapa.agregarElementoEnPosicion(soldadoEnemigo, coordenadaEnemigo);
-		soldadoAliado.atacarEnemigo(soldadoEnemigo);
-		soldadoAliado.pasarTurno();
-		soldadoAliado.atacarEnemigo(soldadoEnemigo);
-
-		Assert.assertEquals(16, soldadoEnemigo.vidaRestante());
 	}
 
 }

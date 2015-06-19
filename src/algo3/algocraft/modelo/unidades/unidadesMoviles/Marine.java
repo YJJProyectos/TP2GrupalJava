@@ -1,23 +1,13 @@
 package algo3.algocraft.modelo.unidades.unidadesMoviles;
 
 import algo3.algocraft.modelo.juego.Jugador;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.ComportamientoMarine;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoTerrestre;
 
 public class Marine extends UnidadSoldado {
 
-	public Marine(Jugador unJugador) {
-		super(ComportamientoMarine.getInstancia(), unJugador);
+	public Marine(Jugador jugador) {
+		super(40, jugador, PlanoTerrestre.getInstancia());
+		this.inicializar(6, 6, 4, 4);
 	}
 
-	/*public boolean mover(Casilla casilla) {
-		if (casilla.ocuparTerrestre(this)) {
-			this.posicion = casilla;
-			return true;
-		}
-		return false;
-	}
-
-	public boolean esTerrestre() {
-		return true;
-	}*/
 }

@@ -1,31 +1,26 @@
 package algo3.algocraft.modelo.unidades.unidadesMoviles;
 
 import algo3.algocraft.modelo.juego.Jugador;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.ComportamientoTransporte;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoAccion;
 
-public class UnidadTransporte extends UnidadMovil{
+public abstract class UnidadTransporte extends UnidadMovil{
 
-	protected ComportamientoTransporte comportamiento;
 	protected UnidadSoldado[] soldadosCargados; 
 	
-	public UnidadTransporte(Jugador jugador, ComportamientoTransporte comportamiento) {
-		super(jugador, comportamiento.getVida());
-		soldadosCargados = new UnidadSoldado[comportamiento.capacidad()];
-		this.comportamiento = comportamiento;
+	public UnidadTransporte(Jugador jugador, PlanoAccion plano, int capacidad) {
+		super(jugador, 150, plano);
+		soldadosCargados = new UnidadSoldado[capacidad];
 	}
 
-	public boolean esTerrestre() {
-		return false;
-	}
-	
 	public boolean cargarSoldado(UnidadSoldado soldado) {
-		for (int i = 0; i<comportamiento.capacidad(); i++) {
+		if (!this.esAliado(soldado)) return false;
+		for (int i = 0; i<soldadosCargados.length; i++) {
 			if (soldadosCargados[i] == soldado) return false;
 		}
-		for (int i = 0; i<comportamiento.capacidad(); i++) {
+		for (int i = 0; i<soldadosCargados.length; i++) {
 			if (soldadosCargados[i] == null) {
 				soldadosCargados[i] = soldado;
-				soldado.posicionar(null);
+				soldado.nuevaPosicion(null);
 				return true;
 			}
 		}
@@ -33,7 +28,7 @@ public class UnidadTransporte extends UnidadMovil{
 	}
 
 	public UnidadSoldado descargarSoldado() {
-		for (int i = 0; i<comportamiento.capacidad(); i++) {
+		for (int i = 0; i<soldadosCargados.length; i++) {
 			if (soldadosCargados[i] != null) {
 				UnidadSoldado descargado = soldadosCargados[i];
 				soldadosCargados[i] = null;

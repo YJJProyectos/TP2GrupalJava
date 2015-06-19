@@ -4,19 +4,27 @@ import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.ComportamientoSoldado;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoAccion;
 
 public class UnidadSoldado extends UnidadMovil {
 
-	protected ComportamientoSoldado comportamiento;
 	protected EstadoDeAtaque estadoDeAtaque;
+	protected int danioAereo;
+	protected int danioTerrestre;
+	protected int rangoAereo;
+	protected int rangoTerrestre;
 	
-	public UnidadSoldado (ComportamientoSoldado comportamiento, Jugador jugador) {
-		
-		super(jugador,comportamiento.getVida());
-		this.comportamiento = comportamiento;
+	
+	public UnidadSoldado (int vida, Jugador jugador, PlanoAccion plano) {
+		super(jugador,vida, plano);
 		this.estadoDeAtaque = new EstadoNoAtaco();
-				
+	}
+	
+	public void inicializar(int danioAereo, int danioTerrestre, int rangoAereo, int rangoTerrestre) {
+		this.danioAereo = danioAereo;
+		this.danioTerrestre = danioTerrestre;
+		this.rangoAereo = rangoAereo;
+		this.rangoTerrestre = rangoTerrestre;
 	}
 	
 	public void atacarEnemigo(Unidad enemigo) throws YaEstaDestruidoError,
@@ -24,11 +32,11 @@ public class UnidadSoldado extends UnidadMovil {
 		if (this.getJugador() == enemigo.getJugador()) {
 			throw new PerteneceAlMismoJugadorError();
 		}
-		estadoDeAtaque.atacarEnemigo(this, enemigo, comportamiento.getDanioTerrestre());
+		estadoDeAtaque.atacarEnemigo(this, enemigo, danioAereo, danioTerrestre);
 	}
 
 	public boolean mover(Casilla casilla) {
-		if (comportamiento.mover(this, casilla)) {
+		if (plano.mover(this, casilla)) {
 			this.posicion = casilla;
 			return true;
 		}
@@ -44,11 +52,7 @@ public class UnidadSoldado extends UnidadMovil {
 	}
 	
 	public boolean alcanzaPosicion(Casilla posicion) {
-		return (this.posicion.distanciaA(posicion) <= comportamiento.getRangoTerrestre());
+		return (this.posicion.distanciaA(posicion) <= rangoTerrestre);
 	}
 
-	public boolean esTerrestre() {
-		return comportamiento.esTerrestre();
-	}
-	
 }

@@ -122,7 +122,7 @@ public class DepositoDeSuministrosTest {
 			deposito.pasarTurno();
 		}
 		int vidaInicial = deposito.vidaRestante();
-		deposito.recibirDanio(1);
+		deposito.recibirDanio(1,1);
 		int vidaFinal = deposito.vidaRestante();
 
 		Assert.assertEquals(1, vidaInicial - vidaFinal);
@@ -136,7 +136,7 @@ public class DepositoDeSuministrosTest {
 		for (int i = 0; i < 13; i++) {
 			deposito.pasarTurno();
 		}
-		deposito.recibirDanio(1);
+		deposito.recibirDanio(1,1);
 
 		Assert.assertEquals(499, deposito.vidaRestante());
 	}
@@ -206,9 +206,9 @@ public class DepositoDeSuministrosTest {
 			throws YaEstaDestruidoError, RecursosInsuficientesError {
 		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
-		deposito.recibirDanio(2000);
+		deposito.recibirDanio(2000,2000);
 		Assert.assertTrue(deposito.estaDestruido());
-		deposito.recibirDanio(2);
+		deposito.recibirDanio(2,2);
 
 	}
 

@@ -143,7 +143,7 @@ public class FabricaTest {
 			fabrica.pasarTurno();
 		}
 		int vidaInicial = fabrica.vidaRestante();
-		fabrica.recibirDanio(1);
+		fabrica.recibirDanio(1,1);
 		int vidaFinal = fabrica.vidaRestante();
 
 		Assert.assertEquals(1, vidaInicial - vidaFinal);
@@ -159,7 +159,7 @@ public class FabricaTest {
 		for (int i = 0; i < 12; i++) {
 			fabrica.pasarTurno();
 		}
-		fabrica.recibirDanio(1);
+		fabrica.recibirDanio(1,1);
 
 		Assert.assertEquals(1249, fabrica.vidaRestante());
 	}
@@ -235,9 +235,9 @@ public class FabricaTest {
 		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
-		fabrica.recibirDanio(2000);
+		fabrica.recibirDanio(2000,2000);
 		Assert.assertTrue(fabrica.estaDestruido());
-		fabrica.recibirDanio(2);
+		fabrica.recibirDanio(2,2);
 
 	}
 
@@ -267,7 +267,7 @@ public class FabricaTest {
 		for (int i = 0; i < 12; i++) {
 			fabrica.pasarTurno();
 		}
-		barraca.recibirDanio(2000);
+		barraca.recibirDanio(2000,2000);
 
 		Assert.assertFalse(fabrica.entrenarGolliat());
 	}
