@@ -4,11 +4,15 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
+import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.recursos.Recurso;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 
 public class MinaDeMineralesTest {
@@ -69,6 +73,32 @@ public class MinaDeMineralesTest {
 		MinaDeMinerales mina = new MinaDeMinerales(10);
 		marine.posicionar(casilla);
 		mina.posicionar(casilla);
+	}
+
+	@Test(expected = RecolectorInvalidoError.class)
+	public void unaMinaNoPuedeAgregarUnaRefineriaEnSuPosicion()
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			RecolectorInvalidoError {
+		Jugador jugador = new Jugador();
+		Coordenada coordeanda = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordeanda);
+		MinaDeMinerales mina = new MinaDeMinerales(10);
+		mina.posicionar(casilla);
+		Refineria refineria = new Refineria(mina, jugador);
+		refineria.pasarTurno();
+	}
+
+	@Test
+	public void unaMinaPuedeAgregarUnCentroDeMineralEnSuPosicion()
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			RecolectorInvalidoError {
+		Jugador jugador = new Jugador();
+		Coordenada coordeanda = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordeanda);
+		MinaDeMinerales mina = new MinaDeMinerales(10);
+		mina.posicionar(casilla);
+		CentroDeMineral centro = new CentroDeMineral(mina, jugador);
+		Assert.assertEquals(casilla, centro.posicion());
 	}
 
 }

@@ -2,6 +2,8 @@ package algo3.algocraft.modelo.recursos;
 
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 
 public abstract class Recurso {
 
@@ -34,5 +36,11 @@ public abstract class Recurso {
 	public Casilla posicion() {
 		return this.posicion;
 	}
+
+	public abstract void agregarCentroDeMineral(CentroDeMineral centroDeMineral)
+			throws RecolectorInvalidoError, CasillaOcupadaError;
+
+	public abstract void agregarRefineria(Refineria refineria)
+			throws RecolectorInvalidoError, CasillaOcupadaError;
 
 }

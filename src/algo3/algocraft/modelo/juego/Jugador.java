@@ -3,6 +3,8 @@ package algo3.algocraft.modelo.juego;
 import java.util.ArrayList;
 
 import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
+import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
@@ -99,7 +101,9 @@ public class Jugador {
 	}
 
 	public CentroDeMineral crearCentroDeMineral(Casilla casilla)
-			throws PosicionNoOcupadaPorRecursoError, RecursosInsuficientesError {
+			throws PosicionNoOcupadaPorRecursoError,
+			RecursosInsuficientesError, RecolectorInvalidoError,
+			CasillaOcupadaError {
 
 		if (!casilla.estaOcupadoElRecurso()) {
 			throw new PosicionNoOcupadaPorRecursoError();
@@ -112,7 +116,9 @@ public class Jugador {
 	}
 
 	public Refineria crearRefineria(Casilla casilla)
-			throws PosicionNoOcupadaPorRecursoError, RecursosInsuficientesError {
+			throws PosicionNoOcupadaPorRecursoError,
+			RecursosInsuficientesError, RecolectorInvalidoError,
+			CasillaOcupadaError {
 
 		if (!casilla.estaOcupadoElRecurso()) {
 			throw new PosicionNoOcupadaPorRecursoError();
