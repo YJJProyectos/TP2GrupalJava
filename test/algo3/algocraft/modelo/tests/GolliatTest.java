@@ -9,6 +9,7 @@ import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.mapa.Mapa;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.Espectro;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
@@ -152,6 +153,44 @@ public class GolliatTest {
 		soldadoAliado.atacarEnemigo(soldadoEnemigo);
 
 		Assert.assertEquals(28, soldadoEnemigo.vidaRestante());
+
+	}
+	
+	@Test
+	public void deberiaNoDaniarAUnaUnidadVoladoraFueraDeRangoAereo()
+			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError {
+		Jugador jugadorAliado = new Jugador();
+		Jugador jugadorEnemigo = new Jugador();
+		Golliat soldadoAliado = new Golliat(jugadorAliado);
+		Unidad soldadoEnemigo = new Espectro(jugadorEnemigo);
+		Casilla casilla1 = new Casilla(new Coordenada(1, 1));
+		Casilla casilla2 = new Casilla(new Coordenada(1, 7));
+		soldadoAliado.posicionar(casilla1);
+		soldadoEnemigo.posicionar(casilla2);		
+		
+		soldadoAliado.atacarEnemigo(soldadoEnemigo);
+
+		Assert.assertEquals(120, soldadoEnemigo.vidaRestante());
+
+	}
+	
+	@Test
+	public void deberiaDaniarAUnaUnidadVoladoraEnSuRangoAereo()
+			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError {
+		Jugador jugadorAliado = new Jugador();
+		Jugador jugadorEnemigo = new Jugador();
+		Golliat soldadoAliado = new Golliat(jugadorAliado);
+		Unidad soldadoEnemigo = new Espectro(jugadorEnemigo);
+		Casilla casilla1 = new Casilla(new Coordenada(1, 1));
+		Casilla casilla2 = new Casilla(new Coordenada(1, 6));
+		soldadoAliado.posicionar(casilla1);
+		soldadoEnemigo.posicionar(casilla2);		
+		
+		soldadoAliado.atacarEnemigo(soldadoEnemigo);
+
+		Assert.assertEquals(110, soldadoEnemigo.vidaRestante());
 
 	}
 
