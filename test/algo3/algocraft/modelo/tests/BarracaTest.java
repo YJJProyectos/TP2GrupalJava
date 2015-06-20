@@ -70,7 +70,8 @@ public class BarracaTest {
 	@Test
 	public void siUnMarineAtacaUnaBarracaEnConstruccionLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError {
+			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
+			CasillaOcupadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -90,7 +91,8 @@ public class BarracaTest {
 	@Test
 	public void siUnMarineAtacaUnaBarracaYaConstruidaNoLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError {
+			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
+			CasillaOcupadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -142,29 +144,30 @@ public class BarracaTest {
 
 	@Test
 	public void deberiaPoderPosicionarseUnaBarracaEnUnaCasillaDesocupada()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 
-		Assert.assertTrue(barraca.posicionar(casilla));
+		barraca.posicionar(casilla);
+
+		Assert.assertEquals(casilla, barraca.posicion());
 	}
 
-	@Test
+	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaNoPoderPosicionarseUnaBarracaEnUnaCasillaOcupadaPorUnaunidad()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
 		Barraca primeraBarraca = new Barraca(jugador);
 		Barraca segundaBarraca = new Barraca(jugador);
 		primeraBarraca.posicionar(casilla);
-
-		Assert.assertFalse(segundaBarraca.posicionar(casilla));
+		segundaBarraca.posicionar(casilla);
 	}
 
-	@Test
+	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaNoPoderPosicionarseUnaBarracaEnUnaCasillaOcupadaPorUnRecurso()
 			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
@@ -173,12 +176,12 @@ public class BarracaTest {
 		Barraca barraca = new Barraca(jugador);
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		casilla.agregarRecurso(mineral);
-
-		Assert.assertFalse(barraca.posicionar(casilla));
+		barraca.posicionar(casilla);
 	}
 
 	@Test
-	public void deberiaGuardarSuPosicion() throws RecursosInsuficientesError {
+	public void deberiaGuardarSuPosicion() throws RecursosInsuficientesError,
+			CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();

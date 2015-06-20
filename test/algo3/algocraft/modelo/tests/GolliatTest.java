@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.mapa.Mapa;
 import algo3.algocraft.modelo.unidades.Unidad;
@@ -47,8 +48,7 @@ public class GolliatTest {
 	}
 
 	@Test
-	public void deberiaQuedarle124DeVida()
-			throws YaEstaDestruidoError {
+	public void deberiaQuedarle124DeVida() throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
 		golliat.recibirDanio(1);
@@ -57,27 +57,27 @@ public class GolliatTest {
 	}
 
 	@Test
-	public void deberiaPoderPosicionarse() {
+	public void deberiaPoderPosicionarse() throws CasillaOcupadaError {
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
-
-		Assert.assertTrue(golliat.posicionar(casilla));
+		golliat.posicionar(casilla);
+		Assert.assertEquals(casilla, golliat.posicion());
 	}
 
-	@Test
-	public void deberiaNoPoderPosicionarseUnGolliatEnUnaCasillaOcupada() {
+	@Test(expected = CasillaOcupadaError.class)
+	public void deberiaLanzaraUnaExcepcionAlPosicionarUnGolliatEnUnaCasillaOcupada()
+			throws CasillaOcupadaError {
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
 		Golliat primerGolliat = new Golliat(jugador);
 		Golliat segundoGolliat = new Golliat(jugador);
 		primerGolliat.posicionar(casilla);
-
-		Assert.assertFalse(segundoGolliat.posicionar(casilla));
+		segundoGolliat.posicionar(casilla);
 	}
 
 	@Test
-	public void deberiaGuardarSuPosicion() {
+	public void deberiaGuardarSuPosicion() throws CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -102,7 +102,7 @@ public class GolliatTest {
 	@Test(expected = PerteneceAlMismoJugadorError.class)
 	public void unGolliatDeberiaNoDaniarAUnMarinePorPertenecerAlMismoJugador()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
+			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Golliat soldado = new Golliat(jugador);
 		Unidad soldadoAliado = new Marine(jugador);
@@ -119,7 +119,7 @@ public class GolliatTest {
 	@Test
 	public void unGolliatDeberiaNoDaniarAUnMarinePorEstarFueraDelRango()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
+			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError {
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
 		Golliat soldadoAliado = new Golliat(jugadorAliado);
@@ -140,7 +140,7 @@ public class GolliatTest {
 	@Test
 	public void unGolliatDeberiaDaniarAUnMarinePorEstarElElRango()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
+			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError {
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -155,11 +155,11 @@ public class GolliatTest {
 		Assert.assertEquals(28, soldadoEnemigo.vidaRestante());
 
 	}
-	
+
 	@Test
 	public void deberiaNoDaniarAUnaUnidadVoladoraFueraDeRangoAereo()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
+			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError {
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
 		Golliat soldadoAliado = new Golliat(jugadorAliado);
@@ -167,18 +167,18 @@ public class GolliatTest {
 		Casilla casilla1 = new Casilla(new Coordenada(1, 1));
 		Casilla casilla2 = new Casilla(new Coordenada(1, 7));
 		soldadoAliado.posicionar(casilla1);
-		soldadoEnemigo.posicionar(casilla2);		
-		
+		soldadoEnemigo.posicionar(casilla2);
+
 		soldadoAliado.atacarEnemigo(soldadoEnemigo);
 
 		Assert.assertEquals(120, soldadoEnemigo.vidaRestante());
 
 	}
-	
+
 	@Test
 	public void deberiaDaniarAUnaUnidadVoladoraEnSuRangoAereo()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
+			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError {
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
 		Golliat soldadoAliado = new Golliat(jugadorAliado);
@@ -186,8 +186,8 @@ public class GolliatTest {
 		Casilla casilla1 = new Casilla(new Coordenada(1, 1));
 		Casilla casilla2 = new Casilla(new Coordenada(1, 6));
 		soldadoAliado.posicionar(casilla1);
-		soldadoEnemigo.posicionar(casilla2);		
-		
+		soldadoEnemigo.posicionar(casilla2);
+
 		soldadoAliado.atacarEnemigo(soldadoEnemigo);
 
 		Assert.assertEquals(110, soldadoEnemigo.vidaRestante());
@@ -195,7 +195,8 @@ public class GolliatTest {
 	}
 
 	@Test
-	public void deberiaPoderMoverseUnGolliatSiNoHayNadieEnEseCasillero() {
+	public void deberiaPoderMoverseUnGolliatSiNoHayNadieEnEseCasillero()
+			throws CasillaOcupadaError {
 		Coordenada coordenadaCasilleroLibre = new Coordenada(1, 2);
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
 		Casilla casilleroLibre = new Casilla(coordenadaCasilleroLibre);
@@ -203,24 +204,26 @@ public class GolliatTest {
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
 		golliat.posicionar(casillero);
-		Assert.assertTrue(golliat.mover(casilleroLibre));
+		golliat.mover(casilleroLibre);
+		Assert.assertEquals(casilleroLibre, golliat.posicion());
 	}
 
-	@Test
-	public void noDeberiaPoderMoverseUnGolliatSiEstaOcupadoElCasillero() {
+	@Test(expected = CasillaOcupadaError.class)
+	public void noDeberiaPoderMoverseUnGolliatSiEstaOcupadoElCasillero()
+			throws CasillaOcupadaError {
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
 		Casilla casillero = new Casilla(coordenadaCasillero);
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
 		Unidad otroGolliat = new Golliat(jugador);
 		otroGolliat.posicionar(casillero);
-		Assert.assertFalse(golliat.mover(casillero));
+		golliat.mover(casillero);
 	}
 
 	@Test(expected = NoPuedeAtacarMultiplesVecesError.class)
 	public void unGolliatNoDeberiaPoderAtacarMasDeUnaVez()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
+			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError {
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -236,7 +239,7 @@ public class GolliatTest {
 
 	public void unGolliatPuedeVolverAAtacarLuegoDePasarUnTurno()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
+			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError {
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();

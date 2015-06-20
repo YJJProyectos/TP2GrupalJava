@@ -25,7 +25,7 @@ public class JugadorTest {
 
 	@Test
 	public void deberiaPoderConstruirUnaBarraca()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -36,7 +36,7 @@ public class JugadorTest {
 
 	@Test
 	public void laBarracaSeEncuentraInicialmenteEnconstruccion()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -48,7 +48,7 @@ public class JugadorTest {
 
 	@Test
 	public void luegoDe12TurnoslaBarracaEstaConstruida()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -64,7 +64,7 @@ public class JugadorTest {
 	@Test(expected = BarracaNoConstruidaError.class)
 	public void siSeEmpezoACrearUnaBarracaPeroSigueEnConstruccionNoSePuedeConstruirUnaFabrica()
 			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -77,7 +77,7 @@ public class JugadorTest {
 	@Test
 	public void siSePudoCrearUnaBarraSePuedeConstruirUnaFabrica()
 			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -95,7 +95,7 @@ public class JugadorTest {
 	@Test
 	public void laFabricaSeEncuentraInicialmenteEnconstruccion()
 			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -114,7 +114,7 @@ public class JugadorTest {
 	@Test
 	public void luegoDe12TurnoslaFabricaEstaConstruida()
 			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -135,7 +135,7 @@ public class JugadorTest {
 
 	@Test
 	public void deberiaPoderConstruirUnDepositoDeSuministro()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -147,7 +147,7 @@ public class JugadorTest {
 
 	@Test
 	public void elDepositoSeEncuentraInicialmenteEnconstruccion()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -160,7 +160,7 @@ public class JugadorTest {
 
 	@Test
 	public void luegoDe6TurnoselDepositoEstaConstruido()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -273,7 +273,7 @@ public class JugadorTest {
 
 	@Test
 	public void despuesDeCrearseElDepositoEn6TurnosYEjecutarOtroTurnoLaPoblacionAumentaEn10()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -287,7 +287,7 @@ public class JugadorTest {
 
 	@Test
 	public void alCrear2DepositosYEjecutarVariosTurnosMasLaPoblacionDeberiaSerDe20()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Coordenada otraCoordenada = new Coordenada(1, 2);
@@ -305,7 +305,7 @@ public class JugadorTest {
 
 	@Test
 	public void alCrear30DepositosYEjecutarVariosTurnosMasLaPoblacionDeberiaSerDe200()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		jugador.aumentarMineral(30000);
 		Coordenada coordenada;

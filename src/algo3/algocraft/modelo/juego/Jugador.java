@@ -73,7 +73,7 @@ public class Jugador {
 	}
 
 	public Barraca crearBarraca(Casilla casilla)
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Barraca barraca = new Barraca(this);
 		barraca.posicionar(casilla);
 		this.unidades.add(barraca);
@@ -82,7 +82,7 @@ public class Jugador {
 
 	public Fabrica crearFabrica(Casilla casilla, Barraca barraca)
 			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, CasillaOcupadaError {
 		if (barraca.enConstruccion()) {
 			throw new BarracaNoConstruidaError();
 		}
@@ -93,7 +93,7 @@ public class Jugador {
 	}
 
 	public DepositoDeSuministros crearDepositoDeSuministros(Casilla casilla)
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		DepositoDeSuministros deposito = new DepositoDeSuministros(this);
 		deposito.posicionar(casilla);
 		this.unidades.add(deposito);
@@ -110,7 +110,6 @@ public class Jugador {
 		}
 		CentroDeMineral centroDeMineral = new CentroDeMineral(
 				casilla.getRecurso(), this);
-		centroDeMineral.posicionar(casilla);
 		this.unidades.add(centroDeMineral);
 		return centroDeMineral;
 	}
@@ -124,7 +123,6 @@ public class Jugador {
 			throw new PosicionNoOcupadaPorRecursoError();
 		}
 		Refineria refineria = new Refineria(casilla.getRecurso(), this);
-		refineria.posicionar(casilla);
 		this.unidades.add(refineria);
 		return refineria;
 

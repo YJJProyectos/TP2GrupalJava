@@ -50,7 +50,7 @@ public class Mapa {
 	}
 
 	public boolean agregarElementoEnPosicion(Unidad elemento,
-			Coordenada coordenada) {
+			Coordenada coordenada) throws CasillaOcupadaError {
 
 		try {
 			validarCoordenada(coordenada);

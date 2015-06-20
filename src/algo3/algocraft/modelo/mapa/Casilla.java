@@ -39,32 +39,30 @@ public class Casilla {
 		return this.recurso;
 	}
 
-	public boolean ocuparTerrestre(Unidad unidad) {
-		if ((this.ocupanteTerrestre == null) && (this.recurso == null)) {
-			this.ocupanteTerrestre = unidad;
-			unidad.nuevaPosicion(this);
-			return true;
+	public void ocuparTerrestre(Unidad unidad) throws CasillaOcupadaError {
+		if ((this.ocupanteTerrestre != null) || (this.recurso != null)) {
+			throw new CasillaOcupadaError();
 		}
-		return false;
+		this.ocupanteTerrestre = unidad;
+		unidad.nuevaPosicion(this);
 
 	}
 
-	public boolean ocuparAereo(Unidad unidad) {
-		if (this.ocupanteAereo == null) {
-			this.ocupanteAereo = unidad;
-			unidad.nuevaPosicion(this);
-			return true;
+	public void ocuparAereo(Unidad unidad) throws CasillaOcupadaError {
+		if (this.ocupanteAereo != null) {
+			throw new CasillaOcupadaError();
+
 		}
-		return false;
+		this.ocupanteAereo = unidad;
+		unidad.nuevaPosicion(this);
 
 	}
 
-	public boolean ocuparRecurso(Recolector unidad) {
-		if ((this.ocupanteTerrestre == null) && (this.recurso != null)) {
-			this.ocupanteTerrestre = (Unidad) unidad;
-			return true;
+	public void ocuparRecurso(Recolector unidad) throws CasillaOcupadaError {
+		if ((this.ocupanteTerrestre != null) || (this.recurso == null)) {
+			throw new CasillaOcupadaError();
 		}
-		return false;
+		this.ocupanteTerrestre = (Unidad) unidad;
 	}
 
 	public void agregarRecurso(Recurso unRecurso) throws CasillaOcupadaError {

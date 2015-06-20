@@ -75,12 +75,10 @@ public class CentroDeMineral extends Recolector {
 	}
 
 	@Override
-	public boolean posicionar(Casilla casilla) {
-		if (casilla.ocuparRecurso(this)) {
-			this.posicion = casilla;
-			return true;
-		}
-		return false;
+	public void posicionar(Casilla casilla) throws CasillaOcupadaError {
+		casilla.ocuparRecurso(this);
+		this.posicion = casilla;
+
 	}
 
 }

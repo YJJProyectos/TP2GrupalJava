@@ -87,7 +87,7 @@ public class FabricaTest {
 	public void siUnMarineAtacaUnaFabricaEnConstruccionLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, PerteneceAOtroJugadorError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, CasillaOcupadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -109,7 +109,7 @@ public class FabricaTest {
 	public void siUnMarineAtacaUnaFabricaYaConstruidaNoLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, PerteneceAOtroJugadorError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, CasillaOcupadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -166,31 +166,32 @@ public class FabricaTest {
 
 	@Test
 	public void deberiaPoderPosicionarseUnaFabricaEnUnaCasillaDesocupada()
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
-
-		Assert.assertTrue(fabrica.posicionar(casilla));
+		fabrica.posicionar(casilla);
+		Assert.assertEquals(casilla, fabrica.posicion());
 	}
 
-	@Test
-	public void deberiaNoPoderPosicionarseUnaFabricaEnUnaCasillaOcupadaPorUnaunidad()
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError {
+	@Test(expected = CasillaOcupadaError.class)
+	public void deberiaLanzarUnaExcepcionAlQuererPosicionarUnaFabricaEnUnaCasillaOcupadaPorUnaunidad()
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
 		Barraca barraca = new Barraca(jugador);
 		Fabrica fabrica = new Fabrica(jugador, barraca);
 		barraca.posicionar(casilla);
-
-		Assert.assertFalse(fabrica.posicionar(casilla));
+		fabrica.posicionar(casilla);
 	}
 
-	@Test
-	public void deberiaNoPoderPosicionarseUnaFabricaEnUnaCasillaOcupadaPorUnRecurso()
+	@Test(expected = CasillaOcupadaError.class)
+	public void deberiaLanzarUnaExcepcionAlQuererPosicionarUnaFabricaEnUnaCasillaOcupadaPorUnRecurso()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
@@ -200,13 +201,12 @@ public class FabricaTest {
 		Fabrica fabrica = new Fabrica(jugador, barraca);
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		casilla.agregarRecurso(mineral);
-
-		Assert.assertFalse(fabrica.posicionar(casilla));
+		fabrica.posicionar(casilla);
 	}
 
 	@Test
 	public void deberiaGuardarSuPosicion() throws PerteneceAOtroJugadorError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();

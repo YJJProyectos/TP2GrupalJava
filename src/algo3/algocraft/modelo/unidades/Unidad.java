@@ -2,6 +2,7 @@ package algo3.algocraft.modelo.unidades;
 
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoAccion;
 
 public abstract class Unidad {
@@ -10,8 +11,8 @@ public abstract class Unidad {
 	protected Casilla posicion;
 	protected int vida;
 	protected PlanoAccion plano;
-	
-	protected Unidad(Jugador jugador, int vida, PlanoAccion plano){
+
+	protected Unidad(Jugador jugador, int vida, PlanoAccion plano) {
 		this.plano = plano;
 		this.vida = vida;
 		this.jugador = jugador;
@@ -35,13 +36,13 @@ public abstract class Unidad {
 	public Casilla posicion() {
 		return this.posicion;
 	}
-	
+
 	public void nuevaPosicion(Casilla casilla) {
 		this.posicion = casilla;
 	}
 
-	public boolean posicionar(Casilla casilla) {
-		return plano.mover(this, casilla);
+	public void posicionar(Casilla casilla) throws CasillaOcupadaError {
+		plano.mover(this, casilla);
 	}
 
 	public abstract void pasarTurno();
@@ -53,9 +54,11 @@ public abstract class Unidad {
 	public boolean esAliado(Unidad otro) {
 		return (this.jugador == otro.getJugador());
 	}
-	
-	public boolean entraEnElRango(Casilla posicion, int rangoAereo, int rangoTerrestre) {
-		return (this.posicion.distanciaA(posicion) <= plano.entraEnElRango(rangoAereo, rangoTerrestre));
+
+	public boolean entraEnElRango(Casilla posicion, int rangoAereo,
+			int rangoTerrestre) {
+		return (this.posicion.distanciaA(posicion) <= plano.entraEnElRango(
+				rangoAereo, rangoTerrestre));
 	}
 
 	public PlanoAccion getPlano() {

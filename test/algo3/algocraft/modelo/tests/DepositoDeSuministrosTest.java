@@ -69,7 +69,8 @@ public class DepositoDeSuministrosTest {
 	@Test
 	public void siUnMarineAtacaUnDepositoEnConstruccionLoDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError {
+			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
+			CasillaOcupadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -90,7 +91,8 @@ public class DepositoDeSuministrosTest {
 	@Test
 	public void siUnMarineAtacaUnDepositoYaConstruidoNoLoDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError {
+			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
+			CasillaOcupadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -143,18 +145,18 @@ public class DepositoDeSuministrosTest {
 
 	@Test
 	public void deberiaPoderPosicionarseUnDepositoEnUnaCasillaDesocupada()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
-
-		Assert.assertTrue(deposito.posicionar(casilla));
+		deposito.posicionar(casilla);
+		Assert.assertEquals(casilla, deposito.posicion());
 	}
 
-	@Test
-	public void deberiaNoPoderPosicionarseUnDepositoEnUnaCasillaOcupadaPorUnaunidad()
-			throws RecursosInsuficientesError {
+	@Test(expected = CasillaOcupadaError.class)
+	public void deberiaLanzarUnaExcepcionAlQUererPosicionarUnDepositoEnUnaCasillaOcupadaPorUnaunidad()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -163,12 +165,11 @@ public class DepositoDeSuministrosTest {
 		DepositoDeSuministros segundoDeposito = new DepositoDeSuministros(
 				jugador);
 		primerDeposito.posicionar(casilla);
-
-		Assert.assertFalse(segundoDeposito.posicionar(casilla));
+		segundoDeposito.posicionar(casilla);
 	}
 
-	@Test
-	public void deberiaNoPoderPosicionarseUnDepositoEnUnaCasillaOcupadaPorUnRecurso()
+	@Test(expected = CasillaOcupadaError.class)
+	public void deberiaLanzarUnaExcepcionAlQUererPosicionarUnDepositoEnUnaCasillaOcupadaPorUnRecurso()
 			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -176,12 +177,12 @@ public class DepositoDeSuministrosTest {
 		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		casilla.agregarRecurso(mineral);
-
-		Assert.assertFalse(deposito.posicionar(casilla));
+		deposito.posicionar(casilla);
 	}
 
 	@Test
-	public void deberiaGuardarSuPosicion() throws RecursosInsuficientesError {
+	public void deberiaGuardarSuPosicion() throws RecursosInsuficientesError,
+			CasillaOcupadaError {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();

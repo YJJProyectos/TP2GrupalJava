@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
@@ -16,7 +17,7 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorEr
 import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 public class EspectroTest {
-	
+
 	@Test
 	public void deberiaEstarDetruido() throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
@@ -47,8 +48,7 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaQuedarle119DeVida()
-			throws YaEstaDestruidoError {
+	public void deberiaQuedarle119DeVida() throws YaEstaDestruidoError {
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugador);
 		espectro.recibirDanio(1);
@@ -57,38 +57,40 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaPoderPosicionarseEnUnaCasillaDesocupada() {
+	public void deberiaPoderPosicionarseEnUnaCasillaDesocupada()
+			throws CasillaOcupadaError {
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugador);
-
-		Assert.assertTrue(espectro.posicionar(casilla));
+		espectro.posicionar(casilla);
+		Assert.assertEquals(casilla, espectro.posicion());
 	}
 
 	@Test
-	public void deberiaPoderPosicionarseEnUnaCasillaConAireDesocupado() {
+	public void deberiaPoderPosicionarseEnUnaCasillaConAireDesocupado()
+			throws CasillaOcupadaError {
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
 		UnidadSoldado espectro = new Espectro(jugador);
 		golliat.posicionar(casilla);
-
-		Assert.assertTrue(espectro.posicionar(casilla));
+		espectro.posicionar(casilla);
+		Assert.assertEquals(casilla, espectro.posicion());
 	}
-	
-	@Test
-	public void deberiaNoPoderPosicionarseEnUnaCasillaConAireOcupado() {
+
+	@Test(expected = CasillaOcupadaError.class)
+	public void deberiaLanzarUnaExcepcionAlQuererPosicionarUnEspectroEnUnaCasillaConAireOcupado()
+			throws CasillaOcupadaError {
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro1 = new Espectro(jugador);
 		UnidadSoldado espectro2 = new Espectro(jugador);
 		espectro1.posicionar(casilla);
-
-		Assert.assertFalse(espectro2.posicionar(casilla));
+		espectro2.posicionar(casilla);
 	}
 
 	@Test
-	public void deberiaGuardarSuPosicion() {
+	public void deberiaGuardarSuPosicion() throws CasillaOcupadaError {
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugador);
@@ -99,9 +101,9 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaNoDaniarFueraDeRango()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
+	public void deberiaNoDaniarFueraDeRango() throws YaEstaDestruidoError,
+			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
+			CasillaOcupadaError {
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugadorAliado);
@@ -120,15 +122,15 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaDaniarEnElRango()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError {
+	public void deberiaDaniarEnElRango() throws YaEstaDestruidoError,
+			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
+			CasillaOcupadaError {
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
 		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
 		UnidadSoldado espectro = new Espectro(jugadorAliado);
 		espectro.posicionar(new Casilla(new Coordenada(1, 1)));
-		soldadoEnemigo.posicionar(new Casilla (new Coordenada(2, 1)));
+		soldadoEnemigo.posicionar(new Casilla(new Coordenada(2, 1)));
 		espectro.atacarEnemigo(soldadoEnemigo);
 
 		Assert.assertEquals(32, soldadoEnemigo.vidaRestante());

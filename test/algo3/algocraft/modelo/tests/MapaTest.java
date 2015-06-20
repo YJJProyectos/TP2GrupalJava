@@ -21,7 +21,8 @@ public class MapaTest {
 	}
 
 	@Test
-	public void noDeberiaAgregarUnMarineSiPasanCoordenadaInvalida() {
+	public void noDeberiaAgregarUnMarineSiPasanCoordenadaInvalida()
+			throws CasillaOcupadaError {
 		Mapa mapa = new Mapa(4);
 		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
@@ -30,7 +31,8 @@ public class MapaTest {
 	}
 
 	@Test
-	public void deberiaAgregarUnMarineEnLaPosicionDada() {
+	public void deberiaAgregarUnMarineEnLaPosicionDada()
+			throws CasillaOcupadaError {
 		Mapa mapa = new Mapa(4);
 		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
