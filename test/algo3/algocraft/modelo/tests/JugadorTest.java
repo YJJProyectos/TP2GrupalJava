@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.BarracaNoConstruidaError;
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.NoHaySoldadosParaPosicionarError;
 import algo3.algocraft.modelo.juego.PosicionNoOcupadaPorRecursoError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
@@ -329,7 +330,6 @@ public class JugadorTest {
 		Assert.assertEquals(100, jugador.cantidadGas());
 	}
 
-	// /IMPORTANTE: NO PASA ESTE TEST
 	@Test
 	public void deberiaPoderConstruirUnaRefineria()
 			throws PosicionNoOcupadaPorRecursoError,
@@ -405,6 +405,61 @@ public class JugadorTest {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		jugador.crearRefineria(casilla);
+	}
+
+	@Test(expected = NoHaySoldadosParaPosicionarError.class)
+	public void deberiaLanzarUnaExcepcionSiSeIntentaPosicionarUnSoldadoDeLaColaDeEsperaVacia()
+			throws CasillaOcupadaError, NoHaySoldadosParaPosicionarError {
+		Jugador jugador = new Jugador();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		jugador.posicionarSoldadoEnColaDeEspera(casilla);
+	}
+
+	@Test
+	public void sePuedePosicionarUnSoldadoDeColaDeEsperaDelJugador()
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			PosicionNoOcupadaPorRecursoError, RecolectorInvalidoError,
+			NoHaySoldadosParaPosicionarError {
+		Jugador jugador = new Jugador();
+		Coordenada coordenadaMineral = new Coordenada(1, 1);
+		Casilla casillaMineral = new Casilla(coordenadaMineral);
+		Recurso minaDeMinerales = new MinaDeMinerales(1000);
+		minaDeMinerales.posicionar(casillaMineral);
+		@SuppressWarnings("unused")
+		CentroDeMineral centroDeMineral = jugador
+				.crearCentroDeMineral(casillaMineral);
+		for (int i = 0; i < 4; i++) {
+			jugador.pasarTurno();
+		} // Termina de crearse el centro
+		for (int i = 0; i < 100; i++) {
+			jugador.pasarTurno();
+		} // Recolecto suficientes recursos para crear las demas unidades
+		Coordenada coordenadaDeposito = new Coordenada(1, 2);
+		Casilla casillaDeposito = new Casilla(coordenadaDeposito);
+		@SuppressWarnings("unused")
+		DepositoDeSuministros deposito = jugador
+				.crearDepositoDeSuministros(casillaDeposito);
+		for (int i = 0; i < 6; i++) {
+			jugador.pasarTurno();
+		}// Termina de crearse el deposito
+
+		Coordenada coordenadaBarraca = new Coordenada(1, 3);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Barraca barraca = jugador.crearBarraca(casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			jugador.pasarTurno();
+		}// Termina de crearse la barraca
+
+		barraca.entrenarMarine();
+		for (int i = 0; i < 3; i++) {
+			jugador.pasarTurno();
+		}// Termina de crearse el marine
+		Coordenada coordenadaMarine = new Coordenada(1, 4);
+		Casilla casillaMarine = new Casilla(coordenadaMarine);
+		jugador.posicionarSoldadoEnColaDeEspera(casillaMarine);
+
+		Assert.assertTrue(casillaMarine.estaOcupadaLaTierra());
 	}
 
 }

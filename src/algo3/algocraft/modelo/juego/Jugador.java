@@ -72,6 +72,15 @@ public class Jugador {
 
 	}
 
+	public void posicionarSoldadoEnColaDeEspera(Casilla casilla)
+			throws CasillaOcupadaError, NoHaySoldadosParaPosicionarError {
+		if (this.soldadosParaPosicionar.isEmpty()) {
+			throw new NoHaySoldadosParaPosicionarError();
+		}
+		this.soldadosParaPosicionar.get(0).posicionar(casilla);
+
+	}
+
 	public Barraca crearBarraca(Casilla casilla)
 			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Barraca barraca = new Barraca(this);
