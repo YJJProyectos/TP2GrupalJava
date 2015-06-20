@@ -1,45 +1,49 @@
 package algo3.algocraft.modelo.unidades.unidadesMoviles;
 
+import java.util.ArrayList;
+
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoAccion;
 
-public abstract class UnidadTransporte extends UnidadMovil{
+public abstract class UnidadTransporte extends UnidadMovil {
 
-	protected UnidadSoldado[] soldadosCargados; 
-	
-	public UnidadTransporte(Jugador jugador, PlanoAccion plano, int capacidad, int vida) {
+	protected ArrayList<UnidadSoldado> soldadosCargados;
+	protected int capacidadMaxima;
+
+	public UnidadTransporte(Jugador jugador, PlanoAccion plano, int capacidad,
+			int vida) {
 		super(jugador, vida, plano);
-		soldadosCargados = new UnidadSoldado[capacidad];
+		soldadosCargados = new ArrayList<UnidadSoldado>();
+		this.capacidadMaxima = capacidad;
 	}
 
-	public boolean cargarSoldado(UnidadSoldado soldado) {
-		if (!this.esAliado(soldado)) return false;
-		for (int i = 0; i<soldadosCargados.length; i++) {
-			if (soldadosCargados[i] == soldado) return false;
+	public void cargarSoldado(UnidadSoldado soldado)
+			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
+			SoldadoYaCargadoError {
+		if (!this.esAliado(soldado))
+			throw new PerteneceAOtroJugadorError();
+		if (this.soldadosCargados.size() + 1 > this.capacidadMaxima) {
+			throw new LimiteDeCapacidadError();
 		}
-		for (int i = 0; i<soldadosCargados.length; i++) {
-			if (soldadosCargados[i] == null) {
-				soldadosCargados[i] = soldado;
-				soldado.nuevaPosicion(null);
-				return true;
-			}
+		if (this.soldadosCargados.contains(soldado)) {
+			throw new SoldadoYaCargadoError();
 		}
-		return false;
+		soldadosCargados.add(soldado);
+		soldado.nuevaPosicion(null);
 	}
 
-	public UnidadSoldado descargarSoldado() {
-		for (int i = 0; i<soldadosCargados.length; i++) {
-			if (soldadosCargados[i] != null) {
-				UnidadSoldado descargado = soldadosCargados[i];
-				soldadosCargados[i] = null;
-				return descargado;
-			}
+	public UnidadSoldado descargarSoldado() throws UnidadTransporteVaciaError {
+		try {
+			return this.soldadosCargados.remove(0);
+		} catch (IndexOutOfBoundsException e) {
+			throw new UnidadTransporteVaciaError();
 		}
-		return null;		
+
 	}
-	
+
 	public void pasarTurno() {
-		return;	
+		return;
 	}
 
 }
