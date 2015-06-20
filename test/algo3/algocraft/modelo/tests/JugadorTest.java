@@ -461,5 +461,15 @@ public class JugadorTest {
 
 		Assert.assertTrue(casillaMarine.estaOcupadaLaTierra());
 	}
+	
+	@Test
+	public void seInicializaElJugadorConDepositoYSigueConLaMismaCantidadDeMinerales(){
+		Jugador jugador = new Jugador();
+		Coordenada coordenada = new Coordenada(2, 2);
+		Casilla casilla = new Casilla(coordenada);
+		jugador.iniciarConDeposito(casilla);
+		Assert.assertEquals(10, jugador.cantidadPoblacion());
+		Assert.assertEquals(400, jugador.cantidadMineral());
+	}
 
 }

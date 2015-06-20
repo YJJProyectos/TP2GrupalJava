@@ -191,4 +191,16 @@ public class JuegoTest {
 		juego.pasarTurno();
 		Assert.assertEquals(jugador1, juego.turnoDeJugador());
 	}
+	@Test
+	public void seDeberiaPoderJugarHasta4Jugadores(){
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
+		Jugador jugador4 = new Jugador();
+		Jugador jugador5 = new Jugador();
+		Juego juego = new Juego(jugador1, jugador2);
+		juego.agregarJugador(jugador3);
+		Assert.assertTrue(juego.agregarJugador(jugador4));
+		Assert.assertFalse(juego.agregarJugador(jugador5));
+	}
 }

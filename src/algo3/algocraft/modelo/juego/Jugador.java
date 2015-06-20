@@ -28,16 +28,6 @@ public class Jugador {
 		cantidadGas = 100;
 		poblacion = 0;
 		this.soldadosParaPosicionar = new ArrayList<UnidadSoldado>();
-		// agrego que jugador empieza con un deposito
-		// despues ver si en donde posicionarla en el mapa
-		// y tambien deberia empezar con un marine (despues se agregaria)
-
-		// Hay que pasar esto a la inicializacion del jugador en el juego
-		// DepositoDeSuministros deposito = new DepositoDeSuministros(this);
-		// for (int i = 0; i < 6; i++) {
-		// deposito.continuarConstruccion();
-		// }
-		// unidades.add(deposito);
 	}
 
 	public int cantidadMineral() {
@@ -153,6 +143,20 @@ public class Jugador {
 		}
 		this.cantidadMineral -= costoMineral;
 		this.cantidadGas -= costoGas;
+	}
+
+	public void iniciarConDeposito(Casilla posicionDeBase){
+		this.cantidadMineral += 150; // le agrego lo necesario para crear el deposito
+		DepositoDeSuministros deposito;
+		try {
+			deposito = new DepositoDeSuministros(this);
+			for (int i = 0; i < 6; i++) {
+				deposito.continuarConstruccion();
+				}
+				unidades.add(deposito);
+				this.poblacion = 10;
+		} catch (RecursosInsuficientesError e) {
+		}
 	}
 
 }

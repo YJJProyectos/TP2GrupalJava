@@ -83,4 +83,18 @@ public class MapaTest {
 		Assert.assertTrue(casillaGas.estaOcupadoElRecurso());
 
 	}
+	@Test
+	public void deberiaDarDiferentesLas4Casillas(){
+		Mapa mapa = new Mapa(4);
+		Casilla casilla1 = mapa.posicionDeBase();
+		Casilla casilla2 = mapa.posicionDeBase();
+		Casilla casilla3 = mapa.posicionDeBase();
+		Casilla casilla4 = mapa.posicionDeBase();
+		Assert.assertNotEquals(casilla1, casilla2);
+		Assert.assertNotEquals(casilla1, casilla3);
+		Assert.assertNotEquals(casilla1, casilla4);
+		Assert.assertNotEquals(casilla2, casilla3);
+		Assert.assertNotEquals(casilla2, casilla4);
+		Assert.assertNotEquals(casilla3, casilla4);
+	}
 }

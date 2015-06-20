@@ -1,17 +1,28 @@
 package algo3.algocraft.modelo.juego;
 
+import algo3.algocraft.modelo.mapa.Mapa;
+
 public class Juego {
 
 	private ListaDeJugadores jugadores;
+	private Mapa mapa;
 
 	public Juego(Jugador jugador1, Jugador jugador2) {
 		this.jugadores = new ListaDeJugadores();
 		this.jugadores.agregarJugador(jugador1);
 		this.jugadores.agregarJugador(jugador2);
+		this.mapa = new Mapa(4);
+		jugador1.iniciarConDeposito(this.mapa.posicionDeBase());
+		jugador2.iniciarConDeposito(this.mapa.posicionDeBase());
 	}
 
-	public void agregarJugador(Jugador jugador) {
-		this.jugadores.agregarJugador(jugador);
+	public boolean agregarJugador(Jugador jugador) {
+		boolean seAgregoJugador = false;
+		if ( jugadores.cantidad() < 4){
+			this.jugadores.agregarJugador(jugador);
+			seAgregoJugador = true;
+		}
+		return seAgregoJugador;
 	}
 
 	public void pasarTurno() {

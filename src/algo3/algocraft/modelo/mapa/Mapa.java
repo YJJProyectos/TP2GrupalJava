@@ -1,6 +1,8 @@
 package algo3.algocraft.modelo.mapa;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
@@ -13,6 +15,8 @@ public class Mapa {
 	private int minColumna = 1;
 	private int maxFila;
 	private int maxColumna;
+	private CoordenadasParaPosicionar coordenadas;
+	private ArrayList<Integer> numerosSacados;
 
 	public Mapa(int bases) {
 
@@ -28,7 +32,9 @@ public class Mapa {
 			}
 
 		}
-
+		this.coordenadas = new CoordenadasParaPosicionar(minFila,
+				minColumna, maxFila, maxColumna);
+		this.numerosSacados = new ArrayList<Integer>();
 	}
 
 	public int tamanio() {
@@ -69,18 +75,17 @@ public class Mapa {
 	}
 
 	public void setCoordenadaMineralYVolcanDeGas() throws CasillaOcupadaError {
-		CoordenadaRecurso coordenadaRecurso = new CoordenadaRecurso(minFila,
-				minColumna, maxFila, maxColumna);
-		while (coordenadaRecurso.tieneCoordenadaMineral()) {
+
+		while (coordenadas.tieneCoordenadaMineral()) {
 			MinaDeMinerales mina = new MinaDeMinerales(1000);
-			Coordenada coordenadaDeMina = coordenadaRecurso
+			Coordenada coordenadaDeMina = coordenadas
 					.sacarCoordenadaDeMineral();
 			Casilla casilla = tablero.get(coordenadaDeMina);
 			casilla.agregarRecurso(mina);
 		}
-		while (coordenadaRecurso.tieneCoordenadaGas()) {
+		while (coordenadas.tieneCoordenadaGas()) {
 			VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(1000);
-			Coordenada coordenadaDeGas = coordenadaRecurso
+			Coordenada coordenadaDeGas = coordenadas
 					.sacarCoordenadaDeGas();
 			Casilla casilla = tablero.get(coordenadaDeGas);
 			casilla.agregarRecurso(volcan);
@@ -91,5 +96,24 @@ public class Mapa {
 			throws CoordenadaInvalidaError {
 		this.validarCoordenada(coordenada);
 		return tablero.get(coordenada);
+	}
+
+	public Casilla posicionDeBase() {
+		Casilla casillaDeBase = null;
+		if ( coordenadas.tieneCoordenadaDeBase() ){
+			
+			Random aleatorio = new Random();
+			// genero numero aleatorio entre 0 y 3 
+			int numeroAleatorio = aleatorio.nextInt(4);
+			while ( this.numerosSacados.contains(numeroAleatorio) ){
+				//si ya obtuve un numero anterior busco otro aleatoriamente
+				numeroAleatorio = aleatorio.nextInt(4);
+			}
+			//cuando sale del ciclo ya no esta contenido en la lista
+			Coordenada coordenadaBase = coordenadas.sacarCoordenadaDeBase(numeroAleatorio);
+			casillaDeBase = this.tablero.get(coordenadaBase);
+			this.numerosSacados.add(numeroAleatorio);	
+		}
+		return casillaDeBase;
 	}
 }

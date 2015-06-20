@@ -35,4 +35,8 @@ public class ListaDeJugadores {
 	public Jugador jugadorActual() {
 		return this.jugadores.get(this.posicionActual);
 	}
+
+	public int cantidad() {
+		return this.jugadores.size();
+	}
 }
