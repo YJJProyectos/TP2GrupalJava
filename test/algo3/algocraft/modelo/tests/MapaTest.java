@@ -9,6 +9,8 @@ import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.mapa.CoordenadaInvalidaError;
 import algo3.algocraft.modelo.mapa.Mapa;
+import algo3.algocraft.modelo.recursos.MinaDeMinerales;
+import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 
@@ -30,9 +32,32 @@ public class MapaTest {
 		Assert.assertFalse(mapa.agregarElementoEnPosicion(marine, coordenada));
 	}
 
+	@Test(expected = CoordenadaInvalidaError.class)
+	public void deberiaLanzarUnaExcepcionAlQuererObtenerUnElementoTerrestreEnUnaCoordenadaInvalida()
+			throws CasillaOcupadaError, CoordenadaInvalidaError {
+		Mapa mapa = new Mapa(4);
+		Jugador jugador = new Jugador();
+		@SuppressWarnings("unused")
+		Unidad marine = new Marine(jugador);
+		Coordenada coordenadaMarine = new Coordenada(1000, 1000);
+		mapa.obtenerElementoTerrestreEnPosicion(coordenadaMarine);
+
+	}
+
+	@Test(expected = CoordenadaInvalidaError.class)
+	public void deberiaLanzarUnaExcepcionAlQuererObtenerUnRecursotreEnUnaCoordenadaInvalida()
+			throws CasillaOcupadaError, CoordenadaInvalidaError {
+		Mapa mapa = new Mapa(4);
+		@SuppressWarnings("unused")
+		Recurso minaDeMineral = new MinaDeMinerales(100);
+		Coordenada coordenadaMina = new Coordenada(1000, 1000);
+		mapa.obtenerElementoTerrestreEnPosicion(coordenadaMina);
+
+	}
+
 	@Test
 	public void deberiaAgregarUnMarineEnLaPosicionDada()
-			throws CasillaOcupadaError {
+			throws CasillaOcupadaError, CoordenadaInvalidaError {
 		Mapa mapa = new Mapa(4);
 		Jugador jugador = new Jugador();
 		Unidad marine = new Marine(jugador);
@@ -83,8 +108,9 @@ public class MapaTest {
 		Assert.assertTrue(casillaGas.estaOcupadoElRecurso());
 
 	}
+
 	@Test
-	public void deberiaDarDiferentesLas4Casillas(){
+	public void deberiaDarDiferentesLas4Casillas() {
 		Mapa mapa = new Mapa(4);
 		Casilla casilla1 = mapa.posicionDeBase();
 		Casilla casilla2 = mapa.posicionDeBase();

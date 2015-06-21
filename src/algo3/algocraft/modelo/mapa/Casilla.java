@@ -51,7 +51,6 @@ public class Casilla {
 	public void ocuparAereo(Unidad unidad) throws CasillaOcupadaError {
 		if (this.ocupanteAereo != null) {
 			throw new CasillaOcupadaError();
-
 		}
 		this.ocupanteAereo = unidad;
 		unidad.nuevaPosicion(this);
@@ -90,7 +89,6 @@ public class Casilla {
 
 	public int distanciaA(Casilla otraPosicion) {
 		Coordenada otraCoordenada = otraPosicion.posicion();
-
 		return this.ubicacion.distanciaA(otraCoordenada);
 	}
 }

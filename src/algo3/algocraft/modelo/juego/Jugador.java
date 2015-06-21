@@ -61,7 +61,7 @@ public class Jugador {
 		if (this.soldadosParaPosicionar.isEmpty()) {
 			throw new NoHaySoldadosParaPosicionarError();
 		}
-		this.soldadosParaPosicionar.get(0).posicionar(casilla);
+		this.soldadosParaPosicionar.remove(0).posicionar(casilla);
 
 	}
 
@@ -78,6 +78,9 @@ public class Jugador {
 		for (int i = 0; i < this.unidades.size(); i++) {
 			Unidad unidad = this.unidades.get(i);
 			unidad.pasarTurno();
+			if (unidad.estaDestruido()) {
+				this.removerUnidad(unidad);
+			}
 		}
 
 	}

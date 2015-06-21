@@ -69,8 +69,9 @@ public class Mapa {
 		return true;
 	}
 
-	public Unidad obtenerElementoTerrestreEnPosicion(Coordenada coordenada) {
-
+	public Unidad obtenerElementoTerrestreEnPosicion(Coordenada coordenada)
+			throws CoordenadaInvalidaError {
+		this.validarCoordenada(coordenada);
 		Casilla casillero = tablero.get(coordenada);
 		return casillero.getOcupanteTerrestre();
 	}

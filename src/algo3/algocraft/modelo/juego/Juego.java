@@ -21,12 +21,11 @@ public class Juego {
 	}
 
 	public boolean agregarJugador(Jugador jugador) {
-		boolean seAgregoJugador = false;
 		if (jugadores.cantidad() < 4) {
 			this.jugadores.agregarJugador(jugador);
-			seAgregoJugador = true;
+			return true;
 		}
-		return seAgregoJugador;
+		return false;
 	}
 
 	public void pasarTurno() {

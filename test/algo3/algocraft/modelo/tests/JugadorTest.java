@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.NoHaySoldadosParaPosicionarError;
-import algo3.algocraft.modelo.juego.PosicionNoOcupadaPorRecursoError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
@@ -14,6 +13,7 @@ import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
+import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
@@ -30,8 +30,7 @@ public class JugadorTest {
 
 	@Test
 	public void despuesDeCrearseUnCentroDeMineralAlTomarEnCuentaSuCostoYPasar2TurnosAumentaEn20LosMinerales()
-			throws PosicionNoOcupadaPorRecursoError,
-			RecursosInsuficientesError, CasillaOcupadaError,
+			throws RecursosInsuficientesError, CasillaOcupadaError,
 			RecolectorInvalidoError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
@@ -129,8 +128,7 @@ public class JugadorTest {
 
 	@Test
 	public void despuesDeCrearseLaRefineriaYPasar6TurnosAumentaEn20LaCantidadDeGas()
-			throws PosicionNoOcupadaPorRecursoError,
-			RecursosInsuficientesError, CasillaOcupadaError,
+			throws RecursosInsuficientesError, CasillaOcupadaError,
 			RecolectorInvalidoError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
@@ -159,8 +157,8 @@ public class JugadorTest {
 	@Test
 	public void sePuedePosicionarUnSoldadoDeColaDeEsperaDelJugador()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
-			PosicionNoOcupadaPorRecursoError, RecolectorInvalidoError,
-			NoHaySoldadosParaPosicionarError, JugadorIncorrectoError {
+			RecolectorInvalidoError, NoHaySoldadosParaPosicionarError,
+			JugadorIncorrectoError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaMineral = new Coordenada(1, 1);
 		Casilla casillaMineral = new Casilla(coordenadaMineral);
@@ -200,6 +198,39 @@ public class JugadorTest {
 		jugador.posicionarSoldadoEnColaDeEspera(casillaMarine);
 
 		Assert.assertTrue(casillaMarine.estaOcupadaLaTierra());
+	}
+
+	@Test
+	public void siSeDestruyeLaUnicaUnidadDelJugadorEstaDestruido()
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			YaEstaDestruidoError {
+		Jugador jugador = new Jugador();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casilla);
+		deposito.recibirDanio(600);
+		jugador.pasarTurno();
+		Assert.assertTrue(jugador.estaDestruido());
+	}
+
+	@Test
+	public void siSeDestruyeUnaUnidadDeDosDelJugadorNoEstaDestruido()
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			YaEstaDestruidoError {
+		Jugador jugador = new Jugador();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		Coordenada otroCoordenada = new Coordenada(1, 1);
+		Casilla otraCasilla = new Casilla(otroCoordenada);
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casilla);
+		@SuppressWarnings("unused")
+		DepositoDeSuministros otroDeposito = new DepositoDeSuministros(jugador,
+				otraCasilla);
+		deposito.recibirDanio(600);
+		jugador.pasarTurno();
+		Assert.assertFalse(jugador.estaDestruido());
 	}
 
 	@Test
