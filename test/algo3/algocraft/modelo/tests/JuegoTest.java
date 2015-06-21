@@ -6,7 +6,10 @@ import org.junit.Test;
 import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
+import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
+import algo3.algocraft.modelo.mapa.Coordenada;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 
 public class JuegoTest {
 
@@ -37,6 +40,9 @@ public class JuegoTest {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
+		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
+		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
+		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.agregarJugador(jugador3);
 		Assert.assertEquals(jugador1, juego.turnoDeJugador());
@@ -54,6 +60,9 @@ public class JuegoTest {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
+		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
+		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
+		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.agregarJugador(jugador3);
 		Assert.assertEquals(jugador1, juego.turnoDeJugador());
@@ -77,6 +86,9 @@ public class JuegoTest {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
+		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
+		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
+		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.agregarJugador(jugador3);
 		juego.sacarJugador(jugador1);
@@ -93,6 +105,9 @@ public class JuegoTest {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
+		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
+		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
+		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.agregarJugador(jugador3);
 		Assert.assertEquals(jugador1, juego.turnoDeJugador());
@@ -113,6 +128,10 @@ public class JuegoTest {
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
 		Jugador jugador4 = new Jugador();
+		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
+		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
+		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
+		new Barraca(jugador4, new Casilla(new Coordenada(1, 4)));
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.agregarJugador(jugador3);
 		juego.agregarJugador(jugador4);
@@ -133,6 +152,10 @@ public class JuegoTest {
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
 		Jugador jugador4 = new Jugador();
+		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
+		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
+		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
+		new Barraca(jugador4, new Casilla(new Coordenada(1, 4)));
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.agregarJugador(jugador3);
 		juego.agregarJugador(jugador4);
@@ -162,6 +185,9 @@ public class JuegoTest {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
+		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
+		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
+		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.agregarJugador(jugador3);
 		Assert.assertEquals(jugador1, juego.turnoDeJugador());
@@ -185,6 +211,10 @@ public class JuegoTest {
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
 		Jugador jugador4 = new Jugador();
+		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
+		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
+		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
+		new Barraca(jugador4, new Casilla(new Coordenada(1, 4)));
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.agregarJugador(jugador3);
 		juego.agregarJugador(jugador4);
@@ -202,6 +232,46 @@ public class JuegoTest {
 		juego.sacarJugador(jugador4);
 		juego.pasarTurno();
 		Assert.assertEquals(jugador1, juego.turnoDeJugador());
+	}
+
+	@Test
+	public void siHayMasDe1JugadorNoHayGanador()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
+		Jugador jugador4 = new Jugador();
+		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
+		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
+		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
+		new Barraca(jugador4, new Casilla(new Coordenada(1, 4)));
+		Juego juego = new Juego(jugador1, jugador2);
+		juego.agregarJugador(jugador3);
+		juego.agregarJugador(jugador4);
+
+		Assert.assertEquals(null, juego.getGanador());
+	}
+
+	@Test
+	public void siSoloQueda1JugadorEsElGanador()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Jugador jugador3 = new Jugador();
+		Jugador jugador4 = new Jugador();
+		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
+		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
+		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
+		new Barraca(jugador4, new Casilla(new Coordenada(1, 4)));
+		Juego juego = new Juego(jugador1, jugador2);
+		juego.agregarJugador(jugador3);
+		juego.agregarJugador(jugador4);
+		juego.sacarJugador(jugador2);
+		juego.sacarJugador(jugador3);
+		juego.sacarJugador(jugador4);
+		juego.pasarTurno();
+
+		Assert.assertEquals(jugador1, juego.getGanador());
 	}
 
 	@Test

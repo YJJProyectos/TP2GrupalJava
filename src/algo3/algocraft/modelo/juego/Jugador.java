@@ -102,4 +102,8 @@ public class Jugador {
 		}
 	}
 
+	public boolean estaDestruido() {
+		return this.unidades.isEmpty();
+	}
+
 }

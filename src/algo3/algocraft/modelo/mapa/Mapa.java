@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
+import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
 import algo3.algocraft.modelo.unidades.Unidad;
 
@@ -115,5 +116,13 @@ public class Mapa {
 			this.numerosSacados.add(numeroAleatorio);
 		}
 		return casillaDeBase;
+	}
+
+	public Recurso obtenerRecursoEnPosicion(Coordenada coordenada)
+			throws CoordenadaInvalidaError {
+		this.validarCoordenada(coordenada);
+		Casilla casillero = tablero.get(coordenada);
+		return casillero.getRecurso();
+
 	}
 }

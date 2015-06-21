@@ -7,9 +7,11 @@ public class Juego {
 
 	private ListaDeJugadores jugadores;
 	private Mapa mapa;
+	private Jugador ganador;
 
 	public Juego(Jugador jugador1, Jugador jugador2)
 			throws RecursosInsuficientesError, CasillaOcupadaError {
+		this.ganador = null;
 		this.jugadores = new ListaDeJugadores();
 		this.jugadores.agregarJugador(jugador1);
 		this.jugadores.agregarJugador(jugador2);
@@ -28,7 +30,15 @@ public class Juego {
 	}
 
 	public void pasarTurno() {
-		jugadores.pasarTurno();
+		this.jugadores.pasarTurno();
+		this.jugadores.comprobarEstadoDeJugadores();
+		if (this.jugadores.cantidad() == 1) {
+			this.ganador = this.jugadores.jugadorActual();
+		}
+	}
+
+	public Jugador getGanador() {
+		return this.ganador;
 	}
 
 	public Jugador turnoDeJugador() {
@@ -37,6 +47,10 @@ public class Juego {
 
 	public void sacarJugador(Jugador jugador) {
 		jugadores.sacarJugador(jugador);
+	}
+
+	public Mapa getMapa() {
+		return this.mapa;
 	}
 
 }

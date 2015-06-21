@@ -39,4 +39,13 @@ public class ListaDeJugadores {
 	public int cantidad() {
 		return this.jugadores.size();
 	}
+	
+	public void comprobarEstadoDeJugadores(){
+		for (int i = 0; i<this.jugadores.size(); i++){
+			Jugador jugador = this.jugadores.get(i);
+			if (jugador.estaDestruido()){
+				this.sacarJugador(jugador);
+			}
+		}
+	}
 }

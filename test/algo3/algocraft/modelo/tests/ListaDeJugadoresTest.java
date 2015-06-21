@@ -5,6 +5,11 @@ import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.ListaDeJugadores;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
+import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
+import algo3.algocraft.modelo.mapa.Coordenada;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 
 public class ListaDeJugadoresTest {
 
@@ -209,5 +214,28 @@ public class ListaDeJugadoresTest {
 		lista.sacarJugador(jugador4);
 		lista.pasarTurno();
 		Assert.assertEquals(jugador1, lista.jugadorActual());
+	}
+
+	@Test
+	public void siUnJugadorTieneUnidadesNoSeLoQuitaDeLaLista()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
+		Jugador jugador1 = new Jugador();
+		ListaDeJugadores lista = new ListaDeJugadores();
+		lista.agregarJugador(jugador1);
+		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
+		int cantidadInicial = lista.cantidad();
+		lista.comprobarEstadoDeJugadores();
+		int cantidadFinal = lista.cantidad();
+		Assert.assertEquals(cantidadInicial, cantidadFinal);
+	}
+
+	@Test
+	public void siUnJugadorNoTieneUnidadesSeLoQuitaDeLaLista()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
+		Jugador jugador1 = new Jugador();
+		ListaDeJugadores lista = new ListaDeJugadores();
+		lista.agregarJugador(jugador1);
+		lista.comprobarEstadoDeJugadores();
+		Assert.assertEquals(0, lista.cantidad());
 	}
 }
