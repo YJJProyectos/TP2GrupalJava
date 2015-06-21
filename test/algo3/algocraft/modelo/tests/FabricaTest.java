@@ -25,6 +25,7 @@ public class FabricaTest {
 	public void deberiaLanzarUnErrorSiElJugadornoTieneLosMineralesParaCrearUnaFabrica()
 			throws RecursosInsuficientesError, PerteneceAOtroJugadorError,
 			CasillaOcupadaError, BarracaNoConstruidaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -43,6 +44,7 @@ public class FabricaTest {
 	public void deberiaLanzarUnErrorSiElJugadornoTieneElGasesParaCrearUnaFabrica()
 			throws RecursosInsuficientesError, PerteneceAOtroJugadorError,
 			CasillaOcupadaError, BarracaNoConstruidaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -61,6 +63,7 @@ public class FabricaTest {
 	public void siSeEmpezoACrearUnaBarracaPeroSigueEnConstruccionNoSePuedeConstruirUnaFabrica()
 			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -74,6 +77,7 @@ public class FabricaTest {
 	public void siSePudoCrearUnaBarraSePuedeConstruirUnaFabrica()
 			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -93,6 +97,7 @@ public class FabricaTest {
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			CasillaOcupadaError, BarracaNoConstruidaError {
 		Jugador jugador = new Jugador();
+
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
@@ -110,6 +115,7 @@ public class FabricaTest {
 	public void elTiempoDeConstruccionDeUnaFabricaLuegoDePasarUnTUrnoEsde11Turnos()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			CasillaOcupadaError, BarracaNoConstruidaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -129,6 +135,7 @@ public class FabricaTest {
 	public void laFabricaSeEncuentraInicialmenteEnConstruccion()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			BarracaNoConstruidaError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -147,6 +154,7 @@ public class FabricaTest {
 	public void luegoDe12TurnosLaFabricaEstaConstuida()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			BarracaNoConstruidaError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -187,8 +195,8 @@ public class FabricaTest {
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		marine.posicionar(casillaMarine);
 		marine.atacarEnemigo(fabrica, jugadorEnemigo);
-		Assert.assertTrue(fabrica.estaDestruido());
 
+		Assert.assertTrue(fabrica.estaDestruido());
 	}
 
 	@Test
@@ -213,14 +221,12 @@ public class FabricaTest {
 		Coordenada coordenadaMarine = new Coordenada(1, 2);
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		marine.posicionar(casillaMarine);
-
 		for (int i = 0; i < 12; i++) {
 			fabrica.pasarTurno();
 		}
-
 		marine.atacarEnemigo(fabrica, jugadorEnemigo);
-		Assert.assertFalse(fabrica.estaDestruido());
 
+		Assert.assertFalse(fabrica.estaDestruido());
 	}
 
 	@Test
@@ -228,6 +234,7 @@ public class FabricaTest {
 			throws YaEstaDestruidoError, PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, BarracaNoConstruidaError,
 			CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -253,6 +260,7 @@ public class FabricaTest {
 			throws YaEstaDestruidoError, PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, BarracaNoConstruidaError,
 			CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -275,6 +283,7 @@ public class FabricaTest {
 	public void deberiaPoderPosicionarseUnaFabricaEnUnaCasillaDesocupada()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			CasillaOcupadaError, BarracaNoConstruidaError {
+
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
@@ -288,6 +297,7 @@ public class FabricaTest {
 		Coordenada coordenadaNueva = new Coordenada(1, 1);
 		Casilla casillaNueva = new Casilla(coordenadaNueva);
 		fabrica.posicionar(casillaNueva);
+
 		Assert.assertEquals(casillaNueva, fabrica.posicion());
 	}
 
@@ -295,6 +305,7 @@ public class FabricaTest {
 	public void deberiaLanzarUnaExcepcionAlQuererPosicionarUnaFabricaEnUnaCasillaOcupadaPorUnaunidad()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			CasillaOcupadaError, BarracaNoConstruidaError {
+
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
@@ -312,6 +323,7 @@ public class FabricaTest {
 	public void deberiaLanzarUnaExcepcionAlQuererPosicionarUnaFabricaEnUnaCasillaOcupadaPorUnRecurso()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			CasillaOcupadaError, BarracaNoConstruidaError {
+
 		Coordenada coordenadaMineral = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaMineral = new Casilla(coordenadaMineral);
@@ -331,6 +343,7 @@ public class FabricaTest {
 	public void deberiaGuardarSuPosicion() throws PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, CasillaOcupadaError,
 			BarracaNoConstruidaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabricaInicial = new Coordenada(2, 1);
@@ -352,6 +365,7 @@ public class FabricaTest {
 	public void unaFabricaEsInicialmenteTerrestre()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			BarracaNoConstruidaError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -371,6 +385,7 @@ public class FabricaTest {
 			throws YaEstaDestruidoError, PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, BarracaNoConstruidaError,
 			CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -382,9 +397,10 @@ public class FabricaTest {
 		}
 		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 		fabrica.recibirDanio(2000);
-		Assert.assertTrue(fabrica.estaDestruido());
-		fabrica.recibirDanio(2);
 
+		Assert.assertTrue(fabrica.estaDestruido());
+
+		fabrica.recibirDanio(2);
 	}
 
 	@Test(expected = JugadorIncorrectoError.class)
@@ -392,6 +408,7 @@ public class FabricaTest {
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			JugadorIncorrectoError, PerteneceAOtroJugadorError,
 			BarracaNoConstruidaError {
+
 		Jugador jugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
@@ -414,6 +431,7 @@ public class FabricaTest {
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			BarracaNoConstruidaError, CasillaOcupadaError,
 			JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -433,6 +451,7 @@ public class FabricaTest {
 			throws PerteneceAOtroJugadorError, YaEstaDestruidoError,
 			RecursosInsuficientesError, BarracaNoConstruidaError,
 			CasillaOcupadaError, JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -456,6 +475,7 @@ public class FabricaTest {
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			BarracaNoConstruidaError, CasillaOcupadaError,
 			JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -471,7 +491,6 @@ public class FabricaTest {
 		}
 
 		Assert.assertTrue(fabrica.entrenarGolliat(jugador));
-
 	}
 
 	@Test
@@ -479,6 +498,7 @@ public class FabricaTest {
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			BarracaNoConstruidaError, CasillaOcupadaError,
 			JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -493,8 +513,8 @@ public class FabricaTest {
 			fabrica.pasarTurno();
 		}
 		fabrica.entrenarGolliat(jugador);
-		Assert.assertFalse(fabrica.entrenarGolliat(jugador));
 
+		Assert.assertFalse(fabrica.entrenarGolliat(jugador));
 	}
 
 	@Test
@@ -502,6 +522,7 @@ public class FabricaTest {
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			BarracaNoConstruidaError, CasillaOcupadaError,
 			JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -519,14 +540,15 @@ public class FabricaTest {
 		for (int j = 0; j < 6; j++) {
 			fabrica.pasarTurno();
 		}
-		Assert.assertTrue(fabrica.entrenarGolliat(jugador));
 
+		Assert.assertTrue(fabrica.entrenarGolliat(jugador));
 	}
 
 	@Test(expected = PerteneceAOtroJugadorError.class)
 	public void deberiaLanzarLaExcepcionPerteneceAOtroJugadorErrorSiLaBarracaPerteneceAOtroJugador()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			BarracaNoConstruidaError, CasillaOcupadaError {
+
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);

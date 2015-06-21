@@ -53,8 +53,10 @@ public class Barraca extends UnidadEdificio {
 	}
 
 	public void continuarEntrenamientoDeMarine() {
-		if (this.marineEnEntrenamiento != null)
-			this.turnosRestantesParaTerminarMarine -= 1;
+		if (this.marineEnEntrenamiento == null) {
+			return;
+		}
+		this.turnosRestantesParaTerminarMarine -= 1;
 		if (this.turnosRestantesParaTerminarMarine == 0) {
 			this.jugador
 					.agregarSoldadoParaPosicionar(this.marineEnEntrenamiento);
@@ -73,4 +75,5 @@ public class Barraca extends UnidadEdificio {
 	public boolean enConstruccion() {
 		return enConstruccion;
 	}
+
 }

@@ -3,11 +3,9 @@ package algo3.algocraft.modelo.mapa;
 public class Coordenada {
 
 	protected int fila;
-
 	protected int columna;
 
 	public Coordenada(int fila, int columna) {
-
 		this.fila = fila;
 		this.columna = columna;
 	}
@@ -30,13 +28,11 @@ public class Coordenada {
 
 	@Override
 	public int hashCode() {
-
 		return (fila * fila + columna);
 	}
 
 	@Override
 	public boolean equals(Object otroObjeto) {
-
 		if (otroObjeto.getClass() != this.getClass()) {
 			return false;
 		} else {
@@ -47,7 +43,6 @@ public class Coordenada {
 	}
 
 	public int distanciaA(Coordenada otraCoordenada) {
-
 		int otraFila = otraCoordenada.getFila();
 		int otraColumna = otraCoordenada.getColumna();
 		double X = Math.pow((this.fila - otraFila), 2);

@@ -21,6 +21,7 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaNoEstarOcupadaLaTierra() {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 
@@ -29,6 +30,7 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaNoEstarOcupadoElAire() {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 
@@ -37,6 +39,7 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaNoEstarOcupadoElRecurso() {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 
@@ -46,6 +49,7 @@ public class CasillaTest {
 	@Test
 	public void deberiaEstarOcupadaLaTierraAlAgregarUnMarineEnTierra()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -58,6 +62,7 @@ public class CasillaTest {
 	@Test
 	public void deberiaEstarOcupadaLaTierraAlAgregarUnMarine()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -69,6 +74,7 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaGuardarALaUnidad() throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -81,6 +87,7 @@ public class CasillaTest {
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlQuererPosicionar2UnidadesTerrestresEnUnaMismaCasilla()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -88,12 +95,12 @@ public class CasillaTest {
 		Unidad segundoMarine = new Marine(jugador);
 		casilla.ocuparTerrestre(primerMarine);
 		casilla.ocuparTerrestre(segundoMarine);
-
 	}
 
 	@Test
 	public void deberiaNoEstarOcupadoElAireAlAgregarUnMarineEnTierra()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -106,6 +113,7 @@ public class CasillaTest {
 	@Test
 	public void deberiaNoEstarOcupadoElAireAlAgregarUnMarine()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -118,6 +126,7 @@ public class CasillaTest {
 	@Test
 	public void deberiaNoEstarOcupadoElRecursoAlAgregarUnMarineEnTierra()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -130,6 +139,7 @@ public class CasillaTest {
 	@Test
 	public void deberiaNoEstarOcupadoElRecursoAlAgregarUnMarine()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -142,6 +152,7 @@ public class CasillaTest {
 	@Test
 	public void deberiaNoEstarOcupadaLaTierraAlAgregarUnRecurso()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
@@ -153,6 +164,7 @@ public class CasillaTest {
 	@Test
 	public void deberiaNoEstarOcupadoElAireAlAgregarUnRecurso()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
@@ -175,6 +187,7 @@ public class CasillaTest {
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaGuardarSoloElPrimerRecursoEntreDosRecursosAgregados()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso primerMineral = new MinaDeMinerales(100);
@@ -185,6 +198,7 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaNoPoderDesocuparLaTierraSiNoHayUnaUnidad() {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 
@@ -193,6 +207,7 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaNoPoderDesocuparElAireSiNoHayUnaUnidad() {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 
@@ -202,10 +217,10 @@ public class CasillaTest {
 	@Test
 	public void deberiaPoderDesocuparLaTierraSiSoloHayUnMarineEnTierra()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Unidad marine = new Marine(null);
-
 		casilla.ocuparTerrestre(marine);
 
 		Assert.assertEquals(marine, casilla.desocuparTierra());
@@ -214,10 +229,10 @@ public class CasillaTest {
 	@Test
 	public void deberiaPoderDesocuparLaTierraSiSoloHayUnMarine()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Unidad marine = new Marine(null);
-
 		casilla.ocuparTerrestre(marine);
 
 		Assert.assertEquals(marine, casilla.desocuparTierra());
@@ -226,6 +241,7 @@ public class CasillaTest {
 	@Test
 	public void deberiaNoPoderDesocuparElAireSiSoloHayUnMarineEnTierra()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -238,6 +254,7 @@ public class CasillaTest {
 	@Test
 	public void deberiaNoPoderDesocuparElAireSiSoloHayUnMarine()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -250,6 +267,7 @@ public class CasillaTest {
 	@Test
 	public void deberiaNoPoderDesocuparLaTierraSiSoloHayUnRecurso()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
@@ -261,6 +279,7 @@ public class CasillaTest {
 	@Test
 	public void deberiaNoPoderDesocuparElAireSiSoloHayUnRecurso()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
@@ -273,18 +292,21 @@ public class CasillaTest {
 	public void deberiaPoderAgregarUnCentroMineralPorqueHayMineral()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			RecolectorInvalidoError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
 		mineral.posicionar(casilla);
 		Jugador jugador = new Jugador();
 		Recolector centroMineral = new CentroDeMineral(mineral, jugador);
+
 		Assert.assertEquals(casilla, centroMineral.posicion());
 	}
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlIntentarAgregarUnSoldadoSiYaHayUnMineral()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
@@ -292,12 +314,12 @@ public class CasillaTest {
 		Unidad marine = new Marine(jugador);
 		casilla.agregarRecurso(mineral);
 		casilla.ocuparTerrestre(marine);
-
 	}
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlAgregarUnMineralSiYaHayUnMarineEnLaCasilla()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
@@ -305,13 +327,13 @@ public class CasillaTest {
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
 		casilla.agregarRecurso(mineral);
-
 	}
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlintentarAgregarUnMarineCuandoYaHayUnCentroDeMineralEnLaCasilla()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			RecolectorInvalidoError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -321,22 +343,24 @@ public class CasillaTest {
 		centroMineral.pasarTurno();
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
-
 	}
 
 	@Test
 	public void deberiaPoderOcuparElAireConUnaUnidad()
 			throws CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Espectro espectro = new Espectro(jugador);
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		casilla.ocuparAereo(espectro);
+
 		Assert.assertEquals(casilla, espectro.posicion());
 	}
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlQuererAgregarDosUnidadesEnElAire()
 			throws CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Espectro espectro1 = new Espectro(jugador);
 		Espectro espectro2 = new Espectro(jugador);
@@ -348,13 +372,17 @@ public class CasillaTest {
 	@Test
 	public void deberiaPoderOcuparTierraYAireALaVez()
 			throws CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Espectro espectro = new Espectro(jugador);
 		Marine marine = new Marine(jugador);
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		casilla.ocuparAereo(espectro);
+
 		Assert.assertEquals(casilla, espectro.posicion());
+
 		casilla.ocuparTerrestre(marine);
+
 		Assert.assertEquals(casilla, marine.posicion());
 	}
 }

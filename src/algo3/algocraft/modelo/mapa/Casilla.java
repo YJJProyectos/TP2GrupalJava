@@ -91,4 +91,5 @@ public class Casilla {
 		Coordenada otraCoordenada = otraPosicion.posicion();
 		return this.ubicacion.distanciaA(otraCoordenada);
 	}
+
 }

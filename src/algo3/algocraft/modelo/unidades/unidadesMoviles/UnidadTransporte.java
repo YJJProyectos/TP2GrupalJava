@@ -39,7 +39,6 @@ public abstract class UnidadTransporte extends UnidadMovil {
 
 	public UnidadSoldado descargarSoldado(Jugador unJugador)
 			throws UnidadTransporteVaciaError, JugadorIncorrectoError {
-
 		if (this.jugador != unJugador) {
 			throw new JugadorIncorrectoError();
 		}
@@ -48,7 +47,6 @@ public abstract class UnidadTransporte extends UnidadMovil {
 		} catch (IndexOutOfBoundsException e) {
 			throw new UnidadTransporteVaciaError();
 		}
-
 	}
 
 	public void pasarTurno() {

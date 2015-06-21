@@ -21,6 +21,7 @@ public class MarineTest {
 
 	@Test
 	public void deberiaEstarDetruidoElMarine() throws YaEstaDestruidoError {
+
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
 		marine.recibirDanio(1000);
@@ -30,6 +31,7 @@ public class MarineTest {
 
 	@Test
 	public void deberiaNoEstarDetruidoElMarine() throws YaEstaDestruidoError {
+
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
 		marine.recibirDanio(5);
@@ -39,6 +41,7 @@ public class MarineTest {
 
 	@Test
 	public void deberiaRecibirDanio1() throws YaEstaDestruidoError {
+
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
 		int vidaInicial = marine.vidaRestante();
@@ -50,6 +53,7 @@ public class MarineTest {
 
 	@Test
 	public void deberiaQuedarle39DeVida() throws YaEstaDestruidoError {
+
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
 		marine.recibirDanio(1);
@@ -60,17 +64,20 @@ public class MarineTest {
 	@Test
 	public void deberiaPoderPosicionarseUnaUnidadEnUnaCasillaDesocupada()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
 		marine.posicionar(casilla);
+
 		Assert.assertEquals(casilla, marine.posicion());
 	}
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlPosicionarUnMarineEnUnaCasillaOcupada()
 			throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -82,11 +89,11 @@ public class MarineTest {
 
 	@Test
 	public void deberiaGuardarSuPosicion() throws CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
-
 		marine.posicionar(casilla);
 
 		Assert.assertEquals(casilla, marine.posicion());
@@ -97,6 +104,7 @@ public class MarineTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError {
+
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
 		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
@@ -104,18 +112,19 @@ public class MarineTest {
 		marine.posicionar(new Casilla(new Coordenada(1, 1)));
 		soldadoEnemigo.posicionar(new Casilla(new Coordenada(2, 1)));
 		marine.atacarEnemigo(soldadoEnemigo, jugadorEnemigo);
-
 	}
 
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
 			throws YaEstaDestruidoError {
+
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
 		marine.recibirDanio(100);
-		Assert.assertTrue(marine.estaDestruido());
-		marine.recibirDanio(2);
 
+		Assert.assertTrue(marine.estaDestruido());
+
+		marine.recibirDanio(2);
 	}
 
 	@Test(expected = PerteneceAlMismoJugadorError.class)
@@ -123,6 +132,7 @@ public class MarineTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		Marine soldado = new Marine(jugador);
 		Unidad soldadoAliado = new Golliat(jugador);
@@ -131,11 +141,9 @@ public class MarineTest {
 		Casilla casillaSoldado = new Casilla(coordenadaCasillaSoldado);
 		Casilla casillaSoldadoAliado = new Casilla(
 				coordenadaCasillaSoldadoAliado);
-
 		soldado.posicionar(casillaSoldado);
 		soldadoAliado.posicionar(casillaSoldadoAliado);
 		soldado.atacarEnemigo(soldadoAliado, jugador);
-
 	}
 
 	@Test
@@ -143,6 +151,7 @@ public class MarineTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError {
+
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
 		Marine soldadoAliado = new Marine(jugadorAliado);
@@ -151,13 +160,11 @@ public class MarineTest {
 		Coordenada coordenadaSoldadoEnemigo = new Coordenada(10, 10);
 		Casilla casillaSoldadoAliado = new Casilla(coordenadaSoldadoAliado);
 		Casilla casillaSoldadoEnemigo = new Casilla(coordenadaSoldadoEnemigo);
-
 		soldadoAliado.posicionar(casillaSoldadoAliado);
 		soldadoEnemigo.posicionar(casillaSoldadoEnemigo);
 		soldadoAliado.atacarEnemigo(soldadoEnemigo, jugadorAliado);
 
 		Assert.assertEquals(125, soldadoEnemigo.vidaRestante());
-
 	}
 
 	@Test
@@ -165,6 +172,7 @@ public class MarineTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError {
+
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -177,12 +185,12 @@ public class MarineTest {
 		soldadoAliado.atacarEnemigo(soldadoEnemigo, jugadorAliado);
 
 		Assert.assertEquals(119, soldadoEnemigo.vidaRestante());
-
 	}
 
 	@Test(expected = JugadorIncorrectoError.class)
 	public void deberiaLanzarUnaExcepcionAlMoverseUnGolliatSiElParametroEsOtroJugador()
 			throws CasillaOcupadaError, JugadorIncorrectoError {
+
 		Coordenada coordenadaCasilleroLibre = new Coordenada(1, 2);
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
 		Casilla casilleroLibre = new Casilla(coordenadaCasilleroLibre);
@@ -197,6 +205,7 @@ public class MarineTest {
 	@Test
 	public void deberiaPoderMoverseUnMarineSiNoHayNadieEnEseCasillero()
 			throws CasillaOcupadaError, JugadorIncorrectoError {
+
 		Coordenada coordenadaCasilleroLibre = new Coordenada(1, 2);
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
 		Casilla casilleroLibre = new Casilla(coordenadaCasilleroLibre);
@@ -205,12 +214,14 @@ public class MarineTest {
 		Marine marine = new Marine(jugador);
 		marine.posicionar(casillero);
 		marine.mover(casilleroLibre, jugador);
+
 		Assert.assertEquals(casilleroLibre, marine.posicion());
 	}
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlQuererMoverseUnMarineSiEstaOcupadoElCasillero()
 			throws CasillaOcupadaError, JugadorIncorrectoError {
+
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
 		Casilla casillero = new Casilla(coordenadaCasillero);
 		Jugador jugador = new Jugador();
@@ -225,6 +236,7 @@ public class MarineTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError {
+
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -243,6 +255,7 @@ public class MarineTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError {
+
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();

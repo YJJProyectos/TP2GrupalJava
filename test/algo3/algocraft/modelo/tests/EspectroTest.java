@@ -21,6 +21,7 @@ public class EspectroTest {
 
 	@Test
 	public void deberiaEstarDetruido() throws YaEstaDestruidoError {
+
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugador);
 		espectro.recibirDanio(1000);
@@ -30,6 +31,7 @@ public class EspectroTest {
 
 	@Test
 	public void deberiaNoEstarDetruido() throws YaEstaDestruidoError {
+
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugador);
 		espectro.recibirDanio(5);
@@ -39,6 +41,7 @@ public class EspectroTest {
 
 	@Test
 	public void deberiaRecibirDanio() throws YaEstaDestruidoError {
+
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugador);
 		int vidaInicial = espectro.vidaRestante();
@@ -50,6 +53,7 @@ public class EspectroTest {
 
 	@Test
 	public void deberiaQuedarle119DeVida() throws YaEstaDestruidoError {
+
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugador);
 		espectro.recibirDanio(1);
@@ -60,28 +64,33 @@ public class EspectroTest {
 	@Test
 	public void deberiaPoderPosicionarseEnUnaCasillaDesocupada()
 			throws CasillaOcupadaError {
+
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugador);
 		espectro.posicionar(casilla);
+
 		Assert.assertEquals(casilla, espectro.posicion());
 	}
 
 	@Test
 	public void deberiaPoderPosicionarseEnUnaCasillaConAireDesocupado()
 			throws CasillaOcupadaError {
+
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
 		UnidadSoldado espectro = new Espectro(jugador);
 		golliat.posicionar(casilla);
 		espectro.posicionar(casilla);
+
 		Assert.assertEquals(casilla, espectro.posicion());
 	}
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlQuererPosicionarUnEspectroEnUnaCasillaConAireOcupado()
 			throws CasillaOcupadaError {
+
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro1 = new Espectro(jugador);
@@ -92,10 +101,10 @@ public class EspectroTest {
 
 	@Test
 	public void deberiaGuardarSuPosicion() throws CasillaOcupadaError {
+
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugador);
-
 		espectro.posicionar(casilla);
 
 		Assert.assertEquals(casilla, espectro.posicion());
@@ -106,6 +115,7 @@ public class EspectroTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError {
+
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
 		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
@@ -113,13 +123,13 @@ public class EspectroTest {
 		espectro.posicionar(new Casilla(new Coordenada(1, 1)));
 		soldadoEnemigo.posicionar(new Casilla(new Coordenada(2, 1)));
 		espectro.atacarEnemigo(soldadoEnemigo, jugadorEnemigo);
-
 	}
 
 	@Test
 	public void deberiaNoDaniarFueraDeRango() throws YaEstaDestruidoError,
 			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
 			CasillaOcupadaError, JugadorIncorrectoError {
+
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugadorAliado);
@@ -128,19 +138,18 @@ public class EspectroTest {
 		Coordenada coordenadaAliado = new Coordenada(10, 10);
 		Casilla casillaSoldado = new Casilla(coordenadaSoldado);
 		Casilla casillaAliado = new Casilla(coordenadaAliado);
-
 		espectro.posicionar(casillaSoldado);
 		soldadoEnemigo.posicionar(casillaAliado);
 		espectro.atacarEnemigo(soldadoEnemigo, jugadorAliado);
 
 		Assert.assertEquals(40, soldadoEnemigo.vidaRestante());
-
 	}
 
 	@Test
 	public void deberiaDaniarEnElRango() throws YaEstaDestruidoError,
 			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
 			CasillaOcupadaError, JugadorIncorrectoError {
+
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
 		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
@@ -150,7 +159,6 @@ public class EspectroTest {
 		espectro.atacarEnemigo(soldadoEnemigo, jugadorAliado);
 
 		Assert.assertEquals(32, soldadoEnemigo.vidaRestante());
-
 	}
 
 }

@@ -12,7 +12,6 @@ import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
-import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
@@ -25,6 +24,7 @@ public class CentroDeMineralTest {
 	public void deberiaLanzarUnErrorSiElJugadorNoTieneLosRecursosParaCrearUnCentro()
 			throws RecursosInsuficientesError, RecolectorInvalidoError,
 			CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		jugador.pagar(400, 0);
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
@@ -36,6 +36,7 @@ public class CentroDeMineralTest {
 	public void elTiempoDeConstruccionDeUnCentroDeMineralEsde4Turnos()
 			throws RecursosInsuficientesError, RecolectorInvalidoError,
 			CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -50,6 +51,7 @@ public class CentroDeMineralTest {
 	public void elTiempoDeConstruccionDeUnCentroDeMineralLuegoDePasarUnTurnoEsde3Turnos()
 			throws RecursosInsuficientesError, RecolectorInvalidoError,
 			CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -65,6 +67,7 @@ public class CentroDeMineralTest {
 	public void elCentroDeMineralSeEncuentraInicialmenteEnConstruccion()
 			throws RecursosInsuficientesError, RecolectorInvalidoError,
 			CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -79,6 +82,7 @@ public class CentroDeMineralTest {
 	public void luegoDe4TurnosELCentroDeMineralEstaConstuido()
 			throws RecursosInsuficientesError, RecolectorInvalidoError,
 			CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -113,14 +117,14 @@ public class CentroDeMineralTest {
 		marine.atacarEnemigo(centro, jugadorEnemigo);
 
 		Assert.assertTrue(centro.estaDestruido());
-
 	}
 
 	@Test
 	public void siUnMarineAtacaUnCentroDeMineralYaConstruidoNoLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
-			CasillaOcupadaError, RecolectorInvalidoError, JugadorIncorrectoError {
+			CasillaOcupadaError, RecolectorInvalidoError,
+			JugadorIncorrectoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -133,20 +137,19 @@ public class CentroDeMineralTest {
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugadorAliado);
 		Marine marine = new Marine(jugadorEnemigo);
 		marine.posicionar(casillaMarine);
-
 		for (int i = 0; i < 4; i++) {
 			centro.pasarTurno();
 		}
-
 		marine.atacarEnemigo(centro, jugadorEnemigo);
-		Assert.assertFalse(centro.estaDestruido());
 
+		Assert.assertFalse(centro.estaDestruido());
 	}
 
 	@Test
 	public void elCentroDeMineralConstruidoDeberiaRecibirDanio1()
 			throws YaEstaDestruidoError, RecursosInsuficientesError,
 			RecolectorInvalidoError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -167,6 +170,7 @@ public class CentroDeMineralTest {
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaAlCentroDeMineralConstruidoEs499()
 			throws YaEstaDestruidoError, RecursosInsuficientesError,
 			RecolectorInvalidoError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -181,26 +185,11 @@ public class CentroDeMineralTest {
 		Assert.assertEquals(499, centro.vidaRestante());
 	}
 
-	@Test(expected = CasillaOcupadaError.class)
-	public void deberiaNoPoderPosicionarseUnCentroDeMineralEnUnaCasillaOcupadaPorUnaunidad()
-			throws RecursosInsuficientesError, RecolectorInvalidoError,
-			CasillaOcupadaError {
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		Jugador jugador = new Jugador();
-		@SuppressWarnings("unused")
-		Barraca barraca = new Barraca(jugador, casilla);
-		MinaDeMinerales mineral = new MinaDeMinerales(100);
-		mineral.posicionar(casilla);
-		// no encta aca porque el posicionar del mineral ya lanzo la excepcion
-		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
-		centro.pasarTurno();
-	}
-
 	@Test
 	public void deberiaPoderPosicionarseUnaBarracaEnUnaCasillaOcupadaPorUnaMinaATravesDeLaMina()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			RecolectorInvalidoError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -215,6 +204,7 @@ public class CentroDeMineralTest {
 	public void deberiaLanzarUnaExcepcionAlQuererCrearUnCentroEnUnVolcan()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			RecolectorInvalidoError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -228,6 +218,7 @@ public class CentroDeMineralTest {
 	public void unCentroDeMineraldeberiaGuardarSuPosicion()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			RecolectorInvalidoError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -242,6 +233,7 @@ public class CentroDeMineralTest {
 	public void unCentroDeMineralEsInicialmenteTerrestre()
 			throws RecursosInsuficientesError, RecolectorInvalidoError,
 			CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -256,6 +248,7 @@ public class CentroDeMineralTest {
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
 			throws YaEstaDestruidoError, RecursosInsuficientesError,
 			RecolectorInvalidoError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -263,15 +256,17 @@ public class CentroDeMineralTest {
 		mineral.posicionar(casilla);
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugador);
 		centro.recibirDanio(2000);
-		Assert.assertTrue(centro.estaDestruido());
-		centro.recibirDanio(2);
 
+		Assert.assertTrue(centro.estaDestruido());
+
+		centro.recibirDanio(2);
 	}
 
 	@Test
 	public void deberiaRecolectarMineralElCentroDeMineral()
 			throws RecursosInsuficientesError, RecolectorInvalidoError,
 			CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -284,6 +279,7 @@ public class CentroDeMineralTest {
 		int cantidadInicial = jugador.cantidadMineral();
 		centroDeMineral.pasarTurno();
 		int cantidadFinal = jugador.cantidadMineral();
+
 		Assert.assertEquals(10, cantidadFinal - cantidadInicial);
 	}
 
@@ -291,6 +287,7 @@ public class CentroDeMineralTest {
 	public void deberiaRecolectar50MineralEn5TurnosElCentroDeMineral()
 			throws RecursosInsuficientesError, RecolectorInvalidoError,
 			CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -305,6 +302,7 @@ public class CentroDeMineralTest {
 			centroDeMineral.pasarTurno();
 		}
 		int cantidadFinal = jugador.cantidadMineral();
+
 		Assert.assertEquals(50, cantidadFinal - cantidadInicial);
 	}
 
@@ -312,6 +310,7 @@ public class CentroDeMineralTest {
 	public void deberiaRecolectarSiElMineralTiene7()
 			throws RecursosInsuficientesError, RecolectorInvalidoError,
 			CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -324,6 +323,7 @@ public class CentroDeMineralTest {
 		int cantidadInicial = jugador.cantidadMineral();
 		centroDeMineral.pasarTurno();
 		int cantidadFinal = jugador.cantidadMineral();
+
 		Assert.assertEquals(7, cantidadFinal - cantidadInicial);
 	}
 
@@ -331,6 +331,7 @@ public class CentroDeMineralTest {
 	public void deberiaDecrementarEn10ElMineralAlSerRecolectado()
 			throws RecursosInsuficientesError, RecolectorInvalidoError,
 			CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -341,6 +342,7 @@ public class CentroDeMineralTest {
 			centroDeMineral.pasarTurno();
 		}
 		centroDeMineral.pasarTurno();
+
 		Assert.assertEquals(90, mineral.getCantidad());
 	}
 

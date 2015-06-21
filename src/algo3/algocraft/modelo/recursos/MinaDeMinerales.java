@@ -7,7 +7,6 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 public class MinaDeMinerales extends Recurso {
 
 	public MinaDeMinerales(int cantidadDeMineral) {
-
 		this.cantidadRecurso = cantidadDeMineral;
 	}
 

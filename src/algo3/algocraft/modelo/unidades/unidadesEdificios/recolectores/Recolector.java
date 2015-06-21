@@ -15,7 +15,6 @@ public abstract class Recolector extends UnidadEdificio {
 	public void posicionar(Casilla casilla) throws CasillaOcupadaError {
 		casilla.ocuparRecurso(this);
 		this.posicion = casilla;
-
 	}
 
 }

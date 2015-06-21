@@ -39,7 +39,8 @@ public class Fabrica extends UnidadEdificio {
 		unJugador.agregarUnidad(this);
 	}
 
-	public boolean entrenarGolliat(Jugador unJugador) throws JugadorIncorrectoError {
+	public boolean entrenarGolliat(Jugador unJugador)
+			throws JugadorIncorrectoError {
 		if (this.jugador != unJugador) {
 			throw new JugadorIncorrectoError();
 		}
@@ -64,8 +65,10 @@ public class Fabrica extends UnidadEdificio {
 	}
 
 	public void continuarEntrenamientoDeGolliat() {
-		if (this.golliatEnEntrenamiento != null)
-			this.turnosRestantesParaTerminarGolliat -= 1;
+		if (this.golliatEnEntrenamiento == null) {
+			return;
+		}
+		this.turnosRestantesParaTerminarGolliat -= 1;
 		if (this.turnosRestantesParaTerminarGolliat == 0) {
 			this.jugador
 					.agregarSoldadoParaPosicionar(this.golliatEnEntrenamiento);

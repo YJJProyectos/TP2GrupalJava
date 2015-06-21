@@ -13,8 +13,8 @@ public class CoordenadasParaPosicionar {
 	private Iterator<Coordenada> iteradorGas;
 	private int cantidadCoordenadasBasesSacadas;
 
-	public CoordenadasParaPosicionar(int minFila,int minColumna,int maxFila,int maxColumna){
-
+	public CoordenadasParaPosicionar(int minFila, int minColumna, int maxFila,
+			int maxColumna) {
 		this.coordenadasDeMinerales = new ArrayList<Coordenada>();
 		this.coordenadasDeGas = new ArrayList<Coordenada>();
 		this.coordenadasBases = new ArrayList<Coordenada>();
@@ -33,7 +33,7 @@ public class CoordenadasParaPosicionar {
 		this.agregarCoordenadasGas(maxFila, maxColumna - 1);
 
 		this.iteradorGas = this.coordenadasDeGas.iterator();
-		
+
 		this.agregarCoordenadasBases(minFila + 1, minColumna + 1);
 		this.agregarCoordenadasBases(minFila + 1, maxColumna - 1);
 		this.agregarCoordenadasBases(maxFila - 1, minColumna + 1);
@@ -42,25 +42,23 @@ public class CoordenadasParaPosicionar {
 	}
 
 	public Coordenada sacarCoordenadaDeMineral() {
-		
 		return this.iteradorMinerales.next();
 	}
 
 	public Coordenada sacarCoordenadaDeGas() {
-
 		return this.iteradorGas.next();
 	}
-	
-	private void agregarCoordenadasMineral(int fila, int columna){
-		Coordenada coordenadaMineral = new Coordenada(fila,columna);
+
+	private void agregarCoordenadasMineral(int fila, int columna) {
+		Coordenada coordenadaMineral = new Coordenada(fila, columna);
 		this.coordenadasDeMinerales.add(coordenadaMineral);
 	}
-	
-	private void agregarCoordenadasGas(int fila, int columna){
+
+	private void agregarCoordenadasGas(int fila, int columna) {
 		Coordenada coordenadaGas = new Coordenada(fila, columna);
 		this.coordenadasDeGas.add(coordenadaGas);
 	}
-	
+
 	private void agregarCoordenadasBases(int fila, int columna) {
 		Coordenada coordenada = new Coordenada(fila, columna);
 		coordenadasBases.add(coordenada);
@@ -75,11 +73,11 @@ public class CoordenadasParaPosicionar {
 	}
 
 	public Coordenada sacarCoordenadaDeBase(int numeroBase) {
-		this.cantidadCoordenadasBasesSacadas ++;
+		this.cantidadCoordenadasBasesSacadas++;
 		return this.coordenadasBases.get(numeroBase);
 	}
 
-	public boolean tieneCoordenadaDeBase(){
+	public boolean tieneCoordenadaDeBase() {
 		return (this.cantidadCoordenadasBasesSacadas < 4);
 	}
 

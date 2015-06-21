@@ -21,6 +21,7 @@ public class TransporteTerranTest {
 			throws UnidadTransporteVaciaError, PerteneceAOtroJugadorError,
 			LimiteDeCapacidadError, SoldadoYaCargadoError,
 			JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		UnidadTransporte nave = new TransporteTerran(jugador);
@@ -33,10 +34,12 @@ public class TransporteTerranTest {
 			throws UnidadTransporteVaciaError, PerteneceAOtroJugadorError,
 			LimiteDeCapacidadError, SoldadoYaCargadoError,
 			JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		UnidadTransporte nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
 		nave.cargarSoldado(soldado, jugador);
+
 		Assert.assertEquals(soldado, nave.descargarSoldado(jugador));
 	}
 
@@ -44,6 +47,7 @@ public class TransporteTerranTest {
 	public void deberiaLanzarUnaExcepcionAlCargarUnSoldadoEnemigo()
 			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
 			SoldadoYaCargadoError, JugadorIncorrectoError {
+
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
 		UnidadTransporte nave = new TransporteTerran(jugadorAliado);
@@ -55,6 +59,7 @@ public class TransporteTerranTest {
 	public void deberiaLanzarUnaExcepcionAlCargarAlMismoSoldadoDosVeces()
 			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
 			SoldadoYaCargadoError, JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		UnidadTransporte nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
@@ -66,6 +71,7 @@ public class TransporteTerranTest {
 	public void deberiaLanzarUnaExcepcionAlCargarMasSoldadosQueLaCapacidadPermitida()
 			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
 			SoldadoYaCargadoError, JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		UnidadTransporte nave = new TransporteTerran(jugador);
 		for (int i = 0; i < 8; i++) {
@@ -80,6 +86,7 @@ public class TransporteTerranTest {
 			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
 			SoldadoYaCargadoError, UnidadTransporteVaciaError,
 			JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		UnidadTransporte nave = new TransporteTerran(jugador);
@@ -92,6 +99,7 @@ public class TransporteTerranTest {
 	public void deberiaDescargarUnSoldado() throws PerteneceAOtroJugadorError,
 			LimiteDeCapacidadError, SoldadoYaCargadoError,
 			UnidadTransporteVaciaError, JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		UnidadTransporte nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
@@ -105,6 +113,7 @@ public class TransporteTerranTest {
 			throws UnidadTransporteVaciaError, PerteneceAOtroJugadorError,
 			LimiteDeCapacidadError, SoldadoYaCargadoError,
 			JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		UnidadTransporte nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
@@ -117,6 +126,7 @@ public class TransporteTerranTest {
 	public void deberiaActualizarLaPosicionDelSoldado()
 			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
 			SoldadoYaCargadoError, JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		UnidadTransporte nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
@@ -125,4 +135,5 @@ public class TransporteTerranTest {
 
 		Assert.assertEquals(null, soldado.posicion());
 	}
+
 }

@@ -22,6 +22,7 @@ public class BarracaTest {
 	@Test(expected = RecursosInsuficientesError.class)
 	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnaBarraca()
 			throws RecursosInsuficientesError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		jugador.pagar(400, 0);
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
@@ -32,6 +33,7 @@ public class BarracaTest {
 	@Test
 	public void elTiempoDeConstruccionDeUnaBarracaEsde12Turnos()
 			throws RecursosInsuficientesError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Barraca barraca = new Barraca(jugador, casilla);
@@ -42,6 +44,7 @@ public class BarracaTest {
 	@Test
 	public void elTiempoDeConstruccionDeUnaBarracaLuegoDePasarUnTUrnoEsde11Turnos()
 			throws RecursosInsuficientesError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Barraca barraca = new Barraca(jugador, casilla);
@@ -53,6 +56,7 @@ public class BarracaTest {
 	@Test
 	public void laBarracaSeEncuentraInicialmenteEnConstruccion()
 			throws RecursosInsuficientesError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Barraca barraca = new Barraca(jugador, casilla);
@@ -63,6 +67,7 @@ public class BarracaTest {
 	@Test
 	public void luegoDe12TurnosLaBarracaEstaConstuida()
 			throws RecursosInsuficientesError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Barraca barraca = new Barraca(jugador, casilla);
@@ -89,8 +94,8 @@ public class BarracaTest {
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		marine.posicionar(casillaMarine);
 		marine.atacarEnemigo(barraca, jugadorEnemigo);
-		Assert.assertTrue(barraca.estaDestruido());
 
+		Assert.assertTrue(barraca.estaDestruido());
 	}
 
 	@Test
@@ -108,20 +113,19 @@ public class BarracaTest {
 		Coordenada coordenadaMarine = new Coordenada(1, 2);
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		marine.posicionar(casillaMarine);
-
 		for (int i = 0; i < 13; i++) {
 			barraca.pasarTurno();
 		}
-
 		marine.atacarEnemigo(barraca, jugadorEnemigo);
-		Assert.assertFalse(barraca.estaDestruido());
 
+		Assert.assertFalse(barraca.estaDestruido());
 	}
 
 	@Test
 	public void laBarracaConstruidaDeberiaRecibirDanio1()
 			throws YaEstaDestruidoError, RecursosInsuficientesError,
 			CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Barraca barraca = new Barraca(jugador, casilla);
@@ -139,6 +143,7 @@ public class BarracaTest {
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaBarracaConstruidaEs999()
 			throws YaEstaDestruidoError, RecursosInsuficientesError,
 			CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Barraca barraca = new Barraca(jugador, casilla);
@@ -195,6 +200,7 @@ public class BarracaTest {
 	@Test
 	public void deberiaGuardarSuPosicion() throws RecursosInsuficientesError,
 			CasillaOcupadaError {
+
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
@@ -206,6 +212,7 @@ public class BarracaTest {
 	@Test
 	public void unaBarracaEsInicialmenteTerrestre()
 			throws RecursosInsuficientesError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -218,20 +225,23 @@ public class BarracaTest {
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
 			throws YaEstaDestruidoError, RecursosInsuficientesError,
 			CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Barraca barraca = new Barraca(jugador, casilla);
 		barraca.recibirDanio(2000);
-		Assert.assertTrue(barraca.estaDestruido());
-		barraca.recibirDanio(2);
 
+		Assert.assertTrue(barraca.estaDestruido());
+
+		barraca.recibirDanio(2);
 	}
 
 	@Test(expected = JugadorIncorrectoError.class)
 	public void deberiaLanzarUnaExexpcionAlEntrenarUnSoldadoMarinePorqueRecibioComoParametroASuMismoJugador()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		Jugador otroJugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
@@ -247,6 +257,7 @@ public class BarracaTest {
 	public void deberiaNoPoderEntrenarUnSoldadoMarinePorqueNoTerminoDeConstruirse()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -259,6 +270,7 @@ public class BarracaTest {
 	public void deberiaEntrenarUnSoldadoMarine()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -274,6 +286,7 @@ public class BarracaTest {
 	public void noDeberiaPoderComenzarAEntrenarAUnMarineMientrasEsteEntrenandoAOtroMarine()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -281,16 +294,16 @@ public class BarracaTest {
 		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
 		}
-
 		barraca.entrenarMarine(jugador);
-		Assert.assertFalse(barraca.entrenarMarine(jugador));
 
+		Assert.assertFalse(barraca.entrenarMarine(jugador));
 	}
 
 	@Test
 	public void deberiaPoderEntrenarAUnMarineLuegoDeFinalizarElEntrenamientoDeOtroMarine()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			CasillaOcupadaError, JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -302,8 +315,8 @@ public class BarracaTest {
 		for (int j = 0; j < 3; j++) {
 			barraca.pasarTurno();
 		}
-		Assert.assertTrue(barraca.entrenarMarine(jugador));
 
+		Assert.assertTrue(barraca.entrenarMarine(jugador));
 	}
 
 }

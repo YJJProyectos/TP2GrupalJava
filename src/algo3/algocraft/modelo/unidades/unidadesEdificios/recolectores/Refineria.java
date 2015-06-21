@@ -53,4 +53,5 @@ public class Refineria extends Recolector {
 	public boolean enConstruccion() {
 		return enConstruccion;
 	}
+
 }

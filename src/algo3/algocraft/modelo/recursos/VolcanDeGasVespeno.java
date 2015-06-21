@@ -7,10 +7,9 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 public class VolcanDeGasVespeno extends Recurso {
 
 	public VolcanDeGasVespeno(int cantidadDeGas) {
-
 		this.cantidadRecurso = cantidadDeGas;
 	}
-	
+
 	public void agregarCentroDeMineral(CentroDeMineral centroDeMineral)
 			throws RecolectorInvalidoError {
 		throw new RecolectorInvalidoError();
@@ -20,6 +19,5 @@ public class VolcanDeGasVespeno extends Recurso {
 			throws RecolectorInvalidoError, CasillaOcupadaError {
 		refineria.posicionar(this.posicion);
 	}
-
 
 }

@@ -20,7 +20,6 @@ public class Mapa {
 	private ArrayList<Integer> numerosSacados;
 
 	public Mapa(int bases) {
-
 		this.maxFila = (bases * 5);
 		this.maxColumna = (bases * 5);
 
@@ -44,7 +43,6 @@ public class Mapa {
 
 	private void validarCoordenada(Coordenada coordenada)
 			throws CoordenadaInvalidaError {
-
 		int fila = coordenada.getFila();
 		int columna = coordenada.getColumna();
 
@@ -53,12 +51,10 @@ public class Mapa {
 
 			throw new CoordenadaInvalidaError();
 		}
-
 	}
 
 	public boolean agregarElementoEnPosicion(Unidad elemento,
 			Coordenada coordenada) throws CasillaOcupadaError {
-
 		try {
 			validarCoordenada(coordenada);
 		} catch (CoordenadaInvalidaError error) {
@@ -77,7 +73,6 @@ public class Mapa {
 	}
 
 	public void setCoordenadaMineralYVolcanDeGas() throws CasillaOcupadaError {
-
 		while (coordenadas.tieneCoordenadaMineral()) {
 			MinaDeMinerales mina = new MinaDeMinerales(2000);
 			Coordenada coordenadaDeMina = coordenadas
@@ -102,7 +97,6 @@ public class Mapa {
 	public Casilla posicionDeBase() {
 		Casilla casillaDeBase = null;
 		if (coordenadas.tieneCoordenadaDeBase()) {
-
 			Random aleatorio = new Random();
 			// genero numero aleatorio entre 0 y 3
 			int numeroAleatorio = aleatorio.nextInt(4);
@@ -124,6 +118,6 @@ public class Mapa {
 		this.validarCoordenada(coordenada);
 		Casilla casillero = tablero.get(coordenada);
 		return casillero.getRecurso();
-
 	}
+
 }

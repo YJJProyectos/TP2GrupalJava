@@ -12,7 +12,6 @@ public abstract class Recurso {
 
 	public int extraerRecurso(int cantidadDeRecurso) {
 		int cantidadRecursoSacado = 0;
-
 		if (this.cantidadRecurso > 0) {
 			cantidadRecursoSacado = cantidadDeRecurso;
 			if (this.cantidadRecurso < cantidadDeRecurso) {
@@ -20,7 +19,6 @@ public abstract class Recurso {
 			}
 			this.cantidadRecurso -= cantidadRecursoSacado;
 		}
-
 		return cantidadRecursoSacado;
 	}
 

@@ -24,7 +24,9 @@ public class JugadorTest {
 
 	@Test
 	public void elJugadorDeberiaEmpezarCon400DeMineral() {
+
 		Jugador jugador = new Jugador();
+
 		Assert.assertEquals(400, jugador.cantidadMineral());
 	}
 
@@ -32,6 +34,7 @@ public class JugadorTest {
 	public void despuesDeCrearseUnCentroDeMineralAlTomarEnCuentaSuCostoYPasar2TurnosAumentaEn20LosMinerales()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			RecolectorInvalidoError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -44,25 +47,31 @@ public class JugadorTest {
 		}
 		jugador.pasarTurno();
 		jugador.pasarTurno();
+
 		Assert.assertEquals(370, jugador.cantidadMineral());
 	}
 
 	@Test
 	public void elJugadorDeberiaEmpezarCon0DePoblacionDebidoQueNoEmpiezaConUnDeposito() {
+
 		Jugador jugador = new Jugador();
+
 		Assert.assertEquals(0, jugador.cantidadPoblacion());
 	}
 
 	@Test
 	public void alPasarUnTurnoDesdeQueEmpezoDeberiaSeguirCon10DePoblacion() {
+
 		Jugador jugador = new Jugador();
 		jugador.pasarTurno();
+
 		Assert.assertEquals(0, jugador.cantidadPoblacion());
 	}
 
 	@Test
 	public void despuesDeCrearseElDepositoEn6TurnosYEjecutarOtroTurnoLaPoblacionAumentaEn10()
 			throws RecursosInsuficientesError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -73,12 +82,14 @@ public class JugadorTest {
 			jugador.pasarTurno();
 		}
 		jugador.pasarTurno();
+
 		Assert.assertEquals(10, jugador.cantidadPoblacion());
 	}
 
 	@Test
 	public void alCrear2DepositosYEjecutarVariosTurnosMasLaPoblacionDeberiaSerDe20()
 			throws RecursosInsuficientesError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Coordenada otraCoordenada = new Coordenada(1, 2);
@@ -95,12 +106,14 @@ public class JugadorTest {
 		}
 		jugador.pasarTurno();
 		jugador.pasarTurno();
+
 		Assert.assertEquals(20, jugador.cantidadPoblacion());
 	}
 
 	@Test
 	public void alCrear30DepositosYEjecutarVariosTurnosMasLaPoblacionDeberiaSerDe200()
 			throws RecursosInsuficientesError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		jugador.aumentarMineral(30000);
 		Coordenada coordenada;
@@ -117,12 +130,15 @@ public class JugadorTest {
 		}
 		jugador.pasarTurno();
 		jugador.pasarTurno();
+
 		Assert.assertEquals(200, jugador.cantidadPoblacion());
 	}
 
 	@Test
 	public void elJugadorDeberiaEmpezarCon100DeGas() {
+
 		Jugador jugador = new Jugador();
+
 		Assert.assertEquals(100, jugador.cantidadGas());
 	}
 
@@ -130,6 +146,7 @@ public class JugadorTest {
 	public void despuesDeCrearseLaRefineriaYPasar6TurnosAumentaEn20LaCantidadDeGas()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			RecolectorInvalidoError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -142,12 +159,14 @@ public class JugadorTest {
 		}
 		jugador.pasarTurno();
 		jugador.pasarTurno();
+
 		Assert.assertEquals(120, jugador.cantidadGas());
 	}
 
 	@Test(expected = NoHaySoldadosParaPosicionarError.class)
 	public void deberiaLanzarUnaExcepcionSiSeIntentaPosicionarUnSoldadoDeLaColaDeEsperaVacia()
 			throws CasillaOcupadaError, NoHaySoldadosParaPosicionarError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -159,6 +178,7 @@ public class JugadorTest {
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			RecolectorInvalidoError, NoHaySoldadosParaPosicionarError,
 			JugadorIncorrectoError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaMineral = new Coordenada(1, 1);
 		Casilla casillaMineral = new Casilla(coordenadaMineral);
@@ -181,14 +201,12 @@ public class JugadorTest {
 		for (int i = 0; i < 6; i++) {
 			jugador.pasarTurno();
 		}// Termina de crearse el deposito
-
 		Coordenada coordenadaBarraca = new Coordenada(1, 3);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
 		Barraca barraca = new Barraca(jugador, casillaBarraca);
 		for (int i = 0; i < 12; i++) {
 			jugador.pasarTurno();
 		}// Termina de crearse la barraca
-
 		barraca.entrenarMarine(jugador);
 		for (int i = 0; i < 3; i++) {
 			jugador.pasarTurno();
@@ -204,6 +222,7 @@ public class JugadorTest {
 	public void siSeDestruyeLaUnicaUnidadDelJugadorEstaDestruido()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			YaEstaDestruidoError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -211,6 +230,7 @@ public class JugadorTest {
 				casilla);
 		deposito.recibirDanio(600);
 		jugador.pasarTurno();
+
 		Assert.assertTrue(jugador.estaDestruido());
 	}
 
@@ -218,6 +238,7 @@ public class JugadorTest {
 	public void siSeDestruyeUnaUnidadDeDosDelJugadorNoEstaDestruido()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			YaEstaDestruidoError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -230,17 +251,21 @@ public class JugadorTest {
 				otraCasilla);
 		deposito.recibirDanio(600);
 		jugador.pasarTurno();
+
 		Assert.assertFalse(jugador.estaDestruido());
 	}
 
 	@Test
 	public void seInicializaElJugadorConDepositoYSigueConLaMismaCantidadDeMinerales()
 			throws RecursosInsuficientesError, CasillaOcupadaError {
+
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(2, 2);
 		Casilla casilla = new Casilla(coordenada);
 		jugador.iniciarConDeposito(casilla);
+
 		Assert.assertEquals(10, jugador.cantidadPoblacion());
+
 		Assert.assertEquals(400, jugador.cantidadMineral());
 	}
 
