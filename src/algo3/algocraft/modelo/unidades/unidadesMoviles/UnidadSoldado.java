@@ -5,6 +5,7 @@ import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoAccion;
 
 public class UnidadSoldado extends UnidadMovil {
@@ -28,15 +29,23 @@ public class UnidadSoldado extends UnidadMovil {
 		this.rangoTerrestre = rangoTerrestre;
 	}
 
-	public void atacarEnemigo(Unidad enemigo) throws YaEstaDestruidoError,
-			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError {
+	public void atacarEnemigo(Unidad enemigo, Jugador unJugador)
+			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError, JugadorIncorrectoError {
+		if (this.jugador != unJugador) {
+			throw new JugadorIncorrectoError();
+		}
 		if (this.getJugador() == enemigo.getJugador()) {
 			throw new PerteneceAlMismoJugadorError();
 		}
 		estadoDeAtaque.atacar(this, enemigo);
 	}
 
-	public void mover(Casilla casilla) throws CasillaOcupadaError {
+	public void mover(Casilla casilla, Jugador unJugador)
+			throws CasillaOcupadaError, JugadorIncorrectoError {
+		if (this.jugador != unJugador) {
+			throw new JugadorIncorrectoError();
+		}
 		plano.mover(this, casilla);
 		this.posicion = casilla;
 	}

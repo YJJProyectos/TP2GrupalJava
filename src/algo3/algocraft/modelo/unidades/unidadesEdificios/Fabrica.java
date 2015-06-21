@@ -39,7 +39,10 @@ public class Fabrica extends UnidadEdificio {
 		unJugador.agregarUnidad(this);
 	}
 
-	public boolean entrenarGolliat() {
+	public boolean entrenarGolliat(Jugador unJugador) throws JugadorIncorrectoError {
+		if (this.jugador != unJugador) {
+			throw new JugadorIncorrectoError();
+		}
 		if (this.enConstruccion || barraca.estaDestruido()
 				|| this.golliatEnEntrenamiento != null) {
 			return false;

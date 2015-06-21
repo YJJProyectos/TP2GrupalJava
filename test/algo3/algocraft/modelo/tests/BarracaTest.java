@@ -12,6 +12,7 @@ import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorError;
@@ -76,7 +77,7 @@ public class BarracaTest {
 	public void siUnMarineAtacaUnaBarracaEnConstruccionLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
-			CasillaOcupadaError {
+			CasillaOcupadaError, JugadorIncorrectoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -87,7 +88,7 @@ public class BarracaTest {
 		Coordenada coordenadaMarine = new Coordenada(1, 2);
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		marine.posicionar(casillaMarine);
-		marine.atacarEnemigo(barraca);
+		marine.atacarEnemigo(barraca, jugadorEnemigo);
 		Assert.assertTrue(barraca.estaDestruido());
 
 	}
@@ -96,7 +97,7 @@ public class BarracaTest {
 	public void siUnMarineAtacaUnaBarracaYaConstruidaNoLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
-			CasillaOcupadaError {
+			CasillaOcupadaError, JugadorIncorrectoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -112,7 +113,7 @@ public class BarracaTest {
 			barraca.pasarTurno();
 		}
 
-		marine.atacarEnemigo(barraca);
+		marine.atacarEnemigo(barraca, jugadorEnemigo);
 		Assert.assertFalse(barraca.estaDestruido());
 
 	}
@@ -227,20 +228,37 @@ public class BarracaTest {
 
 	}
 
+	@Test(expected = JugadorIncorrectoError.class)
+	public void deberiaLanzarUnaExexpcionAlEntrenarUnSoldadoMarinePorqueRecibioComoParametroASuMismoJugador()
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			JugadorIncorrectoError {
+		Jugador jugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		Barraca barraca = new Barraca(jugador, casilla);
+		for (int i = 0; i < 13; i++) {
+			barraca.pasarTurno();
+		}
+		barraca.entrenarMarine(otroJugador);
+	}
+
 	@Test
 	public void deberiaNoPoderEntrenarUnSoldadoMarinePorqueNoTerminoDeConstruirse()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			JugadorIncorrectoError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Barraca barraca = new Barraca(jugador, casilla);
 
-		Assert.assertFalse(barraca.entrenarMarine());
+		Assert.assertFalse(barraca.entrenarMarine(jugador));
 	}
 
 	@Test
 	public void deberiaEntrenarUnSoldadoMarine()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			JugadorIncorrectoError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -249,12 +267,13 @@ public class BarracaTest {
 			barraca.pasarTurno();
 		}
 
-		Assert.assertTrue(barraca.entrenarMarine());
+		Assert.assertTrue(barraca.entrenarMarine(jugador));
 	}
 
 	@Test
 	public void noDeberiaPoderComenzarAEntrenarAUnMarineMientrasEsteEntrenandoAOtroMarine()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			JugadorIncorrectoError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -263,15 +282,15 @@ public class BarracaTest {
 			barraca.pasarTurno();
 		}
 
-		barraca.entrenarMarine();
-		Assert.assertFalse(barraca.entrenarMarine());
+		barraca.entrenarMarine(jugador);
+		Assert.assertFalse(barraca.entrenarMarine(jugador));
 
 	}
 
 	@Test
 	public void deberiaPoderEntrenarAUnMarineLuegoDeFinalizarElEntrenamientoDeOtroMarine()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
-			CasillaOcupadaError {
+			CasillaOcupadaError, JugadorIncorrectoError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -279,11 +298,11 @@ public class BarracaTest {
 		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
 		}
-		barraca.entrenarMarine();
+		barraca.entrenarMarine(jugador);
 		for (int j = 0; j < 3; j++) {
 			barraca.pasarTurno();
 		}
-		Assert.assertTrue(barraca.entrenarMarine());
+		Assert.assertTrue(barraca.entrenarMarine(jugador));
 
 	}
 

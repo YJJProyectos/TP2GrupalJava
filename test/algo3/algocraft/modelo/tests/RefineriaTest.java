@@ -12,6 +12,7 @@ import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
@@ -98,7 +99,8 @@ public class RefineriaTest {
 	public void siUnMarineAtacaUnaRefineriaEnConstruccionLoDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
-			CasillaOcupadaError, RecolectorInvalidoError {
+			CasillaOcupadaError, RecolectorInvalidoError,
+			JugadorIncorrectoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -111,7 +113,7 @@ public class RefineriaTest {
 		Refineria refineria = new Refineria(volcan, jugadorAliado);
 		Marine marine = new Marine(jugadorEnemigo);
 		marine.posicionar(casillaMarine);
-		marine.atacarEnemigo(refineria);
+		marine.atacarEnemigo(refineria, jugadorEnemigo);
 
 		Assert.assertTrue(refineria.estaDestruido());
 
@@ -121,7 +123,8 @@ public class RefineriaTest {
 	public void siUnMarineAtacaUnaRefineriaYaConstruidaNoLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
-			CasillaOcupadaError, RecolectorInvalidoError {
+			CasillaOcupadaError, RecolectorInvalidoError,
+			JugadorIncorrectoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -139,7 +142,7 @@ public class RefineriaTest {
 			refineria.pasarTurno();
 		}
 
-		marine.atacarEnemigo(refineria);
+		marine.atacarEnemigo(refineria, jugadorEnemigo);
 		Assert.assertFalse(refineria.estaDestruido());
 
 	}

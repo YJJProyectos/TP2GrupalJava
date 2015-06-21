@@ -13,6 +13,7 @@ import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
@@ -95,7 +96,8 @@ public class CentroDeMineralTest {
 	public void siUnMarineAtacaUnCentroDeMineralEnConstruccionLoDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
-			CasillaOcupadaError, RecolectorInvalidoError {
+			CasillaOcupadaError, RecolectorInvalidoError,
+			JugadorIncorrectoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -108,7 +110,7 @@ public class CentroDeMineralTest {
 		CentroDeMineral centro = new CentroDeMineral(mineral, jugadorAliado);
 		Marine marine = new Marine(jugadorEnemigo);
 		marine.posicionar(casillaMarine);
-		marine.atacarEnemigo(centro);
+		marine.atacarEnemigo(centro, jugadorEnemigo);
 
 		Assert.assertTrue(centro.estaDestruido());
 
@@ -118,7 +120,7 @@ public class CentroDeMineralTest {
 	public void siUnMarineAtacaUnCentroDeMineralYaConstruidoNoLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
-			CasillaOcupadaError, RecolectorInvalidoError {
+			CasillaOcupadaError, RecolectorInvalidoError, JugadorIncorrectoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -136,7 +138,7 @@ public class CentroDeMineralTest {
 			centro.pasarTurno();
 		}
 
-		marine.atacarEnemigo(centro);
+		marine.atacarEnemigo(centro, jugadorEnemigo);
 		Assert.assertFalse(centro.estaDestruido());
 
 	}

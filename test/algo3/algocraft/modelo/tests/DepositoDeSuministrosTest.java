@@ -11,6 +11,7 @@ import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorError;
@@ -80,7 +81,7 @@ public class DepositoDeSuministrosTest {
 	public void siUnMarineAtacaUnDepositoEnConstruccionLoDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
-			CasillaOcupadaError {
+			CasillaOcupadaError, JugadorIncorrectoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -92,7 +93,7 @@ public class DepositoDeSuministrosTest {
 		Coordenada coordenadaMarine = new Coordenada(1, 2);
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		marine.posicionar(casillaMarine);
-		marine.atacarEnemigo(deposito);
+		marine.atacarEnemigo(deposito, jugadorEnemigo);
 		Assert.assertTrue(deposito.estaDestruido());
 
 	}
@@ -101,7 +102,7 @@ public class DepositoDeSuministrosTest {
 	public void siUnMarineAtacaUnDepositoYaConstruidoNoLoDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
-			CasillaOcupadaError {
+			CasillaOcupadaError, JugadorIncorrectoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -118,7 +119,7 @@ public class DepositoDeSuministrosTest {
 			deposito.pasarTurno();
 		}
 
-		marine.atacarEnemigo(deposito);
+		marine.atacarEnemigo(deposito, jugadorEnemigo);
 		Assert.assertFalse(deposito.estaDestruido());
 
 	}

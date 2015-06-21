@@ -15,7 +15,8 @@ public class Barraca extends UnidadEdificio {
 	private int costoMineral;
 	private int costoGas;
 
-	public Barraca(Jugador unJugador, Casilla casilla) throws RecursosInsuficientesError, CasillaOcupadaError {
+	public Barraca(Jugador unJugador, Casilla casilla)
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		super(unJugador, 1);
 		this.enConstruccion = true;
 		this.turnosRestantes = 12;
@@ -24,10 +25,14 @@ public class Barraca extends UnidadEdificio {
 		this.costoGas = 0;
 		this.jugador.pagar(this.costoMineral, this.costoGas);
 		this.posicionar(casilla);
-		unJugador.agregarUnidad(this);		
+		unJugador.agregarUnidad(this);
 	}
 
-	public boolean entrenarMarine() {
+	public boolean entrenarMarine(Jugador unJugador)
+			throws JugadorIncorrectoError {
+		if (this.jugador != unJugador) {
+			throw new JugadorIncorrectoError();
+		}
 		if (this.enConstruccion || this.marineEnEntrenamiento != null) {
 			return false;
 		}

@@ -14,6 +14,7 @@ import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.BarracaNoConstruidaError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorError;
@@ -168,7 +169,7 @@ public class FabricaTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, CasillaOcupadaError,
-			BarracaNoConstruidaError {
+			BarracaNoConstruidaError, JugadorIncorrectoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -185,7 +186,7 @@ public class FabricaTest {
 		Coordenada coordenadaMarine = new Coordenada(1, 2);
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		marine.posicionar(casillaMarine);
-		marine.atacarEnemigo(fabrica);
+		marine.atacarEnemigo(fabrica, jugadorEnemigo);
 		Assert.assertTrue(fabrica.estaDestruido());
 
 	}
@@ -195,7 +196,7 @@ public class FabricaTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, CasillaOcupadaError,
-			BarracaNoConstruidaError {
+			BarracaNoConstruidaError, JugadorIncorrectoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -217,7 +218,7 @@ public class FabricaTest {
 			fabrica.pasarTurno();
 		}
 
-		marine.atacarEnemigo(fabrica);
+		marine.atacarEnemigo(fabrica, jugadorEnemigo);
 		Assert.assertFalse(fabrica.estaDestruido());
 
 	}
@@ -386,10 +387,33 @@ public class FabricaTest {
 
 	}
 
+	@Test(expected = JugadorIncorrectoError.class)
+	public void deberiaLanzarUnaExexpcionAlEntrenarUnSoldadoMarinePorqueRecibioComoParametroASuMismoJugador()
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			JugadorIncorrectoError, PerteneceAOtroJugadorError,
+			BarracaNoConstruidaError {
+		Jugador jugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
+		for (int j = 0; j < 12; j++) {
+			fabrica.pasarTurno();
+		}
+		barraca.entrenarMarine(otroJugador);
+	}
+
 	@Test
 	public void deberiaNoPoderEntrenarUnSoldadoGolliaPorqueNoTerminoDeConstruirse()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
-			BarracaNoConstruidaError, CasillaOcupadaError {
+			BarracaNoConstruidaError, CasillaOcupadaError,
+			JugadorIncorrectoError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -401,14 +425,14 @@ public class FabricaTest {
 		}
 		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 
-		Assert.assertFalse(fabrica.entrenarGolliat());
+		Assert.assertFalse(fabrica.entrenarGolliat(jugador));
 	}
 
 	@Test
 	public void deberiaNoPoderEntrenarUnSoldadoGolliaPorqueLaBarracaEstaDestruida()
 			throws PerteneceAOtroJugadorError, YaEstaDestruidoError,
 			RecursosInsuficientesError, BarracaNoConstruidaError,
-			CasillaOcupadaError {
+			CasillaOcupadaError, JugadorIncorrectoError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -424,13 +448,14 @@ public class FabricaTest {
 		}
 		barraca.recibirDanio(2000);
 
-		Assert.assertFalse(fabrica.entrenarGolliat());
+		Assert.assertFalse(fabrica.entrenarGolliat(jugador));
 	}
 
 	@Test
 	public void deberiaEntrenarUnSoldadoGolliat()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
-			BarracaNoConstruidaError, CasillaOcupadaError {
+			BarracaNoConstruidaError, CasillaOcupadaError,
+			JugadorIncorrectoError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -445,14 +470,15 @@ public class FabricaTest {
 			fabrica.pasarTurno();
 		}
 
-		Assert.assertTrue(fabrica.entrenarGolliat());
+		Assert.assertTrue(fabrica.entrenarGolliat(jugador));
 
 	}
 
 	@Test
 	public void noDeberiaPoderComenzarAEntrenarAUnGolliatMientrasEsteEntrenandoAOtroGolliat()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
-			BarracaNoConstruidaError, CasillaOcupadaError {
+			BarracaNoConstruidaError, CasillaOcupadaError,
+			JugadorIncorrectoError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -466,15 +492,16 @@ public class FabricaTest {
 		for (int j = 0; j < 12; j++) {
 			fabrica.pasarTurno();
 		}
-		fabrica.entrenarGolliat();
-		Assert.assertFalse(fabrica.entrenarGolliat());
+		fabrica.entrenarGolliat(jugador);
+		Assert.assertFalse(fabrica.entrenarGolliat(jugador));
 
 	}
 
 	@Test
 	public void deberiaPoderEntrenarAUnGolliatLuegoDeFinalizarElEntrenamientoDeOtroGolliat()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
-			BarracaNoConstruidaError, CasillaOcupadaError {
+			BarracaNoConstruidaError, CasillaOcupadaError,
+			JugadorIncorrectoError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
@@ -488,11 +515,11 @@ public class FabricaTest {
 		for (int j = 0; j < 12; j++) {
 			fabrica.pasarTurno();
 		}
-		fabrica.entrenarGolliat();
+		fabrica.entrenarGolliat(jugador);
 		for (int j = 0; j < 6; j++) {
 			fabrica.pasarTurno();
 		}
-		Assert.assertTrue(fabrica.entrenarGolliat());
+		Assert.assertTrue(fabrica.entrenarGolliat(jugador));
 
 	}
 

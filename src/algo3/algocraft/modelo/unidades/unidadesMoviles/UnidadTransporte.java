@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoAccion;
 
 public abstract class UnidadTransporte extends UnidadMovil {
@@ -18,9 +19,12 @@ public abstract class UnidadTransporte extends UnidadMovil {
 		this.capacidadMaxima = capacidad;
 	}
 
-	public void cargarSoldado(UnidadSoldado soldado)
+	public void cargarSoldado(UnidadSoldado soldado, Jugador unJugador)
 			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
-			SoldadoYaCargadoError {
+			SoldadoYaCargadoError, JugadorIncorrectoError {
+		if (this.jugador != unJugador) {
+			throw new JugadorIncorrectoError();
+		}
 		if (!this.esAliado(soldado))
 			throw new PerteneceAOtroJugadorError();
 		if (this.soldadosCargados.size() + 1 > this.capacidadMaxima) {
@@ -33,7 +37,12 @@ public abstract class UnidadTransporte extends UnidadMovil {
 		soldado.nuevaPosicion(null);
 	}
 
-	public UnidadSoldado descargarSoldado() throws UnidadTransporteVaciaError {
+	public UnidadSoldado descargarSoldado(Jugador unJugador)
+			throws UnidadTransporteVaciaError, JugadorIncorrectoError {
+
+		if (this.jugador != unJugador) {
+			throw new JugadorIncorrectoError();
+		}
 		try {
 			return this.soldadosCargados.remove(0);
 		} catch (IndexOutOfBoundsException e) {

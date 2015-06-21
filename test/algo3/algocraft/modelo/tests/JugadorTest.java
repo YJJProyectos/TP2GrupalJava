@@ -16,6 +16,7 @@ import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 
@@ -159,7 +160,7 @@ public class JugadorTest {
 	public void sePuedePosicionarUnSoldadoDeColaDeEsperaDelJugador()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			PosicionNoOcupadaPorRecursoError, RecolectorInvalidoError,
-			NoHaySoldadosParaPosicionarError {
+			NoHaySoldadosParaPosicionarError, JugadorIncorrectoError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaMineral = new Coordenada(1, 1);
 		Casilla casillaMineral = new Casilla(coordenadaMineral);
@@ -190,7 +191,7 @@ public class JugadorTest {
 			jugador.pasarTurno();
 		}// Termina de crearse la barraca
 
-		barraca.entrenarMarine();
+		barraca.entrenarMarine(jugador);
 		for (int i = 0; i < 3; i++) {
 			jugador.pasarTurno();
 		}// Termina de crearse el marine

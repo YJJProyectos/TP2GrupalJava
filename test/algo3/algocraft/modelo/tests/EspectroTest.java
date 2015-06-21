@@ -9,6 +9,7 @@ import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Espectro;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
@@ -100,10 +101,25 @@ public class EspectroTest {
 		Assert.assertEquals(casilla, espectro.posicion());
 	}
 
+	@Test(expected = JugadorIncorrectoError.class)
+	public void deberiaLanzarUnaExcepcionAlAtacarUnEnemigoPorqueNoRecibeComoParametroAlJugadorPropio()
+			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
+			JugadorIncorrectoError {
+		Jugador jugadorAliado = new Jugador();
+		Jugador jugadorEnemigo = new Jugador();
+		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
+		UnidadSoldado espectro = new Espectro(jugadorAliado);
+		espectro.posicionar(new Casilla(new Coordenada(1, 1)));
+		soldadoEnemigo.posicionar(new Casilla(new Coordenada(2, 1)));
+		espectro.atacarEnemigo(soldadoEnemigo, jugadorEnemigo);
+
+	}
+
 	@Test
 	public void deberiaNoDaniarFueraDeRango() throws YaEstaDestruidoError,
 			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
-			CasillaOcupadaError {
+			CasillaOcupadaError, JugadorIncorrectoError {
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugadorAliado);
@@ -115,7 +131,7 @@ public class EspectroTest {
 
 		espectro.posicionar(casillaSoldado);
 		soldadoEnemigo.posicionar(casillaAliado);
-		espectro.atacarEnemigo(soldadoEnemigo);
+		espectro.atacarEnemigo(soldadoEnemigo, jugadorAliado);
 
 		Assert.assertEquals(40, soldadoEnemigo.vidaRestante());
 
@@ -124,14 +140,14 @@ public class EspectroTest {
 	@Test
 	public void deberiaDaniarEnElRango() throws YaEstaDestruidoError,
 			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
-			CasillaOcupadaError {
+			CasillaOcupadaError, JugadorIncorrectoError {
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
 		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
 		UnidadSoldado espectro = new Espectro(jugadorAliado);
 		espectro.posicionar(new Casilla(new Coordenada(1, 1)));
 		soldadoEnemigo.posicionar(new Casilla(new Coordenada(2, 1)));
-		espectro.atacarEnemigo(soldadoEnemigo);
+		espectro.atacarEnemigo(soldadoEnemigo, jugadorAliado);
 
 		Assert.assertEquals(32, soldadoEnemigo.vidaRestante());
 

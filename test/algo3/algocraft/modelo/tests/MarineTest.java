@@ -10,10 +10,12 @@ import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.mapa.Mapa;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorError;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 public class MarineTest {
 
@@ -90,6 +92,21 @@ public class MarineTest {
 		Assert.assertEquals(casilla, marine.posicion());
 	}
 
+	@Test(expected = JugadorIncorrectoError.class)
+	public void deberiaLanzarUnaExcepcionAlAtacarUnEnemigoPorqueNoRecibeComoParametroAlJugadorPropio()
+			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
+			JugadorIncorrectoError {
+		Jugador jugadorAliado = new Jugador();
+		Jugador jugadorEnemigo = new Jugador();
+		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
+		UnidadSoldado marine = new Marine(jugadorAliado);
+		marine.posicionar(new Casilla(new Coordenada(1, 1)));
+		soldadoEnemigo.posicionar(new Casilla(new Coordenada(2, 1)));
+		marine.atacarEnemigo(soldadoEnemigo, jugadorEnemigo);
+
+	}
+
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
 			throws YaEstaDestruidoError {
@@ -104,7 +121,8 @@ public class MarineTest {
 	@Test(expected = PerteneceAlMismoJugadorError.class)
 	public void unMarineDeberiaNoDaniarAUnGoliatPorPertenecerAlMismoJugador()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError {
+			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
+			JugadorIncorrectoError {
 		Jugador jugador = new Jugador();
 		Marine soldado = new Marine(jugador);
 		Unidad soldadoAliado = new Golliat(jugador);
@@ -116,14 +134,15 @@ public class MarineTest {
 
 		soldado.posicionar(casillaSoldado);
 		soldadoAliado.posicionar(casillaSoldadoAliado);
-		soldado.atacarEnemigo(soldadoAliado);
+		soldado.atacarEnemigo(soldadoAliado, jugador);
 
 	}
 
 	@Test
 	public void unMarineDeberiaNoDaniarAUnGoliatPorEstarFueraDelRango()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError {
+			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
+			JugadorIncorrectoError {
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
 		Marine soldadoAliado = new Marine(jugadorAliado);
@@ -135,7 +154,7 @@ public class MarineTest {
 
 		soldadoAliado.posicionar(casillaSoldadoAliado);
 		soldadoEnemigo.posicionar(casillaSoldadoEnemigo);
-		soldadoAliado.atacarEnemigo(soldadoEnemigo);
+		soldadoAliado.atacarEnemigo(soldadoEnemigo, jugadorAliado);
 
 		Assert.assertEquals(125, soldadoEnemigo.vidaRestante());
 
@@ -144,7 +163,8 @@ public class MarineTest {
 	@Test
 	public void unMarineDeberiaDaniarAUnGoliatPorEstarElElRango()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError {
+			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
+			JugadorIncorrectoError {
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -154,15 +174,29 @@ public class MarineTest {
 		Coordenada coordenadaEnemigo = new Coordenada(2, 1);
 		mapa.agregarElementoEnPosicion(soldadoAliado, coordenadaAliado);
 		mapa.agregarElementoEnPosicion(soldadoEnemigo, coordenadaEnemigo);
-		soldadoAliado.atacarEnemigo(soldadoEnemigo);
+		soldadoAliado.atacarEnemigo(soldadoEnemigo, jugadorAliado);
 
 		Assert.assertEquals(119, soldadoEnemigo.vidaRestante());
 
 	}
 
+	@Test(expected = JugadorIncorrectoError.class)
+	public void deberiaLanzarUnaExcepcionAlMoverseUnGolliatSiElParametroEsOtroJugador()
+			throws CasillaOcupadaError, JugadorIncorrectoError {
+		Coordenada coordenadaCasilleroLibre = new Coordenada(1, 2);
+		Coordenada coordenadaCasillero = new Coordenada(1, 1);
+		Casilla casilleroLibre = new Casilla(coordenadaCasilleroLibre);
+		Casilla casillero = new Casilla(coordenadaCasillero);
+		Jugador jugador = new Jugador();
+		Jugador otroJugador = new Jugador();
+		Marine marine = new Marine(jugador);
+		marine.posicionar(casillero);
+		marine.mover(casilleroLibre, otroJugador);
+	}
+
 	@Test
 	public void deberiaPoderMoverseUnMarineSiNoHayNadieEnEseCasillero()
-			throws CasillaOcupadaError {
+			throws CasillaOcupadaError, JugadorIncorrectoError {
 		Coordenada coordenadaCasilleroLibre = new Coordenada(1, 2);
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
 		Casilla casilleroLibre = new Casilla(coordenadaCasilleroLibre);
@@ -170,26 +204,27 @@ public class MarineTest {
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
 		marine.posicionar(casillero);
-		marine.mover(casilleroLibre);
+		marine.mover(casilleroLibre, jugador);
 		Assert.assertEquals(casilleroLibre, marine.posicion());
 	}
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlQuererMoverseUnMarineSiEstaOcupadoElCasillero()
-			throws CasillaOcupadaError {
+			throws CasillaOcupadaError, JugadorIncorrectoError {
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
 		Casilla casillero = new Casilla(coordenadaCasillero);
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
 		Unidad otroMarine = new Marine(jugador);
 		otroMarine.posicionar(casillero);
-		marine.mover(casillero);
+		marine.mover(casillero, jugador);
 	}
 
 	@Test(expected = NoPuedeAtacarMultiplesVecesError.class)
 	public void unMarineNoDeberiaPoderAtacarMasDeUnaVez()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError {
+			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
+			JugadorIncorrectoError {
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -199,13 +234,15 @@ public class MarineTest {
 		Coordenada coordenadaEnemigo = new Coordenada(2, 1);
 		mapa.agregarElementoEnPosicion(soldadoAliado, coordenadaAliado);
 		mapa.agregarElementoEnPosicion(soldadoEnemigo, coordenadaEnemigo);
-		soldadoAliado.atacarEnemigo(soldadoEnemigo);
-		soldadoAliado.atacarEnemigo(soldadoEnemigo);
+		soldadoAliado.atacarEnemigo(soldadoEnemigo, jugadorAliado);
+		soldadoAliado.atacarEnemigo(soldadoEnemigo, jugadorAliado);
 	}
 
+	@Test
 	public void unMarinePuedeVolverAAtacarLuegoDePasarUnTurno()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError {
+			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
+			JugadorIncorrectoError {
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -215,11 +252,11 @@ public class MarineTest {
 		Coordenada coordenadaEnemigo = new Coordenada(2, 1);
 		mapa.agregarElementoEnPosicion(soldadoAliado, coordenadaAliado);
 		mapa.agregarElementoEnPosicion(soldadoEnemigo, coordenadaEnemigo);
-		soldadoAliado.atacarEnemigo(soldadoEnemigo);
+		soldadoAliado.atacarEnemigo(soldadoEnemigo, jugadorAliado);
 		soldadoAliado.pasarTurno();
-		soldadoAliado.atacarEnemigo(soldadoEnemigo);
+		soldadoAliado.atacarEnemigo(soldadoEnemigo, jugadorAliado);
 
-		Assert.assertEquals(115, soldadoEnemigo.vidaRestante());
+		Assert.assertEquals(113, soldadoEnemigo.vidaRestante());
 	}
 
 }
