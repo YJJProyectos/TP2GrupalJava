@@ -57,7 +57,7 @@ public class MapaTest {
 		@SuppressWarnings("unused")
 		Recurso minaDeMineral = new MinaDeMinerales(100);
 		Coordenada coordenadaMina = new Coordenada(1000, 1000);
-		mapa.obtenerElementoTerrestreEnPosicion(coordenadaMina);
+		mapa.obtenerRecursoEnPosicion(coordenadaMina);
 	}
 
 	@Test
