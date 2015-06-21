@@ -5,11 +5,14 @@ import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
+import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 
 public class JuegoTest {
 
 	@Test
-	public void deberiaEmpezarConTurnoJugador1() {
+	public void deberiaEmpezarConTurnoJugador1()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Juego juego = new Juego(jugador1, jugador2);
@@ -17,7 +20,8 @@ public class JuegoTest {
 	}
 
 	@Test
-	public void deberiaPasarTurnosDeJugador1AJugador2YViceversa() {
+	public void deberiaPasarTurnosDeJugador1AJugador2YViceversa()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Juego juego = new Juego(jugador1, jugador2);
@@ -28,7 +32,8 @@ public class JuegoTest {
 	}
 
 	@Test
-	public void deberiaGenerarseUnCicloAlPasarTurnosEmpezandoPorElJugador1() {
+	public void deberiaGenerarseUnCicloAlPasarTurnosEmpezandoPorElJugador1()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
@@ -44,7 +49,8 @@ public class JuegoTest {
 	}
 
 	@Test
-	public void deberiaPoderSacarAUnJugadorYSeguirConLosRestantes() {
+	public void deberiaPoderSacarAUnJugadorYSeguirConLosRestantes()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
@@ -66,7 +72,8 @@ public class JuegoTest {
 	}
 
 	@Test
-	public void deberiaSacarseElJugador1YTendriaQueJugarElJugadorAgregado() {
+	public void deberiaSacarseElJugador1YTendriaQueJugarElJugadorAgregado()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
@@ -81,7 +88,8 @@ public class JuegoTest {
 	}
 
 	@Test
-	public void deberiaPoderSacarAlJugadorQueSeAgregoEntre2Jugadores() {
+	public void deberiaPoderSacarAlJugadorQueSeAgregoEntre2Jugadores()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
@@ -99,7 +107,8 @@ public class JuegoTest {
 	}
 
 	@Test
-	public void deberiaPoderSacarAlJugadorQueSeAgregoEntre3Jugadores() {
+	public void deberiaPoderSacarAlJugadorQueSeAgregoEntre3Jugadores()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
@@ -118,7 +127,8 @@ public class JuegoTest {
 	}
 
 	@Test
-	public void alQuedarUnUnicoJugadorAlSiquienteTurnoLeTocaAEl() {
+	public void alQuedarUnUnicoJugadorAlSiquienteTurnoLeTocaAEl()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
@@ -147,7 +157,8 @@ public class JuegoTest {
 	}
 
 	@Test
-	public void deberiaSacarAlJugadorQuePerdioYSeguirConLosOtrosJugadores() {
+	public void deberiaSacarAlJugadorQuePerdioYSeguirConLosOtrosJugadores()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
@@ -168,7 +179,8 @@ public class JuegoTest {
 
 	// este test deberia ser que gano el jugador1 el juego, algo asi
 	@Test
-	public void deberiaVolverAlJugador1SiSeSacaronALosOtrosJugadores() {
+	public void deberiaVolverAlJugador1SiSeSacaronALosOtrosJugadores()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
@@ -191,8 +203,10 @@ public class JuegoTest {
 		juego.pasarTurno();
 		Assert.assertEquals(jugador1, juego.turnoDeJugador());
 	}
+
 	@Test
-	public void seDeberiaPoderJugarHasta4Jugadores(){
+	public void seDeberiaPoderJugarHasta4Jugadores()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
@@ -203,4 +217,5 @@ public class JuegoTest {
 		Assert.assertTrue(juego.agregarJugador(jugador4));
 		Assert.assertFalse(juego.agregarJugador(jugador5));
 	}
+
 }

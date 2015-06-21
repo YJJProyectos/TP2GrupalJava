@@ -3,7 +3,6 @@ package algo3.algocraft.modelo.tests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import algo3.algocraft.modelo.juego.BarracaNoConstruidaError;
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.NoHaySoldadosParaPosicionarError;
 import algo3.algocraft.modelo.juego.PosicionNoOcupadaPorRecursoError;
@@ -15,213 +14,12 @@ import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
-import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
-import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 
 public class JugadorTest {
-
-	@Test
-	public void deberiaPoderConstruirUnaBarraca()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		Barraca barraca = jugador.crearBarraca(casilla);
-
-		Assert.assertEquals(casilla.getOcupanteTerrestre(), barraca);
-	}
-
-	@Test
-	public void laBarracaSeEncuentraInicialmenteEnconstruccion()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		Barraca barraca = jugador.crearBarraca(casilla);
-
-		Assert.assertTrue(barraca.enConstruccion());
-
-	}
-
-	@Test
-	public void luegoDe12TurnoslaBarracaEstaConstruida()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		Barraca barraca = jugador.crearBarraca(casilla);
-		for (int i = 0; i < 12; i++) {
-			jugador.pasarTurno();
-		}
-
-		Assert.assertFalse(barraca.enConstruccion());
-
-	}
-
-	@Test(expected = BarracaNoConstruidaError.class)
-	public void siSeEmpezoACrearUnaBarracaPeroSigueEnConstruccionNoSePuedeConstruirUnaFabrica()
-			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
-			RecursosInsuficientesError, CasillaOcupadaError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenadaBarraca = new Coordenada(1, 1);
-		Coordenada coordenadaFabrica = new Coordenada(2, 1);
-		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
-		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
-		Barraca barraca = jugador.crearBarraca(casillaBarraca);
-		jugador.crearFabrica(casillaFabrica, barraca);
-	}
-
-	@Test
-	public void siSePudoCrearUnaBarraSePuedeConstruirUnaFabrica()
-			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
-			RecursosInsuficientesError, CasillaOcupadaError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenadaBarraca = new Coordenada(1, 1);
-		Coordenada coordenadaFabrica = new Coordenada(2, 1);
-		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
-		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
-		Barraca barraca = jugador.crearBarraca(casillaBarraca);
-		for (int i = 0; i < 12; i++) {
-			jugador.pasarTurno();
-		}
-		Fabrica fabrica = jugador.crearFabrica(casillaFabrica, barraca);
-
-		Assert.assertEquals(casillaFabrica.getOcupanteTerrestre(), fabrica);
-	}
-
-	@Test
-	public void laFabricaSeEncuentraInicialmenteEnconstruccion()
-			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
-			RecursosInsuficientesError, CasillaOcupadaError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenadaBarraca = new Coordenada(1, 1);
-		Coordenada coordenadaFabrica = new Coordenada(2, 1);
-		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
-		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
-		Barraca barraca = jugador.crearBarraca(casillaBarraca);
-		for (int i = 0; i < 12; i++) {
-			jugador.pasarTurno();
-		}
-		Fabrica fabrica = jugador.crearFabrica(casillaFabrica, barraca);
-
-		Assert.assertTrue(fabrica.enConstruccion());
-
-	}
-
-	@Test
-	public void luegoDe12TurnoslaFabricaEstaConstruida()
-			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
-			RecursosInsuficientesError, CasillaOcupadaError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenadaBarraca = new Coordenada(1, 1);
-		Coordenada coordenadaFabrica = new Coordenada(2, 1);
-		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
-		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
-		Barraca barraca = jugador.crearBarraca(casillaBarraca);
-		for (int i = 0; i < 12; i++) {
-			jugador.pasarTurno();
-		}
-		Fabrica fabrica = jugador.crearFabrica(casillaFabrica, barraca);
-		for (int i = 0; i < 12; i++) {
-			jugador.pasarTurno();
-		}
-
-		Assert.assertFalse(fabrica.enConstruccion());
-
-	}
-
-	@Test
-	public void deberiaPoderConstruirUnDepositoDeSuministro()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		DepositoDeSuministros deposito = jugador
-				.crearDepositoDeSuministros(casilla);
-
-		Assert.assertEquals(casilla.getOcupanteTerrestre(), deposito);
-	}
-
-	@Test
-	public void elDepositoSeEncuentraInicialmenteEnconstruccion()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		DepositoDeSuministros deposito = jugador
-				.crearDepositoDeSuministros(casilla);
-
-		Assert.assertTrue(deposito.enConstruccion());
-
-	}
-
-	@Test
-	public void luegoDe6TurnoselDepositoEstaConstruido()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		DepositoDeSuministros deposito = jugador
-				.crearDepositoDeSuministros(casilla);
-		for (int i = 0; i < 6; i++) {
-			deposito.pasarTurno();
-		}
-
-		Assert.assertFalse(deposito.enConstruccion());
-
-	}
-
-	@Test
-	public void deberiaPoderConstruirUnCentroDeMineral()
-			throws PosicionNoOcupadaPorRecursoError,
-			RecursosInsuficientesError, CasillaOcupadaError,
-			RecolectorInvalidoError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		Recurso minaDeMinerales = new MinaDeMinerales(1000);
-		minaDeMinerales.posicionar(casilla);
-		CentroDeMineral centro = jugador.crearCentroDeMineral(casilla);
-		Assert.assertEquals(casilla.getOcupanteTerrestre(), centro);
-	}
-
-	@Test
-	public void elCentroDeMineralSeEncuentraInicialmenteEnconstruccion()
-			throws PosicionNoOcupadaPorRecursoError,
-			RecursosInsuficientesError, CasillaOcupadaError,
-			RecolectorInvalidoError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		Recurso minaDeMinerales = new MinaDeMinerales(1000);
-		minaDeMinerales.posicionar(casilla);
-		CentroDeMineral centro = jugador.crearCentroDeMineral(casilla);
-
-		Assert.assertTrue(centro.enConstruccion());
-
-	}
-
-	@Test
-	public void luegoDe4TurnosElCentroDeMineralEstaConstruido()
-			throws PosicionNoOcupadaPorRecursoError,
-			RecursosInsuficientesError, CasillaOcupadaError,
-			RecolectorInvalidoError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		Recurso minaDeMinerales = new MinaDeMinerales(1000);
-		minaDeMinerales.posicionar(casilla);
-		CentroDeMineral centroDeMineral = jugador.crearCentroDeMineral(casilla);
-		for (int i = 0; i < 4; i++) {
-			jugador.pasarTurno();
-		}
-		Assert.assertFalse(centroDeMineral.enConstruccion());
-
-	}
 
 	@Test
 	public void elJugadorDeberiaEmpezarCon400DeMineral() {
@@ -239,24 +37,14 @@ public class JugadorTest {
 		Casilla casilla = new Casilla(coordenada);
 		Recurso minaDeMinerales = new MinaDeMinerales(1000);
 		minaDeMinerales.posicionar(casilla);
-		jugador.crearCentroDeMineral(casilla);
+		@SuppressWarnings("unused")
+		CentroDeMineral centro = new CentroDeMineral(minaDeMinerales, jugador);
 		for (int i = 0; i < 4; i++) {
 			jugador.pasarTurno();
 		}
 		jugador.pasarTurno();
 		jugador.pasarTurno();
 		Assert.assertEquals(370, jugador.cantidadMineral());
-	}
-
-	@Test(expected = PosicionNoOcupadaPorRecursoError.class)
-	public void siSeIntentaPosicionarUnCentroDeMineralEnUnaPosicionSinUnaMinaSeLanzaUnaExcepcion()
-			throws PosicionNoOcupadaPorRecursoError,
-			RecursosInsuficientesError, RecolectorInvalidoError,
-			CasillaOcupadaError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		jugador.crearCentroDeMineral(casilla);
 	}
 
 	@Test
@@ -278,7 +66,9 @@ public class JugadorTest {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
-		jugador.crearDepositoDeSuministros(casilla);
+		@SuppressWarnings("unused")
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casilla);
 		for (int i = 0; i < 6; i++) {
 			jugador.pasarTurno();
 		}
@@ -294,8 +84,12 @@ public class JugadorTest {
 		Coordenada otraCoordenada = new Coordenada(1, 2);
 		Casilla casilla = new Casilla(coordenada);
 		Casilla otraCasilla = new Casilla(otraCoordenada);
-		jugador.crearDepositoDeSuministros(casilla);
-		jugador.crearDepositoDeSuministros(otraCasilla);
+		@SuppressWarnings("unused")
+		DepositoDeSuministros deposito1 = new DepositoDeSuministros(jugador,
+				casilla);
+		@SuppressWarnings("unused")
+		DepositoDeSuministros deposito2 = new DepositoDeSuministros(jugador,
+				otraCasilla);
 		for (int i = 0; i < 6; i++) {
 			jugador.pasarTurno();
 		}
@@ -314,7 +108,9 @@ public class JugadorTest {
 		for (int i = 0; i < 30; i++) {
 			coordenada = new Coordenada(1, i);
 			casilla = new Casilla(coordenada);
-			jugador.crearDepositoDeSuministros(casilla);
+			@SuppressWarnings("unused")
+			DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+					casilla);
 		}
 		for (int i = 0; i < 6; i++) {
 			jugador.pasarTurno();
@@ -331,53 +127,6 @@ public class JugadorTest {
 	}
 
 	@Test
-	public void deberiaPoderConstruirUnaRefineria()
-			throws PosicionNoOcupadaPorRecursoError,
-			RecursosInsuficientesError, CasillaOcupadaError,
-			RecolectorInvalidoError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		Recurso volcan = new VolcanDeGasVespeno(1000);
-		volcan.posicionar(casilla);
-		Refineria refineria = jugador.crearRefineria(casilla);
-		Assert.assertEquals(casilla.getOcupanteTerrestre(), refineria);
-	}
-
-	@Test
-	public void laRefineriaSeEncuentraInicialmenteEnconstruccion()
-			throws PosicionNoOcupadaPorRecursoError,
-			RecursosInsuficientesError, CasillaOcupadaError,
-			RecolectorInvalidoError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		Recurso volcan = new VolcanDeGasVespeno(1000);
-		volcan.posicionar(casilla);
-		Refineria refineria = jugador.crearRefineria(casilla);
-
-		Assert.assertTrue(refineria.enConstruccion());
-
-	}
-
-	@Test
-	public void luegoDe6TurnosLaRefineriaEstaConstruida()
-			throws PosicionNoOcupadaPorRecursoError,
-			RecursosInsuficientesError, CasillaOcupadaError,
-			RecolectorInvalidoError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		Recurso volcan = new VolcanDeGasVespeno(1000);
-		volcan.posicionar(casilla);
-		Refineria refineria = jugador.crearRefineria(casilla);
-		for (int i = 0; i < 6; i++) {
-			jugador.pasarTurno();
-		}
-		Assert.assertFalse(refineria.enConstruccion());
-	}
-
-	@Test
 	public void despuesDeCrearseLaRefineriaYPasar6TurnosAumentaEn20LaCantidadDeGas()
 			throws PosicionNoOcupadaPorRecursoError,
 			RecursosInsuficientesError, CasillaOcupadaError,
@@ -387,24 +136,14 @@ public class JugadorTest {
 		Casilla casilla = new Casilla(coordenada);
 		Recurso volcan = new VolcanDeGasVespeno(1000);
 		volcan.posicionar(casilla);
-		jugador.crearRefineria(casilla);
+		@SuppressWarnings("unused")
+		Refineria refineria = new Refineria(volcan, jugador);
 		for (int i = 0; i < 6; i++) {
 			jugador.pasarTurno();
 		}
 		jugador.pasarTurno();
 		jugador.pasarTurno();
 		Assert.assertEquals(120, jugador.cantidadGas());
-	}
-
-	@Test(expected = PosicionNoOcupadaPorRecursoError.class)
-	public void siSeIntentaPosicionarUnaRefineriaEnUnaPosicionSinUnVolcanSeLanzaUnaExcepcion()
-			throws PosicionNoOcupadaPorRecursoError,
-			RecursosInsuficientesError, RecolectorInvalidoError,
-			CasillaOcupadaError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		jugador.crearRefineria(casilla);
 	}
 
 	@Test(expected = NoHaySoldadosParaPosicionarError.class)
@@ -427,8 +166,8 @@ public class JugadorTest {
 		Recurso minaDeMinerales = new MinaDeMinerales(1000);
 		minaDeMinerales.posicionar(casillaMineral);
 		@SuppressWarnings("unused")
-		CentroDeMineral centroDeMineral = jugador
-				.crearCentroDeMineral(casillaMineral);
+		CentroDeMineral centroDeMineral = new CentroDeMineral(minaDeMinerales,
+				jugador);
 		for (int i = 0; i < 4; i++) {
 			jugador.pasarTurno();
 		} // Termina de crearse el centro
@@ -438,15 +177,15 @@ public class JugadorTest {
 		Coordenada coordenadaDeposito = new Coordenada(1, 2);
 		Casilla casillaDeposito = new Casilla(coordenadaDeposito);
 		@SuppressWarnings("unused")
-		DepositoDeSuministros deposito = jugador
-				.crearDepositoDeSuministros(casillaDeposito);
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casillaDeposito);
 		for (int i = 0; i < 6; i++) {
 			jugador.pasarTurno();
 		}// Termina de crearse el deposito
 
 		Coordenada coordenadaBarraca = new Coordenada(1, 3);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
-		Barraca barraca = jugador.crearBarraca(casillaBarraca);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
 		for (int i = 0; i < 12; i++) {
 			jugador.pasarTurno();
 		}// Termina de crearse la barraca
@@ -461,9 +200,10 @@ public class JugadorTest {
 
 		Assert.assertTrue(casillaMarine.estaOcupadaLaTierra());
 	}
-	
+
 	@Test
-	public void seInicializaElJugadorConDepositoYSigueConLaMismaCantidadDeMinerales(){
+	public void seInicializaElJugadorConDepositoYSigueConLaMismaCantidadDeMinerales()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(2, 2);
 		Casilla casilla = new Casilla(coordenada);

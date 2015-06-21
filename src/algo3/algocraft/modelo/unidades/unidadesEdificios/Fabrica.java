@@ -2,6 +2,8 @@ package algo3.algocraft.modelo.unidades.unidadesEdificios;
 
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
+import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
 
@@ -15,11 +17,15 @@ public class Fabrica extends UnidadEdificio {
 	private int costoMineral;
 	private int costoGas;
 
-	public Fabrica(Jugador unJugador, Barraca unaBarraca)
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError {
+	public Fabrica(Jugador unJugador, Casilla casilla, Barraca unaBarraca)
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			BarracaNoConstruidaError, CasillaOcupadaError {
 		super(unJugador, 1);
 		if (!this.esAliado(unaBarraca)) {
 			throw new PerteneceAOtroJugadorError();
+		}
+		if (unaBarraca.enConstruccion()) {
+			throw new BarracaNoConstruidaError();
 		}
 		this.barraca = unaBarraca;
 		this.enConstruccion = true;
@@ -29,11 +35,12 @@ public class Fabrica extends UnidadEdificio {
 		this.costoMineral = 200;
 		this.costoGas = 100;
 		this.jugador.pagar(this.costoMineral, this.costoGas);
+		this.posicionar(casilla);
+		unJugador.agregarUnidad(this);
 	}
 
 	public boolean entrenarGolliat() {
 		if (this.enConstruccion || barraca.estaDestruido()
-				|| barraca.enConstruccion()
 				|| this.golliatEnEntrenamiento != null) {
 			return false;
 		}

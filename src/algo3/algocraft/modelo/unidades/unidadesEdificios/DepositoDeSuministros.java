@@ -2,6 +2,8 @@ package algo3.algocraft.modelo.unidades.unidadesEdificios;
 
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
+import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 
 public class DepositoDeSuministros extends UnidadEdificio {
 
@@ -10,13 +12,16 @@ public class DepositoDeSuministros extends UnidadEdificio {
 	private int costoMineral;
 	private int costoGas;
 
-	public DepositoDeSuministros(Jugador unJugador) throws RecursosInsuficientesError {
-		super(unJugador,1);
+	public DepositoDeSuministros(Jugador unJugador, Casilla casilla)
+			throws RecursosInsuficientesError, CasillaOcupadaError {
+		super(unJugador, 1);
 		this.enConstruccion = true;
 		this.turnosRestantes = 6;
 		this.costoMineral = 150;
 		this.costoGas = 0;
 		this.jugador.pagar(this.costoMineral, this.costoGas);
+		this.posicionar(casilla);
+		unJugador.agregarUnidad(this);
 	}
 
 	public int tiempoDeConstruccion() {

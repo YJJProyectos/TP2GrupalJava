@@ -186,8 +186,8 @@ public class CentroDeMineralTest {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
-		barraca.posicionar(casilla);
+		@SuppressWarnings("unused")
+		Barraca barraca = new Barraca(jugador, casilla);
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		mineral.posicionar(casilla);
 		// no encta aca porque el posicionar del mineral ya lanzo la excepcion
@@ -276,23 +276,13 @@ public class CentroDeMineralTest {
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		mineral.posicionar(casilla);
 		CentroDeMineral centroDeMineral = new CentroDeMineral(mineral, jugador);
-		Assert.assertTrue(centroDeMineral.recolectar());
-	}
-
-	@Test
-	public void deberiaNoPoderRecolectarElCentroDeMineralSiSeAcabaElMineral()
-			throws RecursosInsuficientesError, RecolectorInvalidoError,
-			CasillaOcupadaError {
-		Jugador jugador = new Jugador();
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		MinaDeMinerales mineral = new MinaDeMinerales(1000);
-		mineral.posicionar(casilla);
-		CentroDeMineral centroDeMineral = new CentroDeMineral(mineral, jugador);
-		for (int i = 1; i <= 100; i++) { // 100 turnos , se saca todo el mineral
-			centroDeMineral.recolectar();
+		for (int i = 0; i < 4; i++) {
+			centroDeMineral.pasarTurno();
 		}
-		Assert.assertFalse(centroDeMineral.recolectar());
+		int cantidadInicial = jugador.cantidadMineral();
+		centroDeMineral.pasarTurno();
+		int cantidadFinal = jugador.cantidadMineral();
+		Assert.assertEquals(10, cantidadFinal - cantidadInicial);
 	}
 
 	@Test
@@ -305,10 +295,15 @@ public class CentroDeMineralTest {
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		mineral.posicionar(casilla);
 		CentroDeMineral centroDeMineral = new CentroDeMineral(mineral, jugador);
-		for (int i = 1; i <= 5; i++) {
-			centroDeMineral.recolectar();
+		for (int i = 0; i < 4; i++) {
+			centroDeMineral.pasarTurno();
 		}
-		Assert.assertEquals(50, centroDeMineral.getCantidadRecursoRecolectado());
+		int cantidadInicial = jugador.cantidadMineral();
+		for (int i = 1; i <= 5; i++) {
+			centroDeMineral.pasarTurno();
+		}
+		int cantidadFinal = jugador.cantidadMineral();
+		Assert.assertEquals(50, cantidadFinal - cantidadInicial);
 	}
 
 	@Test
@@ -321,8 +316,13 @@ public class CentroDeMineralTest {
 		MinaDeMinerales mineral = new MinaDeMinerales(7);
 		mineral.posicionar(casilla);
 		CentroDeMineral centroDeMineral = new CentroDeMineral(mineral, jugador);
-		centroDeMineral.recolectar();
-		Assert.assertEquals(7, centroDeMineral.getCantidadRecursoRecolectado());
+		for (int i = 0; i < 4; i++) {
+			centroDeMineral.pasarTurno();
+		}
+		int cantidadInicial = jugador.cantidadMineral();
+		centroDeMineral.pasarTurno();
+		int cantidadFinal = jugador.cantidadMineral();
+		Assert.assertEquals(7, cantidadFinal - cantidadInicial);
 	}
 
 	@Test
@@ -335,7 +335,10 @@ public class CentroDeMineralTest {
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		mineral.posicionar(casilla);
 		CentroDeMineral centroDeMineral = new CentroDeMineral(mineral, jugador);
-		centroDeMineral.recolectar();
+		for (int i = 0; i < 4; i++) {
+			centroDeMineral.pasarTurno();
+		}
+		centroDeMineral.pasarTurno();
 		Assert.assertEquals(90, mineral.getCantidad());
 	}
 

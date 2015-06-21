@@ -4,14 +4,8 @@ import java.util.ArrayList;
 
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
-import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
-import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.Unidad;
-import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
-import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
-import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
-import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 public class Jugador {
@@ -71,60 +65,12 @@ public class Jugador {
 
 	}
 
-	public Barraca crearBarraca(Casilla casilla)
-			throws RecursosInsuficientesError, CasillaOcupadaError {
-		Barraca barraca = new Barraca(this);
-		barraca.posicionar(casilla);
-		this.unidades.add(barraca);
-		return barraca;
+	public void agregarUnidad(Unidad unidad) {
+		this.unidades.add(unidad);
 	}
 
-	public Fabrica crearFabrica(Casilla casilla, Barraca barraca)
-			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
-			RecursosInsuficientesError, CasillaOcupadaError {
-		if (barraca.enConstruccion()) {
-			throw new BarracaNoConstruidaError();
-		}
-		Fabrica fabrica = new Fabrica(this, barraca);
-		fabrica.posicionar(casilla);
-		this.unidades.add(fabrica);
-		return fabrica;
-	}
-
-	public DepositoDeSuministros crearDepositoDeSuministros(Casilla casilla)
-			throws RecursosInsuficientesError, CasillaOcupadaError {
-		DepositoDeSuministros deposito = new DepositoDeSuministros(this);
-		deposito.posicionar(casilla);
-		this.unidades.add(deposito);
-		return deposito;
-	}
-
-	public CentroDeMineral crearCentroDeMineral(Casilla casilla)
-			throws PosicionNoOcupadaPorRecursoError,
-			RecursosInsuficientesError, RecolectorInvalidoError,
-			CasillaOcupadaError {
-
-		if (!casilla.estaOcupadoElRecurso()) {
-			throw new PosicionNoOcupadaPorRecursoError();
-		}
-		CentroDeMineral centroDeMineral = new CentroDeMineral(
-				casilla.getRecurso(), this);
-		this.unidades.add(centroDeMineral);
-		return centroDeMineral;
-	}
-
-	public Refineria crearRefineria(Casilla casilla)
-			throws PosicionNoOcupadaPorRecursoError,
-			RecursosInsuficientesError, RecolectorInvalidoError,
-			CasillaOcupadaError {
-
-		if (!casilla.estaOcupadoElRecurso()) {
-			throw new PosicionNoOcupadaPorRecursoError();
-		}
-		Refineria refineria = new Refineria(casilla.getRecurso(), this);
-		this.unidades.add(refineria);
-		return refineria;
-
+	public void removerUnidad(Unidad unidad) {
+		this.unidades.remove(unidad);
 	}
 
 	public void pasarTurno() {
@@ -145,17 +91,14 @@ public class Jugador {
 		this.cantidadGas -= costoGas;
 	}
 
-	public void iniciarConDeposito(Casilla posicionDeBase){
-		this.cantidadMineral += 150; // le agrego lo necesario para crear el deposito
-		DepositoDeSuministros deposito;
-		try {
-			deposito = new DepositoDeSuministros(this);
-			for (int i = 0; i < 6; i++) {
-				deposito.continuarConstruccion();
-				}
-				unidades.add(deposito);
-				this.poblacion = 10;
-		} catch (RecursosInsuficientesError e) {
+	public void iniciarConDeposito(Casilla posicionDeBase)
+			throws RecursosInsuficientesError, CasillaOcupadaError {
+		this.aumentarMineral(150); // le agrego lo necesario para crear el
+									// deposito
+		DepositoDeSuministros deposito = new DepositoDeSuministros(this,
+				posicionDeBase);
+		for (int i = 0; i < 7; i++) {
+			deposito.pasarTurno();
 		}
 	}
 

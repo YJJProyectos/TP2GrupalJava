@@ -189,8 +189,8 @@ public class RefineriaTest {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
-		barraca.posicionar(casilla);
+		@SuppressWarnings("unused")
+		Barraca barraca = new Barraca(jugador, casilla);
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		volcan.posicionar(casilla);
 		// no encta aca porque el posicionar del mineral ya lanzo la excepcion
@@ -278,24 +278,15 @@ public class RefineriaTest {
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		volcan.posicionar(casilla);
 		Jugador jugador = new Jugador();
-		Refineria centroDeMineral = new Refineria(volcan, jugador);
-		Assert.assertTrue(centroDeMineral.recolectar());
-	}
-
-	@Test
-	public void deberiaNoPoderRecolectarLaRefineriaSiSeAcabaElMineral()
-			throws RecursosInsuficientesError, RecolectorInvalidoError,
-			CasillaOcupadaError {
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
-		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(1000);
-		volcan.posicionar(casilla);
-		Jugador jugador = new Jugador();
-		Refineria centroDeMineral = new Refineria(volcan, jugador);
-		for (int i = 1; i <= 100; i++) { // 100 turnos , se saca todo el volcan
-			centroDeMineral.recolectar();
+		Refineria refineria = new Refineria(volcan, jugador);
+		for (int i = 0; i < 6; i++) {
+			refineria.pasarTurno();
 		}
-		Assert.assertFalse(centroDeMineral.recolectar());
+		int cantidadInicial = jugador.cantidadGas();
+		refineria.pasarTurno();
+		int cantidadFinal = jugador.cantidadGas();
+
+		Assert.assertEquals(10, cantidadFinal - cantidadInicial);
 	}
 
 	@Test
@@ -307,11 +298,17 @@ public class RefineriaTest {
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		volcan.posicionar(casilla);
 		Jugador jugador = new Jugador();
-		Refineria centroDeMineral = new Refineria(volcan, jugador);
-		for (int i = 1; i <= 5; i++) {
-			centroDeMineral.recolectar();
+		Refineria refineria = new Refineria(volcan, jugador);
+		for (int i = 0; i < 6; i++) {
+			refineria.pasarTurno();
 		}
-		Assert.assertEquals(50, centroDeMineral.getCantidadRecursoRecolectado());
+		int cantidadInicial = jugador.cantidadGas();
+		for (int i = 1; i <= 5; i++) {
+			refineria.pasarTurno();
+		}
+		int cantidadFinal = jugador.cantidadGas();
+
+		Assert.assertEquals(50, cantidadFinal - cantidadInicial);
 	}
 
 	@Test
@@ -323,9 +320,14 @@ public class RefineriaTest {
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(7);
 		volcan.posicionar(casilla);
 		Jugador jugador = new Jugador();
-		Refineria centroDeMineral = new Refineria(volcan, jugador);
-		centroDeMineral.recolectar();
-		Assert.assertEquals(7, centroDeMineral.getCantidadRecursoRecolectado());
+		Refineria refineria = new Refineria(volcan, jugador);
+		for (int i = 0; i < 6; i++) {
+			refineria.pasarTurno();
+		}
+		int cantidadInicial = jugador.cantidadGas();
+		refineria.pasarTurno();
+		int cantidadFinal = jugador.cantidadGas();
+		Assert.assertEquals(7, cantidadFinal - cantidadInicial);
 	}
 
 	@Test
@@ -337,8 +339,11 @@ public class RefineriaTest {
 		VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(100);
 		volcan.posicionar(casilla);
 		Jugador jugador = new Jugador();
-		Refineria centroDeMineral = new Refineria(volcan, jugador);
-		centroDeMineral.recolectar();
+		Refineria refineria = new Refineria(volcan, jugador);
+		for (int i = 0; i < 6; i++) {
+			refineria.pasarTurno();
+		}
+		refineria.pasarTurno();
 		Assert.assertEquals(90, volcan.getCantidad());
 	}
 

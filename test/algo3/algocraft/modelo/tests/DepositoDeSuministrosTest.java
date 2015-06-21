@@ -19,27 +19,33 @@ public class DepositoDeSuministrosTest {
 
 	@Test(expected = RecursosInsuficientesError.class)
 	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnDeposito()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
 		jugador.pagar(400, 0);
-		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
+		Casilla casilla = new Casilla(new Coordenada(1, 1));
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casilla);
 		deposito.pasarTurno();
 	}
 
 	@Test
 	public void elTiempoDeConstruccionDeUnDepositoEsde6Turnos()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
+		Casilla casilla = new Casilla(new Coordenada(1, 1));
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casilla);
 
 		Assert.assertEquals(6, deposito.tiempoDeConstruccion());
 	}
 
 	@Test
 	public void elTiempoDeConstruccionDeUnDepositoLuegoDePasarUnTUrnoEsde5Turnos()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
+		Casilla casilla = new Casilla(new Coordenada(1, 1));
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casilla);
 		deposito.pasarTurno();
 
 		Assert.assertEquals(5, deposito.tiempoDeConstruccion());
@@ -47,18 +53,22 @@ public class DepositoDeSuministrosTest {
 
 	@Test
 	public void elDepositoDeSuministrosSeEncuentraInicialmenteEnConstruccion()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
+		Casilla casilla = new Casilla(new Coordenada(1, 1));
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casilla);
 
 		Assert.assertTrue(deposito.enConstruccion());
 	}
 
 	@Test
 	public void luegoDe6TurnosElDepositoDeSuministrosEstaConstuido()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
+		Casilla casilla = new Casilla(new Coordenada(1, 1));
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casilla);
 		for (int i = 0; i < 6; i++) {
 			deposito.pasarTurno();
 		}
@@ -74,15 +84,14 @@ public class DepositoDeSuministrosTest {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
-		DepositoDeSuministros deposito = new DepositoDeSuministros(
-				jugadorAliado);
-		Marine marine = new Marine(jugadorEnemigo);
 		Coordenada coordenadaDeposito = new Coordenada(1, 1);
-		Coordenada coordenadaMarine = new Coordenada(1, 2);
 		Casilla casillaDeposito = new Casilla(coordenadaDeposito);
+		DepositoDeSuministros deposito = new DepositoDeSuministros(
+				jugadorAliado, casillaDeposito);
+		Marine marine = new Marine(jugadorEnemigo);
+		Coordenada coordenadaMarine = new Coordenada(1, 2);
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		marine.posicionar(casillaMarine);
-		deposito.posicionar(casillaDeposito);
 		marine.atacarEnemigo(deposito);
 		Assert.assertTrue(deposito.estaDestruido());
 
@@ -96,15 +105,14 @@ public class DepositoDeSuministrosTest {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
-		DepositoDeSuministros deposito = new DepositoDeSuministros(
-				jugadorAliado);
-		Marine marine = new Marine(jugadorEnemigo);
 		Coordenada coordenadaDeposito = new Coordenada(1, 1);
-		Coordenada coordenadaMarine = new Coordenada(1, 2);
 		Casilla casillaDeposito = new Casilla(coordenadaDeposito);
+		DepositoDeSuministros deposito = new DepositoDeSuministros(
+				jugadorAliado, casillaDeposito);
+		Marine marine = new Marine(jugadorEnemigo);
+		Coordenada coordenadaMarine = new Coordenada(1, 2);
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		marine.posicionar(casillaMarine);
-		deposito.posicionar(casillaDeposito);
 
 		for (int i = 0; i < 6; i++) {
 			deposito.pasarTurno();
@@ -117,9 +125,12 @@ public class DepositoDeSuministrosTest {
 
 	@Test
 	public void elDepositoDeSuministrosConstruidoDeberiaRecibirDanio1()
-			throws YaEstaDestruidoError, RecursosInsuficientesError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError,
+			CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
+		Casilla casilla = new Casilla(new Coordenada(1, 1));
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casilla);
 		for (int i = 0; i < 6; i++) {
 			deposito.pasarTurno();
 		}
@@ -132,9 +143,12 @@ public class DepositoDeSuministrosTest {
 
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaDepositoDeSuministrosConstruidoEs499()
-			throws YaEstaDestruidoError, RecursosInsuficientesError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError,
+			CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
+		Casilla casilla = new Casilla(new Coordenada(1, 1));
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casilla);
 		for (int i = 0; i < 13; i++) {
 			deposito.pasarTurno();
 		}
@@ -146,35 +160,41 @@ public class DepositoDeSuministrosTest {
 	@Test
 	public void deberiaPoderPosicionarseUnDepositoEnUnaCasillaDesocupada()
 			throws RecursosInsuficientesError, CasillaOcupadaError {
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
-		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
-		deposito.posicionar(casilla);
-		Assert.assertEquals(casilla, deposito.posicion());
+		Casilla casillaInicial = new Casilla(new Coordenada(1, 1));
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casillaInicial);
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casillaNueva = new Casilla(coordenada);
+		deposito.posicionar(casillaNueva);
+		Assert.assertEquals(casillaNueva, deposito.posicion());
 	}
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlQUererPosicionarUnDepositoEnUnaCasillaOcupadaPorUnaunidad()
 			throws RecursosInsuficientesError, CasillaOcupadaError {
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
+
 		Jugador jugador = new Jugador();
+		Casilla casillaInicial = new Casilla(new Coordenada(1, 1));
 		DepositoDeSuministros primerDeposito = new DepositoDeSuministros(
-				jugador);
+				jugador, casillaInicial);
+		Coordenada coordenada = new Coordenada(1, 2);
+		Casilla casilla = new Casilla(coordenada);
+		@SuppressWarnings("unused")
 		DepositoDeSuministros segundoDeposito = new DepositoDeSuministros(
-				jugador);
+				jugador, casilla);
 		primerDeposito.posicionar(casilla);
-		segundoDeposito.posicionar(casilla);
 	}
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlQUererPosicionarUnDepositoEnUnaCasillaOcupadaPorUnRecurso()
 			throws RecursosInsuficientesError, CasillaOcupadaError {
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
-		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
+		Casilla casillaInicial = new Casilla(new Coordenada(1, 1));
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casillaInicial);
+		Coordenada coordenada = new Coordenada(1, 2);
+		Casilla casilla = new Casilla(coordenada);
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
 		casilla.agregarRecurso(mineral);
 		deposito.posicionar(casilla);
@@ -186,27 +206,31 @@ public class DepositoDeSuministrosTest {
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
-		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
-
-		deposito.posicionar(casilla);
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casilla);
 
 		Assert.assertEquals(casilla, deposito.posicion());
 	}
 
 	@Test
 	public void unaDepositoDeSuministrosEsInicialmenteTerrestre()
-			throws RecursosInsuficientesError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
+		Casilla casilla = new Casilla(new Coordenada(1, 1));
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casilla);
 
 		Assert.assertTrue(deposito.esTerrestre());
 	}
 
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
-			throws YaEstaDestruidoError, RecursosInsuficientesError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError,
+			CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador);
+		Casilla casilla = new Casilla(new Coordenada(1, 1));
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casilla);
 		deposito.recibirDanio(2000);
 		Assert.assertTrue(deposito.estaDestruido());
 		deposito.recibirDanio(2);

@@ -2,46 +2,31 @@ package algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores;
 
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
-import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.recursos.Recurso;
 
 public class CentroDeMineral extends Recolector {
 
-	private int cantidadMineralRecolectado;
-	private Recurso mineral;
-	private int turnosRestantes;
+	private Recurso minaDeMineral;
 	private boolean enConstruccion;
+	private int turnosRestantes;
 	private int costoMineral;
 	private int costoGas;
 
-	public CentroDeMineral(Recurso unMineral, Jugador jugador)
+	public CentroDeMineral(Recurso recurso, Jugador unJugador)
 			throws RecursosInsuficientesError, RecolectorInvalidoError,
 			CasillaOcupadaError {
-		super(jugador, 1);
+		super(unJugador, 1);
+		this.enConstruccion = true;
+		this.turnosRestantes = 4;
 		this.costoMineral = 50;
 		this.costoGas = 0;
 		this.jugador.pagar(this.costoMineral, this.costoGas);
-		unMineral.agregarCentroDeMineral(this);
-		this.mineral = unMineral;
-		this.cantidadMineralRecolectado = 0;
-		this.turnosRestantes = 4;
-		this.enConstruccion = true;
+		recurso.agregarCentroDeMineral(this);
+		this.minaDeMineral = recurso;
+		unJugador.agregarUnidad(this);
 
-	}
-
-	public boolean recolectar() {
-		int cantidadMineralSacado = this.mineral.extraerRecurso(10);
-		if (cantidadMineralSacado > 0) {
-			this.cantidadMineralRecolectado += cantidadMineralSacado;
-			return true;
-		}
-		return false;
-	}
-
-	public int getCantidadRecursoRecolectado() {
-		return this.cantidadMineralRecolectado;
 	}
 
 	public boolean esTerrestre() {
@@ -64,21 +49,12 @@ public class CentroDeMineral extends Recolector {
 		if (this.enConstruccion) {
 			this.continuarConstruccion();
 		} else {
-			this.recolectar();
-			jugador.aumentarMineral(this.cantidadMineralRecolectado);
-			this.cantidadMineralRecolectado = 0;
+			jugador.aumentarMineral(this.minaDeMineral.extraerRecurso(10));
 		}
 	}
 
 	public boolean enConstruccion() {
 		return enConstruccion;
-	}
-
-	@Override
-	public void posicionar(Casilla casilla) throws CasillaOcupadaError {
-		casilla.ocuparRecurso(this);
-		this.posicion = casilla;
-
 	}
 
 }

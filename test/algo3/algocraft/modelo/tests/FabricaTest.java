@@ -12,6 +12,7 @@ import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.BarracaNoConstruidaError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
@@ -21,40 +22,103 @@ public class FabricaTest {
 
 	@Test(expected = RecursosInsuficientesError.class)
 	public void deberiaLanzarUnErrorSiElJugadornoTieneLosMineralesParaCrearUnaFabrica()
-			throws RecursosInsuficientesError, PerteneceAOtroJugadorError {
+			throws RecursosInsuficientesError, PerteneceAOtroJugadorError,
+			CasillaOcupadaError, BarracaNoConstruidaError {
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
 		jugador.pagar(250, 0);
-		Fabrica fabrica = new Fabrica(jugador, barraca);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 		fabrica.pasarTurno();
 	}
 
 	@Test(expected = RecursosInsuficientesError.class)
 	public void deberiaLanzarUnErrorSiElJugadornoTieneElGasesParaCrearUnaFabrica()
-			throws RecursosInsuficientesError, PerteneceAOtroJugadorError {
+			throws RecursosInsuficientesError, PerteneceAOtroJugadorError,
+			CasillaOcupadaError, BarracaNoConstruidaError {
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
 		jugador.pagar(0, 100);
-		Fabrica fabrica = new Fabrica(jugador, barraca);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 		fabrica.pasarTurno();
+	}
+
+	@Test(expected = BarracaNoConstruidaError.class)
+	public void siSeEmpezoACrearUnaBarracaPeroSigueEnConstruccionNoSePuedeConstruirUnaFabrica()
+			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
+			RecursosInsuficientesError, CasillaOcupadaError {
+		Jugador jugador = new Jugador();
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
+		new Fabrica(jugador, casillaFabrica, barraca);
+	}
+
+	@Test
+	public void siSePudoCrearUnaBarraSePuedeConstruirUnaFabrica()
+			throws BarracaNoConstruidaError, PerteneceAOtroJugadorError,
+			RecursosInsuficientesError, CasillaOcupadaError {
+		Jugador jugador = new Jugador();
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			jugador.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
+
+		Assert.assertEquals(casillaFabrica.getOcupanteTerrestre(), fabrica);
 	}
 
 	@Test
 	public void elTiempoDeConstruccionDeUnaFabricaEsde12Turnos()
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			CasillaOcupadaError, BarracaNoConstruidaError {
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
-		Fabrica fabrica = new Fabrica(jugador, barraca);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 
 		Assert.assertEquals(12, fabrica.tiempoDeConstruccion());
 	}
 
 	@Test
 	public void elTiempoDeConstruccionDeUnaFabricaLuegoDePasarUnTUrnoEsde11Turnos()
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			CasillaOcupadaError, BarracaNoConstruidaError {
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
-		Fabrica fabrica = new Fabrica(jugador, barraca);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 		fabrica.pasarTurno();
 
 		Assert.assertEquals(11, fabrica.tiempoDeConstruccion());
@@ -62,20 +126,36 @@ public class FabricaTest {
 
 	@Test
 	public void laFabricaSeEncuentraInicialmenteEnConstruccion()
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			BarracaNoConstruidaError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
-		Fabrica fabrica = new Fabrica(jugador, barraca);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 
 		Assert.assertTrue(fabrica.enConstruccion());
 	}
 
 	@Test
 	public void luegoDe12TurnosLaFabricaEstaConstuida()
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			BarracaNoConstruidaError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
-		Fabrica fabrica = new Fabrica(jugador, barraca);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 		for (int i = 0; i < 12; i++) {
 			fabrica.pasarTurno();
 		}
@@ -87,19 +167,24 @@ public class FabricaTest {
 	public void siUnMarineAtacaUnaFabricaEnConstruccionLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, PerteneceAOtroJugadorError,
-			RecursosInsuficientesError, CasillaOcupadaError {
+			RecursosInsuficientesError, CasillaOcupadaError,
+			BarracaNoConstruidaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
-		Barraca barraca = new Barraca(jugadorAliado);
-		Fabrica fabrica = new Fabrica(jugadorAliado, barraca);
-		Marine marine = new Marine(jugadorEnemigo);
-		Coordenada coordenadaFabrica = new Coordenada(1, 1);
-		Coordenada coordenadaMarine = new Coordenada(1, 2);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
 		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugadorAliado, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugadorAliado, casillaFabrica, barraca);
+		Marine marine = new Marine(jugadorEnemigo);
+		Coordenada coordenadaMarine = new Coordenada(1, 2);
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		marine.posicionar(casillaMarine);
-		fabrica.posicionar(casillaFabrica);
 		marine.atacarEnemigo(fabrica);
 		Assert.assertTrue(fabrica.estaDestruido());
 
@@ -109,19 +194,24 @@ public class FabricaTest {
 	public void siUnMarineAtacaUnaFabricaYaConstruidaNoLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, PerteneceAOtroJugadorError,
-			RecursosInsuficientesError, CasillaOcupadaError {
+			RecursosInsuficientesError, CasillaOcupadaError,
+			BarracaNoConstruidaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
-		Barraca barraca = new Barraca(jugadorAliado);
-		Fabrica fabrica = new Fabrica(jugadorAliado, barraca);
-		Marine marine = new Marine(jugadorEnemigo);
-		Coordenada coordenadaFabrica = new Coordenada(1, 1);
-		Coordenada coordenadaMarine = new Coordenada(1, 2);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
 		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugadorAliado, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugadorAliado, casillaFabrica, barraca);
+		Marine marine = new Marine(jugadorEnemigo);
+		Coordenada coordenadaMarine = new Coordenada(1, 2);
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		marine.posicionar(casillaMarine);
-		fabrica.posicionar(casillaFabrica);
 
 		for (int i = 0; i < 12; i++) {
 			fabrica.pasarTurno();
@@ -135,10 +225,18 @@ public class FabricaTest {
 	@Test
 	public void laFabricaConstruidaDeberiaRecibirDanio1()
 			throws YaEstaDestruidoError, PerteneceAOtroJugadorError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, BarracaNoConstruidaError,
+			CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
-		Fabrica fabrica = new Fabrica(jugador, barraca);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 		for (int i = 0; i < 12; i++) {
 			fabrica.pasarTurno();
 		}
@@ -152,10 +250,18 @@ public class FabricaTest {
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaFabricaConstruidaEs1249()
 			throws YaEstaDestruidoError, PerteneceAOtroJugadorError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, BarracaNoConstruidaError,
+			CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
-		Fabrica fabrica = new Fabrica(jugador, barraca);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 		for (int i = 0; i < 12; i++) {
 			fabrica.pasarTurno();
 		}
@@ -167,63 +273,94 @@ public class FabricaTest {
 	@Test
 	public void deberiaPoderPosicionarseUnaFabricaEnUnaCasillaDesocupada()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
-			CasillaOcupadaError {
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
+			CasillaOcupadaError, BarracaNoConstruidaError {
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
-		Fabrica fabrica = new Fabrica(jugador, barraca);
-		fabrica.posicionar(casilla);
-		Assert.assertEquals(casilla, fabrica.posicion());
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
+		Coordenada coordenadaNueva = new Coordenada(1, 1);
+		Casilla casillaNueva = new Casilla(coordenadaNueva);
+		fabrica.posicionar(casillaNueva);
+		Assert.assertEquals(casillaNueva, fabrica.posicion());
 	}
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlQuererPosicionarUnaFabricaEnUnaCasillaOcupadaPorUnaunidad()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
-			CasillaOcupadaError {
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
+			CasillaOcupadaError, BarracaNoConstruidaError {
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
-		Fabrica fabrica = new Fabrica(jugador, barraca);
-		barraca.posicionar(casilla);
-		fabrica.posicionar(casilla);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
+		fabrica.posicionar(casillaBarraca);
 	}
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlQuererPosicionarUnaFabricaEnUnaCasillaOcupadaPorUnRecurso()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
-			CasillaOcupadaError {
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
+			CasillaOcupadaError, BarracaNoConstruidaError {
+		Coordenada coordenadaMineral = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaMineral = new Casilla(coordenadaMineral);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
-		Fabrica fabrica = new Fabrica(jugador, barraca);
+		Barraca barraca = new Barraca(jugador, casillaMineral);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 		MinaDeMinerales mineral = new MinaDeMinerales(100);
-		casilla.agregarRecurso(mineral);
-		fabrica.posicionar(casilla);
+		casillaMineral.agregarRecurso(mineral);
+		fabrica.posicionar(casillaMineral);
 	}
 
 	@Test
 	public void deberiaGuardarSuPosicion() throws PerteneceAOtroJugadorError,
-			RecursosInsuficientesError, CasillaOcupadaError {
-		Coordenada coordenada = new Coordenada(1, 1);
-		Casilla casilla = new Casilla(coordenada);
+			RecursosInsuficientesError, CasillaOcupadaError,
+			BarracaNoConstruidaError {
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
-		Fabrica fabrica = new Fabrica(jugador, barraca);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabricaInicial = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabricaInicial);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
+		Coordenada coordenadaFinal = new Coordenada(1, 3);
+		Casilla casillaFinal = new Casilla(coordenadaFinal);
+		fabrica.posicionar(casillaFinal);
 
-		fabrica.posicionar(casilla);
-
-		Assert.assertEquals(casilla, fabrica.posicion());
+		Assert.assertEquals(casillaFinal, fabrica.posicion());
 	}
 
 	@Test
 	public void unaFabricaEsInicialmenteTerrestre()
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			BarracaNoConstruidaError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
-		Fabrica fabrica = new Fabrica(jugador, barraca);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 
 		Assert.assertTrue(fabrica.esTerrestre());
 	}
@@ -231,10 +368,18 @@ public class FabricaTest {
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
 			throws YaEstaDestruidoError, PerteneceAOtroJugadorError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, BarracaNoConstruidaError,
+			CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
-		Fabrica fabrica = new Fabrica(jugador, barraca);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			barraca.pasarTurno();
+		}
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 		fabrica.recibirDanio(2000);
 		Assert.assertTrue(fabrica.estaDestruido());
 		fabrica.recibirDanio(2);
@@ -243,13 +388,18 @@ public class FabricaTest {
 
 	@Test
 	public void deberiaNoPoderEntrenarUnSoldadoGolliaPorqueNoTerminoDeConstruirse()
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			BarracaNoConstruidaError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
 		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
 		}
-		Fabrica fabrica = new Fabrica(jugador, barraca);
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 
 		Assert.assertFalse(fabrica.entrenarGolliat());
 	}
@@ -257,13 +407,18 @@ public class FabricaTest {
 	@Test
 	public void deberiaNoPoderEntrenarUnSoldadoGolliaPorqueLaBarracaEstaDestruida()
 			throws PerteneceAOtroJugadorError, YaEstaDestruidoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, BarracaNoConstruidaError,
+			CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
 		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
 		}
-		Fabrica fabrica = new Fabrica(jugador, barraca);
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 		for (int i = 0; i < 12; i++) {
 			fabrica.pasarTurno();
 		}
@@ -273,28 +428,19 @@ public class FabricaTest {
 	}
 
 	@Test
-	public void deberiaNoPoderEntrenarUnSoldadoGolliaPorqueLaBarracaEstaEnCOnstruccion()
-			throws PerteneceAOtroJugadorError, YaEstaDestruidoError,
-			RecursosInsuficientesError {
-		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
-		Fabrica fabrica = new Fabrica(jugador, barraca);
-		for (int i = 0; i < 12; i++) {
-			fabrica.pasarTurno();
-		}
-
-		Assert.assertFalse(fabrica.entrenarGolliat());
-	}
-
-	@Test
 	public void deberiaEntrenarUnSoldadoGolliat()
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			BarracaNoConstruidaError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
 		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
 		}
-		Fabrica fabrica = new Fabrica(jugador, barraca);
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 		for (int j = 0; j < 12; j++) {
 			fabrica.pasarTurno();
 		}
@@ -305,13 +451,18 @@ public class FabricaTest {
 
 	@Test
 	public void noDeberiaPoderComenzarAEntrenarAUnGolliatMientrasEsteEntrenandoAOtroGolliat()
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			BarracaNoConstruidaError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
 		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
 		}
-		Fabrica fabrica = new Fabrica(jugador, barraca);
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 		for (int j = 0; j < 12; j++) {
 			fabrica.pasarTurno();
 		}
@@ -322,13 +473,18 @@ public class FabricaTest {
 
 	@Test
 	public void deberiaPoderEntrenarAUnGolliatLuegoDeFinalizarElEntrenamientoDeOtroGolliat()
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			BarracaNoConstruidaError, CasillaOcupadaError {
 		Jugador jugador = new Jugador();
-		Barraca barraca = new Barraca(jugador);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
 		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
 		}
-		Fabrica fabrica = new Fabrica(jugador, barraca);
+		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
 		for (int j = 0; j < 12; j++) {
 			fabrica.pasarTurno();
 		}
@@ -342,11 +498,16 @@ public class FabricaTest {
 
 	@Test(expected = PerteneceAOtroJugadorError.class)
 	public void deberiaLanzarLaExcepcionPerteneceAOtroJugadorErrorSiLaBarracaPerteneceAOtroJugador()
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			BarracaNoConstruidaError, CasillaOcupadaError {
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
-		Barraca barraca = new Barraca(jugadorEnemigo);
-		Fabrica fabrica = new Fabrica(jugadorAliado, barraca);
+		Coordenada coordenadaBarraca = new Coordenada(1, 1);
+		Coordenada coordenadaFabrica = new Coordenada(2, 1);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
+		Barraca barraca = new Barraca(jugadorEnemigo, casillaBarraca);
+		Fabrica fabrica = new Fabrica(jugadorAliado, casillaFabrica, barraca);
 		fabrica.pasarTurno();
 	}
 
