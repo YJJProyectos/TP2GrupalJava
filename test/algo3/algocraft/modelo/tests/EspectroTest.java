@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
@@ -19,8 +20,19 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 public class EspectroTest {
 
+	@Test(expected = RecursosInsuficientesError.class)
+	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnEspectro()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
+
+		Jugador jugador = new Jugador();
+		jugador.pagar(400, 100);
+		@SuppressWarnings("unused")
+		Espectro espectro = new Espectro(jugador);
+	}
+
 	@Test
-	public void deberiaEstarDetruido() throws YaEstaDestruidoError {
+	public void deberiaEstarDetruido() throws YaEstaDestruidoError,
+			RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugador);
@@ -30,7 +42,8 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaNoEstarDetruido() throws YaEstaDestruidoError {
+	public void deberiaNoEstarDetruido() throws YaEstaDestruidoError,
+			RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugador);
@@ -40,7 +53,8 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaRecibirDanio() throws YaEstaDestruidoError {
+	public void deberiaRecibirDanio() throws YaEstaDestruidoError,
+			RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugador);
@@ -52,7 +66,8 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaQuedarle119DeVida() throws YaEstaDestruidoError {
+	public void deberiaQuedarle119DeVida() throws YaEstaDestruidoError,
+			RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		UnidadSoldado espectro = new Espectro(jugador);
@@ -63,7 +78,7 @@ public class EspectroTest {
 
 	@Test
 	public void deberiaPoderPosicionarseEnUnaCasillaDesocupada()
-			throws CasillaOcupadaError {
+			throws CasillaOcupadaError, RecursosInsuficientesError {
 
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
@@ -75,10 +90,11 @@ public class EspectroTest {
 
 	@Test
 	public void deberiaPoderPosicionarseEnUnaCasillaConAireDesocupado()
-			throws CasillaOcupadaError {
+			throws CasillaOcupadaError, RecursosInsuficientesError {
 
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
+		jugador.aumentarGas(50);
 		Golliat golliat = new Golliat(jugador);
 		UnidadSoldado espectro = new Espectro(jugador);
 		golliat.posicionar(casilla);
@@ -89,10 +105,11 @@ public class EspectroTest {
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlQuererPosicionarUnEspectroEnUnaCasillaConAireOcupado()
-			throws CasillaOcupadaError {
+			throws CasillaOcupadaError, RecursosInsuficientesError {
 
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
+		jugador.aumentarGas(100);
 		UnidadSoldado espectro1 = new Espectro(jugador);
 		UnidadSoldado espectro2 = new Espectro(jugador);
 		espectro1.posicionar(casilla);
@@ -100,7 +117,8 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaGuardarSuPosicion() throws CasillaOcupadaError {
+	public void deberiaGuardarSuPosicion() throws CasillaOcupadaError,
+			RecursosInsuficientesError {
 
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
@@ -114,7 +132,7 @@ public class EspectroTest {
 	public void deberiaLanzarUnaExcepcionAlAtacarUnEnemigoPorqueNoRecibeComoParametroAlJugadorPropio()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -128,7 +146,8 @@ public class EspectroTest {
 	@Test
 	public void deberiaNoDaniarFueraDeRango() throws YaEstaDestruidoError,
 			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
-			CasillaOcupadaError, JugadorIncorrectoError {
+			CasillaOcupadaError, JugadorIncorrectoError,
+			RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -148,7 +167,8 @@ public class EspectroTest {
 	@Test
 	public void deberiaDaniarEnElRango() throws YaEstaDestruidoError,
 			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
-			CasillaOcupadaError, JugadorIncorrectoError {
+			CasillaOcupadaError, JugadorIncorrectoError,
+			RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();

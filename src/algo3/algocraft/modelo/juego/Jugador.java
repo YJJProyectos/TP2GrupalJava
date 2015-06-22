@@ -96,7 +96,7 @@ public class Jugador {
 
 	public void iniciarConDeposito(Casilla posicionDeBase)
 			throws RecursosInsuficientesError, CasillaOcupadaError {
-		this.aumentarMineral(150); // le agrego lo necesario para crear el
+		this.aumentarMineral(100); // le agrego lo necesario para crear el
 									// deposito
 		DepositoDeSuministros deposito = new DepositoDeSuministros(this,
 				posicionDeBase);

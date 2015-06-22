@@ -76,7 +76,7 @@ public class MinaDeMineralesTest {
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void noSePuedePosicionarUnaMinaDeMineralesEnUnaCasillaConUnMarie()
-			throws CasillaOcupadaError {
+			throws CasillaOcupadaError, RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		Coordenada coordeanda = new Coordenada(1, 1);

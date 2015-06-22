@@ -10,17 +10,13 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
 public class Fabrica extends UnidadEdificio {
 
 	private Barraca barraca;
-	private boolean enConstruccion;
-	private int turnosRestantes;
 	private Golliat golliatEnEntrenamiento;
 	private int turnosRestantesParaTerminarGolliat;
-	private int costoMineral;
-	private int costoGas;
 
 	public Fabrica(Jugador unJugador, Casilla casilla, Barraca unaBarraca)
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			BarracaNoConstruidaError, CasillaOcupadaError {
-		super(unJugador, 1);
+		super(unJugador, 1, 200, 100);
 		if (!this.esAliado(unaBarraca)) {
 			throw new PerteneceAOtroJugadorError();
 		}
@@ -32,15 +28,13 @@ public class Fabrica extends UnidadEdificio {
 		this.turnosRestantes = 12;
 		this.golliatEnEntrenamiento = null;
 		this.turnosRestantesParaTerminarGolliat = 6;
-		this.costoMineral = 200;
-		this.costoGas = 100;
 		this.jugador.pagar(this.costoMineral, this.costoGas);
 		this.posicionar(casilla);
 		unJugador.agregarUnidad(this);
 	}
 
 	public boolean entrenarGolliat(Jugador unJugador)
-			throws JugadorIncorrectoError {
+			throws JugadorIncorrectoError, RecursosInsuficientesError {
 		if (this.jugador != unJugador) {
 			throw new JugadorIncorrectoError();
 		}

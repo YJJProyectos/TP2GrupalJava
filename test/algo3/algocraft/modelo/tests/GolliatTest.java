@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
@@ -20,8 +21,19 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 public class GolliatTest {
 
+	@Test(expected = RecursosInsuficientesError.class)
+	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnEspectro()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
+
+		Jugador jugador = new Jugador();
+		jugador.pagar(400, 100);
+		@SuppressWarnings("unused")
+		Golliat golliat = new Golliat(jugador);
+	}
+
 	@Test
-	public void deberiaEstarDetruidoElGolliat() throws YaEstaDestruidoError {
+	public void deberiaEstarDetruidoElGolliat() throws YaEstaDestruidoError,
+			RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
@@ -31,7 +43,8 @@ public class GolliatTest {
 	}
 
 	@Test
-	public void deberiaNoEstarDetruidoElGolliat() throws YaEstaDestruidoError {
+	public void deberiaNoEstarDetruidoElGolliat() throws YaEstaDestruidoError,
+			RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
@@ -41,7 +54,8 @@ public class GolliatTest {
 	}
 
 	@Test
-	public void deberiaRecibirDanio1() throws YaEstaDestruidoError {
+	public void deberiaRecibirDanio1() throws YaEstaDestruidoError,
+			RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
@@ -53,7 +67,8 @@ public class GolliatTest {
 	}
 
 	@Test
-	public void deberiaQuedarle124DeVida() throws YaEstaDestruidoError {
+	public void deberiaQuedarle124DeVida() throws YaEstaDestruidoError,
+			RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
@@ -63,7 +78,8 @@ public class GolliatTest {
 	}
 
 	@Test
-	public void deberiaPoderPosicionarse() throws CasillaOcupadaError {
+	public void deberiaPoderPosicionarse() throws CasillaOcupadaError,
+			RecursosInsuficientesError {
 
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
@@ -74,7 +90,7 @@ public class GolliatTest {
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzaraUnaExcepcionAlPosicionarUnGolliatEnUnaCasillaOcupada()
-			throws CasillaOcupadaError {
+			throws CasillaOcupadaError, RecursosInsuficientesError {
 
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
@@ -85,7 +101,8 @@ public class GolliatTest {
 	}
 
 	@Test
-	public void deberiaGuardarSuPosicion() throws CasillaOcupadaError {
+	public void deberiaGuardarSuPosicion() throws CasillaOcupadaError,
+			RecursosInsuficientesError {
 
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -100,7 +117,7 @@ public class GolliatTest {
 	public void deberiaLanzarUnaExcepcionAlAtacarUnEnemigoPorqueNoRecibeComoParametroAlJugadorPropio()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -113,7 +130,7 @@ public class GolliatTest {
 
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
-			throws YaEstaDestruidoError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
@@ -128,7 +145,7 @@ public class GolliatTest {
 	public void unGolliatDeberiaNoDaniarAUnMarinePorPertenecerAlMismoJugador()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		Golliat soldado = new Golliat(jugador);
@@ -146,7 +163,7 @@ public class GolliatTest {
 	public void unGolliatDeberiaNoDaniarAUnMarinePorEstarFueraDelRango()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -167,7 +184,7 @@ public class GolliatTest {
 	public void unGolliatDeberiaDaniarAUnMarinePorEstarElElRango()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
@@ -187,7 +204,7 @@ public class GolliatTest {
 	public void deberiaNoDaniarAUnaUnidadVoladoraFueraDeRangoAereo()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -206,7 +223,7 @@ public class GolliatTest {
 	public void deberiaDaniarAUnaUnidadVoladoraEnSuRangoAereo()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -223,7 +240,8 @@ public class GolliatTest {
 
 	@Test(expected = JugadorIncorrectoError.class)
 	public void deberiaLanzarUnaExcepcionAlMoverseUnGolliatSiElParametroEsOtroJugador()
-			throws CasillaOcupadaError, JugadorIncorrectoError {
+			throws CasillaOcupadaError, JugadorIncorrectoError,
+			RecursosInsuficientesError {
 
 		Coordenada coordenadaCasilleroLibre = new Coordenada(1, 2);
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
@@ -238,7 +256,8 @@ public class GolliatTest {
 
 	@Test
 	public void deberiaPoderMoverseUnGolliatSiNoHayNadieEnEseCasillero()
-			throws CasillaOcupadaError, JugadorIncorrectoError {
+			throws CasillaOcupadaError, JugadorIncorrectoError,
+			RecursosInsuficientesError {
 
 		Coordenada coordenadaCasilleroLibre = new Coordenada(1, 2);
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
@@ -254,7 +273,8 @@ public class GolliatTest {
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void noDeberiaPoderMoverseUnGolliatSiEstaOcupadoElCasillero()
-			throws CasillaOcupadaError, JugadorIncorrectoError {
+			throws CasillaOcupadaError, JugadorIncorrectoError,
+			RecursosInsuficientesError {
 
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
 		Casilla casillero = new Casilla(coordenadaCasillero);
@@ -269,7 +289,7 @@ public class GolliatTest {
 	public void unGolliatNoDeberiaPoderAtacarMasDeUnaVez()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
@@ -288,7 +308,7 @@ public class GolliatTest {
 	public void unGolliatPuedeVolverAAtacarLuegoDePasarUnTurno()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();

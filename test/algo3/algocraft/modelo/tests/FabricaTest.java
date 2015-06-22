@@ -477,6 +477,9 @@ public class FabricaTest {
 			JugadorIncorrectoError {
 
 		Jugador jugador = new Jugador();
+		// agrego recursos para poder pagar todas las unidades
+		jugador.aumentarMineral(50);
+		jugador.aumentarGas(50);
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
@@ -500,6 +503,8 @@ public class FabricaTest {
 			JugadorIncorrectoError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarMineral(50);
+		jugador.aumentarGas(50);
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
@@ -524,6 +529,8 @@ public class FabricaTest {
 			JugadorIncorrectoError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarMineral(150);
+		jugador.aumentarGas(100);
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);

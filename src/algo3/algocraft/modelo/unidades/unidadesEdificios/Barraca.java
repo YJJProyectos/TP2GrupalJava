@@ -8,28 +8,23 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 
 public class Barraca extends UnidadEdificio {
 
-	private boolean enConstruccion;
-	private int turnosRestantes;
 	private Marine marineEnEntrenamiento;
 	private int turnosRestantesParaTerminarMarine;
-	private int costoMineral;
-	private int costoGas;
 
 	public Barraca(Jugador unJugador, Casilla casilla)
 			throws RecursosInsuficientesError, CasillaOcupadaError {
-		super(unJugador, 1);
+		super(unJugador, 1, 150, 0);
 		this.enConstruccion = true;
 		this.turnosRestantes = 12;
+		this.marineEnEntrenamiento = null;
 		this.turnosRestantesParaTerminarMarine = 3;
-		this.costoMineral = 150;
-		this.costoGas = 0;
 		this.jugador.pagar(this.costoMineral, this.costoGas);
 		this.posicionar(casilla);
 		unJugador.agregarUnidad(this);
 	}
 
 	public boolean entrenarMarine(Jugador unJugador)
-			throws JugadorIncorrectoError {
+			throws JugadorIncorrectoError, RecursosInsuficientesError {
 		if (this.jugador != unJugador) {
 			throw new JugadorIncorrectoError();
 		}

@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
@@ -19,8 +20,19 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 public class MarineTest {
 
+	@Test(expected = RecursosInsuficientesError.class)
+	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnEspectro()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
+
+		Jugador jugador = new Jugador();
+		jugador.pagar(400, 100);
+		@SuppressWarnings("unused")
+		Marine marine = new Marine(jugador);
+	}
+
 	@Test
-	public void deberiaEstarDetruidoElMarine() throws YaEstaDestruidoError {
+	public void deberiaEstarDetruidoElMarine() throws YaEstaDestruidoError,
+			RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
@@ -30,7 +42,8 @@ public class MarineTest {
 	}
 
 	@Test
-	public void deberiaNoEstarDetruidoElMarine() throws YaEstaDestruidoError {
+	public void deberiaNoEstarDetruidoElMarine() throws YaEstaDestruidoError,
+			RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
@@ -40,7 +53,8 @@ public class MarineTest {
 	}
 
 	@Test
-	public void deberiaRecibirDanio1() throws YaEstaDestruidoError {
+	public void deberiaRecibirDanio1() throws YaEstaDestruidoError,
+			RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
@@ -52,7 +66,8 @@ public class MarineTest {
 	}
 
 	@Test
-	public void deberiaQuedarle39DeVida() throws YaEstaDestruidoError {
+	public void deberiaQuedarle39DeVida() throws YaEstaDestruidoError,
+			RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
@@ -63,7 +78,7 @@ public class MarineTest {
 
 	@Test
 	public void deberiaPoderPosicionarseUnaUnidadEnUnaCasillaDesocupada()
-			throws CasillaOcupadaError {
+			throws CasillaOcupadaError, RecursosInsuficientesError {
 
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -76,7 +91,7 @@ public class MarineTest {
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlPosicionarUnMarineEnUnaCasillaOcupada()
-			throws CasillaOcupadaError {
+			throws CasillaOcupadaError, RecursosInsuficientesError {
 
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -88,7 +103,8 @@ public class MarineTest {
 	}
 
 	@Test
-	public void deberiaGuardarSuPosicion() throws CasillaOcupadaError {
+	public void deberiaGuardarSuPosicion() throws CasillaOcupadaError,
+			RecursosInsuficientesError {
 
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
@@ -103,7 +119,7 @@ public class MarineTest {
 	public void deberiaLanzarUnaExcepcionAlAtacarUnEnemigoPorqueNoRecibeComoParametroAlJugadorPropio()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -116,7 +132,7 @@ public class MarineTest {
 
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
-			throws YaEstaDestruidoError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		Marine marine = new Marine(jugador);
@@ -131,7 +147,7 @@ public class MarineTest {
 	public void unMarineDeberiaNoDaniarAUnGoliatPorPertenecerAlMismoJugador()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		Marine soldado = new Marine(jugador);
@@ -150,7 +166,7 @@ public class MarineTest {
 	public void unMarineDeberiaNoDaniarAUnGoliatPorEstarFueraDelRango()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -171,7 +187,7 @@ public class MarineTest {
 	public void unMarineDeberiaDaniarAUnGoliatPorEstarElElRango()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
@@ -189,7 +205,8 @@ public class MarineTest {
 
 	@Test(expected = JugadorIncorrectoError.class)
 	public void deberiaLanzarUnaExcepcionAlMoverseUnGolliatSiElParametroEsOtroJugador()
-			throws CasillaOcupadaError, JugadorIncorrectoError {
+			throws CasillaOcupadaError, JugadorIncorrectoError,
+			RecursosInsuficientesError {
 
 		Coordenada coordenadaCasilleroLibre = new Coordenada(1, 2);
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
@@ -204,7 +221,8 @@ public class MarineTest {
 
 	@Test
 	public void deberiaPoderMoverseUnMarineSiNoHayNadieEnEseCasillero()
-			throws CasillaOcupadaError, JugadorIncorrectoError {
+			throws CasillaOcupadaError, JugadorIncorrectoError,
+			RecursosInsuficientesError {
 
 		Coordenada coordenadaCasilleroLibre = new Coordenada(1, 2);
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
@@ -220,7 +238,8 @@ public class MarineTest {
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlQuererMoverseUnMarineSiEstaOcupadoElCasillero()
-			throws CasillaOcupadaError, JugadorIncorrectoError {
+			throws CasillaOcupadaError, JugadorIncorrectoError,
+			RecursosInsuficientesError {
 
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
 		Casilla casillero = new Casilla(coordenadaCasillero);
@@ -235,7 +254,7 @@ public class MarineTest {
 	public void unMarineNoDeberiaPoderAtacarMasDeUnaVez()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
@@ -254,7 +273,7 @@ public class MarineTest {
 	public void unMarinePuedeVolverAAtacarLuegoDePasarUnTurno()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();

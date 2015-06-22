@@ -7,18 +7,11 @@ import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 
 public class DepositoDeSuministros extends UnidadEdificio {
 
-	private boolean enConstruccion;
-	private int turnosRestantes;
-	private int costoMineral;
-	private int costoGas;
-
 	public DepositoDeSuministros(Jugador unJugador, Casilla casilla)
 			throws RecursosInsuficientesError, CasillaOcupadaError {
-		super(unJugador, 1);
+		super(unJugador, 1, 100, 0);
 		this.enConstruccion = true;
 		this.turnosRestantes = 6;
-		this.costoMineral = 150;
-		this.costoGas = 0;
 		this.jugador.pagar(this.costoMineral, this.costoGas);
 		this.posicionar(casilla);
 		unJugador.agregarUnidad(this);

@@ -9,19 +9,13 @@ import algo3.algocraft.modelo.recursos.Recurso;
 public class Refineria extends Recolector {
 
 	protected Recurso volcanDeGas;
-	protected boolean enConstruccion;
-	protected int turnosRestantes;
-	private int costoMineral;
-	private int costoGas;
 
 	public Refineria(Recurso recurso, Jugador unJugador)
 			throws RecursosInsuficientesError, RecolectorInvalidoError,
 			CasillaOcupadaError {
-		super(unJugador, 1);
+		super(unJugador, 1, 100, 0);
 		this.enConstruccion = true;
 		this.turnosRestantes = 6;
-		this.costoMineral = 100;
-		this.costoGas = 0;
 		this.jugador.pagar(this.costoMineral, this.costoGas);
 		recurso.agregarRefineria(this);
 		this.volcanDeGas = recurso;

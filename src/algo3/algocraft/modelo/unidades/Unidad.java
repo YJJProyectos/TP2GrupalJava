@@ -11,11 +11,17 @@ public abstract class Unidad {
 	protected Casilla posicion;
 	protected int vida;
 	protected PlanoAccion plano;
+	protected int costoMineral;
+	protected int costoGas;
 
-	protected Unidad(Jugador jugador, int vida, PlanoAccion plano) {
+	protected Unidad(Jugador jugador, int vida, PlanoAccion plano,
+			int costoMineral, int costoGas) {
+		this.jugador = jugador;
+		this.vida = vida;
 		this.plano = plano;
 		this.vida = vida;
-		this.jugador = jugador;
+		this.costoMineral = costoMineral;
+		this.costoGas = costoGas;
 	}
 
 	public void recibirDanio(int danio) throws YaEstaDestruidoError {

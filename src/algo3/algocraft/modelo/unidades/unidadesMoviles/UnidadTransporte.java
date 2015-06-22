@@ -3,6 +3,7 @@ package algo3.algocraft.modelo.unidades.unidadesMoviles;
 import java.util.ArrayList;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoAccion;
@@ -13,8 +14,8 @@ public abstract class UnidadTransporte extends UnidadMovil {
 	protected int capacidadMaxima;
 
 	public UnidadTransporte(Jugador jugador, PlanoAccion plano, int capacidad,
-			int vida) {
-		super(jugador, vida, plano);
+			int vida, int costoMineral, int costoGas) throws RecursosInsuficientesError {
+		super(jugador, vida, plano, costoMineral, costoGas);
 		soldadosCargados = new ArrayList<UnidadSoldado>();
 		this.capacidadMaxima = capacidad;
 	}

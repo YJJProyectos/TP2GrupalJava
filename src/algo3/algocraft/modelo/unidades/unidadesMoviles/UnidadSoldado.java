@@ -1,6 +1,7 @@
 package algo3.algocraft.modelo.unidades.unidadesMoviles;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.unidades.Unidad;
@@ -16,8 +17,9 @@ public class UnidadSoldado extends UnidadMovil {
 	protected int rangoAereo;
 	protected int rangoTerrestre;
 
-	public UnidadSoldado(int vida, Jugador jugador, PlanoAccion plano) {
-		super(jugador, vida, plano);
+	public UnidadSoldado(int vida, Jugador jugador, PlanoAccion plano,
+			int costoMineral, int costoGas) throws RecursosInsuficientesError {
+		super(jugador, vida, plano, costoMineral, costoGas);
 		this.estadoDeAtaque = new EstadoNoAtaco();
 	}
 

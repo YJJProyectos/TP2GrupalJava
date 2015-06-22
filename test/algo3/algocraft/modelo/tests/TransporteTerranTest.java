@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
+import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.LimiteDeCapacidadError;
@@ -16,11 +18,21 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadTransporteVaciaErro
 
 public class TransporteTerranTest {
 
+	@Test(expected = RecursosInsuficientesError.class)
+	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnEspectro()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
+
+		Jugador jugador = new Jugador();
+		jugador.pagar(400, 100);
+		@SuppressWarnings("unused")
+		UnidadTransporte nave = new TransporteTerran(jugador);
+	}
+
 	@Test(expected = JugadorIncorrectoError.class)
 	public void deberiaLanzarUnaExcepcionAlCargarUnSoldadoAliadoCuandoRecibeComoParametrootroJugador()
 			throws UnidadTransporteVaciaError, PerteneceAOtroJugadorError,
 			LimiteDeCapacidadError, SoldadoYaCargadoError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		Jugador otroJugador = new Jugador();
@@ -33,7 +45,7 @@ public class TransporteTerranTest {
 	public void deberiaCargarUnSoldadoAliado()
 			throws UnidadTransporteVaciaError, PerteneceAOtroJugadorError,
 			LimiteDeCapacidadError, SoldadoYaCargadoError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		UnidadTransporte nave = new TransporteTerran(jugador);
@@ -46,7 +58,8 @@ public class TransporteTerranTest {
 	@Test(expected = PerteneceAOtroJugadorError.class)
 	public void deberiaLanzarUnaExcepcionAlCargarUnSoldadoEnemigo()
 			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
-			SoldadoYaCargadoError, JugadorIncorrectoError {
+			SoldadoYaCargadoError, JugadorIncorrectoError,
+			RecursosInsuficientesError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -58,7 +71,8 @@ public class TransporteTerranTest {
 	@Test(expected = SoldadoYaCargadoError.class)
 	public void deberiaLanzarUnaExcepcionAlCargarAlMismoSoldadoDosVeces()
 			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
-			SoldadoYaCargadoError, JugadorIncorrectoError {
+			SoldadoYaCargadoError, JugadorIncorrectoError,
+			RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		UnidadTransporte nave = new TransporteTerran(jugador);
@@ -70,7 +84,8 @@ public class TransporteTerranTest {
 	@Test(expected = LimiteDeCapacidadError.class)
 	public void deberiaLanzarUnaExcepcionAlCargarMasSoldadosQueLaCapacidadPermitida()
 			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
-			SoldadoYaCargadoError, JugadorIncorrectoError {
+			SoldadoYaCargadoError, JugadorIncorrectoError,
+			RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		UnidadTransporte nave = new TransporteTerran(jugador);
@@ -85,7 +100,7 @@ public class TransporteTerranTest {
 	public void deberiaLanzarUnaExcepcionAlDescargarUnSoldadoAliadoCuandoRecibeComoParametrootroJugador()
 			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
 			SoldadoYaCargadoError, UnidadTransporteVaciaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		Jugador otroJugador = new Jugador();
@@ -98,7 +113,8 @@ public class TransporteTerranTest {
 	@Test
 	public void deberiaDescargarUnSoldado() throws PerteneceAOtroJugadorError,
 			LimiteDeCapacidadError, SoldadoYaCargadoError,
-			UnidadTransporteVaciaError, JugadorIncorrectoError {
+			UnidadTransporteVaciaError, JugadorIncorrectoError,
+			RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		UnidadTransporte nave = new TransporteTerran(jugador);
@@ -112,7 +128,7 @@ public class TransporteTerranTest {
 	public void deberiaLanzarUnaExcepcionAlIntentarDescargarUnsSoldadoEnUnTransporteVacio()
 			throws UnidadTransporteVaciaError, PerteneceAOtroJugadorError,
 			LimiteDeCapacidadError, SoldadoYaCargadoError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		UnidadTransporte nave = new TransporteTerran(jugador);
@@ -125,7 +141,8 @@ public class TransporteTerranTest {
 	@Test
 	public void deberiaActualizarLaPosicionDelSoldado()
 			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
-			SoldadoYaCargadoError, JugadorIncorrectoError {
+			SoldadoYaCargadoError, JugadorIncorrectoError,
+			RecursosInsuficientesError {
 
 		Jugador jugador = new Jugador();
 		UnidadTransporte nave = new TransporteTerran(jugador);

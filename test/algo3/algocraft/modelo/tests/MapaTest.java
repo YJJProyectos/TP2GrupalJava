@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
@@ -26,7 +27,7 @@ public class MapaTest {
 
 	@Test
 	public void noDeberiaAgregarUnMarineSiPasanCoordenadaInvalida()
-			throws CasillaOcupadaError {
+			throws CasillaOcupadaError, RecursosInsuficientesError {
 
 		Mapa mapa = new Mapa(4);
 		Jugador jugador = new Jugador();
@@ -38,7 +39,8 @@ public class MapaTest {
 
 	@Test(expected = CoordenadaInvalidaError.class)
 	public void deberiaLanzarUnaExcepcionAlQuererObtenerUnElementoTerrestreEnUnaCoordenadaInvalida()
-			throws CasillaOcupadaError, CoordenadaInvalidaError {
+			throws CasillaOcupadaError, CoordenadaInvalidaError,
+			RecursosInsuficientesError {
 
 		Mapa mapa = new Mapa(4);
 		Jugador jugador = new Jugador();
@@ -62,7 +64,8 @@ public class MapaTest {
 
 	@Test
 	public void deberiaAgregarUnMarineEnLaPosicionDada()
-			throws CasillaOcupadaError, CoordenadaInvalidaError {
+			throws CasillaOcupadaError, CoordenadaInvalidaError,
+			RecursosInsuficientesError {
 
 		Mapa mapa = new Mapa(4);
 		Jugador jugador = new Jugador();

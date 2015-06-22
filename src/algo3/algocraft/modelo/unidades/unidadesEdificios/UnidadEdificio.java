@@ -7,14 +7,18 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoTerr
 public abstract class UnidadEdificio extends Unidad {
 
 	protected int tiempoDeConstruccion;
+	protected boolean enConstruccion;
+	protected int turnosRestantes;
 
-	protected UnidadEdificio(Jugador jugador, int vida) {
-		super(jugador, vida, PlanoTerrestre.getInstancia());
+	protected UnidadEdificio(Jugador jugador, int vida, int costoMineral,
+			int costoGas) {
+		super(jugador, vida, PlanoTerrestre.getInstancia(), costoMineral,
+				costoGas);
 	}
-	
+
 	public boolean esTerrestre() {
 		return true;
 	}
-	
+
 	public abstract int tiempoDeConstruccion();
 }
