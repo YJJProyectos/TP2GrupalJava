@@ -119,4 +119,8 @@ public class Jugador {
 		}
 	}
 
+	public int cantidadUnidades() {
+		return this.unidades.size();
+	}
+
 }
