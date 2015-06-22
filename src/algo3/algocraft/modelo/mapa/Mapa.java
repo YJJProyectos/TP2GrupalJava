@@ -78,13 +78,13 @@ public class Mapa {
 			Coordenada coordenadaDeMina = coordenadas
 					.sacarCoordenadaDeMineral();
 			Casilla casilla = tablero.get(coordenadaDeMina);
-			casilla.agregarRecurso(mina);
+			mina.posicionar(casilla);
 		}
 		while (coordenadas.tieneCoordenadaGas()) {
 			VolcanDeGasVespeno volcan = new VolcanDeGasVespeno(2000);
 			Coordenada coordenadaDeGas = coordenadas.sacarCoordenadaDeGas();
 			Casilla casilla = tablero.get(coordenadaDeGas);
-			casilla.agregarRecurso(volcan);
+			volcan.posicionar(casilla);
 		}
 	}
 

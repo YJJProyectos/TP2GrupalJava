@@ -16,6 +16,7 @@ public class Juego {
 		this.jugadores.agregarJugador(jugador1);
 		this.jugadores.agregarJugador(jugador2);
 		this.mapa = new Mapa(4);
+		this.mapa.setCoordenadaMineralYVolcanDeGas();
 		jugador1.iniciarConDeposito(this.mapa.posicionDeBase());
 		jugador2.iniciarConDeposito(this.mapa.posicionDeBase());
 	}
