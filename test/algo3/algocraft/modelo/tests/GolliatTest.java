@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
@@ -23,9 +24,11 @@ public class GolliatTest {
 
 	@Test(expected = RecursosInsuficientesError.class)
 	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnEspectro()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		jugador.pagar(400, 100);
 		@SuppressWarnings("unused")
 		Golliat golliat = new Golliat(jugador);
@@ -33,9 +36,10 @@ public class GolliatTest {
 
 	@Test
 	public void deberiaEstarDetruidoElGolliat() throws YaEstaDestruidoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Golliat golliat = new Golliat(jugador);
 		golliat.recibirDanio(1000);
 
@@ -44,9 +48,10 @@ public class GolliatTest {
 
 	@Test
 	public void deberiaNoEstarDetruidoElGolliat() throws YaEstaDestruidoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Golliat golliat = new Golliat(jugador);
 		golliat.recibirDanio(5);
 
@@ -55,9 +60,10 @@ public class GolliatTest {
 
 	@Test
 	public void deberiaRecibirDanio1() throws YaEstaDestruidoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Golliat golliat = new Golliat(jugador);
 		int vidaInicial = golliat.vidaRestante();
 		golliat.recibirDanio(1);
@@ -68,9 +74,10 @@ public class GolliatTest {
 
 	@Test
 	public void deberiaQuedarle124DeVida() throws YaEstaDestruidoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Golliat golliat = new Golliat(jugador);
 		golliat.recibirDanio(1);
 
@@ -79,10 +86,11 @@ public class GolliatTest {
 
 	@Test
 	public void deberiaPoderPosicionarse() throws CasillaOcupadaError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Golliat golliat = new Golliat(jugador);
 		golliat.posicionar(casilla);
 		Assert.assertEquals(casilla, golliat.posicion());
@@ -90,10 +98,12 @@ public class GolliatTest {
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzaraUnaExcepcionAlPosicionarUnGolliatEnUnaCasillaOcupada()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Golliat primerGolliat = new Golliat(jugador);
 		Golliat segundoGolliat = new Golliat(jugador);
 		primerGolliat.posicionar(casilla);
@@ -102,11 +112,12 @@ public class GolliatTest {
 
 	@Test
 	public void deberiaGuardarSuPosicion() throws CasillaOcupadaError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Golliat golliat = new Golliat(jugador);
 		golliat.posicionar(casilla);
 
@@ -117,10 +128,13 @@ public class GolliatTest {
 	public void deberiaLanzarUnaExcepcionAlAtacarUnEnemigoPorqueNoRecibeComoParametroAlJugadorPropio()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError, RecursosInsuficientesError {
+			JugadorIncorrectoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorAliado.aumentarPoblacion();
+		jugadorEnemigo.aumentarPoblacion();
 		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
 		UnidadSoldado golliat = new Golliat(jugadorAliado);
 		golliat.posicionar(new Casilla(new Coordenada(1, 1)));
@@ -130,9 +144,11 @@ public class GolliatTest {
 
 	@Test(expected = YaEstaDestruidoError.class)
 	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
-			throws YaEstaDestruidoError, RecursosInsuficientesError {
+			throws YaEstaDestruidoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Golliat golliat = new Golliat(jugador);
 		golliat.recibirDanio(200);
 
@@ -145,9 +161,11 @@ public class GolliatTest {
 	public void unGolliatDeberiaNoDaniarAUnMarinePorPertenecerAlMismoJugador()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError, RecursosInsuficientesError {
+			JugadorIncorrectoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Golliat soldado = new Golliat(jugador);
 		Unidad soldadoAliado = new Marine(jugador);
 		Coordenada coordenadaSoldado = new Coordenada(1, 1);
@@ -163,10 +181,13 @@ public class GolliatTest {
 	public void unGolliatDeberiaNoDaniarAUnMarinePorEstarFueraDelRango()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError, RecursosInsuficientesError {
+			JugadorIncorrectoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorAliado.aumentarPoblacion();
+		jugadorEnemigo.aumentarPoblacion();
 		Golliat soldadoAliado = new Golliat(jugadorAliado);
 		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
 		Coordenada coordenadaSoldado = new Coordenada(1, 1);
@@ -184,11 +205,14 @@ public class GolliatTest {
 	public void unGolliatDeberiaDaniarAUnMarinePorEstarElElRango()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError, RecursosInsuficientesError {
+			JugadorIncorrectoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorAliado.aumentarPoblacion();
+		jugadorEnemigo.aumentarPoblacion();
 		Golliat soldadoAliado = new Golliat(jugadorAliado);
 		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
 		Coordenada coordenadaAliado = new Coordenada(1, 1);
@@ -204,10 +228,13 @@ public class GolliatTest {
 	public void deberiaNoDaniarAUnaUnidadVoladoraFueraDeRangoAereo()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError, RecursosInsuficientesError {
+			JugadorIncorrectoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorAliado.aumentarPoblacion();
+		jugadorEnemigo.aumentarPoblacion();
 		Golliat soldadoAliado = new Golliat(jugadorAliado);
 		Unidad soldadoEnemigo = new Espectro(jugadorEnemigo);
 		Casilla casilla1 = new Casilla(new Coordenada(1, 1));
@@ -223,10 +250,13 @@ public class GolliatTest {
 	public void deberiaDaniarAUnaUnidadVoladoraEnSuRangoAereo()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError, RecursosInsuficientesError {
+			JugadorIncorrectoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorAliado.aumentarPoblacion();
+		jugadorEnemigo.aumentarPoblacion();
 		Golliat soldadoAliado = new Golliat(jugadorAliado);
 		Unidad soldadoEnemigo = new Espectro(jugadorEnemigo);
 		Casilla casilla1 = new Casilla(new Coordenada(1, 1));
@@ -241,13 +271,14 @@ public class GolliatTest {
 	@Test(expected = JugadorIncorrectoError.class)
 	public void deberiaLanzarUnaExcepcionAlMoverseUnGolliatSiElParametroEsOtroJugador()
 			throws CasillaOcupadaError, JugadorIncorrectoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Coordenada coordenadaCasilleroLibre = new Coordenada(1, 2);
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
 		Casilla casilleroLibre = new Casilla(coordenadaCasilleroLibre);
 		Casilla casillero = new Casilla(coordenadaCasillero);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Jugador otroJugador = new Jugador();
 		Golliat golliat = new Golliat(jugador);
 		golliat.posicionar(casillero);
@@ -257,13 +288,14 @@ public class GolliatTest {
 	@Test
 	public void deberiaPoderMoverseUnGolliatSiNoHayNadieEnEseCasillero()
 			throws CasillaOcupadaError, JugadorIncorrectoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Coordenada coordenadaCasilleroLibre = new Coordenada(1, 2);
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
 		Casilla casilleroLibre = new Casilla(coordenadaCasilleroLibre);
 		Casilla casillero = new Casilla(coordenadaCasillero);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Golliat golliat = new Golliat(jugador);
 		golliat.posicionar(casillero);
 		golliat.mover(casilleroLibre, jugador);
@@ -274,11 +306,12 @@ public class GolliatTest {
 	@Test(expected = CasillaOcupadaError.class)
 	public void noDeberiaPoderMoverseUnGolliatSiEstaOcupadoElCasillero()
 			throws CasillaOcupadaError, JugadorIncorrectoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Coordenada coordenadaCasillero = new Coordenada(1, 1);
 		Casilla casillero = new Casilla(coordenadaCasillero);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Golliat golliat = new Golliat(jugador);
 		Unidad otroGolliat = new Golliat(jugador);
 		otroGolliat.posicionar(casillero);
@@ -289,11 +322,14 @@ public class GolliatTest {
 	public void unGolliatNoDeberiaPoderAtacarMasDeUnaVez()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError, RecursosInsuficientesError {
+			JugadorIncorrectoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorAliado.aumentarPoblacion();
+		jugadorEnemigo.aumentarPoblacion();
 		Golliat soldadoAliado = new Golliat(jugadorAliado);
 		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
 		Coordenada coordenadaAliado = new Coordenada(1, 1);
@@ -308,11 +344,14 @@ public class GolliatTest {
 	public void unGolliatPuedeVolverAAtacarLuegoDePasarUnTurno()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError, RecursosInsuficientesError {
+			JugadorIncorrectoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorAliado.aumentarPoblacion();
+		jugadorEnemigo.aumentarPoblacion();
 		Golliat soldadoAliado = new Golliat(jugadorAliado);
 		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
 		Coordenada coordenadaAliado = new Coordenada(1, 1);

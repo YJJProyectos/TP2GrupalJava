@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
@@ -105,10 +106,11 @@ public class RefineriaTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
 			CasillaOcupadaError, RecolectorInvalidoError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorEnemigo.aumentarPoblacion();
 		Coordenada coordenadaRefineria = new Coordenada(1, 1);
 		Coordenada coordenadaMarine = new Coordenada(1, 2);
 		Casilla casillaRefineria = new Casilla(coordenadaRefineria);
@@ -128,10 +130,11 @@ public class RefineriaTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
 			CasillaOcupadaError, RecolectorInvalidoError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorEnemigo.aumentarPoblacion();
 		Coordenada coordenadaRefineria = new Coordenada(1, 1);
 		Coordenada coordenadaMarine = new Coordenada(1, 2);
 		Casilla casillaRefineria = new Casilla(coordenadaRefineria);

@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
@@ -177,10 +178,12 @@ public class FabricaTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, CasillaOcupadaError,
-			BarracaNoConstruidaError, JugadorIncorrectoError {
+			BarracaNoConstruidaError, JugadorIncorrectoError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorEnemigo.aumentarPoblacion();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
@@ -204,10 +207,12 @@ public class FabricaTest {
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, CasillaOcupadaError,
-			BarracaNoConstruidaError, JugadorIncorrectoError {
+			BarracaNoConstruidaError, JugadorIncorrectoError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorEnemigo.aumentarPoblacion();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
@@ -407,10 +412,11 @@ public class FabricaTest {
 	public void deberiaLanzarUnaExexpcionAlEntrenarUnSoldadoMarinePorqueRecibioComoParametroASuMismoJugador()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			JugadorIncorrectoError, PerteneceAOtroJugadorError,
-			BarracaNoConstruidaError {
+			BarracaNoConstruidaError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		Jugador otroJugador = new Jugador();
+		otroJugador.aumentarPoblacion();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
@@ -430,9 +436,10 @@ public class FabricaTest {
 	public void deberiaNoPoderEntrenarUnSoldadoGolliaPorqueNoTerminoDeConstruirse()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			BarracaNoConstruidaError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
@@ -450,9 +457,11 @@ public class FabricaTest {
 	public void deberiaNoPoderEntrenarUnSoldadoGolliaPorqueLaBarracaEstaDestruida()
 			throws PerteneceAOtroJugadorError, YaEstaDestruidoError,
 			RecursosInsuficientesError, BarracaNoConstruidaError,
-			CasillaOcupadaError, JugadorIncorrectoError {
+			CasillaOcupadaError, JugadorIncorrectoError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
@@ -474,12 +483,13 @@ public class FabricaTest {
 	public void deberiaEntrenarUnSoldadoGolliat()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			BarracaNoConstruidaError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		// agrego recursos para poder pagar todas las unidades
 		jugador.aumentarMineral(50);
 		jugador.aumentarGas(50);
+		jugador.aumentarPoblacion();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
@@ -500,11 +510,12 @@ public class FabricaTest {
 	public void noDeberiaPoderComenzarAEntrenarAUnGolliatMientrasEsteEntrenandoAOtroGolliat()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			BarracaNoConstruidaError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarMineral(50);
 		jugador.aumentarGas(50);
+		jugador.aumentarPoblacion();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
@@ -526,11 +537,12 @@ public class FabricaTest {
 	public void deberiaPoderEntrenarAUnGolliatLuegoDeFinalizarElEntrenamientoDeOtroGolliat()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			BarracaNoConstruidaError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarMineral(150);
 		jugador.aumentarGas(100);
+		jugador.aumentarPoblacion();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Coordenada coordenadaFabrica = new Coordenada(2, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);

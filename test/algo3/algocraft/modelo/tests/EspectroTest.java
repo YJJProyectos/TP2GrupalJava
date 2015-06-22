@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
@@ -22,9 +23,11 @@ public class EspectroTest {
 
 	@Test(expected = RecursosInsuficientesError.class)
 	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnEspectro()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		jugador.pagar(400, 100);
 		@SuppressWarnings("unused")
 		Espectro espectro = new Espectro(jugador);
@@ -32,9 +35,10 @@ public class EspectroTest {
 
 	@Test
 	public void deberiaEstarDetruido() throws YaEstaDestruidoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		UnidadSoldado espectro = new Espectro(jugador);
 		espectro.recibirDanio(1000);
 
@@ -43,9 +47,10 @@ public class EspectroTest {
 
 	@Test
 	public void deberiaNoEstarDetruido() throws YaEstaDestruidoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		UnidadSoldado espectro = new Espectro(jugador);
 		espectro.recibirDanio(5);
 
@@ -54,9 +59,10 @@ public class EspectroTest {
 
 	@Test
 	public void deberiaRecibirDanio() throws YaEstaDestruidoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		UnidadSoldado espectro = new Espectro(jugador);
 		int vidaInicial = espectro.vidaRestante();
 		espectro.recibirDanio(1);
@@ -67,9 +73,10 @@ public class EspectroTest {
 
 	@Test
 	public void deberiaQuedarle119DeVida() throws YaEstaDestruidoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		UnidadSoldado espectro = new Espectro(jugador);
 		espectro.recibirDanio(1);
 
@@ -78,10 +85,12 @@ public class EspectroTest {
 
 	@Test
 	public void deberiaPoderPosicionarseEnUnaCasillaDesocupada()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		UnidadSoldado espectro = new Espectro(jugador);
 		espectro.posicionar(casilla);
 
@@ -90,10 +99,12 @@ public class EspectroTest {
 
 	@Test
 	public void deberiaPoderPosicionarseEnUnaCasillaConAireDesocupado()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		jugador.aumentarGas(50);
 		Golliat golliat = new Golliat(jugador);
 		UnidadSoldado espectro = new Espectro(jugador);
@@ -105,10 +116,12 @@ public class EspectroTest {
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlQuererPosicionarUnEspectroEnUnaCasillaConAireOcupado()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		jugador.aumentarGas(100);
 		UnidadSoldado espectro1 = new Espectro(jugador);
 		UnidadSoldado espectro2 = new Espectro(jugador);
@@ -118,10 +131,11 @@ public class EspectroTest {
 
 	@Test
 	public void deberiaGuardarSuPosicion() throws CasillaOcupadaError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		UnidadSoldado espectro = new Espectro(jugador);
 		espectro.posicionar(casilla);
 
@@ -132,10 +146,13 @@ public class EspectroTest {
 	public void deberiaLanzarUnaExcepcionAlAtacarUnEnemigoPorqueNoRecibeComoParametroAlJugadorPropio()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
-			JugadorIncorrectoError, RecursosInsuficientesError {
+			JugadorIncorrectoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorAliado.aumentarPoblacion();
+		jugadorEnemigo.aumentarPoblacion();
 		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
 		UnidadSoldado espectro = new Espectro(jugadorAliado);
 		espectro.posicionar(new Casilla(new Coordenada(1, 1)));
@@ -147,10 +164,12 @@ public class EspectroTest {
 	public void deberiaNoDaniarFueraDeRango() throws YaEstaDestruidoError,
 			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
 			CasillaOcupadaError, JugadorIncorrectoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorAliado.aumentarPoblacion();
+		jugadorEnemigo.aumentarPoblacion();
 		UnidadSoldado espectro = new Espectro(jugadorAliado);
 		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
 		Coordenada coordenadaSoldado = new Coordenada(1, 1);
@@ -168,10 +187,12 @@ public class EspectroTest {
 	public void deberiaDaniarEnElRango() throws YaEstaDestruidoError,
 			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
 			CasillaOcupadaError, JugadorIncorrectoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorAliado.aumentarPoblacion();
+		jugadorEnemigo.aumentarPoblacion();
 		Unidad soldadoEnemigo = new Marine(jugadorEnemigo);
 		UnidadSoldado espectro = new Espectro(jugadorAliado);
 		espectro.posicionar(new Casilla(new Coordenada(1, 1)));

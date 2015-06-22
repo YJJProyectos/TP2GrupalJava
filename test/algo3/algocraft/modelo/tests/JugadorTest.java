@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.NoHaySoldadosParaPosicionarError;
+import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
@@ -182,7 +183,7 @@ public class JugadorTest {
 	public void sePuedePosicionarUnSoldadoDeColaDeEsperaDelJugador()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			RecolectorInvalidoError, NoHaySoldadosParaPosicionarError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaMineral = new Coordenada(1, 1);
@@ -273,15 +274,18 @@ public class JugadorTest {
 
 		Assert.assertEquals(400, jugador.cantidadMineral());
 	}
-	
+
 	@Test
-	public void elMarineDeberiaPoderAtacarDeNuevoAlPasarUnTurno() 
-			throws RecursosInsuficientesError, CasillaOcupadaError, JugadorIncorrectoError, 
-			NoHaySoldadosParaPosicionarError, CoordenadaInvalidaError, 
-			YaEstaDestruidoError, PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError{
+	public void elMarineDeberiaPoderAtacarDeNuevoAlPasarUnTurno()
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			JugadorIncorrectoError, NoHaySoldadosParaPosicionarError,
+			CoordenadaInvalidaError, YaEstaDestruidoError,
+			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
+			PoblacionLimiteAlcanzadaError {
 		Mapa mapa = new Mapa(4);
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
+
 		Coordenada coordenadaBarraca1 = new Coordenada(1, 3);
 		Coordenada coordenadaBarraca2 = new Coordenada(2, 5);
 		Casilla casillaBarraca1 = mapa.getCasilla(coordenadaBarraca1);
@@ -292,7 +296,9 @@ public class JugadorTest {
 			jugador1.pasarTurno();
 			jugador2.pasarTurno();
 		}// Termina de crearse la barraca
-
+			// se aumental la poblacion para no cenecitar crear un deposito
+		jugador1.aumentarPoblacion();
+		jugador2.aumentarPoblacion();
 		barraca1.entrenarMarine(jugador1);
 		barraca2.entrenarMarine(jugador2);
 		for (int i = 0; i < 3; i++) {
@@ -305,10 +311,10 @@ public class JugadorTest {
 		Casilla casillaMarine2 = mapa.getCasilla(coordenadaMarine2);
 		jugador1.posicionarSoldadoEnColaDeEspera(casillaMarine1);
 		jugador2.posicionarSoldadoEnColaDeEspera(casillaMarine2);
-		UnidadSoldado marine1 = 
-			(UnidadSoldado)mapa.obtenerElementoTerrestreEnPosicion(coordenadaMarine1);
-		UnidadSoldado marine2 = 
-			(UnidadSoldado)mapa.obtenerElementoTerrestreEnPosicion(coordenadaMarine2);
+		UnidadSoldado marine1 = (UnidadSoldado) mapa
+				.obtenerElementoTerrestreEnPosicion(coordenadaMarine1);
+		UnidadSoldado marine2 = (UnidadSoldado) mapa
+				.obtenerElementoTerrestreEnPosicion(coordenadaMarine2);
 		marine1.atacarEnemigo(marine2, jugador1);
 		jugador1.pasarTurno();
 		marine1.atacarEnemigo(marine2, jugador1);

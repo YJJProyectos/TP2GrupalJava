@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
@@ -27,10 +28,12 @@ public class MapaTest {
 
 	@Test
 	public void noDeberiaAgregarUnMarineSiPasanCoordenadaInvalida()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Mapa mapa = new Mapa(4);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Unidad marine = new Marine(jugador);
 		Coordenada coordenada = new Coordenada(-1, 3);
 
@@ -40,10 +43,11 @@ public class MapaTest {
 	@Test(expected = CoordenadaInvalidaError.class)
 	public void deberiaLanzarUnaExcepcionAlQuererObtenerUnElementoTerrestreEnUnaCoordenadaInvalida()
 			throws CasillaOcupadaError, CoordenadaInvalidaError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Mapa mapa = new Mapa(4);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		@SuppressWarnings("unused")
 		Unidad marine = new Marine(jugador);
 		Coordenada coordenadaMarine = new Coordenada(1000, 1000);
@@ -65,10 +69,11 @@ public class MapaTest {
 	@Test
 	public void deberiaAgregarUnMarineEnLaPosicionDada()
 			throws CasillaOcupadaError, CoordenadaInvalidaError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Mapa mapa = new Mapa(4);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Unidad marine = new Marine(jugador);
 		Coordenada coordenadaMarine = new Coordenada(1, 1);
 		mapa.agregarElementoEnPosicion(marine, coordenadaMarine);

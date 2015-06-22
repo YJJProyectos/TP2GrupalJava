@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
@@ -20,9 +21,10 @@ public class TransporteTerranTest {
 
 	@Test(expected = RecursosInsuficientesError.class)
 	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnEspectro()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		jugador.pagar(400, 100);
 		@SuppressWarnings("unused")
 		UnidadTransporte nave = new TransporteTerran(jugador);
@@ -32,9 +34,10 @@ public class TransporteTerranTest {
 	public void deberiaLanzarUnaExcepcionAlCargarUnSoldadoAliadoCuandoRecibeComoParametrootroJugador()
 			throws UnidadTransporteVaciaError, PerteneceAOtroJugadorError,
 			LimiteDeCapacidadError, SoldadoYaCargadoError,
-			JugadorIncorrectoError, RecursosInsuficientesError {
+			JugadorIncorrectoError, RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Jugador otroJugador = new Jugador();
 		UnidadTransporte nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
@@ -45,9 +48,10 @@ public class TransporteTerranTest {
 	public void deberiaCargarUnSoldadoAliado()
 			throws UnidadTransporteVaciaError, PerteneceAOtroJugadorError,
 			LimiteDeCapacidadError, SoldadoYaCargadoError,
-			JugadorIncorrectoError, RecursosInsuficientesError {
+			JugadorIncorrectoError, RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		UnidadTransporte nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
 		nave.cargarSoldado(soldado, jugador);
@@ -59,10 +63,12 @@ public class TransporteTerranTest {
 	public void deberiaLanzarUnaExcepcionAlCargarUnSoldadoEnemigo()
 			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
 			SoldadoYaCargadoError, JugadorIncorrectoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorAliado.aumentarPoblacion();
+		jugadorEnemigo.aumentarPoblacion();
 		UnidadTransporte nave = new TransporteTerran(jugadorAliado);
 		UnidadSoldado soldado = new Marine(jugadorEnemigo);
 		nave.cargarSoldado(soldado, jugadorAliado);
@@ -72,9 +78,10 @@ public class TransporteTerranTest {
 	public void deberiaLanzarUnaExcepcionAlCargarAlMismoSoldadoDosVeces()
 			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
 			SoldadoYaCargadoError, JugadorIncorrectoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		UnidadTransporte nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
 		nave.cargarSoldado(soldado, jugador);
@@ -85,9 +92,11 @@ public class TransporteTerranTest {
 	public void deberiaLanzarUnaExcepcionAlCargarMasSoldadosQueLaCapacidadPermitida()
 			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
 			SoldadoYaCargadoError, JugadorIncorrectoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
+		jugador.aumentarPoblacion();
 		UnidadTransporte nave = new TransporteTerran(jugador);
 		for (int i = 0; i < 8; i++) {
 			nave.cargarSoldado(new Marine(jugador), jugador);
@@ -100,9 +109,10 @@ public class TransporteTerranTest {
 	public void deberiaLanzarUnaExcepcionAlDescargarUnSoldadoAliadoCuandoRecibeComoParametrootroJugador()
 			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
 			SoldadoYaCargadoError, UnidadTransporteVaciaError,
-			JugadorIncorrectoError, RecursosInsuficientesError {
+			JugadorIncorrectoError, RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Jugador otroJugador = new Jugador();
 		UnidadTransporte nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
@@ -114,9 +124,10 @@ public class TransporteTerranTest {
 	public void deberiaDescargarUnSoldado() throws PerteneceAOtroJugadorError,
 			LimiteDeCapacidadError, SoldadoYaCargadoError,
 			UnidadTransporteVaciaError, JugadorIncorrectoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		UnidadTransporte nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
 		nave.cargarSoldado(soldado, jugador);
@@ -128,9 +139,10 @@ public class TransporteTerranTest {
 	public void deberiaLanzarUnaExcepcionAlIntentarDescargarUnsSoldadoEnUnTransporteVacio()
 			throws UnidadTransporteVaciaError, PerteneceAOtroJugadorError,
 			LimiteDeCapacidadError, SoldadoYaCargadoError,
-			JugadorIncorrectoError, RecursosInsuficientesError {
+			JugadorIncorrectoError, RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		UnidadTransporte nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
 		nave.cargarSoldado(soldado, jugador);
@@ -142,9 +154,10 @@ public class TransporteTerranTest {
 	public void deberiaActualizarLaPosicionDelSoldado()
 			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
 			SoldadoYaCargadoError, JugadorIncorrectoError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		UnidadTransporte nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
 

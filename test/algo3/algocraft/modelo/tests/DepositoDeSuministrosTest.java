@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
@@ -86,10 +87,12 @@ public class DepositoDeSuministrosTest {
 	public void siUnMarineAtacaUnDepositoEnConstruccionLoDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
-			CasillaOcupadaError, JugadorIncorrectoError {
+			CasillaOcupadaError, JugadorIncorrectoError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorEnemigo.aumentarPoblacion();
 		Coordenada coordenadaDeposito = new Coordenada(1, 1);
 		Casilla casillaDeposito = new Casilla(coordenadaDeposito);
 		DepositoDeSuministros deposito = new DepositoDeSuministros(
@@ -107,10 +110,11 @@ public class DepositoDeSuministrosTest {
 	public void siUnMarineAtacaUnDepositoYaConstruidoNoLoDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
-			CasillaOcupadaError, JugadorIncorrectoError {
+			CasillaOcupadaError, JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorEnemigo.aumentarPoblacion();
 		Coordenada coordenadaDeposito = new Coordenada(1, 1);
 		Casilla casillaDeposito = new Casilla(coordenadaDeposito);
 		DepositoDeSuministros deposito = new DepositoDeSuministros(

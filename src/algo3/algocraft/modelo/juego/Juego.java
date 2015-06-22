@@ -10,7 +10,7 @@ public class Juego {
 	private Jugador ganador;
 
 	public Juego(Jugador jugador1, Jugador jugador2)
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws CasillaOcupadaError, RecursosInsuficientesError {
 		this.ganador = null;
 		this.jugadores = new ListaDeJugadores();
 		this.jugadores.agregarJugador(jugador1);

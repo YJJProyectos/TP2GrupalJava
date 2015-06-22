@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
@@ -48,11 +49,13 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaEstarOcupadaLaTierraAlAgregarUnMarineEnTierra()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
 
@@ -61,11 +64,13 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaEstarOcupadaLaTierraAlAgregarUnMarine()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
 
@@ -74,11 +79,12 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaGuardarALaUnidad() throws CasillaOcupadaError,
-			RecursosInsuficientesError {
+			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
 
@@ -87,11 +93,13 @@ public class CasillaTest {
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlQuererPosicionar2UnidadesTerrestresEnUnaMismaCasilla()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Unidad primerMarine = new Marine(jugador);
 		Unidad segundoMarine = new Marine(jugador);
 		casilla.ocuparTerrestre(primerMarine);
@@ -100,11 +108,13 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaNoEstarOcupadoElAireAlAgregarUnMarineEnTierra()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
 
@@ -113,11 +123,13 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaNoEstarOcupadoElAireAlAgregarUnMarine()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
 
@@ -126,11 +138,13 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaNoEstarOcupadoElRecursoAlAgregarUnMarineEnTierra()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
 
@@ -139,11 +153,13 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaNoEstarOcupadoElRecursoAlAgregarUnMarine()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
 
@@ -217,9 +233,11 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaPoderDesocuparLaTierraSiSoloHayUnMarineEnTierra()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Unidad marine = new Marine(jugador);
@@ -230,9 +248,11 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaPoderDesocuparLaTierraSiSoloHayUnMarine()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Unidad marine = new Marine(jugador);
@@ -243,11 +263,13 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaNoPoderDesocuparElAireSiSoloHayUnMarineEnTierra()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
 
@@ -256,11 +278,13 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaNoPoderDesocuparElAireSiSoloHayUnMarine()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
 
@@ -308,12 +332,14 @@ public class CasillaTest {
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlIntentarAgregarUnSoldadoSiYaHayUnMineral()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Unidad marine = new Marine(jugador);
 		casilla.agregarRecurso(mineral);
 		casilla.ocuparTerrestre(marine);
@@ -321,12 +347,14 @@ public class CasillaTest {
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlAgregarUnMineralSiYaHayUnMarineEnLaCasilla()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Unidad marine = new Marine(jugador);
 		casilla.ocuparTerrestre(marine);
 		casilla.agregarRecurso(mineral);
@@ -335,9 +363,10 @@ public class CasillaTest {
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlintentarAgregarUnMarineCuandoYaHayUnCentroDeMineralEnLaCasilla()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
-			RecolectorInvalidoError {
+			RecolectorInvalidoError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Recurso mineral = new MinaDeMinerales(100);
@@ -350,9 +379,11 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaPoderOcuparElAireConUnaUnidad()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Espectro espectro = new Espectro(jugador);
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
 		casilla.ocuparAereo(espectro);
@@ -362,9 +393,11 @@ public class CasillaTest {
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void deberiaLanzarUnaExcepcionAlQuererAgregarDosUnidadesEnElAire()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		jugador.aumentarGas(100);
 		Espectro espectro1 = new Espectro(jugador);
 		Espectro espectro2 = new Espectro(jugador);
@@ -375,9 +408,11 @@ public class CasillaTest {
 
 	@Test
 	public void deberiaPoderOcuparTierraYAireALaVez()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Espectro espectro = new Espectro(jugador);
 		Marine marine = new Marine(jugador);
 		Casilla casilla = new Casilla(new Coordenada(1, 1));

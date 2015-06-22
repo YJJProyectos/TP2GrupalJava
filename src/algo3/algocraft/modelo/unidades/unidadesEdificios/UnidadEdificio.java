@@ -13,7 +13,7 @@ public abstract class UnidadEdificio extends Unidad {
 	protected UnidadEdificio(Jugador jugador, int vida, int costoMineral,
 			int costoGas) {
 		super(jugador, vida, PlanoTerrestre.getInstancia(), costoMineral,
-				costoGas);
+				costoGas, 0);
 	}
 
 	public boolean esTerrestre() {

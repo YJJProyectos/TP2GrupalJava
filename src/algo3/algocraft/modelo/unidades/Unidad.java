@@ -13,15 +13,17 @@ public abstract class Unidad {
 	protected PlanoAccion plano;
 	protected int costoMineral;
 	protected int costoGas;
+	protected int suministro;
 
 	protected Unidad(Jugador jugador, int vida, PlanoAccion plano,
-			int costoMineral, int costoGas) {
+			int costoMineral, int costoGas, int unSuministro) {
 		this.jugador = jugador;
 		this.vida = vida;
 		this.plano = plano;
 		this.vida = vida;
 		this.costoMineral = costoMineral;
 		this.costoGas = costoGas;
+		this.suministro = unSuministro;
 	}
 
 	public void recibirDanio(int danio) throws YaEstaDestruidoError {
@@ -69,6 +71,10 @@ public abstract class Unidad {
 
 	public PlanoAccion getPlano() {
 		return this.plano;
+	}
+
+	public int getSuministro() {
+		return this.suministro;
 	}
 
 }

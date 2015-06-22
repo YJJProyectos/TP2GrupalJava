@@ -16,11 +16,11 @@ public class Refineria extends Recolector {
 		super(unJugador, 1, 100, 0);
 		this.enConstruccion = true;
 		this.turnosRestantes = 6;
-		this.jugador.pagar(this.costoMineral, this.costoGas);
+		this.jugador.validarCosto(this.costoMineral, this.costoGas);
 		recurso.agregarRefineria(this);
 		this.volcanDeGas = recurso;
+		this.jugador.pagar(this.costoMineral, this.costoGas);
 		unJugador.agregarUnidad(this);
-
 	}
 
 	@Override

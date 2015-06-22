@@ -6,6 +6,7 @@ import org.junit.Test;
 import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.NoHaySoldadosParaPosicionarError;
+import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
@@ -34,7 +35,8 @@ public class IntegracionTest {
 			RecolectorInvalidoError, PerteneceAOtroJugadorError,
 			BarracaNoConstruidaError, NoHaySoldadosParaPosicionarError,
 			JugadorIncorrectoError, YaEstaDestruidoError,
-			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError {
+			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
+			PoblacionLimiteAlcanzadaError {
 		int esquina1 = 1;
 		int esquina4 = 20;
 		int centro = 10;

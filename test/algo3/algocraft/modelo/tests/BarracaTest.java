@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
@@ -82,10 +83,13 @@ public class BarracaTest {
 	public void siUnMarineAtacaUnaBarracaEnConstruccionLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
-			CasillaOcupadaError, JugadorIncorrectoError {
+			CasillaOcupadaError, JugadorIncorrectoError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorAliado.aumentarPoblacion();
+		jugadorEnemigo.aumentarPoblacion();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
 		Barraca barraca = new Barraca(jugadorAliado, casillaBarraca);
@@ -102,10 +106,13 @@ public class BarracaTest {
 	public void siUnMarineAtacaUnaBarracaYaConstruidaNoLaDestruye()
 			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
-			CasillaOcupadaError, JugadorIncorrectoError {
+			CasillaOcupadaError, JugadorIncorrectoError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
+		jugadorAliado.aumentarPoblacion();
+		jugadorEnemigo.aumentarPoblacion();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
 		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
 		Barraca barraca = new Barraca(jugadorAliado, casillaBarraca);
@@ -240,7 +247,7 @@ public class BarracaTest {
 	@Test(expected = JugadorIncorrectoError.class)
 	public void deberiaLanzarUnaExexpcionAlEntrenarUnSoldadoMarinePorqueRecibioComoParametroASuMismoJugador()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		Jugador otroJugador = new Jugador();
@@ -256,7 +263,7 @@ public class BarracaTest {
 	@Test
 	public void deberiaNoPoderEntrenarUnSoldadoMarinePorqueNoTerminoDeConstruirse()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
@@ -269,9 +276,10 @@ public class BarracaTest {
 	@Test
 	public void deberiaEntrenarUnSoldadoMarine()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Barraca barraca = new Barraca(jugador, casilla);
@@ -285,9 +293,10 @@ public class BarracaTest {
 	@Test
 	public void noDeberiaPoderComenzarAEntrenarAUnMarineMientrasEsteEntrenandoAOtroMarine()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
-			JugadorIncorrectoError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Barraca barraca = new Barraca(jugador, casilla);
@@ -302,9 +311,11 @@ public class BarracaTest {
 	@Test
 	public void deberiaPoderEntrenarAUnMarineLuegoDeFinalizarElEntrenamientoDeOtroMarine()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
-			CasillaOcupadaError, JugadorIncorrectoError {
+			CasillaOcupadaError, JugadorIncorrectoError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Barraca barraca = new Barraca(jugador, casilla);

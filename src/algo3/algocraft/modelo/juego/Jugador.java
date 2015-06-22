@@ -13,14 +13,16 @@ public class Jugador {
 	private ArrayList<Unidad> unidades;
 	private int cantidadMineral;
 	private int cantidadGas;
-	private int poblacion;
+	private int poblacionPosible;
+	private int poblacionOcupada;
 	private ArrayList<UnidadSoldado> soldadosParaPosicionar;
 
 	public Jugador() {
-		unidades = new ArrayList<Unidad>();
-		cantidadMineral = 400;
-		cantidadGas = 100;
-		poblacion = 0;
+		this.unidades = new ArrayList<Unidad>();
+		this.cantidadMineral = 400;
+		this.cantidadGas = 100;
+		this.poblacionPosible = 0;
+		this.poblacionOcupada = 0;
 		this.soldadosParaPosicionar = new ArrayList<UnidadSoldado>();
 	}
 
@@ -41,19 +43,18 @@ public class Jugador {
 	}
 
 	public int cantidadPoblacion() {
-		return this.poblacion;
+		return this.poblacionPosible;
 	}
 
 	public void aumentarPoblacion() {
-		this.poblacion += 10;
-		if (this.poblacion > 200) {
-			this.poblacion = 200;
+		this.poblacionPosible += 10;
+		if (this.poblacionPosible > 200) {
+			this.poblacionPosible = 200;
 		}
 	}
 
 	public void agregarSoldadoParaPosicionar(UnidadSoldado soldado) {
 		this.soldadosParaPosicionar.add(soldado);
-
 	}
 
 	public void posicionarSoldadoEnColaDeEspera(Casilla casilla)
@@ -64,7 +65,6 @@ public class Jugador {
 		UnidadSoldado soldado = this.soldadosParaPosicionar.remove(0);
 		soldado.posicionar(casilla);
 		this.agregarUnidad(soldado);
-
 	}
 
 	public void agregarUnidad(Unidad unidad) {
@@ -73,10 +73,11 @@ public class Jugador {
 
 	public void removerUnidad(Unidad unidad) {
 		this.unidades.remove(unidad);
+		this.aumentarSuministro(-unidad.getSuministro());
 	}
 
 	public void pasarTurno() {
-		this.poblacion = 0;
+		this.poblacionPosible = 0;
 		this.removerUnidadesDestruidas();
 		for (int i = 0; i < this.unidades.size(); i++) {
 			Unidad unidad = this.unidades.get(i);
@@ -85,13 +86,27 @@ public class Jugador {
 
 	}
 
-	public void pagar(int costoMineral, int costoGas)
+	public void validarCosto(int costoMineral, int costoGas)
 			throws RecursosInsuficientesError {
 		if (costoMineral > this.cantidadMineral || costoGas > this.cantidadGas) {
 			throw new RecursosInsuficientesError();
 		}
+	}
+
+	public void validarSuministro(int suministro)
+			throws PoblacionLimiteAlcanzadaError {
+		if ((this.poblacionOcupada + suministro) > this.poblacionPosible) {
+			throw new PoblacionLimiteAlcanzadaError();
+		}
+	}
+
+	public void pagar(int costoMineral, int costoGas) {
 		this.cantidadMineral -= costoMineral;
 		this.cantidadGas -= costoGas;
+	}
+
+	public void aumentarSuministro(int suministro) {
+		this.poblacionOcupada += suministro;
 	}
 
 	public void iniciarConDeposito(Casilla posicionDeBase)

@@ -1,6 +1,7 @@
 package algo3.algocraft.modelo.unidades.unidadesEdificios;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
@@ -28,13 +29,15 @@ public class Fabrica extends UnidadEdificio {
 		this.turnosRestantes = 12;
 		this.golliatEnEntrenamiento = null;
 		this.turnosRestantesParaTerminarGolliat = 6;
-		this.jugador.pagar(this.costoMineral, this.costoGas);
+		this.jugador.validarCosto(this.costoMineral, this.costoGas);
 		this.posicionar(casilla);
+		this.jugador.pagar(this.costoMineral, this.costoGas);
 		unJugador.agregarUnidad(this);
 	}
 
 	public boolean entrenarGolliat(Jugador unJugador)
-			throws JugadorIncorrectoError, RecursosInsuficientesError {
+			throws JugadorIncorrectoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 		if (this.jugador != unJugador) {
 			throw new JugadorIncorrectoError();
 		}

@@ -16,11 +16,11 @@ public class CentroDeMineral extends Recolector {
 		super(unJugador, 1, 50, 0);
 		this.enConstruccion = true;
 		this.turnosRestantes = 4;
-		this.jugador.pagar(this.costoMineral, this.costoGas);
+		this.jugador.validarCosto(this.costoMineral, this.costoGas);
 		recurso.agregarCentroDeMineral(this);
 		this.minaDeMineral = recurso;
+		this.jugador.pagar(this.costoMineral, this.costoGas);
 		unJugador.agregarUnidad(this);
-
 	}
 
 	public boolean esTerrestre() {

@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
@@ -75,9 +76,11 @@ public class VolcanDeGasVespenoTest {
 
 	@Test(expected = CasillaOcupadaError.class)
 	public void noSePuedePosicionarUnaMinaDeMineralesEnUnaCasillaConUnMarie()
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+			throws CasillaOcupadaError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
 		Coordenada coordeanda = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordeanda);
 		Marine marine = new Marine(jugador);
