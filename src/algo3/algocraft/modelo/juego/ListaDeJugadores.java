@@ -30,6 +30,7 @@ public class ListaDeJugadores {
 
 	public void pasarTurno() {
 		this.posicionActual = (this.posicionActual + 1) % this.jugadores.size();
+		this.jugadorActual().pasarTurno();
 	}
 
 	public Jugador jugadorActual() {

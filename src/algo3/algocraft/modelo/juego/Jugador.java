@@ -61,7 +61,9 @@ public class Jugador {
 		if (this.soldadosParaPosicionar.isEmpty()) {
 			throw new NoHaySoldadosParaPosicionarError();
 		}
-		this.soldadosParaPosicionar.remove(0).posicionar(casilla);
+		UnidadSoldado soldado = this.soldadosParaPosicionar.remove(0);
+		soldado.posicionar(casilla);
+		this.agregarUnidad(soldado);
 
 	}
 
@@ -75,12 +77,10 @@ public class Jugador {
 
 	public void pasarTurno() {
 		this.poblacion = 0;
+		this.removerUnidadesDestruidas();
 		for (int i = 0; i < this.unidades.size(); i++) {
 			Unidad unidad = this.unidades.get(i);
 			unidad.pasarTurno();
-			if (unidad.estaDestruido()) {
-				this.removerUnidad(unidad);
-			}
 		}
 
 	}
@@ -106,7 +106,17 @@ public class Jugador {
 	}
 
 	public boolean estaDestruido() {
+		this.removerUnidadesDestruidas();
 		return this.unidades.isEmpty();
+	}
+
+	private void removerUnidadesDestruidas() {
+		for (int i = 0; i < this.unidades.size(); i++) {
+			Unidad unidad = this.unidades.get(i);
+			if (unidad.estaDestruido()) {
+				this.removerUnidad(unidad);
+			}
+		}
 	}
 
 }

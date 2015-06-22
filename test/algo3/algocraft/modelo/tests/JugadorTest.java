@@ -9,6 +9,8 @@ import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
+import algo3.algocraft.modelo.mapa.CoordenadaInvalidaError;
+import algo3.algocraft.modelo.mapa.Mapa;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.recursos.Recurso;
@@ -19,6 +21,9 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorError;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 public class JugadorTest {
 
@@ -267,6 +272,47 @@ public class JugadorTest {
 		Assert.assertEquals(10, jugador.cantidadPoblacion());
 
 		Assert.assertEquals(400, jugador.cantidadMineral());
+	}
+	
+	@Test
+	public void elMarineDeberiaPoderAtacarDeNuevoAlPasarUnTurno() 
+			throws RecursosInsuficientesError, CasillaOcupadaError, JugadorIncorrectoError, 
+			NoHaySoldadosParaPosicionarError, CoordenadaInvalidaError, 
+			YaEstaDestruidoError, PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError{
+		Mapa mapa = new Mapa(4);
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		Coordenada coordenadaBarraca1 = new Coordenada(1, 3);
+		Coordenada coordenadaBarraca2 = new Coordenada(2, 5);
+		Casilla casillaBarraca1 = mapa.getCasilla(coordenadaBarraca1);
+		Casilla casillaBarraca2 = mapa.getCasilla(coordenadaBarraca2);
+		Barraca barraca1 = new Barraca(jugador1, casillaBarraca1);
+		Barraca barraca2 = new Barraca(jugador2, casillaBarraca2);
+		for (int i = 0; i < 12; i++) {
+			jugador1.pasarTurno();
+			jugador2.pasarTurno();
+		}// Termina de crearse la barraca
+
+		barraca1.entrenarMarine(jugador1);
+		barraca2.entrenarMarine(jugador2);
+		for (int i = 0; i < 3; i++) {
+			jugador1.pasarTurno();
+			jugador2.pasarTurno();
+		}// Termina de crearse el marine
+		Coordenada coordenadaMarine1 = new Coordenada(1, 4);
+		Coordenada coordenadaMarine2 = new Coordenada(2, 4);
+		Casilla casillaMarine1 = mapa.getCasilla(coordenadaMarine1);
+		Casilla casillaMarine2 = mapa.getCasilla(coordenadaMarine2);
+		jugador1.posicionarSoldadoEnColaDeEspera(casillaMarine1);
+		jugador2.posicionarSoldadoEnColaDeEspera(casillaMarine2);
+		UnidadSoldado marine1 = 
+			(UnidadSoldado)mapa.obtenerElementoTerrestreEnPosicion(coordenadaMarine1);
+		UnidadSoldado marine2 = 
+			(UnidadSoldado)mapa.obtenerElementoTerrestreEnPosicion(coordenadaMarine2);
+		marine1.atacarEnemigo(marine2, jugador1);
+		jugador1.pasarTurno();
+		marine1.atacarEnemigo(marine2, jugador1);
+		Assert.assertEquals(28, marine2.vidaRestante());
 	}
 
 }
