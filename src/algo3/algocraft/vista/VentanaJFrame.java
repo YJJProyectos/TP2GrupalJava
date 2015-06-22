@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import algo3.algocraft.controlador.AccionEmpezar;
+import algo3.algocraft.controlador.AccionEmpezarMapaJuego;
 import algo3.algocraft.controlador.AccionSalir;
 import algo3.algocraft.controlador.AccionResolucion;
 
@@ -21,7 +22,7 @@ public class VentanaJFrame extends JFrame{
 	
 	private int ancho = 900;
 	private int alto = 700;
-	private JPanel panel;
+	private JPanel panel,comenzarPanel,juegoPanel;
 	private JMenu mnOpciones;
 	private JMenu mnNewMenu;
 	private JMenuItem menuComenzarJuego;
@@ -29,8 +30,7 @@ public class VentanaJFrame extends JFrame{
 	private JMenuItem menuItem1024;
 	private JMenuItem menuItem800;
 	private JMenuItem menuItemDefecto;
-	private JMenuItem menuItem1280;
-	private JButton botonComenzar,botonSalir;
+	private JButton botonComenzar,botonSalir,botonEmpezarMapa;
 	private Container contenedor;
 	
 	public VentanaJFrame(){
@@ -63,10 +63,6 @@ public class VentanaJFrame extends JFrame{
 		mnNewMenu = new JMenu("Resoluciones");
 		barraMenu.add(mnNewMenu);
 		
-		menuItem1280 = new JMenuItem("1280x1024");
-		menuItem1280.addActionListener(new AccionResolucion(this, 1280, 1024));
-		mnNewMenu.add(menuItem1280);
-		
 		menuItem1024 = new JMenuItem("1024x768");
 		menuItem1024.addActionListener(new AccionResolucion(this, 1024, 768));
 		mnNewMenu.add(menuItem1024);
@@ -89,6 +85,8 @@ public class VentanaJFrame extends JFrame{
 		botonSalir.setBounds(ancho/2 -100, alto/2, 120, 50);
 		botonSalir.addActionListener(new AccionSalir());
 		panel.add(botonSalir);
+		comenzarPanel = new ComenzarPanel();
+		botonEmpezarMapa = new JButton();
 		
 	}
 	public void setDimension(int ancho, int alto) {
@@ -97,13 +95,28 @@ public class VentanaJFrame extends JFrame{
 		panel.setSize(ancho, alto);
 		botonComenzar.setBounds(ancho/2 - 100, alto/2 -100, 120, 50);
 		botonSalir.setBounds(ancho/2 -100, alto/2, 120, 50);
+		botonEmpezarMapa.setBounds(ancho/2 - 100, alto/2 -100, 120, 50);
+		comenzarPanel.setSize(ancho, alto);
+		if ( juegoPanel != null){
+			juegoPanel.setSize(ancho, alto);
+		}
 		this.setSize(ancho, alto);
 	}
-	public void cambiarPanel() {
-		JPanel comenzarPanel = new ComenzarPanel();
+	public void cambiarPanelCargaDatos() {
+		botonEmpezarMapa.setText("Mostrar Mapa");
+		botonEmpezarMapa.setBounds(ancho/2 - 100, alto/2 -100, 120, 50);
+		botonEmpezarMapa.addActionListener(new AccionEmpezarMapaJuego(this));
+		comenzarPanel.add(botonEmpezarMapa);
 		comenzarPanel.setSize(ancho, alto);
 		contenedor.add(comenzarPanel);
 		this.panel.setVisible(false);
 		comenzarPanel.setVisible(true);
+	}
+	public void muestraPanelJuego() {
+		this.comenzarPanel.setVisible(false);
+		this.juegoPanel = new JuegoPanel(20, 20); // dimensiones mapa
+		this.add(this.juegoPanel);
+		this.juegoPanel.setSize(ancho, alto);
+		this.juegoPanel.setVisible(true);
 	}
 }
