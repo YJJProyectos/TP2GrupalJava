@@ -21,6 +21,16 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 public class EspectroTest {
 
+	@Test(expected = PoblacionLimiteAlcanzadaError.class)
+	public void deberiaLanzarUnErrorSiElJugadornoTieneLosSuministrosParaCrearUnEspectro()
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			PoblacionLimiteAlcanzadaError {
+
+		Jugador jugador = new Jugador();
+		@SuppressWarnings("unused")
+		Espectro espectro = new Espectro(jugador);
+	}
+
 	@Test(expected = RecursosInsuficientesError.class)
 	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnEspectro()
 			throws RecursosInsuficientesError, CasillaOcupadaError,

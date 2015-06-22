@@ -22,8 +22,18 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 public class GolliatTest {
 
+	@Test(expected = PoblacionLimiteAlcanzadaError.class)
+	public void deberiaLanzarUnErrorSiElJugadornoTieneLosSuministrosParaCrearUnGolliat()
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			PoblacionLimiteAlcanzadaError {
+
+		Jugador jugador = new Jugador();
+		@SuppressWarnings("unused")
+		Golliat golliat = new Golliat(jugador);
+	}
+
 	@Test(expected = RecursosInsuficientesError.class)
-	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnEspectro()
+	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnGolliat()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			PoblacionLimiteAlcanzadaError {
 

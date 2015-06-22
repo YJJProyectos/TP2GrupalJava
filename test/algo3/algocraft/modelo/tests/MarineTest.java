@@ -21,8 +21,18 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 public class MarineTest {
 
+	@Test(expected = PoblacionLimiteAlcanzadaError.class)
+	public void deberiaLanzarUnErrorSiElJugadornoTieneLosSuministrosParaCrearUnMarine()
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			PoblacionLimiteAlcanzadaError {
+
+		Jugador jugador = new Jugador();
+		@SuppressWarnings("unused")
+		Marine marine = new Marine(jugador);
+	}
+
 	@Test(expected = RecursosInsuficientesError.class)
-	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnEspectro()
+	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnMarine()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			PoblacionLimiteAlcanzadaError {
 

@@ -19,9 +19,20 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadTransporteVaciaErro
 
 public class TransporteTerranTest {
 
+	@Test(expected = PoblacionLimiteAlcanzadaError.class)
+	public void deberiaLanzarUnErrorSiElJugadornoTieneLosSuministrosParaCrearUnaNaveTransporte()
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			PoblacionLimiteAlcanzadaError {
+
+		Jugador jugador = new Jugador();
+		@SuppressWarnings("unused")
+		TransporteTerran nave = new TransporteTerran(jugador);
+	}
+
 	@Test(expected = RecursosInsuficientesError.class)
-	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnEspectro()
-			throws RecursosInsuficientesError, CasillaOcupadaError, PoblacionLimiteAlcanzadaError {
+	public void deberiaLanzarUnErrorSiElJugadornoTieneLosRecursosParaCrearUnaNaveTransporte()
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -34,7 +45,8 @@ public class TransporteTerranTest {
 	public void deberiaLanzarUnaExcepcionAlCargarUnSoldadoAliadoCuandoRecibeComoParametrootroJugador()
 			throws UnidadTransporteVaciaError, PerteneceAOtroJugadorError,
 			LimiteDeCapacidadError, SoldadoYaCargadoError,
-			JugadorIncorrectoError, RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
+			JugadorIncorrectoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -48,7 +60,8 @@ public class TransporteTerranTest {
 	public void deberiaCargarUnSoldadoAliado()
 			throws UnidadTransporteVaciaError, PerteneceAOtroJugadorError,
 			LimiteDeCapacidadError, SoldadoYaCargadoError,
-			JugadorIncorrectoError, RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
+			JugadorIncorrectoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -109,7 +122,8 @@ public class TransporteTerranTest {
 	public void deberiaLanzarUnaExcepcionAlDescargarUnSoldadoAliadoCuandoRecibeComoParametrootroJugador()
 			throws PerteneceAOtroJugadorError, LimiteDeCapacidadError,
 			SoldadoYaCargadoError, UnidadTransporteVaciaError,
-			JugadorIncorrectoError, RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
+			JugadorIncorrectoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -139,7 +153,8 @@ public class TransporteTerranTest {
 	public void deberiaLanzarUnaExcepcionAlIntentarDescargarUnsSoldadoEnUnTransporteVacio()
 			throws UnidadTransporteVaciaError, PerteneceAOtroJugadorError,
 			LimiteDeCapacidadError, SoldadoYaCargadoError,
-			JugadorIncorrectoError, RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
+			JugadorIncorrectoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
