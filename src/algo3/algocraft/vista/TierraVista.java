@@ -15,17 +15,20 @@ public class TierraVista extends JPanel {
 		super();
 		this.setLayout(null);
 		// todo lo de abajo es para meter un marine para probar aleatoriamente
-		int numero = (int) Math.round(Math.random());
-		if (numero == 0){
+		int numero = (int) Math.round(Math.random()*2);
+		String url;
+		switch (numero){
+		 case 0: url = "/algo3/algocraft/imagenes/marine.png"; break;
+		 case 1: url = "/algo3/algocraft/imagenes/golliat.png"; break;
+		 default: url = ""; break;
+		}
 		JLabel label = new JLabel();
-		String url = "/algo3/algocraft/imagenes/marine.png";
 		ImageIcon imagenAdentro = new ImageIcon(getClass().getResource(url));
 		Image imagen = imagenAdentro.getImage();
 		ImageIcon imagenEscalada = new ImageIcon(imagen.getScaledInstance(20, 20, Image.SCALE_SMOOTH));
 		label.setSize(20,20);
 		label.setIcon(imagenEscalada);
 		this.add(label);
-		}
 	}
 	
     public void paintComponent(Graphics grafico) {
