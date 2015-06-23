@@ -25,12 +25,10 @@ public class VentanaJFrame extends JFrame{
 	private int alto = 700;
 	private JPanel panel,comenzarPanel,juegoPanel;
 	private JMenu mnOpciones;
-	private JMenu mnNewMenu;
+	private JMenu mnResoluciones;
 	private JMenuItem menuComenzarJuego;
-	private JMenuItem menuItemSalir;
-	private JMenuItem menuItem1024;
-	private JMenuItem menuItem800;
-	private JMenuItem menuItemDefecto;
+	private JMenuItem menuItemSalir,menuItem1024,menuItem800,menuItemDefecto,
+	                  menuItemResMaxima;
 	private JButton botonComenzar,botonSalir,botonEmpezarMapa;
 	private Container contenedor;
 	
@@ -64,20 +62,25 @@ public class VentanaJFrame extends JFrame{
 		menuItemSalir.addActionListener(new AccionSalir());
 		mnOpciones.add(menuItemSalir);
 		
-		mnNewMenu = new JMenu("Resoluciones");
-		barraMenu.add(mnNewMenu);
+		mnResoluciones = new JMenu("Resoluciones");
+		barraMenu.add(mnResoluciones);
+		
+		menuItemResMaxima = new JMenuItem("Pantalla completa");
+		menuItemResMaxima.addActionListener(new AccionResolucion(this,
+				(int)dimension.getWidth(),(int)dimension.getHeight()));
+		mnResoluciones.add(menuItemResMaxima);
 		
 		menuItem1024 = new JMenuItem("1024x768");
 		menuItem1024.addActionListener(new AccionResolucion(this, 1024, 768));
-		mnNewMenu.add(menuItem1024);
+		mnResoluciones.add(menuItem1024);
 		
 		menuItem800 = new JMenuItem("800x600");
 		menuItem800.addActionListener(new AccionResolucion(this, 800, 600));
-		mnNewMenu.add(menuItem800);
+		mnResoluciones.add(menuItem800);
 		
 		menuItemDefecto = new JMenuItem("Por defecto");
 		menuItemDefecto.addActionListener(new AccionResolucion(this, 900, 700));
-		mnNewMenu.add(menuItemDefecto);
+		mnResoluciones.add(menuItemDefecto);
 		
 		botonComenzar = new JButton();
 		botonComenzar.setText("Comenzar Juego");
