@@ -55,6 +55,7 @@ public class VentanaJFrame extends JFrame{
 		
 		menuComenzarJuego = new JMenuItem("Comenzar Juego");
 		mnOpciones.add(menuComenzarJuego);
+		mnOpciones.addActionListener(new AccionEmpezarMapaJuego(this));
 		
 		menuItemSalir = new JMenuItem("Salir");
 		menuItemSalir.addActionListener(new AccionSalir());
@@ -113,6 +114,7 @@ public class VentanaJFrame extends JFrame{
 		comenzarPanel.setVisible(true);
 	}
 	public void muestraPanelJuego() {
+		this.panel.setVisible(false);
 		this.comenzarPanel.setVisible(false);
 		this.juegoPanel = new JuegoPanel(20, 20); // dimensiones mapa
 		this.add(this.juegoPanel);
