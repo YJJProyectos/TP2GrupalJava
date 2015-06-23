@@ -1,6 +1,7 @@
 package algo3.algocraft.vista;
 
 import java.awt.Container;
+import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -35,6 +36,9 @@ public class VentanaJFrame extends JFrame{
 	
 	public VentanaJFrame(){
 		this.setTitle("AlgoCraft");
+		Dimension dimension = this.getToolkit().getScreenSize();
+		ancho = (int) dimension.getWidth();
+		alto = (int) dimension.getHeight();
 		this.setSize(ancho, alto);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
@@ -53,9 +57,8 @@ public class VentanaJFrame extends JFrame{
 		mnOpciones = new JMenu("Opciones");
 		barraMenu.add(mnOpciones);
 		
-		menuComenzarJuego = new JMenuItem("Comenzar Juego");
+		menuComenzarJuego = new JMenuItem("Reiniciar Juego");
 		mnOpciones.add(menuComenzarJuego);
-		mnOpciones.addActionListener(new AccionEmpezarMapaJuego(this));
 		
 		menuItemSalir = new JMenuItem("Salir");
 		menuItemSalir.addActionListener(new AccionSalir());

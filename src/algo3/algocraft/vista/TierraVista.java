@@ -2,8 +2,10 @@ package algo3.algocraft.vista;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
@@ -11,6 +13,19 @@ public class TierraVista extends JPanel {
 	
 	public TierraVista(){
 		super();
+		this.setLayout(null);
+		// todo lo de abajo es para meter un marine para probar aleatoriamente
+		int numero = (int) Math.round(Math.random());
+		if (numero == 0){
+		JLabel label = new JLabel();
+		String url = "/algo3/algocraft/imagenes/marine.png";
+		ImageIcon imagenAdentro = new ImageIcon(getClass().getResource(url));
+		Image imagen = imagenAdentro.getImage();
+		ImageIcon imagenEscalada = new ImageIcon(imagen.getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+		label.setSize(20,20);
+		label.setIcon(imagenEscalada);
+		this.add(label);
+		}
 	}
 	
     public void paintComponent(Graphics grafico) {

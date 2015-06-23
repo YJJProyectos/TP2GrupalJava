@@ -31,9 +31,7 @@ public class JuegoPanel extends JPanel {
         for (int x = 0; x < fila; x++) {
 
         	for (int y = 0; y < columna; y++) {
-
         		panelInterior.add(new TierraVista());
-
         	}
 
         }
