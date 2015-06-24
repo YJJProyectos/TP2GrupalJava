@@ -6,7 +6,7 @@ import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadMovil;
 
 public class Jugador {
 
@@ -15,7 +15,7 @@ public class Jugador {
 	private int cantidadGas;
 	private int poblacionPosible;
 	private int poblacionOcupada;
-	private ArrayList<UnidadSoldado> soldadosParaPosicionar;
+	private ArrayList<UnidadMovil> soldadosParaPosicionar;
 
 	public Jugador() {
 		this.unidades = new ArrayList<Unidad>();
@@ -23,7 +23,7 @@ public class Jugador {
 		this.cantidadGas = 100;
 		this.poblacionPosible = 0;
 		this.poblacionOcupada = 0;
-		this.soldadosParaPosicionar = new ArrayList<UnidadSoldado>();
+		this.soldadosParaPosicionar = new ArrayList<UnidadMovil>();
 	}
 
 	public int cantidadMineral() {
@@ -53,8 +53,8 @@ public class Jugador {
 		}
 	}
 
-	public void agregarSoldadoParaPosicionar(UnidadSoldado soldado) {
-		this.soldadosParaPosicionar.add(soldado);
+	public void agregarSoldadoParaPosicionar(UnidadMovil unidadEnEntrenamiento) {
+		this.soldadosParaPosicionar.add(unidadEnEntrenamiento);
 	}
 
 	public void posicionarSoldadoEnColaDeEspera(Casilla casilla)
@@ -62,7 +62,7 @@ public class Jugador {
 		if (this.soldadosParaPosicionar.isEmpty()) {
 			throw new NoHaySoldadosParaPosicionarError();
 		}
-		UnidadSoldado soldado = this.soldadosParaPosicionar.remove(0);
+		UnidadMovil soldado = this.soldadosParaPosicionar.remove(0);
 		soldado.posicionar(casilla);
 		this.agregarUnidad(soldado);
 	}
