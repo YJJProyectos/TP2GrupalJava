@@ -18,7 +18,7 @@ import algo3.algocraft.controlador.AccionResolucion;
 import javax.swing.JButton;
 
 @SuppressWarnings("serial")
-public class VentanaJFrame extends JFrame{
+public class VentanaInicio extends JFrame{
 	
 	
 	private int ancho = 900;
@@ -32,7 +32,7 @@ public class VentanaJFrame extends JFrame{
 	private JButton botonComenzar,botonSalir,botonEmpezarMapa;
 	private Container contenedor;
 	
-	public VentanaJFrame(){
+	public VentanaInicio(){
 		this.setTitle("AlgoCraft");
 		Dimension dimension = this.getToolkit().getScreenSize();
 		ancho = (int) dimension.getWidth();

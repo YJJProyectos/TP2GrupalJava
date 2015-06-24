@@ -8,8 +8,8 @@ public class ControladorMapa {
 	private Mapa mapa;
 	//private VistaMapa vista;
 	
-	public ControladorMapa() {
-		mapa = new Mapa(5);
+	public ControladorMapa(Mapa mapa) {
+		this.mapa = mapa;
 		//vista = new VistaMapa(this);
 	}
 	
