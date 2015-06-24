@@ -50,7 +50,7 @@ public abstract class Unidad {
 	}
 
 	public void posicionar(Casilla casilla) throws CasillaOcupadaError {
-		plano.mover(this, casilla);
+		this.plano.mover(this, casilla);
 	}
 
 	public abstract void pasarTurno();

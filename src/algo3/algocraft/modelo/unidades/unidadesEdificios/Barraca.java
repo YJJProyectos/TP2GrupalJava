@@ -22,7 +22,7 @@ public class Barraca extends UnidadEdificio {
 		this.jugador.validarCosto(this.costoMineral, this.costoGas);
 		this.posicionar(casilla);
 		this.jugador.pagar(this.costoMineral, this.costoGas);
-		unJugador.agregarUnidad(this);
+		this.jugador.agregarUnidad(this);
 	}
 
 	public boolean entrenarMarine(Jugador unJugador)
