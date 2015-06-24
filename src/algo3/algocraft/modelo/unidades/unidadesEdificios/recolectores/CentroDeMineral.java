@@ -23,14 +23,6 @@ public class CentroDeMineral extends Recolector {
 		unJugador.agregarUnidad(this);
 	}
 
-	public boolean esTerrestre() {
-		return true;
-	}
-
-	public int tiempoDeConstruccion() {
-		return this.turnosRestantes;
-	}
-
 	public void continuarConstruccion() {
 		this.turnosRestantes -= 1;
 		if (this.turnosRestantes == 0) {
@@ -45,10 +37,6 @@ public class CentroDeMineral extends Recolector {
 		} else {
 			jugador.aumentarMineral(this.minaDeMineral.extraerRecurso(10));
 		}
-	}
-
-	public boolean enConstruccion() {
-		return enConstruccion;
 	}
 
 }

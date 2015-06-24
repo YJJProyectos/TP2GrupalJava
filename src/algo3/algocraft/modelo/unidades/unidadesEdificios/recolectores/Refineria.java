@@ -23,11 +23,6 @@ public class Refineria extends Recolector {
 		unJugador.agregarUnidad(this);
 	}
 
-	@Override
-	public int tiempoDeConstruccion() {
-		return this.turnosRestantes;
-	}
-
 	private void continuarConstruccion() {
 		this.turnosRestantes -= 1;
 		if (this.turnosRestantes == 0) {
@@ -42,10 +37,6 @@ public class Refineria extends Recolector {
 		} else {
 			jugador.aumentarGas(this.volcanDeGas.extraerRecurso(10));
 		}
-	}
-
-	public boolean enConstruccion() {
-		return enConstruccion;
 	}
 
 }

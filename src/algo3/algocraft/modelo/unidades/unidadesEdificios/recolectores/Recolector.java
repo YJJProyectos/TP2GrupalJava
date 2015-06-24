@@ -18,4 +18,16 @@ public abstract class Recolector extends UnidadEdificio {
 		this.posicion = casilla;
 	}
 
+	public int tiempoDeConstruccion() {
+		return this.turnosRestantes;
+	}
+
+	public boolean enConstruccion() {
+		return enConstruccion;
+	}
+
+	public boolean esTerrestre() {
+		return true;
+	}
+
 }
