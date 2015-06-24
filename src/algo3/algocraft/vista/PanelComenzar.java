@@ -7,9 +7,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class ComenzarPanel extends JPanel{
+public class PanelComenzar extends JPanel{
 	
-	public ComenzarPanel(){
+	public PanelComenzar(){
 		super();
 		this.setLayout(null);
 	}

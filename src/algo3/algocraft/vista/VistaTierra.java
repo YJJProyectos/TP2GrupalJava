@@ -9,9 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class TierraVista extends JPanel {
+public class VistaTierra extends JPanel {
 	
-	public TierraVista(){
+	public VistaTierra(){
 		super();
 		this.setLayout(null);
 		// todo lo de abajo es para meter un marine para probar aleatoriamente

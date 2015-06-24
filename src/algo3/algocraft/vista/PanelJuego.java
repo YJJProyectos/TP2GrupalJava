@@ -6,9 +6,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class JuegoPanel extends JPanel {
+public class PanelJuego extends JPanel {
 
-	public JuegoPanel(int fila, int columna) {
+	public PanelJuego(int fila, int columna) {
 		super();
 		this.setPaneles(fila, columna);
 	}
@@ -31,7 +31,7 @@ public class JuegoPanel extends JPanel {
         for (int x = 0; x < fila; x++) {
 
         	for (int y = 0; y < columna; y++) {
-        		panelInterior.add(new TierraVista());
+        		panelInterior.add(new VistaTierra());
         	}
 
         }

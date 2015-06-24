@@ -92,7 +92,7 @@ public class VentanaJFrame extends JFrame{
 		botonSalir.setBounds(ancho/2 -100, alto/2, 120, 50);
 		botonSalir.addActionListener(new AccionSalir());
 		panel.add(botonSalir);
-		comenzarPanel = new ComenzarPanel();
+		comenzarPanel = new PanelComenzar();
 		botonEmpezarMapa = new JButton();
 		
 	}
@@ -122,7 +122,7 @@ public class VentanaJFrame extends JFrame{
 	public void muestraPanelJuego() {
 		this.panel.setVisible(false);
 		this.comenzarPanel.setVisible(false);
-		this.juegoPanel = new JuegoPanel(20, 20); // dimensiones mapa
+		this.juegoPanel = new PanelJuego(20, 20); // dimensiones mapa
 		this.add(this.juegoPanel);
 		this.juegoPanel.setSize(ancho, alto);
 		this.juegoPanel.setVisible(true);
