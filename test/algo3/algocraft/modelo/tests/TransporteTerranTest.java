@@ -12,9 +12,8 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.LimiteDeCapacidadError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.SoldadoYaCargadoError;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.TransporteTerran;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadTransporte;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.TransporteTerran;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadTransporteVaciaError;
 
 public class TransporteTerranTest {
@@ -38,7 +37,7 @@ public class TransporteTerranTest {
 		jugador.aumentarPoblacion();
 		jugador.pagar(400, 100);
 		@SuppressWarnings("unused")
-		UnidadTransporte nave = new TransporteTerran(jugador);
+		TransporteTerran nave = new TransporteTerran(jugador);
 	}
 
 	@Test(expected = JugadorIncorrectoError.class)
@@ -51,7 +50,7 @@ public class TransporteTerranTest {
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
 		Jugador otroJugador = new Jugador();
-		UnidadTransporte nave = new TransporteTerran(jugador);
+		TransporteTerran nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
 		nave.cargarSoldado(soldado, otroJugador);
 	}
@@ -65,7 +64,7 @@ public class TransporteTerranTest {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
-		UnidadTransporte nave = new TransporteTerran(jugador);
+		TransporteTerran nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
 		nave.cargarSoldado(soldado, jugador);
 
@@ -82,7 +81,7 @@ public class TransporteTerranTest {
 		Jugador jugadorEnemigo = new Jugador();
 		jugadorAliado.aumentarPoblacion();
 		jugadorEnemigo.aumentarPoblacion();
-		UnidadTransporte nave = new TransporteTerran(jugadorAliado);
+		TransporteTerran nave = new TransporteTerran(jugadorAliado);
 		UnidadSoldado soldado = new Marine(jugadorEnemigo);
 		nave.cargarSoldado(soldado, jugadorAliado);
 	}
@@ -95,7 +94,7 @@ public class TransporteTerranTest {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
-		UnidadTransporte nave = new TransporteTerran(jugador);
+		TransporteTerran nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
 		nave.cargarSoldado(soldado, jugador);
 		nave.cargarSoldado(soldado, jugador);
@@ -110,7 +109,7 @@ public class TransporteTerranTest {
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
 		jugador.aumentarPoblacion();
-		UnidadTransporte nave = new TransporteTerran(jugador);
+		TransporteTerran nave = new TransporteTerran(jugador);
 		for (int i = 0; i < 8; i++) {
 			nave.cargarSoldado(new Marine(jugador), jugador);
 		}
@@ -128,7 +127,7 @@ public class TransporteTerranTest {
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
 		Jugador otroJugador = new Jugador();
-		UnidadTransporte nave = new TransporteTerran(jugador);
+		TransporteTerran nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
 		nave.cargarSoldado(soldado, jugador);
 		nave.descargarSoldado(otroJugador);
@@ -142,7 +141,7 @@ public class TransporteTerranTest {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
-		UnidadTransporte nave = new TransporteTerran(jugador);
+		TransporteTerran nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
 		nave.cargarSoldado(soldado, jugador);
 
@@ -158,7 +157,7 @@ public class TransporteTerranTest {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
-		UnidadTransporte nave = new TransporteTerran(jugador);
+		TransporteTerran nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
 		nave.cargarSoldado(soldado, jugador);
 		nave.descargarSoldado(jugador);
@@ -173,7 +172,7 @@ public class TransporteTerranTest {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
-		UnidadTransporte nave = new TransporteTerran(jugador);
+		TransporteTerran nave = new TransporteTerran(jugador);
 		UnidadSoldado soldado = new Marine(jugador);
 
 		nave.cargarSoldado(soldado, jugador);
