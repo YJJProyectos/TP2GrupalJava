@@ -1,5 +1,6 @@
 package algo3.algocraft.vista;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -13,7 +14,8 @@ public class VistaTierra extends JPanel {
 	
 	public VistaTierra(){
 		super();
-		this.setLayout(null);
+		//this.setLayout(null);
+		this.setLayout(new BorderLayout());
 		// todo lo de abajo es para meter un marine para probar aleatoriamente
 		int numero = (int) Math.round(Math.random()*2);
 		String url;
@@ -28,12 +30,20 @@ public class VistaTierra extends JPanel {
 		ImageIcon imagenEscalada = new ImageIcon(imagen.getScaledInstance(20, 20, Image.SCALE_SMOOTH));
 		label.setSize(20,20);
 		label.setIcon(imagenEscalada);
-		this.add(label);
+		this.add(label,BorderLayout.SOUTH);
+		
+		imagenAdentro = new ImageIcon(getClass().getResource("/algo3/algocraft/imagenes/nave.png"));
+		imagen = imagenAdentro.getImage();
+		imagenEscalada = new ImageIcon(imagen.getScaledInstance(15, 15, Image.SCALE_SMOOTH));
+		JLabel label2 = new JLabel();
+		label2.setSize(15, 15);
+		label2.setIcon(imagenEscalada);
+		this.add(label2, BorderLayout.NORTH);  
 	}
 	
     public void paintComponent(Graphics grafico) {
 
-        super.paintComponent(grafico);
+       // super.paintComponent(grafico);
         Dimension dimension = getSize();
 
         int numero = (int) Math.round(Math.random()*4);

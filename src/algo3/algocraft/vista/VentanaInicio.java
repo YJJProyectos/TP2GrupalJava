@@ -24,7 +24,7 @@ public class VentanaInicio extends JFrame{
 	private int ancho = 900;
 	private int alto = 700;
 	private JPanel panel,comenzarPanel,juegoPanel;
-	private JMenu mnOpciones;
+	private JMenu menuArchivo;
 	private JMenu mnResoluciones;
 	private JMenuItem menuComenzarJuego;
 	private JMenuItem menuItemSalir,menuItem1024,menuItem800,menuItemDefecto,
@@ -52,15 +52,15 @@ public class VentanaInicio extends JFrame{
 		JMenuBar barraMenu = new JMenuBar();
 		setJMenuBar(barraMenu);
 		
-		mnOpciones = new JMenu("Opciones");
-		barraMenu.add(mnOpciones);
+		menuArchivo = new JMenu("Archivo");
+		barraMenu.add(menuArchivo);
 		
 		menuComenzarJuego = new JMenuItem("Reiniciar Juego");
-		mnOpciones.add(menuComenzarJuego);
+		menuArchivo.add(menuComenzarJuego);
 		
 		menuItemSalir = new JMenuItem("Salir");
 		menuItemSalir.addActionListener(new AccionSalir());
-		mnOpciones.add(menuItemSalir);
+		menuArchivo.add(menuItemSalir);
 		
 		mnResoluciones = new JMenu("Resoluciones");
 		barraMenu.add(mnResoluciones);
