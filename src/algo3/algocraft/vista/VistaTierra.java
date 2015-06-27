@@ -22,22 +22,20 @@ public class VistaTierra extends JPanel {
 		this.setLayout(new BorderLayout());
 		// todo lo de abajo es para meter las vistas aleatorias
 		int numero = (int) Math.round(Math.random()*5);
-		JLabel label = null;
+		JLabel labelTerrestre = null;
 		switch (numero){
-		 case 0: label = new VistaMarine(); this.add(label,BorderLayout.SOUTH);  break;
-		 case 1: label = new VistaGolliat(); this.add(label,BorderLayout.SOUTH); break;
-		 case 2: label = new VistaMinaDeMineral(); this.add(label,BorderLayout.SOUTH); break;
-		 case 3: label = new VistaVolcanDeGas(); this.add(label,BorderLayout.SOUTH); break;
+		 case 0: labelTerrestre = new VistaMarine(); this.add(labelTerrestre,BorderLayout.WEST);  break;
+		 case 1: labelTerrestre = new VistaGolliat(); this.add(labelTerrestre,BorderLayout.WEST); break;
+		 case 2: labelTerrestre = new VistaMinaDeMineral(); this.add(labelTerrestre,BorderLayout.WEST); break;
+		 case 3: labelTerrestre = new VistaVolcanDeGas(); this.add(labelTerrestre,BorderLayout.WEST); break;
 		 default: break;
 		}
-		/*
-		ImageIcon imagenAdentro = new ImageIcon(getClass().getResource("/algo3/algocraft/imagenes/nave.png"));
-		Image imagen = imagenAdentro.getImage();
-		ImageIcon imagenEscalada = new ImageIcon(imagen.getScaledInstance(15, 15, Image.SCALE_SMOOTH));
-		JLabel label2 = new JLabel();
-		label2.setSize(15, 15);
-		label2.setIcon(imagenEscalada);
-		this.add(label2, BorderLayout.NORTH);  */
+		numero = (int) Math.round(Math.random());
+		JLabel labelAereo = null;
+		if (numero == 0) {
+			labelAereo = new VistaNave();
+			this.add(labelAereo, BorderLayout.NORTH);
+		}
 	}
 	
     public void paintComponent(Graphics grafico) {

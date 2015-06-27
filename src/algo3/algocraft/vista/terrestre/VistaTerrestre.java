@@ -5,6 +5,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import algo3.algocraft.controlador.MouseTocarTerrestre;
+
 @SuppressWarnings("serial")
 public class VistaTerrestre extends JLabel{
 	
@@ -18,6 +20,7 @@ public class VistaTerrestre extends JLabel{
 		ImageIcon imagenEscalada = new ImageIcon(imagen.getScaledInstance(20, 20, Image.SCALE_SMOOTH));
 		this.setSize(20,20);
 		this.setIcon(imagenEscalada);
+		this.addMouseListener(new MouseTocarTerrestre());
 	}
 
 }
