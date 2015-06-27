@@ -31,9 +31,9 @@ public class VistaTierra extends JPanel {
 		 default: break;
 		}
 		/*
-		imagenAdentro = new ImageIcon(getClass().getResource("/algo3/algocraft/imagenes/nave.png"));
-		imagen = imagenAdentro.getImage();
-		imagenEscalada = new ImageIcon(imagen.getScaledInstance(15, 15, Image.SCALE_SMOOTH));
+		ImageIcon imagenAdentro = new ImageIcon(getClass().getResource("/algo3/algocraft/imagenes/nave.png"));
+		Image imagen = imagenAdentro.getImage();
+		ImageIcon imagenEscalada = new ImageIcon(imagen.getScaledInstance(15, 15, Image.SCALE_SMOOTH));
 		JLabel label2 = new JLabel();
 		label2.setSize(15, 15);
 		label2.setIcon(imagenEscalada);
