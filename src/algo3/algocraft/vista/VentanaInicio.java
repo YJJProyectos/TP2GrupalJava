@@ -10,6 +10,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import algo3.algocraft.controlador.AccionAcercaDeCreadores;
 import algo3.algocraft.controlador.AccionEmpezar;
 import algo3.algocraft.controlador.AccionEmpezarMapaJuego;
 import algo3.algocraft.controlador.AccionSalir;
@@ -25,10 +26,12 @@ public class VentanaInicio extends JFrame{
 	private int alto = 700;
 	private JPanel panel,comenzarPanel,juegoPanel;
 	private JMenu menuArchivo;
-	private JMenu mnResoluciones;
+	private JMenu menuResoluciones;
+	private JMenu menuAcercaDe;
 	private JMenuItem menuComenzarJuego;
 	private JMenuItem menuItemSalir,menuItem1024,menuItem800,menuItemDefecto,
 	                  menuItemResMaxima;
+	private JMenuItem menuCreadores;
 	private JButton botonComenzar,botonSalir,botonEmpezarMapa;
 	private Container contenedor;
 	
@@ -62,25 +65,32 @@ public class VentanaInicio extends JFrame{
 		menuItemSalir.addActionListener(new AccionSalir());
 		menuArchivo.add(menuItemSalir);
 		
-		mnResoluciones = new JMenu("Resoluciones");
-		barraMenu.add(mnResoluciones);
+		menuResoluciones = new JMenu("Resoluciones");
+		barraMenu.add(menuResoluciones);
 		
 		menuItemResMaxima = new JMenuItem("Pantalla completa");
 		menuItemResMaxima.addActionListener(new AccionResolucion(this,
 				(int)dimension.getWidth(),(int)dimension.getHeight()));
-		mnResoluciones.add(menuItemResMaxima);
+		menuResoluciones.add(menuItemResMaxima);
 		
 		menuItem1024 = new JMenuItem("1024x768");
 		menuItem1024.addActionListener(new AccionResolucion(this, 1024, 768));
-		mnResoluciones.add(menuItem1024);
+		menuResoluciones.add(menuItem1024);
 		
 		menuItem800 = new JMenuItem("800x600");
 		menuItem800.addActionListener(new AccionResolucion(this, 800, 600));
-		mnResoluciones.add(menuItem800);
+		menuResoluciones.add(menuItem800);
 		
 		menuItemDefecto = new JMenuItem("Por defecto");
 		menuItemDefecto.addActionListener(new AccionResolucion(this, 900, 700));
-		mnResoluciones.add(menuItemDefecto);
+		menuResoluciones.add(menuItemDefecto);
+		
+		menuAcercaDe = new JMenu("Acerca De");
+		barraMenu.add(menuAcercaDe);
+		
+		menuCreadores = new JMenuItem("Creadores");
+		menuCreadores.addActionListener(new AccionAcercaDeCreadores(this));
+		menuAcercaDe.add(menuCreadores);
 		
 		botonComenzar = new JButton();
 		botonComenzar.setText("Comenzar Juego");
