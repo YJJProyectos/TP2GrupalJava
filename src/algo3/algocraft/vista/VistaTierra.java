@@ -3,11 +3,15 @@ package algo3.algocraft.vista;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import algo3.algocraft.vista.terrestre.VistaGolliat;
+import algo3.algocraft.vista.terrestre.VistaMarine;
+import algo3.algocraft.vista.terrestre.VistaMinaDeMineral;
+import algo3.algocraft.vista.terrestre.VistaVolcanDeGas;
 
 @SuppressWarnings("serial")
 public class VistaTierra extends JPanel {
@@ -16,29 +20,24 @@ public class VistaTierra extends JPanel {
 		super();
 		//this.setLayout(null);
 		this.setLayout(new BorderLayout());
-		// todo lo de abajo es para meter un marine para probar aleatoriamente
-		int numero = (int) Math.round(Math.random()*2);
-		String url;
+		// todo lo de abajo es para meter las vistas aleatorias
+		int numero = (int) Math.round(Math.random()*5);
+		JLabel label = null;
 		switch (numero){
-		 case 0: url = "/algo3/algocraft/imagenes/marine.png"; break;
-		 case 1: url = "/algo3/algocraft/imagenes/golliat.png"; break;
-		 default: url = ""; break;
+		 case 0: label = new VistaMarine(); this.add(label,BorderLayout.SOUTH);  break;
+		 case 1: label = new VistaGolliat(); this.add(label,BorderLayout.SOUTH); break;
+		 case 2: label = new VistaMinaDeMineral(); this.add(label,BorderLayout.SOUTH); break;
+		 case 3: label = new VistaVolcanDeGas(); this.add(label,BorderLayout.SOUTH); break;
+		 default: break;
 		}
-		JLabel label = new JLabel();
-		ImageIcon imagenAdentro = new ImageIcon(getClass().getResource(url));
-		Image imagen = imagenAdentro.getImage();
-		ImageIcon imagenEscalada = new ImageIcon(imagen.getScaledInstance(20, 20, Image.SCALE_SMOOTH));
-		label.setSize(20,20);
-		label.setIcon(imagenEscalada);
-		this.add(label,BorderLayout.SOUTH);
-		
+		/*
 		imagenAdentro = new ImageIcon(getClass().getResource("/algo3/algocraft/imagenes/nave.png"));
 		imagen = imagenAdentro.getImage();
 		imagenEscalada = new ImageIcon(imagen.getScaledInstance(15, 15, Image.SCALE_SMOOTH));
 		JLabel label2 = new JLabel();
 		label2.setSize(15, 15);
 		label2.setIcon(imagenEscalada);
-		this.add(label2, BorderLayout.NORTH);  
+		this.add(label2, BorderLayout.NORTH);  */
 	}
 	
     public void paintComponent(Graphics grafico) {
