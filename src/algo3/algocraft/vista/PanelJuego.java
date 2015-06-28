@@ -26,15 +26,10 @@ public class PanelJuego extends JPanel {
 		this.panelSuperior = new JPanel();
 		this.panelSuperior.setLayout(new BorderLayout());
 		this.panelMapa = new PanelMapa(fila, columna);
-		this.panelBotones = new PanelBotones(fila, columna);
-		// this.panelMapa.setLayout(new GridLayout(fila, columna));
+		this.panelBotones = new PanelBotones();
 		this.panelSuperior.add(panelMapa, BorderLayout.EAST);
 		this.panelSuperior.add(panelBotones, BorderLayout.WEST);
-		this.panelMapa.setPreferredSize(new Dimension(350, 250));
-		this.panelBotones.setPreferredSize(new Dimension(350, 250));
 		this.add(panelSuperior, BorderLayout.NORTH);
-		// this.panelInformacion.setSize(300, 268);
-		this.panelInformacion.setPreferredSize(new Dimension(300, 268));
 		this.add(panelInformacion, BorderLayout.SOUTH);
 
 		for (int x = 0; x < fila; x++) {
@@ -51,7 +46,8 @@ public class PanelJuego extends JPanel {
 		super.setSize(ancho, alto);
 		this.panelInformacion.setTamanio(ancho, alto);
 		this.panelMapa.setTamanio(ancho, alto);
-		// this.panelSuperior.setSize(ancho, alto);
+		//this.panelSuperior.setSize(ancho, alto);
+		this.panelBotones.setTamanio(ancho, alto);
 	}
 
 	@Override

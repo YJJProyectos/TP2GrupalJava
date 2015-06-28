@@ -16,14 +16,13 @@ public class PanelBotones extends JPanel {
 	private JButton botonCrearPuertoEstelar;
 	private JButton botonPasarTurno;
 
-	public PanelBotones(int fila, int columna) {
+	public PanelBotones() {
 
 		super();
-		this.setLayout(new GridLayout(fila, columna));
+		this.setLayout(new GridLayout(20, 1));
 
 		this.botonCrearRefineria = new JButton();
 		this.botonCrearRefineria.setText("Crear Refineria");
-		this.botonCrearRefineria.setSize(150, 50);
 		// this.botonCrearRefineria.setBounds(ancho/2 - 100, alto/2 -100, 120,
 		// 50);
 		// this.botonCrearRefineria
@@ -31,7 +30,6 @@ public class PanelBotones extends JPanel {
 
 		this.botonCrearCentroMineral = new JButton();
 		this.botonCrearCentroMineral.setText("Crear Centro Mineral");
-		this.botonCrearCentroMineral.setSize(150, 50);
 		// this.botonCrearCentroMineral.setBounds(ancho/2 - 100, alto/2 -100,
 		// 120, 50);
 		// this.botonCrearCentroMineral.addActionListener(new
@@ -39,8 +37,6 @@ public class PanelBotones extends JPanel {
 
 		this.botonCrearBarraca = new JButton();
 		this.botonCrearBarraca.setText("Crear Barraca");
-		this.botonCrearBarraca.setSize(150, 50);
-		this.botonCrearBarraca.setSize(150, 50);
 		// this.botonCrearBarraca.setBounds(ancho/2 - 100, alto/2 -100, 120,
 		// 50);
 		// this.botonCrearBarraca.addActionListener(new
@@ -48,7 +44,6 @@ public class PanelBotones extends JPanel {
 
 		this.botonCrearFabrica = new JButton();
 		this.botonCrearFabrica.setText("Crear Fabrica");
-		this.botonCrearFabrica.setSize(150, 50);
 		// this.botonCrearFabrica.setBounds(ancho/2 - 100, alto/2 -100, 120,
 		// 50);
 		// this.botonCrearFabrica.addActionListener(new
@@ -56,7 +51,6 @@ public class PanelBotones extends JPanel {
 
 		this.botonCrearPuertoEstelar = new JButton();
 		this.botonCrearPuertoEstelar.setText("Crear Puerto Estelar");
-		this.botonCrearPuertoEstelar.setSize(150, 50);
 		// this.botonCrearPuertoEstelar.setBounds(ancho/2 - 100, alto/2 -100,
 		// 120, 50);
 		// this.botonCrearPuertoEstelar.addActionListener(new
@@ -64,7 +58,6 @@ public class PanelBotones extends JPanel {
 
 		this.botonPasarTurno = new JButton();
 		this.botonPasarTurno.setText("Pasar Turno");
-		this.botonPasarTurno.setSize(150, 50);
 		// this.botonPasarTurno.setBounds(ancho/2 - 100, alto/2 -100, 120, 50);
 		// this.botonPasarTurno.addActionListener(new
 		// AccionBotonPasarTurno(this);
@@ -79,8 +72,8 @@ public class PanelBotones extends JPanel {
 
 	public void setTamanio(int ancho, int alto) {
 		super.setSize(ancho, alto);
-		int porcentajeAncho = ancho - ((int) (ancho * 0.3));
-		int porcentajeAlto = alto - ((int) (alto * 0.4));
+		int porcentajeAncho = ancho - ((int) (ancho * 0.7));
+		int porcentajeAlto = alto - ((int) (alto * 0.6));
 		this.setPreferredSize(new Dimension(porcentajeAncho, porcentajeAlto));
 	}
 
