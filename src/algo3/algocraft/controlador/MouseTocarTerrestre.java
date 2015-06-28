@@ -1,14 +1,28 @@
 package algo3.algocraft.controlador;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+
 public class MouseTocarTerrestre implements MouseListener {
+	
+	private JLabel vistaTerrestre;
+
+	public MouseTocarTerrestre(JLabel vistaTerrestre) {
+		this.vistaTerrestre = vistaTerrestre;
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		System.out.println("terrestre");
-
+		if ( this.vistaTerrestre.getBorder() == null){
+			this.vistaTerrestre.setBorder(BorderFactory.createLineBorder(Color.blue));
+		} else {
+			this.vistaTerrestre.setBorder(null);
+		}
 	}
 
 	@Override

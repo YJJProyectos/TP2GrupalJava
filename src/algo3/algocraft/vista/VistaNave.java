@@ -18,6 +18,6 @@ public class VistaNave extends JLabel {
 		ImageIcon imagenEscalada = new ImageIcon(imagen.getScaledInstance(15, 15, Image.SCALE_SMOOTH));
 		this.setSize(15,15);
 		this.setIcon(imagenEscalada);
-		this.addMouseListener(new MouseTocarAereo());
+		this.addMouseListener(new MouseTocarAereo(this));
 	}
 }

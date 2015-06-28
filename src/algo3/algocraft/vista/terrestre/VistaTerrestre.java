@@ -20,7 +20,7 @@ public class VistaTerrestre extends JLabel{
 		ImageIcon imagenEscalada = new ImageIcon(imagen.getScaledInstance(20, 20, Image.SCALE_SMOOTH));
 		this.setSize(20,20);
 		this.setIcon(imagenEscalada);
-		this.addMouseListener(new MouseTocarTerrestre());
+		this.addMouseListener(new MouseTocarTerrestre(this));
 	}
 
 }

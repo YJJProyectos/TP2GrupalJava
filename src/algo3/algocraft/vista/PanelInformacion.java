@@ -49,8 +49,7 @@ public class PanelInformacion extends JPanel {
 		this.setOpaque(false);
 	}
 	
-	@Override
-	public void setSize(int ancho , int alto){
+	public void setTamanio(int ancho , int alto){
 		super.setSize(ancho, alto);
 		int porcentajeAncho = ancho - ( (int) ( ancho * 0.7 ) );
 		int porcentajeAlto = alto - ( (int) ( alto * 0.6));

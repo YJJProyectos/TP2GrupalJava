@@ -10,9 +10,9 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class PanelJuego extends JPanel {
 	
-	private JPanel panelInformacion;
+	private PanelInformacion panelInformacion;
 	private JPanel panelSuperior;
-	private JPanel panelMapa;
+	private PanelMapa panelMapa;
 	
 	public PanelJuego(int fila, int columna) {
 		super();
@@ -27,10 +27,10 @@ public class PanelJuego extends JPanel {
         this.panelMapa = new PanelMapa(fila, columna);
         //this.panelMapa.setLayout(new GridLayout(fila, columna));
         this.panelSuperior.add(panelMapa,BorderLayout.EAST);
-       // this.panelMapa.setPreferredSize(new Dimension(700, 500));
+        this.panelMapa.setPreferredSize(new Dimension(700, 500));
         this.add(panelSuperior,BorderLayout.NORTH);
         //this.panelInformacion.setSize(300, 268);
-        //this.panelInformacion.setPreferredSize(new Dimension(300, 268));
+        this.panelInformacion.setPreferredSize(new Dimension(300, 268));
         this.add(panelInformacion,BorderLayout.SOUTH);
         
         for (int x = 0; x < fila; x++) {
@@ -45,8 +45,8 @@ public class PanelJuego extends JPanel {
 	@Override
 	public void setSize(int ancho, int alto){
 		super.setSize(ancho, alto);
-		this.panelInformacion.setSize(ancho, alto);
-		this.panelMapa.setSize(ancho, alto);
+		this.panelInformacion.setTamanio(ancho, alto);
+		this.panelMapa.setTamanio(ancho, alto);
 		//this.panelSuperior.setSize(ancho, alto);
 	}
 	@Override
@@ -57,5 +57,5 @@ public class PanelJuego extends JPanel {
 		ImageIcon imagen = new ImageIcon(imagenAdentro.getImage());
 		g.drawImage(imagen.getImage(), 0, 0, (int)tam.getWidth(), (int)tam.getHeight(), null);
 		this.setOpaque(false);
-	}
+	} 
 }

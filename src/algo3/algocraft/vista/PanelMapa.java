@@ -13,8 +13,7 @@ public class PanelMapa extends JPanel {
 		this.setLayout(new GridLayout(fila, columna));
 	}
 	
-	@Override
-	public void setSize(int ancho, int alto){
+	public void setTamanio(int ancho, int alto){
 		super.setSize(ancho, alto);
 		int porcentajeAncho = ancho - ( (int) (ancho * 0.3) ) ;
 		int porcentajeAlto = alto - ( (int) (alto * 0.4));

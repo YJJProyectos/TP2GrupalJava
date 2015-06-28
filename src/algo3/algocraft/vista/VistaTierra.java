@@ -16,12 +16,15 @@ import algo3.algocraft.vista.terrestre.VistaVolcanDeGas;
 @SuppressWarnings("serial")
 public class VistaTierra extends JPanel {
 	
+	private boolean yaPusoLaTierra = false;
+	private int numero;
+	
 	public VistaTierra(){
 		super();
 		//this.setLayout(null);
 		this.setLayout(new BorderLayout());
 		// todo lo de abajo es para meter las vistas aleatorias
-		int numero = (int) Math.round(Math.random()*5);
+		int numero = (int) Math.round(Math.random()*3);
 		JLabel labelTerrestre = null;
 		switch (numero){
 		 case 0: labelTerrestre = new VistaMarine(); this.add(labelTerrestre,BorderLayout.WEST);  break;
@@ -42,8 +45,9 @@ public class VistaTierra extends JPanel {
 
        // super.paintComponent(grafico);
         Dimension dimension = getSize();
-
-        int numero = (int) Math.round(Math.random()*4);
+        if ( ! this.yaPusoLaTierra ) {
+        	this.numero = (int) Math.round(Math.random()*4);
+        }
         String url;
         switch (numero) {
         case 0: url = "/algo3/algocraft/imagenes/tierra.jpg"; break;
@@ -51,9 +55,10 @@ public class VistaTierra extends JPanel {
         case 2: url = "/algo3/algocraft/imagenes/tierra2.jpg"; break;
         default: url = "/algo3/algocraft/imagenes/tierra3.jpg"; break;
         }
-		ImageIcon imagenAdentro = new ImageIcon(getClass().getResource(url));
-		ImageIcon imagen = new ImageIcon(imagenAdentro.getImage());
-		grafico.drawImage(imagen.getImage(), 0, 0, (int)dimension.getWidth(), (int)dimension.getHeight(), null);
-		this.setOpaque(false); 
+        ImageIcon imagenAdentro = new ImageIcon(getClass().getResource(url));
+        ImageIcon imagen = new ImageIcon(imagenAdentro.getImage());
+        grafico.drawImage(imagen.getImage(), 0, 0, (int)dimension.getWidth(), (int)dimension.getHeight(), null);
+        this.setOpaque(false); 
+        this.yaPusoLaTierra = true;
     }
 }
