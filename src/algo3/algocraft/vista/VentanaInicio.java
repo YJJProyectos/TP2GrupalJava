@@ -91,7 +91,7 @@ public class VentanaInicio extends JFrame{
 		barraMenu.add(menuAcercaDe);
 		
 		menuCreadores = new JMenuItem("Creadores");
-		menuCreadores.addActionListener(new AccionAcercaDeCreadores(this));
+		menuCreadores.addActionListener(new AccionAcercaDeCreadores());
 		menuAcercaDe.add(menuCreadores);
 		
 		botonComenzar = new JButton();
