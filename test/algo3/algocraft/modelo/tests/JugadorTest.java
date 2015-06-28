@@ -16,6 +16,7 @@ import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
+import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
@@ -62,7 +63,7 @@ public class JugadorTest {
 
 		Jugador jugador = new Jugador();
 
-		Assert.assertEquals(0, jugador.cantidadPoblacion());
+		Assert.assertEquals(0, jugador.cantidadPoblacionPosible());
 	}
 
 	@Test
@@ -71,7 +72,7 @@ public class JugadorTest {
 		Jugador jugador = new Jugador();
 		jugador.pasarTurno();
 
-		Assert.assertEquals(0, jugador.cantidadPoblacion());
+		Assert.assertEquals(0, jugador.cantidadPoblacionPosible());
 	}
 
 	@Test
@@ -89,7 +90,7 @@ public class JugadorTest {
 		}
 		jugador.pasarTurno();
 
-		Assert.assertEquals(10, jugador.cantidadPoblacion());
+		Assert.assertEquals(10, jugador.cantidadPoblacionPosible());
 	}
 
 	@Test
@@ -113,7 +114,7 @@ public class JugadorTest {
 		jugador.pasarTurno();
 		jugador.pasarTurno();
 
-		Assert.assertEquals(20, jugador.cantidadPoblacion());
+		Assert.assertEquals(20, jugador.cantidadPoblacionPosible());
 	}
 
 	@Test
@@ -137,7 +138,7 @@ public class JugadorTest {
 		jugador.pasarTurno();
 		jugador.pasarTurno();
 
-		Assert.assertEquals(200, jugador.cantidadPoblacion());
+		Assert.assertEquals(200, jugador.cantidadPoblacionPosible());
 	}
 
 	@Test
@@ -270,7 +271,7 @@ public class JugadorTest {
 		Casilla casilla = new Casilla(coordenada);
 		jugador.iniciarConDeposito(casilla);
 
-		Assert.assertEquals(10, jugador.cantidadPoblacion());
+		Assert.assertEquals(10, jugador.cantidadPoblacionPosible());
 
 		Assert.assertEquals(400, jugador.cantidadMineral());
 	}
@@ -319,6 +320,120 @@ public class JugadorTest {
 		jugador1.pasarTurno();
 		marine1.atacarEnemigo(marine2, jugador1);
 		Assert.assertEquals(28, marine2.vidaRestante());
+	}
+	
+	@Test
+	public void deberiaTener2DePoblacionAlCrearse2Marine()
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			RecolectorInvalidoError, NoHaySoldadosParaPosicionarError,
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
+
+		Jugador jugador = new Jugador();
+		Coordenada coordenadaMineral = new Coordenada(1, 1);
+		Casilla casillaMineral = new Casilla(coordenadaMineral);
+		Recurso minaDeMinerales = new MinaDeMinerales(1000);
+		minaDeMinerales.posicionar(casillaMineral);
+		@SuppressWarnings("unused")
+		CentroDeMineral centroDeMineral = new CentroDeMineral(minaDeMinerales,
+				jugador);
+		for (int i = 0; i < 4; i++) {
+			jugador.pasarTurno();
+		} // Termina de crearse el centro
+		for (int i = 0; i < 100; i++) {
+			jugador.pasarTurno();
+		} // Recolecto suficientes recursos para crear las demas unidades
+		Coordenada coordenadaDeposito = new Coordenada(1, 2);
+		Casilla casillaDeposito = new Casilla(coordenadaDeposito);
+		@SuppressWarnings("unused")
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casillaDeposito);
+		for (int i = 0; i < 6; i++) {
+			jugador.pasarTurno();
+		}// Termina de crearse el deposito
+		Coordenada coordenadaBarraca = new Coordenada(1, 3);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			jugador.pasarTurno();
+		}// Termina de crearse la barraca
+		barraca.entrenarMarine(jugador);
+		for (int i = 0; i < 3; i++) {
+			jugador.pasarTurno();
+		}// Termina de crearse el marine
+		Coordenada coordenadaMarine = new Coordenada(1, 4);
+		Casilla casillaMarine = new Casilla(coordenadaMarine);
+		jugador.posicionarSoldadoEnColaDeEspera(casillaMarine);
+		
+		Assert.assertEquals(1, jugador.cantidadPoblacionOcupada());
+		
+		barraca.entrenarMarine(jugador);
+		for (int i = 0; i < 3; i++) {
+			jugador.pasarTurno();
+		}// Termina de crearse el marine
+		Coordenada coordenadaMarine2 = new Coordenada(2, 4);
+		Casilla casillaMarine2 = new Casilla(coordenadaMarine2);
+		jugador.posicionarSoldadoEnColaDeEspera(casillaMarine2);
+		
+		Assert.assertEquals(2, jugador.cantidadPoblacionOcupada());
+
+	}
+	
+	@Test
+	public void deberiaVolverATener0DePoblacionSiLeMatanElMarine()
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			RecolectorInvalidoError, NoHaySoldadosParaPosicionarError,
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
+
+		Jugador jugador = new Jugador();
+		Coordenada coordenadaDeposito = new Coordenada(1, 2);
+		Casilla casillaDeposito = new Casilla(coordenadaDeposito);
+		@SuppressWarnings("unused")
+		DepositoDeSuministros deposito = new DepositoDeSuministros(jugador,
+				casillaDeposito);
+		for (int i = 0; i < 6; i++) {
+			jugador.pasarTurno();
+		}// Termina de crearse el deposito
+		Coordenada coordenadaBarraca = new Coordenada(1, 3);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			jugador.pasarTurno();
+		}// Termina de crearse la barraca
+		barraca.entrenarMarine(jugador);
+		for (int i = 0; i < 3; i++) {
+			jugador.pasarTurno();
+		}// Termina de crearse el marine
+		Coordenada coordenadaMarine = new Coordenada(1, 4);
+		Casilla casillaMarine = new Casilla(coordenadaMarine);
+		jugador.posicionarSoldadoEnColaDeEspera(casillaMarine);
+		Assert.assertEquals(1, jugador.cantidadPoblacionOcupada());
+		Unidad marine = casillaMarine.getOcupanteTerrestre();
+		try {
+			marine.recibirDanio(1000);
+		} catch (YaEstaDestruidoError e) {
+			e.printStackTrace();
+		}
+		Assert.assertTrue(marine.estaDestruido());
+		jugador.pasarTurno();
+		Assert.assertEquals(0, jugador.cantidadPoblacionOcupada());
+	}
+	
+	@Test (expected = PoblacionLimiteAlcanzadaError.class)
+	public void deberiaNoPoderEntrenarMarineSinLosDepositosRequeridos()
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			RecolectorInvalidoError, NoHaySoldadosParaPosicionarError,
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
+
+		Jugador jugador = new Jugador();
+		Coordenada coordenadaBarraca = new Coordenada(1, 3);
+		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
+		Barraca barraca = new Barraca(jugador, casillaBarraca);
+		for (int i = 0; i < 12; i++) {
+			jugador.pasarTurno();
+		}// Termina de crearse la barraca
+		barraca.entrenarMarine(jugador);
+		Assert.fail();
+
 	}
 
 }

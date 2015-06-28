@@ -41,8 +41,12 @@ public class Jugador {
 	public void aumentarGas(int cantidadGasRecolectado) {
 		this.cantidadGas += cantidadGasRecolectado;
 	}
-
-	public int cantidadPoblacion() {
+	
+	public int cantidadPoblacionOcupada(){
+		return this.poblacionOcupada;
+	}
+	
+	public int cantidadPoblacionPosible() {
 		return this.poblacionPosible;
 	}
 
