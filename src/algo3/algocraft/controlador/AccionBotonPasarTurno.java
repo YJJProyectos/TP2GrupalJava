@@ -15,8 +15,7 @@ public class AccionBotonPasarTurno implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		this.panelJuego.getJuego().pasarTurno();
-		this.panelJuego.actualizar();
+		this.panelJuego.pasarTurno();
 	}
 
 }
