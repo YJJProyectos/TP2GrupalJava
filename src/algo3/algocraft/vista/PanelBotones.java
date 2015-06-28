@@ -7,6 +7,8 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import algo3.algocraft.controlador.AccionBotonPasarTurno;
+
 @SuppressWarnings("serial")
 public class PanelBotones extends JPanel {
 
@@ -16,10 +18,12 @@ public class PanelBotones extends JPanel {
 	private JButton botonCrearFabrica;
 	private JButton botonCrearPuertoEstelar;
 	private JButton botonPasarTurno;
+	private PanelJuego panelJuego;
 
-	public PanelBotones() {
+	public PanelBotones(PanelJuego panelJuego) {
 
 		super();
+		this.panelJuego = panelJuego;
 		this.setLayout(new GridLayout(20, 1));
 
 		this.botonCrearRefineria = new JButton();
@@ -59,9 +63,7 @@ public class PanelBotones extends JPanel {
 
 		this.botonPasarTurno = new JButton();
 		this.botonPasarTurno.setText("Pasar Turno");
-		// this.botonPasarTurno.setBounds(ancho/2 - 100, alto/2 -100, 120, 50);
-		// this.botonPasarTurno.addActionListener(new
-		// AccionBotonPasarTurno(this);
+		this.botonPasarTurno.addActionListener(new AccionBotonPasarTurno(this.panelJuego));
 		;
 		this.add(this.botonCrearRefineria);
 		this.add(this.botonCrearCentroMineral);

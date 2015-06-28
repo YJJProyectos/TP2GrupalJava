@@ -39,7 +39,7 @@ public class PanelJuego extends JPanel {
 		this.panelSuperior = new JPanel();
 		this.panelSuperior.setLayout(new BorderLayout());
 		this.panelMapa = new PanelMapa(fila, columna);
-		this.panelBotones = new PanelBotones();
+		this.panelBotones = new PanelBotones(this);
 		this.panelSuperior.add(panelMapa, BorderLayout.EAST);
 		this.panelSuperior.add(panelBotones, BorderLayout.WEST);
 		this.add(panelSuperior, BorderLayout.NORTH);
@@ -72,5 +72,13 @@ public class PanelJuego extends JPanel {
 		g.drawImage(imagen.getImage(), 0, 0, (int) tam.getWidth(),
 				(int) tam.getHeight(), null);
 		this.setOpaque(false);
+	}
+	
+	public void actualizar(){
+		this.panelInformacion.actualizarDatos();
+	}
+	
+	public Juego getJuego(){
+		return this.juego;
 	}
 }

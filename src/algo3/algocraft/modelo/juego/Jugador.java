@@ -16,6 +16,7 @@ public class Jugador {
 	private int poblacionPosible;
 	private int poblacionOcupada;
 	private ArrayList<UnidadMovil> soldadosParaPosicionar;
+	private String nombre;
 
 	public Jugador() {
 		this.unidades = new ArrayList<Unidad>();
@@ -140,6 +141,14 @@ public class Jugador {
 
 	public int cantidadUnidades() {
 		return this.unidades.size();
+	}
+
+	public String getNombre() {
+		return this.nombre;
+	}
+	
+	public void setNombre(String nombre){
+		this.nombre = nombre;
 	}
 
 }

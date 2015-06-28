@@ -142,6 +142,8 @@ public class VentanaInicio extends JFrame{
 		this.comenzarPanel.setVisible(false);
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
+		jugador1.setNombre("jugador 1");
+		jugador2.setNombre("jugador 2");
 		this.juego = new Juego(jugador1, jugador2);
 		this.juegoPanel = new PanelJuego(this.juego);
 		this.add(this.juegoPanel);

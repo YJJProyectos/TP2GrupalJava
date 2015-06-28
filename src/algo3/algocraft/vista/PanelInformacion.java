@@ -17,6 +17,7 @@ public class PanelInformacion extends JPanel {
 	private JTextField cantidadMineral;
 	private JTextField cantidadGas;
 	private JTextField poblacion;
+	private JTextField nombre;
 	private Juego juego;
 	
 	public PanelInformacion(Juego juego){
@@ -39,7 +40,10 @@ public class PanelInformacion extends JPanel {
 		this.poblacion = new JTextField();
 		this.poblacion.setEditable(false);
 		this.poblacion.setText("poblacion / maxima ");
-		this.poblacion.setBounds(303, 90, 149, 20);
+		this.poblacion.setBounds(303, 90, 100, 20);
+		this.nombre = new JTextField();
+		this.nombre.setEditable(false);
+		this.nombre.setBounds(410, 90, 200, 20);
 		this.setLayout(null);
 		this.add(labelMineral);
 		this.add(cantidadMineral);
@@ -47,18 +51,21 @@ public class PanelInformacion extends JPanel {
 		this.add(cantidadGas);
 		this.add(labelPoblacion);
 		this.add(poblacion);
+		this.add(nombre);
 		this.actualizarDatos();
 	}
 	
-	private void actualizarDatos() {
+	public void actualizarDatos() {
 		Jugador jugadorActual = this.juego.turnoDeJugador();
 		String numeroMineral = Integer.toString(jugadorActual.cantidadMineral());
 		String numeroGas = Integer.toString(jugadorActual.cantidadGas());
 		String poblacionOcupada = Integer.toString(jugadorActual.cantidadPoblacionOcupada());
 		String poblacionMax = Integer.toString(jugadorActual.cantidadPoblacionPosible());
+		String nombreJugador = jugadorActual.getNombre();
 		this.cantidadMineral.setText(numeroMineral);
 		this.cantidadGas.setText(numeroGas);
 		this.poblacion.setText(poblacionOcupada + "/" + poblacionMax); 
+		this.nombre.setText("Jugador: " + nombreJugador);
 	}
 
 	@Override
