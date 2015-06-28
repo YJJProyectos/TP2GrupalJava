@@ -6,6 +6,7 @@ import org.junit.Test;
 import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.NoHaySoldadosParaPosicionarError;
+import algo3.algocraft.modelo.juego.NombresInvalidosError;
 import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
@@ -36,12 +37,14 @@ public class IntegracionTest {
 			BarracaNoConstruidaError, NoHaySoldadosParaPosicionarError,
 			JugadorIncorrectoError, YaEstaDestruidoError,
 			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
-			PoblacionLimiteAlcanzadaError {
+			PoblacionLimiteAlcanzadaError, NombresInvalidosError {
 		int esquina1 = 1;
 		int esquina4 = 20;
 		int centro = 10;
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
+		jugador1.setNombre("1");
+		jugador2.setNombre("2");
 		Juego juego = new Juego(jugador1, jugador2);
 		
 		Assert.assertEquals(1, jugador1.cantidadUnidades());

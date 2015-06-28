@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.NombresInvalidosError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
@@ -12,24 +13,45 @@ import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 
 public class JuegoTest {
-
+	
+	@Test (expected = NombresInvalidosError.class)
+	public void deberiaDarNombresInvalidosSiNoLePongoNombre() throws NombresInvalidosError{
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		jugador1.setNombre("1");
+		@SuppressWarnings("unused")
+		Juego juego = new Juego(jugador1, jugador2);
+	}
+	
+	@Test (expected = NombresInvalidosError.class)
+	public void deberiaDarNombresInvalidosSiTienenIgualNombre() 
+			throws NombresInvalidosError{
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		jugador1.setNombre("1");
+		jugador2.setNombre("1");
+		@SuppressWarnings("unused")
+		Juego juego = new Juego(jugador1, jugador2);
+	}
 	@Test
-	public void deberiaEmpezarConTurnoJugador1()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+	public void deberiaEmpezarConTurnoJugador1() throws NombresInvalidosError {
 
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
+		jugador1.setNombre("1");
+		jugador2.setNombre("2");
 		Juego juego = new Juego(jugador1, jugador2);
 
 		Assert.assertEquals(jugador1, juego.turnoDeJugador());
 	}
 
 	@Test
-	public void deberiaPasarTurnosDeJugador1AJugador2YViceversa()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+	public void deberiaPasarTurnosDeJugador1AJugador2YViceversa() throws NombresInvalidosError {
 
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
+		jugador1.setNombre("1");
+		jugador2.setNombre("2");
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.pasarTurno();
 
@@ -42,11 +64,14 @@ public class JuegoTest {
 
 	@Test
 	public void deberiaGenerarseUnCicloAlPasarTurnosEmpezandoPorElJugador1()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError, NombresInvalidosError {
 
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
+		jugador1.setNombre("1");
+		jugador2.setNombre("2");
+		jugador3.setNombre("3");
 		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
 		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
 		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
@@ -70,11 +95,14 @@ public class JuegoTest {
 
 	@Test
 	public void deberiaPoderSacarAUnJugadorYSeguirConLosRestantes()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError, NombresInvalidosError {
 
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
+		jugador1.setNombre("1");
+		jugador2.setNombre("2");
+		jugador3.setNombre("3");
 		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
 		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
 		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
@@ -108,11 +136,14 @@ public class JuegoTest {
 
 	@Test
 	public void deberiaSacarseElJugador1YTendriaQueJugarElJugadorAgregado()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError, NombresInvalidosError {
 
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
+		jugador1.setNombre("1");
+		jugador2.setNombre("2");
+		jugador3.setNombre("3");
 		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
 		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
 		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
@@ -128,11 +159,14 @@ public class JuegoTest {
 
 	@Test
 	public void deberiaPoderSacarAlJugadorQueSeAgregoEntre2Jugadores()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError, NombresInvalidosError {
 
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
+		jugador1.setNombre("1");
+		jugador2.setNombre("2");
+		jugador3.setNombre("3");
 		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
 		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
 		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
@@ -160,12 +194,16 @@ public class JuegoTest {
 
 	@Test
 	public void deberiaPoderSacarAlJugadorQueSeAgregoEntre3Jugadores()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError, NombresInvalidosError {
 
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
 		Jugador jugador4 = new Jugador();
+		jugador1.setNombre("1");
+		jugador2.setNombre("2");
+		jugador3.setNombre("3");
+		jugador4.setNombre("4");
 		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
 		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
 		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
@@ -192,12 +230,16 @@ public class JuegoTest {
 
 	@Test
 	public void alQuedarUnUnicoJugadorAlSiquienteTurnoLeTocaAEl()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError, NombresInvalidosError {
 
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
 		Jugador jugador4 = new Jugador();
+		jugador1.setNombre("1");
+		jugador2.setNombre("2");
+		jugador3.setNombre("3");
+		jugador4.setNombre("4");
 		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
 		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
 		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
@@ -242,11 +284,14 @@ public class JuegoTest {
 
 	@Test
 	public void deberiaSacarAlJugadorQuePerdioYSeguirConLosOtrosJugadores()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError, NombresInvalidosError {
 
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
+		jugador1.setNombre("1");
+		jugador2.setNombre("2");
+		jugador3.setNombre("3");
 		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
 		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
 		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
@@ -280,12 +325,16 @@ public class JuegoTest {
 	// este test deberia ser que gano el jugador1 el juego, algo asi
 	@Test
 	public void deberiaVolverAlJugador1SiSeSacaronALosOtrosJugadores()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError, NombresInvalidosError {
 
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
 		Jugador jugador4 = new Jugador();
+		jugador1.setNombre("1");
+		jugador2.setNombre("2");
+		jugador3.setNombre("3");
+		jugador4.setNombre("4");
 		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
 		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
 		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
@@ -322,12 +371,16 @@ public class JuegoTest {
 
 	@Test
 	public void siHayMasDe1JugadorNoHayGanador()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError, NombresInvalidosError {
 
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
 		Jugador jugador4 = new Jugador();
+		jugador1.setNombre("1");
+		jugador2.setNombre("2");
+		jugador3.setNombre("3");
+		jugador4.setNombre("4");
 		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
 		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
 		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
@@ -341,12 +394,16 @@ public class JuegoTest {
 
 	@Test
 	public void siSoloQueda1JugadorEsElGanador()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError, NombresInvalidosError {
 
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
 		Jugador jugador4 = new Jugador();
+		jugador1.setNombre("1");
+		jugador2.setNombre("2");
+		jugador3.setNombre("3");
+		jugador4.setNombre("4");
 		new Barraca(jugador1, new Casilla(new Coordenada(1, 1)));
 		new Barraca(jugador2, new Casilla(new Coordenada(1, 2)));
 		new Barraca(jugador3, new Casilla(new Coordenada(1, 3)));
@@ -364,13 +421,17 @@ public class JuegoTest {
 
 	@Test
 	public void seDeberiaPoderJugarHasta4Jugadores()
-			throws RecursosInsuficientesError, CasillaOcupadaError {
+			throws NombresInvalidosError {
 
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		Jugador jugador3 = new Jugador();
 		Jugador jugador4 = new Jugador();
 		Jugador jugador5 = new Jugador();
+		jugador1.setNombre("1");
+		jugador2.setNombre("2");
+		jugador3.setNombre("3");
+		jugador4.setNombre("4");
 		Juego juego = new Juego(jugador1, jugador2);
 		juego.agregarJugador(jugador3);
 

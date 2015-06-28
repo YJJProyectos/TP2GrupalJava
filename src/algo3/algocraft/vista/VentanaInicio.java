@@ -18,6 +18,7 @@ import algo3.algocraft.controlador.AccionSalir;
 import algo3.algocraft.controlador.AccionResolucion;
 import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.NombresInvalidosError;
 
 import javax.swing.JButton;
 
@@ -134,7 +135,7 @@ public class VentanaInicio extends JFrame{
 		this.inicioPanel.setVisible(false);
 		this.comenzarPanel.setVisible(true);
 	}
-	public void muestraPanelJuego() {
+	public void muestraPanelJuego() throws NombresInvalidosError {
 		this.inicioPanel.setVisible(false);
 		if ( this.juegoPanel != null){
 			this.juegoPanel.setVisible(false);

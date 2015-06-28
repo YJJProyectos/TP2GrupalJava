@@ -25,6 +25,7 @@ public class Jugador {
 		this.poblacionPosible = 0;
 		this.poblacionOcupada = 0;
 		this.soldadosParaPosicionar = new ArrayList<UnidadMovil>();
+		this.nombre = "";
 	}
 
 	public int cantidadMineral() {
