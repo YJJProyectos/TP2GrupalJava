@@ -7,6 +7,10 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import algo3.algocraft.modelo.juego.Juego;
+import algo3.algocraft.modelo.mapa.Coordenada;
+import algo3.algocraft.modelo.mapa.Mapa;
+
 @SuppressWarnings("serial")
 public class PanelJuego extends JPanel {
 
@@ -14,15 +18,24 @@ public class PanelJuego extends JPanel {
 	private JPanel panelSuperior;
 	private PanelMapa panelMapa;
 	private PanelBotones panelBotones;
+	private Juego juego;
+	private Mapa mapa;
 
 	public PanelJuego(int fila, int columna) {
 		super();
 		this.setPaneles(fila, columna);
 	}
 
+	public PanelJuego(Juego juego) {
+		super();
+		this.juego = juego;
+		this.mapa = this.juego.getMapa();
+		this.setPaneles(mapa.getFilas(), mapa.getColumnas());
+	}
+
 	private void setPaneles(int fila, int columna) {
 		this.setLayout(new BorderLayout());
-		this.panelInformacion = new PanelInformacion();
+		this.panelInformacion = new PanelInformacion(this.juego);
 		this.panelSuperior = new JPanel();
 		this.panelSuperior.setLayout(new BorderLayout());
 		this.panelMapa = new PanelMapa(fila, columna);
@@ -32,10 +45,10 @@ public class PanelJuego extends JPanel {
 		this.add(panelSuperior, BorderLayout.NORTH);
 		this.add(panelInformacion, BorderLayout.SOUTH);
 
-		for (int x = 0; x < fila; x++) {
+		for (int x = 1; x <= fila; x++) {
 
-			for (int y = 0; y < columna; y++) {
-				panelMapa.add(new VistaTierra());
+			for (int y = 1; y <= columna; y++) {
+				panelMapa.add(new VistaTierra(new Coordenada(fila, columna), this.mapa));
 			}
 
 		}

@@ -9,16 +9,23 @@ public class Juego {
 	private Mapa mapa;
 	private Jugador ganador;
 
-	public Juego(Jugador jugador1, Jugador jugador2)
-			throws CasillaOcupadaError, RecursosInsuficientesError {
+	public Juego(Jugador jugador1, Jugador jugador2){
 		this.ganador = null;
 		this.jugadores = new ListaDeJugadores();
 		this.jugadores.agregarJugador(jugador1);
 		this.jugadores.agregarJugador(jugador2);
 		this.mapa = new Mapa(4);
-		this.mapa.setCoordenadaMineralYVolcanDeGas();
-		jugador1.iniciarConDeposito(this.mapa.posicionDeBase());
-		jugador2.iniciarConDeposito(this.mapa.posicionDeBase());
+		try {
+			this.mapa.setCoordenadaMineralYVolcanDeGas();
+		} catch (CasillaOcupadaError e) {
+			e.printStackTrace();
+		}
+		try {
+			jugador1.iniciarConDeposito(this.mapa.posicionDeBase());
+			jugador2.iniciarConDeposito(this.mapa.posicionDeBase());
+		} catch (RecursosInsuficientesError | CasillaOcupadaError e) {
+			e.printStackTrace();
+		}
 	}
 
 	public boolean agregarJugador(Jugador jugador) {

@@ -2,43 +2,65 @@ package algo3.algocraft.vista;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import algo3.algocraft.modelo.juego.Juego;
+import algo3.algocraft.modelo.juego.Jugador;
+
 @SuppressWarnings("serial")
 public class PanelInformacion extends JPanel {
 	
-	public PanelInformacion(){
+	private JTextField cantidadMineral;
+	private JTextField cantidadGas;
+	private JTextField poblacion;
+	private Juego juego;
+	
+	public PanelInformacion(Juego juego){
 		super();
+		this.juego = juego;
 		JLabel labelMineral = new VistaMinerales();
 		labelMineral.setBounds(0, 90, 32, 20);
-		JTextField cantidadMineral = new JTextField(10);
-		cantidadMineral.setEditable(false);
-		cantidadMineral.setBounds(42, 90, 86, 20);
-		cantidadMineral.setText("minerales");
+		this.cantidadMineral = new JTextField(10);
+		this.cantidadMineral.setEditable(false);
+		this.cantidadMineral.setBounds(42, 90, 86, 20);
+		this.cantidadMineral.setText("minerales");
 		JLabel labelGas = new VistaGas();
 		labelGas.setBounds(138, 90, 20, 25);
-		JTextField cantidadGas = new JTextField();
-		cantidadGas.setEditable(false);
-		cantidadGas.setText("cantidad gases");
-		cantidadGas.setBounds(168, 90, 93, 20);
+		this.cantidadGas = new JTextField();
+		this.cantidadGas.setEditable(false);
+		this.cantidadGas.setText("cantidad gases");
+		this.cantidadGas.setBounds(168, 90, 93, 20);
 		JLabel labelPoblacion = new VistaPoblacion();
 		labelPoblacion.setBounds(273, 90, 20, 20);
-		JTextField poblacion = new JTextField();
-		poblacion.setEditable(false);
-		poblacion.setText("poblacion / maxima ");
-		poblacion.setBounds(303, 90, 149, 20);
-		setLayout(null);
+		this.poblacion = new JTextField();
+		this.poblacion.setEditable(false);
+		this.poblacion.setText("poblacion / maxima ");
+		this.poblacion.setBounds(303, 90, 149, 20);
+		this.setLayout(null);
 		this.add(labelMineral);
 		this.add(cantidadMineral);
 		this.add(labelGas);
 		this.add(cantidadGas);
 		this.add(labelPoblacion);
 		this.add(poblacion);
+		this.actualizarDatos();
 	}
 	
+	private void actualizarDatos() {
+		Jugador jugadorActual = this.juego.turnoDeJugador();
+		String numeroMineral = Integer.toString(jugadorActual.cantidadMineral());
+		String numeroGas = Integer.toString(jugadorActual.cantidadGas());
+		String poblacionOcupada = Integer.toString(jugadorActual.cantidadPoblacionOcupada());
+		String poblacionMax = Integer.toString(jugadorActual.cantidadPoblacionPosible());
+		this.cantidadMineral.setText(numeroMineral);
+		this.cantidadGas.setText(numeroGas);
+		this.poblacion.setText(poblacionOcupada + "/" + poblacionMax); 
+	}
+
 	@Override
 	public void paintComponent(Graphics g){
 		Dimension tam = this.getSize();

@@ -8,6 +8,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import algo3.algocraft.modelo.mapa.Coordenada;
+import algo3.algocraft.modelo.mapa.Mapa;
 import algo3.algocraft.vista.terrestre.VistaGolliat;
 import algo3.algocraft.vista.terrestre.VistaMarine;
 import algo3.algocraft.vista.terrestre.VistaMinaDeMineral;
@@ -19,7 +21,7 @@ public class VistaTierra extends JPanel {
 	private boolean yaPusoLaTierra = false;
 	private int numero;
 	
-	public VistaTierra(){
+	/*public VistaTierra(){
 		super();
 		//this.setLayout(null);
 		this.setLayout(new BorderLayout());
@@ -39,9 +41,39 @@ public class VistaTierra extends JPanel {
 			labelAereo = new VistaNave();
 			this.add(labelAereo, BorderLayout.NORTH);
 		}
-	}
+	}  */
 	
-    public void paintComponent(Graphics grafico) {
+    public VistaTierra(Coordenada coordenada, Mapa mapa) {
+		super();
+		//this.setLayout(null);
+		this.setLayout(new BorderLayout());
+		// todo lo de abajo es para meter las vistas aleatorias
+		int numero = (int) Math.round(Math.random()*3);
+		JLabel labelTerrestre = null;
+		switch (numero){
+		case 0: 
+			labelTerrestre = new VistaMarine(coordenada, mapa);
+			this.add(labelTerrestre,BorderLayout.WEST);  break;
+		case 1: 
+			labelTerrestre = new VistaGolliat(coordenada, mapa); 
+			this.add(labelTerrestre,BorderLayout.WEST); break;
+		case 2: 
+			labelTerrestre = new VistaMinaDeMineral(coordenada, mapa); 
+			this.add(labelTerrestre,BorderLayout.WEST); break;
+		case 3: 
+			labelTerrestre = new VistaVolcanDeGas(coordenada, mapa); 
+			this.add(labelTerrestre,BorderLayout.WEST); break;
+		default: break;
+		}
+		numero = (int) Math.round(Math.random());
+		JLabel labelAereo = null;
+		if (numero == 0) {
+			labelAereo = new VistaNave();
+			this.add(labelAereo, BorderLayout.NORTH);
+		}
+	}
+
+	public void paintComponent(Graphics grafico) {
 
        // super.paintComponent(grafico);
         Dimension dimension = getSize();

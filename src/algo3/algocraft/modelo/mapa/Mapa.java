@@ -120,8 +120,12 @@ public class Mapa {
 		return casillero.getRecurso();
 	}
 
-	public int largo() {
+	public int getColumnas() {
 		return maxColumna;
+	}
+	
+	public int getFilas(){
+		return maxFila;
 	}
 
 }

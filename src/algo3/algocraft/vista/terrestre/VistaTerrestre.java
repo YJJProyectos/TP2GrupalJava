@@ -6,12 +6,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import algo3.algocraft.controlador.MouseTocarTerrestre;
+import algo3.algocraft.modelo.mapa.Coordenada;
+import algo3.algocraft.modelo.mapa.Mapa;
 
 @SuppressWarnings("serial")
 public class VistaTerrestre extends JLabel{
 	
-	public VistaTerrestre(){
+	protected Coordenada coordenada;
+	protected Mapa mapa;
+	
+	public VistaTerrestre(Coordenada coordenada, Mapa mapa){
 		super();
+		this.coordenada = coordenada;
+		this.mapa = mapa;
 	}
 	
 	public void setImagen(String url){
@@ -20,7 +27,7 @@ public class VistaTerrestre extends JLabel{
 		ImageIcon imagenEscalada = new ImageIcon(imagen.getScaledInstance(20, 20, Image.SCALE_SMOOTH));
 		this.setSize(20,20);
 		this.setIcon(imagenEscalada);
-		this.addMouseListener(new MouseTocarTerrestre(this));
+		this.addMouseListener(new MouseTocarTerrestre(this, coordenada, mapa));
 	}
 
 }

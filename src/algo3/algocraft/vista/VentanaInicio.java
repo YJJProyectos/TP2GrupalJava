@@ -16,6 +16,8 @@ import algo3.algocraft.controlador.AccionEmpezarMapaJuego;
 import algo3.algocraft.controlador.AccionReiniciar;
 import algo3.algocraft.controlador.AccionSalir;
 import algo3.algocraft.controlador.AccionResolucion;
+import algo3.algocraft.modelo.juego.Juego;
+import algo3.algocraft.modelo.juego.Jugador;
 
 import javax.swing.JButton;
 
@@ -35,6 +37,8 @@ public class VentanaInicio extends JFrame{
 	private JMenuItem menuCreadores;
 	private JButton botonComenzar,botonSalir,botonEmpezarMapa;
 	private Container contenedor;
+	
+	private Juego juego;
 	
 	public VentanaInicio(){
 		this.setTitle("AlgoCraft");
@@ -136,7 +140,10 @@ public class VentanaInicio extends JFrame{
 			this.juegoPanel.setVisible(false);
 		}
 		this.comenzarPanel.setVisible(false);
-		this.juegoPanel = new PanelJuego(20, 20); // dimensiones mapa
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		this.juego = new Juego(jugador1, jugador2);
+		this.juegoPanel = new PanelJuego(this.juego);
 		this.add(this.juegoPanel);
 		this.juegoPanel.setSize(ancho, alto);
 		this.juegoPanel.setVisible(true);
