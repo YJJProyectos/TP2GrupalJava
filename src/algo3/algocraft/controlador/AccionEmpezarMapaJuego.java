@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import algo3.algocraft.modelo.juego.NombresInvalidosError;
 import algo3.algocraft.vista.VentanaInicio;
+import algo3.algocraft.vista.VistaVentanaNombreInvalidoError;
 
 public class AccionEmpezarMapaJuego implements ActionListener {
 	
@@ -19,8 +20,8 @@ public class AccionEmpezarMapaJuego implements ActionListener {
 		try {
 			this.ventanaJFrame.muestraPanelJuego();
 		} catch (NombresInvalidosError error) {
-			error.printStackTrace();
 			//aca deberia lanzar una ventana diciendo error
+			new VistaVentanaNombreInvalidoError();
 		}
 	}
 

@@ -100,7 +100,7 @@ public class VentanaInicio extends JFrame{
 		menuAcercaDe.add(menuCreadores);
 		
 		botonComenzar = new JButton();
-		botonComenzar.setText("Comenzar Juego");
+		botonComenzar.setText("Juego Nuevo");
 		botonComenzar.setBounds(ancho/2 - 100, alto/2 -100, 130, 40);
 		botonComenzar.addActionListener(new AccionEmpezar(this));
 		inicioPanel.add(botonComenzar);
@@ -119,9 +119,9 @@ public class VentanaInicio extends JFrame{
 		this.ancho = ancho;
 		this.alto = alto;
 		inicioPanel.setSize(ancho, alto);
-		botonComenzar.setBounds(ancho/2 - 100, alto/2 -100, 120, 50);
-		botonSalir.setBounds(ancho/2 -100, alto/2, 120, 50);
-		botonEmpezarMapa.setBounds(ancho/2 - 100, alto/2 -100, 120, 50);
+		botonComenzar.setBounds(ancho/2 - 100, alto/2 -100, 130, 40);
+		botonSalir.setBounds(ancho/2 -100, alto/2, 130, 40);
+		botonEmpezarMapa.setBounds(ancho/2 - 80, alto/2 + 200, 130, 40);
 		comenzarPanel.setSize(ancho, alto);
 		if ( juegoPanel != null){
 			juegoPanel.setSize(ancho, alto);
@@ -129,32 +129,32 @@ public class VentanaInicio extends JFrame{
 		this.setSize(ancho, alto);
 	}
 	public void cambiarPanelCargaDatos() {
-		botonEmpezarMapa.setText("Mostrar Mapa");
-		botonEmpezarMapa.setBounds(ancho/2 - 100, alto/2 -100, 130, 40);
+		botonEmpezarMapa.setText("Comenzar Juego");
+		botonEmpezarMapa.setBounds(ancho/2 - 80, alto/2 +200, 130, 40);
 		botonEmpezarMapa.addActionListener(new AccionEmpezarMapaJuego(this));
 		this.inicioPanel.setVisible(false);
 		this.comenzarPanel.setVisible(true);
 	}
 	public void muestraPanelJuego() throws NombresInvalidosError {
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		//jugador1.setNombre("jugador 1");
+		//jugador2.setNombre("jugador 2");
+		this.juego = new Juego(jugador1, jugador2);
+		this.juegoPanel = new PanelJuego(this.juego);
+		this.add(this.juegoPanel);
+		this.juegoPanel.setSize(ancho, alto);
 		this.inicioPanel.setVisible(false);
 		if ( this.juegoPanel != null){
 			this.juegoPanel.setVisible(false);
 		}
 		this.comenzarPanel.setVisible(false);
-		Jugador jugador1 = new Jugador();
-		Jugador jugador2 = new Jugador();
-		jugador1.setNombre("jugador 1");
-		jugador2.setNombre("jugador 2");
-		this.juego = new Juego(jugador1, jugador2);
-		this.juegoPanel = new PanelJuego(this.juego);
-		this.add(this.juegoPanel);
-		this.juegoPanel.setSize(ancho, alto);
 		this.juegoPanel.setVisible(true);
 	}
 	
 	public void reiniciar(){
 		this.comenzarPanel.setVisible(false);
-		if ( this.juegoPanel != null){
+		if (this.juegoPanel != null){
 			this.juegoPanel.setVisible(false);
 		}
 		this.inicioPanel.setVisible(true);
