@@ -96,12 +96,12 @@ public class VentanaInicio extends JFrame{
 		
 		botonComenzar = new JButton();
 		botonComenzar.setText("Comenzar Juego");
-		botonComenzar.setBounds(ancho/2 - 100, alto/2 -100, 120, 50);
+		botonComenzar.setBounds(ancho/2 - 100, alto/2 -100, 130, 40);
 		botonComenzar.addActionListener(new AccionEmpezar(this));
 		inicioPanel.add(botonComenzar);
 		botonSalir = new JButton();
 		botonSalir.setText("Salir");
-		botonSalir.setBounds(ancho/2 -100, alto/2, 120, 50);
+		botonSalir.setBounds(ancho/2 -100, alto/2, 130, 40);
 		botonSalir.addActionListener(new AccionSalir());
 		inicioPanel.add(botonSalir);
 		comenzarPanel = new PanelComenzar();
@@ -125,7 +125,7 @@ public class VentanaInicio extends JFrame{
 	}
 	public void cambiarPanelCargaDatos() {
 		botonEmpezarMapa.setText("Mostrar Mapa");
-		botonEmpezarMapa.setBounds(ancho/2 - 100, alto/2 -100, 120, 50);
+		botonEmpezarMapa.setBounds(ancho/2 - 100, alto/2 -100, 130, 40);
 		botonEmpezarMapa.addActionListener(new AccionEmpezarMapaJuego(this));
 		this.inicioPanel.setVisible(false);
 		this.comenzarPanel.setVisible(true);

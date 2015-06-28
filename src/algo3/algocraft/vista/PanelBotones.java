@@ -3,6 +3,7 @@ package algo3.algocraft.vista;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -67,6 +68,7 @@ public class PanelBotones extends JPanel {
 		this.add(this.botonCrearBarraca);
 		this.add(this.botonCrearFabrica);
 		this.add(this.botonCrearPuertoEstelar);
+		this.add(Box.createHorizontalStrut(20));
 		this.add(this.botonPasarTurno);
 	}
 
