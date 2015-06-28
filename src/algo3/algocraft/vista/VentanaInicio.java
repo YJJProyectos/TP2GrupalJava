@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import algo3.algocraft.controlador.AccionAcercaDeCreadores;
 import algo3.algocraft.controlador.AccionEmpezar;
 import algo3.algocraft.controlador.AccionEmpezarMapaJuego;
+import algo3.algocraft.controlador.AccionReiniciar;
 import algo3.algocraft.controlador.AccionSalir;
 import algo3.algocraft.controlador.AccionResolucion;
 
@@ -24,7 +25,7 @@ public class VentanaInicio extends JFrame{
 	
 	private int ancho = 900;
 	private int alto = 700;
-	private JPanel panel,comenzarPanel,juegoPanel;
+	private JPanel inicioPanel,comenzarPanel,juegoPanel;
 	private JMenu menuArchivo;
 	private JMenu menuResoluciones;
 	private JMenu menuAcercaDe;
@@ -48,9 +49,9 @@ public class VentanaInicio extends JFrame{
 		String url = "/algo3/algocraft/imagenes/terranicono.jpg";
 		this.setIconImage((new ImageIcon(getClass().getResource(url))).getImage());
 		contenedor = this.getContentPane();
-		panel = new PanelImagen();
-		panel.setSize(ancho, alto);
-		contenedor.add(panel);
+		inicioPanel = new PanelInicial();
+		inicioPanel.setSize(ancho, alto);
+		contenedor.add(inicioPanel);
 		
 		JMenuBar barraMenu = new JMenuBar();
 		setJMenuBar(barraMenu);
@@ -59,6 +60,7 @@ public class VentanaInicio extends JFrame{
 		barraMenu.add(menuArchivo);
 		
 		menuComenzarJuego = new JMenuItem("Reiniciar Juego");
+		menuComenzarJuego.addActionListener(new AccionReiniciar(this));
 		menuArchivo.add(menuComenzarJuego);
 		
 		menuItemSalir = new JMenuItem("Salir");
@@ -96,20 +98,22 @@ public class VentanaInicio extends JFrame{
 		botonComenzar.setText("Comenzar Juego");
 		botonComenzar.setBounds(ancho/2 - 100, alto/2 -100, 120, 50);
 		botonComenzar.addActionListener(new AccionEmpezar(this));
-		panel.add(botonComenzar);
+		inicioPanel.add(botonComenzar);
 		botonSalir = new JButton();
 		botonSalir.setText("Salir");
 		botonSalir.setBounds(ancho/2 -100, alto/2, 120, 50);
 		botonSalir.addActionListener(new AccionSalir());
-		panel.add(botonSalir);
+		inicioPanel.add(botonSalir);
 		comenzarPanel = new PanelComenzar();
 		botonEmpezarMapa = new JButton();
-		
+		comenzarPanel.add(botonEmpezarMapa);
+		comenzarPanel.setSize(ancho, alto);
+		contenedor.add(comenzarPanel);
 	}
 	public void setDimension(int ancho, int alto) {
 		this.ancho = ancho;
 		this.alto = alto;
-		panel.setSize(ancho, alto);
+		inicioPanel.setSize(ancho, alto);
 		botonComenzar.setBounds(ancho/2 - 100, alto/2 -100, 120, 50);
 		botonSalir.setBounds(ancho/2 -100, alto/2, 120, 50);
 		botonEmpezarMapa.setBounds(ancho/2 - 100, alto/2 -100, 120, 50);
@@ -123,18 +127,26 @@ public class VentanaInicio extends JFrame{
 		botonEmpezarMapa.setText("Mostrar Mapa");
 		botonEmpezarMapa.setBounds(ancho/2 - 100, alto/2 -100, 120, 50);
 		botonEmpezarMapa.addActionListener(new AccionEmpezarMapaJuego(this));
-		comenzarPanel.add(botonEmpezarMapa);
-		comenzarPanel.setSize(ancho, alto);
-		contenedor.add(comenzarPanel);
-		this.panel.setVisible(false);
-		comenzarPanel.setVisible(true);
+		this.inicioPanel.setVisible(false);
+		this.comenzarPanel.setVisible(true);
 	}
 	public void muestraPanelJuego() {
-		this.panel.setVisible(false);
+		this.inicioPanel.setVisible(false);
+		if ( this.juegoPanel != null){
+			this.juegoPanel.setVisible(false);
+		}
 		this.comenzarPanel.setVisible(false);
 		this.juegoPanel = new PanelJuego(20, 20); // dimensiones mapa
 		this.add(this.juegoPanel);
 		this.juegoPanel.setSize(ancho, alto);
 		this.juegoPanel.setVisible(true);
+	}
+	
+	public void reiniciar(){
+		this.comenzarPanel.setVisible(false);
+		if ( this.juegoPanel != null){
+			this.juegoPanel.setVisible(false);
+		}
+		this.inicioPanel.setVisible(true);
 	}
 }

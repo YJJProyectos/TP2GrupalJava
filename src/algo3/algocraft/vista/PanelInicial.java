@@ -8,11 +8,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 @SuppressWarnings("serial")
-public class PanelImagen extends JPanel{
+public class PanelInicial extends JPanel{
 	
 	private JLabel label; 
 	
-	public PanelImagen(){
+	public PanelInicial(){
 		super();
 		this.setLayout(null);
 		label = new JLabel();
