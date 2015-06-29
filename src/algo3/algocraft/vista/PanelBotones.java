@@ -13,6 +13,7 @@ import algo3.algocraft.modelo.juego.Jugador;
 @SuppressWarnings("serial")
 public class PanelBotones extends JPanel {
 
+	private JButton botonCrearDeposito;
 	private JButton botonCrearRefineria;
 	private JButton botonCrearCentroMineral;
 	private JButton botonCrearBarraca;
@@ -27,6 +28,13 @@ public class PanelBotones extends JPanel {
 		super();
 		this.panelJuego = panelJuego;
 		this.setLayout(new GridLayout(20, 1));
+
+		this.botonCrearDeposito = new JButton();
+		this.botonCrearDeposito.setText("Crear Deposito de Suministros");
+		// this.botonCrearDeposito.setBounds(ancho/2 - 100, alto/2 -100, 120,
+		// 50);
+		// this.botonCrearDeposito
+		// .addActionListener(new AccionBotonCrearDeposito(this));
 
 		this.botonCrearRefineria = new JButton();
 		this.botonCrearRefineria.setText("Crear Refineria");
@@ -76,6 +84,7 @@ public class PanelBotones extends JPanel {
 		this.botonPasarTurno.addActionListener(new AccionBotonPasarTurno(
 				this.panelJuego));
 		;
+		this.add(this.botonCrearDeposito);
 		this.add(this.botonCrearRefineria);
 		this.add(this.botonCrearCentroMineral);
 		this.add(this.botonCrearBarraca);
@@ -86,7 +95,7 @@ public class PanelBotones extends JPanel {
 		this.add(Box.createHorizontalStrut(20));
 		this.add(this.botonPasarTurno);
 	}
-	
+
 	public void setTamanio(int ancho, int alto) {
 		super.setSize(ancho, alto);
 		int porcentajeAncho = ancho - ((int) (ancho * 0.7));

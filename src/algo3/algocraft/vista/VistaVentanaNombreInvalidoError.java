@@ -9,21 +9,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-
 @SuppressWarnings("serial")
-public class VistaVentanaNombreInvalidoError extends JFrame{
+public class VistaVentanaNombreInvalidoError extends JFrame {
 
 	JLabel informacion;
 	JPanel panel = new JPanel();
 	JButton botonAceptar = new JButton("Aceptar");
-	public VistaVentanaNombreInvalidoError(){
+
+	public VistaVentanaNombreInvalidoError() {
 		setTitle("Error");
 		setVisible(true);
 		this.setSize(250, 100);
 		this.setLocationRelativeTo(null);
 
-		informacion = new JLabel(
-				"<html>Nombres Invalidos <html>",
+		informacion = new JLabel("<html>Nombres Invalidos <html>",
 				SwingConstants.CENTER);
 
 		panel.add(informacion);
