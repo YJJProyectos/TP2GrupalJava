@@ -7,6 +7,7 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import algo3.algocraft.controlador.AccionBotonCrearBarraca;
 import algo3.algocraft.controlador.AccionBotonCrearCentroMineral;
 import algo3.algocraft.controlador.AccionBotonCrearDeposotoDeSuministros;
 import algo3.algocraft.controlador.AccionBotonCrearRefineria;
@@ -52,8 +53,8 @@ public class PanelBotones extends JPanel {
 
 		this.botonCrearBarraca = new JButton();
 		this.botonCrearBarraca.setText("Crear Barraca");
-		// this.botonCrearBarraca.addActionListener(new
-		// AccionBotonCrearBarraca(this);
+		this.botonCrearBarraca.addActionListener(new AccionBotonCrearBarraca(
+				this.panelJuego, juego));
 
 		this.botonCrearFabrica = new JButton();
 		this.botonCrearFabrica.setText("Crear Fabrica");
