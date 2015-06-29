@@ -20,9 +20,8 @@ public class AccionEmpezarMapaJuego implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		try {
 			this.ventanaJFrame.muestraPanelJuego();
-		} catch (NombresInvalidosError error) {
+		} catch (NombresInvalidosError | CoordenadaInvalidaError error) {
 			// aca deberia lanzar una ventana diciendo error
-		} catch (CoordenadaInvalidaError e1) {
 			new VistaVentanaNombreInvalidoError();
 		}
 	}

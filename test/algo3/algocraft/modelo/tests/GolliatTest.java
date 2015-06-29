@@ -151,20 +151,37 @@ public class GolliatTest {
 		soldadoEnemigo.posicionar(new Casilla(new Coordenada(2, 1)));
 		golliat.atacarEnemigo(soldadoEnemigo, jugadorEnemigo);
 	}
+	
+	@Test
+	public void deberiaDestruirseLaUnidadYRemoverseDelCasillero() 
+			throws RecursosInsuficientesError, PoblacionLimiteAlcanzadaError, 
+			YaEstaDestruidoError, CasillaOcupadaError {
+		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
+		Golliat golliat = new Golliat(jugador);
+		Casilla casillaGolliat = new Casilla(new Coordenada(2, 3));
+		golliat.posicionar(casillaGolliat);
+		golliat.recibirDanio(200);
 
-	@Test(expected = YaEstaDestruidoError.class)
-	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
-			throws YaEstaDestruidoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError {
+		Assert.assertTrue(golliat.estaDestruido());
+		
+		Assert.assertFalse(casillaGolliat.estaOcupadaLaTierra());
+	
+	}
+	
+	@Test
+	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
+			throws RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError, CasillaOcupadaError, YaEstaDestruidoError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
 		Golliat golliat = new Golliat(jugador);
+		Casilla casilla = new Casilla(new Coordenada(2, 3));
+		golliat.posicionar(casilla);
 		golliat.recibirDanio(200);
-
 		Assert.assertTrue(golliat.estaDestruido());
-
-		golliat.recibirDanio(2);
+		Assert.assertFalse(casilla.estaOcupadaLaTierra());
 	}
 
 	@Test(expected = PerteneceAlMismoJugadorError.class)

@@ -385,8 +385,8 @@ public class FabricaTest {
 		Assert.assertTrue(fabrica.esTerrestre());
 	}
 
-	@Test(expected = YaEstaDestruidoError.class)
-	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
+	@Test
+	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
 			throws YaEstaDestruidoError, PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, BarracaNoConstruidaError,
 			CasillaOcupadaError {
@@ -404,8 +404,7 @@ public class FabricaTest {
 		fabrica.recibirDanio(2000);
 
 		Assert.assertTrue(fabrica.estaDestruido());
-
-		fabrica.recibirDanio(2);
+		Assert.assertFalse(casillaFabrica.estaOcupadaLaTierra());
 	}
 
 	@Test(expected = JugadorIncorrectoError.class)

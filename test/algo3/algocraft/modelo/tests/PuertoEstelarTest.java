@@ -552,8 +552,8 @@ public class PuertoEstelarTest {
 		Assert.assertTrue(puerto.esTerrestre());
 	}
 
-	@Test(expected = YaEstaDestruidoError.class)
-	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
+	@Test
+	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
 			throws YaEstaDestruidoError, PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, FabricaNoConstruidaError,
 			CasillaOcupadaError, BarracaNoConstruidaError {
@@ -583,8 +583,7 @@ public class PuertoEstelarTest {
 		puerto.recibirDanio(2000);
 
 		Assert.assertTrue(puerto.estaDestruido());
-
-		puerto.recibirDanio(2);
+		Assert.assertFalse(casillaPuertoEstelar.estaOcupadaLaTierra());
 	}
 
 	@Test(expected = JugadorIncorrectoError.class)

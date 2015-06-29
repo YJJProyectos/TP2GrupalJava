@@ -268,8 +268,8 @@ public class RefineriaTest {
 		Assert.assertTrue(refineria.esTerrestre());
 	}
 
-	@Test(expected = YaEstaDestruidoError.class)
-	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruida()
+	@Test
+	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
 			throws YaEstaDestruidoError, RecursosInsuficientesError,
 			RecolectorInvalidoError, CasillaOcupadaError {
 
@@ -282,8 +282,7 @@ public class RefineriaTest {
 		refineria.recibirDanio(2000);
 
 		Assert.assertTrue(refineria.estaDestruido());
-
-		refineria.recibirDanio(2);
+		Assert.assertFalse(casilla.estaOcupadaLaTierra());
 	}
 
 	@Test

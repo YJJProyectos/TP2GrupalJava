@@ -1,10 +1,12 @@
 package algo3.algocraft.modelo.mapa;
 
+import java.util.Observable;
+
 import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Recolector;
 
-public class Casilla {
+public class Casilla extends Observable{
 
 	private Coordenada ubicacion;
 	private Unidad ocupanteTerrestre;
@@ -45,6 +47,8 @@ public class Casilla {
 		}
 		this.ocupanteTerrestre = unidad;
 		unidad.nuevaPosicion(this);
+		setChanged();
+		notifyObservers();
 
 	}
 
@@ -54,7 +58,8 @@ public class Casilla {
 		}
 		this.ocupanteAereo = unidad;
 		unidad.nuevaPosicion(this);
-
+		setChanged();
+		notifyObservers();
 	}
 
 	public void ocuparRecurso(Recolector unidad) throws CasillaOcupadaError {
@@ -62,6 +67,8 @@ public class Casilla {
 			throw new CasillaOcupadaError();
 		}
 		this.ocupanteTerrestre = (Unidad) unidad;
+		setChanged();
+		notifyObservers();
 	}
 
 	public void agregarRecurso(Recurso unRecurso) throws CasillaOcupadaError {
@@ -69,17 +76,23 @@ public class Casilla {
 			throw new CasillaOcupadaError();
 		}
 		this.recurso = unRecurso;
+		setChanged();
+		notifyObservers();
 	}
 
 	public Unidad desocuparTierra() {
 		Unidad ocupante = this.ocupanteTerrestre;
 		this.ocupanteTerrestre = null;
+		setChanged();
+		notifyObservers();
 		return ocupante;
 	}
 
 	public Unidad desocuparAire() {
 		Unidad ocupante = this.ocupanteAereo;
 		this.ocupanteAereo = null;
+		setChanged();
+		notifyObservers();
 		return ocupante;
 	}
 

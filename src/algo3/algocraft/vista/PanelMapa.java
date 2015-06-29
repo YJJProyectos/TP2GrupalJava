@@ -2,7 +2,6 @@ package algo3.algocraft.vista;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.util.HashMap;
 
 import javax.swing.JPanel;
 
@@ -14,13 +13,14 @@ import algo3.algocraft.modelo.mapa.Mapa;
 @SuppressWarnings("serial")
 public class PanelMapa extends JPanel {
 
+	@SuppressWarnings("unused")
 	private Mapa mapa;
-	private HashMap<Coordenada, VistaCasilla> vistaTablero;
+	//private HashMap<Coordenada, VistaCasilla> vistaTablero;
 
 	public PanelMapa(Mapa mapa) throws CoordenadaInvalidaError {
 		super();
 		this.mapa = mapa;
-		this.vistaTablero = new HashMap<Coordenada, VistaCasilla>();
+		//this.vistaTablero = new HashMap<Coordenada, VistaCasilla>();
 		this.setLayout(new GridLayout(mapa.getFilas(), mapa.getColumnas()));
 
 		for (int x = 1; x <= mapa.getFilas(); x++) {
@@ -28,7 +28,7 @@ public class PanelMapa extends JPanel {
 				Coordenada coordenada = new Coordenada(x, y);
 				Casilla casilla = mapa.getCasilla(coordenada);
 				VistaCasilla vistaCasilla = new VistaCasilla(casilla);
-				this.vistaTablero.put(coordenada, vistaCasilla);
+				//this.vistaTablero.put(coordenada, vistaCasilla);
 				this.add(vistaCasilla);
 			}
 		}
@@ -37,13 +37,13 @@ public class PanelMapa extends JPanel {
 
 	public void actualizarDatos() {
 
-		for (int x = 1; x <= this.mapa.getFilas(); x++) {
+		/*for (int x = 1; x <= this.mapa.getFilas(); x++) {
 			for (int y = 1; y <= this.mapa.getColumnas(); y++) {
 				Coordenada coordenada = new Coordenada(x, y);
 				VistaCasilla vista = this.vistaTablero.get(coordenada);
 				vista.actualizarDatos();
 			}
-		}
+		} */
 
 	}
 

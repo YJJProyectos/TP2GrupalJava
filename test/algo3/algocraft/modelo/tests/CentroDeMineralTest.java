@@ -247,8 +247,8 @@ public class CentroDeMineralTest {
 		Assert.assertTrue(centro.esTerrestre());
 	}
 
-	@Test(expected = YaEstaDestruidoError.class)
-	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
+	@Test
+	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
 			throws YaEstaDestruidoError, RecursosInsuficientesError,
 			RecolectorInvalidoError, CasillaOcupadaError {
 
@@ -261,8 +261,7 @@ public class CentroDeMineralTest {
 		centro.recibirDanio(2000);
 
 		Assert.assertTrue(centro.estaDestruido());
-
-		centro.recibirDanio(2);
+		Assert.assertFalse(casilla.estaOcupadaLaTierra());
 	}
 
 	@Test

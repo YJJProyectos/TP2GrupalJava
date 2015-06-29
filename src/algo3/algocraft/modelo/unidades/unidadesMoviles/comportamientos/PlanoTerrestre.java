@@ -15,9 +15,13 @@ public class PlanoTerrestre extends PlanoAccion {
 		return INSTANCIA;
 	}
 
-	public void mover(Unidad marine, Casilla casilla)
+	public void mover(Unidad unidad, Casilla casilla)
 			throws CasillaOcupadaError {
-		casilla.ocuparTerrestre(marine);
+		Casilla casillaAnterior = unidad.posicion();
+		casilla.ocuparTerrestre(unidad);
+		if (casillaAnterior != null){
+			casillaAnterior.desocuparTierra();
+		}
 	}
 
 	public int recibirDanio(int danioAereo, int danioTerrestre) {
@@ -26,6 +30,13 @@ public class PlanoTerrestre extends PlanoAccion {
 
 	public int entraEnElRango(int rangoAereo, int rangoTerrestre) {
 		return rangoTerrestre;
+	}
+
+	@Override
+	public void remover(Casilla posicion) {
+		if ( posicion != null){
+			posicion.desocuparTierra();
+		}
 	}
 
 }

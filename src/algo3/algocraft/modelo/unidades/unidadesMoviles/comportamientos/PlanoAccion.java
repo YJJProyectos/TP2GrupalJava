@@ -13,4 +13,6 @@ public abstract class PlanoAccion {
 
 	public abstract int entraEnElRango(int rangoAereo, int rangoTerrestre);
 
+	public abstract void remover(Casilla posicion);
+
 }

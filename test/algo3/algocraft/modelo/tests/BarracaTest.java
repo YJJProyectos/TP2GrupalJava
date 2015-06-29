@@ -228,8 +228,8 @@ public class BarracaTest {
 		Assert.assertTrue(barraca.esTerrestre());
 	}
 
-	@Test(expected = YaEstaDestruidoError.class)
-	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
+	@Test
+	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
 			throws YaEstaDestruidoError, RecursosInsuficientesError,
 			CasillaOcupadaError {
 
@@ -240,8 +240,7 @@ public class BarracaTest {
 		barraca.recibirDanio(2000);
 
 		Assert.assertTrue(barraca.estaDestruido());
-
-		barraca.recibirDanio(2);
+		Assert.assertFalse(casilla.estaOcupadaLaTierra());
 	}
 
 	@Test(expected = JugadorIncorrectoError.class)

@@ -238,8 +238,8 @@ public class DepositoDeSuministrosTest {
 		Assert.assertTrue(deposito.esTerrestre());
 	}
 
-	@Test(expected = YaEstaDestruidoError.class)
-	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
+	@Test
+	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
 			throws YaEstaDestruidoError, RecursosInsuficientesError,
 			CasillaOcupadaError {
 
@@ -250,8 +250,7 @@ public class DepositoDeSuministrosTest {
 		deposito.recibirDanio(2000);
 
 		Assert.assertTrue(deposito.estaDestruido());
-
-		deposito.recibirDanio(2);
+		Assert.assertFalse(casilla.estaOcupadaLaTierra());
 	}
 
 }

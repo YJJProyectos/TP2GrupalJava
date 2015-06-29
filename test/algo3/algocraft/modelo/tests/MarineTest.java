@@ -155,19 +155,19 @@ public class MarineTest {
 		marine.atacarEnemigo(soldadoEnemigo, jugadorEnemigo);
 	}
 
-	@Test(expected = YaEstaDestruidoError.class)
-	public void deberiaLanzarYaEstaDestruidoCuandoSeQuiereAtacarUnaVezYaDestruido()
+	@Test
+	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
 			throws YaEstaDestruidoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError {
+			PoblacionLimiteAlcanzadaError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
 		Marine marine = new Marine(jugador);
+		Casilla casilla = new Casilla(new Coordenada(2, 3));
+		marine.posicionar(casilla);
 		marine.recibirDanio(100);
-
 		Assert.assertTrue(marine.estaDestruido());
-
-		marine.recibirDanio(2);
+		Assert.assertFalse(casilla.estaOcupadaLaTierra());
 	}
 
 	@Test(expected = PerteneceAlMismoJugadorError.class)

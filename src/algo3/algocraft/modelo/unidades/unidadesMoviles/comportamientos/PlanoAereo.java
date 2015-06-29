@@ -17,7 +17,11 @@ public class PlanoAereo extends PlanoAccion {
 
 	public void mover(Unidad unidad, Casilla casilla)
 			throws CasillaOcupadaError {
+		Casilla casillaAnterior = unidad.posicion();
 		casilla.ocuparAereo(unidad);
+		if (casillaAnterior != null){
+			casillaAnterior.desocuparAire();
+		}
 	}
 
 	public int recibirDanio(int danioAereo, int danioTerrestre) {
@@ -26,6 +30,13 @@ public class PlanoAereo extends PlanoAccion {
 
 	public int entraEnElRango(int rangoAereo, int rangoTerrestre) {
 		return rangoAereo;
+	}
+
+	@Override
+	public void remover(Casilla posicion) {
+		if ( posicion != null){
+			posicion.desocuparAire();
+		}
 	}
 
 }

@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.HashMap;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -20,21 +22,27 @@ import algo3.algocraft.vista.terrestre.VistaMinaDeMinerales;
 import algo3.algocraft.vista.terrestre.VistaVolcanDeGas;
 
 @SuppressWarnings("serial")
-public class VistaCasilla extends JPanel {
+public class VistaCasilla extends JPanel implements Observer{
 
 	private boolean yaPusoLaTierra = false;
 	private int numero;
 	private HashMap<Object, Object> labels;
+	private ConjuntoDeVistas vistas;
 	private JLabel labelTerrestre;
+	@SuppressWarnings("unused")
 	private JLabel labelAereo;
+	private Casilla casilla;
 
 	// private JLabel labelRecurso;
 	// private Casilla casilla;
 
 	public VistaCasilla(Casilla casilla) {
 		super();
+		this.vistas = new ConjuntoDeVistas();
 		this.setLayout(new BorderLayout());
+		this.casilla = casilla;
 		// this.casilla = casilla;
+		casilla.addObserver(this);
 		this.actualizarDatos();
 
 	}
@@ -53,60 +61,16 @@ public class VistaCasilla extends JPanel {
 
 	public void actualizarDatos() {
 
-		// this.setLayout(null);
-		// todo lo de abajo es para meter las vistas aleatorias
-
-		int numero = (int) Math.round(Math.random() * 3);
-		this.labelTerrestre = null;
-		switch (numero) {
-		case 0:
-			labelTerrestre = new VistaMarine();
-			this.add(labelTerrestre, BorderLayout.WEST);
-			break;
-		case 1:
-			labelTerrestre = new VistaGolliat();
-			this.add(labelTerrestre, BorderLayout.WEST);
-			break;
-		case 2:
-			labelTerrestre = new VistaMinaDeMinerales();
-			this.add(labelTerrestre, BorderLayout.WEST);
-			break;
-		case 3:
-			labelTerrestre = new VistaVolcanDeGas();
-			this.add(labelTerrestre, BorderLayout.WEST);
-			break;
-		default:
-			break;
+		if ( this.casilla.estaOcupadoElRecurso() ){
+			labelTerrestre = 
+				this.vistas.getVista(this.casilla.getRecurso().getClass());
+			this.add(labelTerrestre,BorderLayout.SOUTH);
 		}
-		numero = (int) Math.round(Math.random());
-		this.labelAereo = null;
-		if (numero == 0) {
-			labelAereo = new VistaNave();
-			this.add(labelAereo, BorderLayout.NORTH);
+		if ( this.casilla.estaOcupadaLaTierra() ){
+			labelTerrestre = 
+				this.vistas.getVista(this.casilla.getOcupanteTerrestre().getClass());
+			this.add(labelTerrestre,BorderLayout.SOUTH);
 		}
-
-		// if (this.casilla.estaOcupadaLaTierra()) {
-		// this.labelTerrestre = (JLabel) labels.get(this.casilla
-		// .getOcupanteTerrestre().getClass());
-		// this.add(this.labelTerrestre, BorderLayout.WEST);
-		// }
-
-		// if (this.casilla.estaOcupadoElAire()) {
-		// this.labelAereo = (JLabel) labels.get(this.casilla
-		// .getOcupanteAereo().getClass());
-		// this.add(this.labelAereo, BorderLayout.NORTH);
-		// }
-
-		// if (this.casilla.estaOcupadoElRecurso()) {
-		// this.labelRecurso = (JLabel) labels.get(this.casilla.getRecurso()
-		// .getClass());
-		// this.add(this.labelRecurso, BorderLayout.SOUTH);
-		// }
-		//
-		// this.addMouseListener(new MouseTocarTerrestre(this));
-		// this.addMouseListener(new MouseTocarAereo(this));
-		// this.addMouseListener(new MouseTocarRecurso(this));
-
 	}
 
 	public void paintComponent(Graphics grafico) {
@@ -137,6 +101,12 @@ public class VistaCasilla extends JPanel {
 				(int) dimension.getHeight(), null);
 		this.setOpaque(false);
 		this.yaPusoLaTierra = true;
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		this.actualizarDatos();
+		
 	}
 
 	// ESTO ESTABA EN VISTA TIERRA:
