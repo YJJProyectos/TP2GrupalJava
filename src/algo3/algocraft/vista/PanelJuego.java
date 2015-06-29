@@ -102,4 +102,8 @@ public class PanelJuego extends JPanel {
 	public void setRecurso(Recurso recurso) {
 		this.recursoActual = recurso;
 	}
+	
+	public void setUnidad(Unidad unidad){
+		this.unidadActual = unidad;
+	}
 }

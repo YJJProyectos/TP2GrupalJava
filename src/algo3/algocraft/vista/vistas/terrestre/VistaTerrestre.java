@@ -20,9 +20,9 @@ public class VistaTerrestre extends Vistas{
 	public void setImagen(String url) {
 		ImageIcon imagenAdentro = new ImageIcon(getClass().getResource(url));
 		Image imagen = imagenAdentro.getImage();
-		ImageIcon imagenEscalada = new ImageIcon(imagen.getScaledInstance(17,
-				17, Image.SCALE_SMOOTH));
-		this.setSize(17, 17);
+		ImageIcon imagenEscalada = new ImageIcon(imagen.getScaledInstance(20,
+				20, Image.SCALE_SMOOTH));
+		this.setSize(20, 20);
 		this.setIcon(imagenEscalada);
 	}
 }

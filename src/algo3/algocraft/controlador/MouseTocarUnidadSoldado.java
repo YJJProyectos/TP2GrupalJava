@@ -10,13 +10,14 @@ import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.vista.PanelJuego;
 import algo3.algocraft.vista.vistas.Vistas;
 
-public class MouseTocarEdificio implements MouseListener {
+public class MouseTocarUnidadSoldado implements MouseListener {
 	
 	private Casilla casilla;
 	private PanelJuego panelJuego;
 	private Vistas vista;
 
-	public MouseTocarEdificio(Casilla casilla, PanelJuego panelJuego, Vistas vista) {
+	public MouseTocarUnidadSoldado(Casilla casilla, PanelJuego panelJuego,
+			Vistas vista) {
 		this.casilla = casilla;
 		this.panelJuego = panelJuego;
 		this.vista = vista;
@@ -24,14 +25,14 @@ public class MouseTocarEdificio implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		System.out.println("terrestre");
+		System.out.println("soldado");
 		this.panelJuego.setCasillaActual(this.casilla);
 		this.panelJuego.sacarBordes();
 		this.vista.setBorder(BorderFactory
 				.createLineBorder(Color.blue));
 		this.panelJuego.setSinInformacionAdicional();
-		this.panelJuego.vistaInformacionEdificio(this.casilla.getOcupanteTerrestre());
 		this.panelJuego.setUnidad(this.casilla.getOcupanteTerrestre());
+		//deberia setear informacion de unidad y mostrar opciones de ataque/mover
 	}
 
 	@Override

@@ -61,6 +61,8 @@ public class VistaCasilla extends JPanel implements Observer{
 
 	public void actualizarDatos() {
 		
+		this.sacarBorde();
+		
 		if ( labelTerrestre != null){
 			this.remove(labelTerrestre);
 		}
@@ -81,8 +83,8 @@ public class VistaCasilla extends JPanel implements Observer{
 			this.add(labelTerrestre,BorderLayout.WEST);
 		}
 		//agrego espectro para probar
-		labelAereo = this.vistas.getVista(Espectro.class);
-		this.add(labelAereo,BorderLayout.NORTH);
+		/*labelAereo = this.vistas.getVista(Espectro.class);
+		this.add(labelAereo,BorderLayout.NORTH); */
 	}
 
 	public void paintComponent(Graphics grafico) {
