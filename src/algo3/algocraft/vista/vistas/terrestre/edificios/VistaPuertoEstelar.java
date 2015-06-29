@@ -12,7 +12,7 @@ public class VistaPuertoEstelar extends VistaTerrestre {
 		super(casilla, panelJuego);
 		String url = "/algo3/algocraft/imagenes/PuertoEstelar.png";
 		this.setImagen(url);
-		this.addMouseListener(new MouseTocarEdificio(this.casilla,this.panelJuego));
+		this.addMouseListener(new MouseTocarEdificio(this.casilla,this.panelJuego,this));
 	}
 
 }

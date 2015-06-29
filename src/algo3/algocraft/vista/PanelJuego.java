@@ -91,4 +91,8 @@ public class PanelJuego extends JPanel {
 	public void setSinInformacionAdicional() {
 		this.panelInformacion.setSinInformacionAdicional();
 	}
+
+	public void sacarBordes() {
+		this.panelMapa.sacarBordes();
+	}
 }

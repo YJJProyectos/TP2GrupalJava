@@ -1,5 +1,6 @@
 package algo3.algocraft.vista;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
@@ -46,7 +47,8 @@ public class PanelMapa extends JPanel {
 				vista.actualizarDatos();
 			}
 		} */
-
+		/*VistaCasilla[] componentes= (VistaCasilla[])this.getComponents(); 
+		componentes[0].actualizarDatos(); Da 400 , 0 a 399 */
 	}
 
 	public void setTamanio(int ancho, int alto) {
@@ -54,6 +56,13 @@ public class PanelMapa extends JPanel {
 		int porcentajeAncho = ancho - ((int) (ancho * 0.3));
 		int porcentajeAlto = alto - ((int) (alto * 0.4));
 		this.setPreferredSize(new Dimension(porcentajeAncho, porcentajeAlto));
+	}
+
+	public void sacarBordes() {
+		Component[] componentes= this.getComponents(); 
+		for (int i = 0; i < componentes.length; i++){
+		 ((VistaCasilla) componentes[i]).sacarBorde();
+		}
 	}
 
 }

@@ -42,7 +42,7 @@ public class VistaCasilla extends JPanel implements Observer{
 		// this.casilla = casilla;
 		casilla.addObserver(this);
 		this.actualizarDatos();
-		this.addMouseListener(new MouseTocarCasillaVacia(this.casilla,this.panelJuego));
+		this.addMouseListener(new MouseTocarCasillaVacia(this.casilla,this.panelJuego,this));
 
 	}
 
@@ -108,6 +108,16 @@ public class VistaCasilla extends JPanel implements Observer{
 	public void update(Observable arg0, Object arg1) {
 		this.actualizarDatos();
 		
+	}
+
+	public void sacarBorde() {
+		this.setBorder(null);
+		if ( this.labelTerrestre != null){
+			this.labelTerrestre.setBorder(null);
+		}
+		if ( this.labelAereo != null){
+			this.labelAereo.setBorder(null);
+		}
 	}
 
 	// ESTO ESTABA EN VISTA TIERRA:

@@ -4,7 +4,6 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-import algo3.algocraft.controlador.MouseTocarTerrestre;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.vista.PanelJuego;
 import algo3.algocraft.vista.vistas.Vistas;
@@ -25,6 +24,5 @@ public class VistaTerrestre extends Vistas{
 				20, Image.SCALE_SMOOTH));
 		this.setSize(20, 20);
 		this.setIcon(imagenEscalada);
-		this.addMouseListener(new MouseTocarTerrestre(this));
 	}
 }
