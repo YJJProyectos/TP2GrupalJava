@@ -16,10 +16,12 @@ public class PanelMapa extends JPanel {
 	@SuppressWarnings("unused")
 	private Mapa mapa;
 	//private HashMap<Coordenada, VistaCasilla> vistaTablero;
+	private PanelJuego panelJuego;
 
-	public PanelMapa(Mapa mapa) throws CoordenadaInvalidaError {
+	public PanelMapa(Mapa mapa,PanelJuego panelJuego) throws CoordenadaInvalidaError {
 		super();
 		this.mapa = mapa;
+		this.panelJuego = panelJuego;
 		//this.vistaTablero = new HashMap<Coordenada, VistaCasilla>();
 		this.setLayout(new GridLayout(mapa.getFilas(), mapa.getColumnas()));
 
@@ -27,7 +29,7 @@ public class PanelMapa extends JPanel {
 			for (int y = 1; y <= mapa.getColumnas(); y++) {
 				Coordenada coordenada = new Coordenada(x, y);
 				Casilla casilla = mapa.getCasilla(coordenada);
-				VistaCasilla vistaCasilla = new VistaCasilla(casilla);
+				VistaCasilla vistaCasilla = new VistaCasilla(casilla,this.panelJuego);
 				//this.vistaTablero.put(coordenada, vistaCasilla);
 				this.add(vistaCasilla);
 			}

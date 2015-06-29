@@ -11,17 +11,18 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import algo3.algocraft.controlador.MouseTocarCasillaVacia;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
-import algo3.algocraft.vista.terrestre.VistaGolliat;
-import algo3.algocraft.vista.terrestre.VistaMarine;
-import algo3.algocraft.vista.terrestre.VistaMinaDeMinerales;
-import algo3.algocraft.vista.terrestre.VistaVolcanDeGas;
+import algo3.algocraft.vista.terrestre.recurso.VistaMinaDeMinerales;
+import algo3.algocraft.vista.terrestre.recurso.VistaVolcanDeGas;
+import algo3.algocraft.vista.terrestre.soldados.VistaGolliat;
+import algo3.algocraft.vista.terrestre.soldados.VistaMarine;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 public class VistaCasilla extends JPanel implements Observer{
 
 	private boolean yaPusoLaTierra = false;
@@ -29,30 +30,32 @@ public class VistaCasilla extends JPanel implements Observer{
 	private HashMap<Object, Object> labels;
 	private ConjuntoDeVistas vistas;
 	private JLabel labelTerrestre;
-	@SuppressWarnings("unused")
 	private JLabel labelAereo;
 	private Casilla casilla;
+	private PanelJuego panelJuego;
 
 	// private JLabel labelRecurso;
 	// private Casilla casilla;
 
-	public VistaCasilla(Casilla casilla) {
+	public VistaCasilla(Casilla casilla,PanelJuego panelJuego) {
 		super();
-		this.vistas = new ConjuntoDeVistas();
 		this.setLayout(new BorderLayout());
+		this.panelJuego = panelJuego;
 		this.casilla = casilla;
+		this.vistas = new ConjuntoDeVistas(this.casilla,this.panelJuego);
 		// this.casilla = casilla;
 		casilla.addObserver(this);
 		this.actualizarDatos();
+		this.addMouseListener(new MouseTocarCasillaVacia(panelJuego));
 
 	}
 
 	public void inicializarLabels() {
 
-		labels.put(Marine.class, new VistaMarine());
-		labels.put(Golliat.class, new VistaGolliat());
-		labels.put(MinaDeMinerales.class, new VistaMinaDeMinerales());
-		labels.put(VolcanDeGasVespeno.class, new VistaVolcanDeGas());
+		//labels.put(Marine.class, new VistaMarine());
+		//labels.put(Golliat.class, new VistaGolliat());
+		//labels.put(MinaDeMinerales.class, new VistaMinaDeMinerales());
+		//labels.put(VolcanDeGasVespeno.class, new VistaVolcanDeGas());
 		// labels.put(Barraca.class, new VistaBarraca());
 		// labels.put(Fabrica.class, new VistaFabrica());
 		// labels.put(PuertoEstelar.class, new VistaPuertoEstelar());
@@ -64,11 +67,13 @@ public class VistaCasilla extends JPanel implements Observer{
 		if ( this.casilla.estaOcupadoElRecurso() ){
 			labelTerrestre = 
 				this.vistas.getVista(this.casilla.getRecurso().getClass());
+			this.remove(labelTerrestre);
 			this.add(labelTerrestre,BorderLayout.SOUTH);
 		}
 		if ( this.casilla.estaOcupadaLaTierra() ){
 			labelTerrestre = 
 				this.vistas.getVista(this.casilla.getOcupanteTerrestre().getClass());
+			this.remove(labelTerrestre);
 			this.add(labelTerrestre,BorderLayout.SOUTH);
 		}
 	}

@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 
 import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.unidades.Unidad;
 
 @SuppressWarnings("serial")
 public class PanelInformacion extends JPanel {
@@ -18,6 +19,8 @@ public class PanelInformacion extends JPanel {
 	private JTextField cantidadGas;
 	private JTextField poblacion;
 	private JTextField nombre;
+	private JTextField vida;
+	private JTextField delJugador;
 	private Juego juego;
 
 	public PanelInformacion(Juego juego) {
@@ -44,6 +47,12 @@ public class PanelInformacion extends JPanel {
 		this.nombre = new JTextField();
 		this.nombre.setEditable(false);
 		this.nombre.setBounds(410, 90, 200, 20);
+		this.vida = new JTextField();
+		this.vida.setEditable(false);
+		this.vida.setBounds(0, 120, 70, 20);
+		this.delJugador = new JTextField();
+		this.delJugador.setEditable(false);
+		this.delJugador.setBounds(100, 120, 200, 20);
 		this.setLayout(null);
 		this.add(labelMineral);
 		this.add(cantidadMineral);
@@ -52,6 +61,9 @@ public class PanelInformacion extends JPanel {
 		this.add(labelPoblacion);
 		this.add(poblacion);
 		this.add(nombre);
+		this.add(vida);
+		this.add(this.delJugador);
+		this.setSinInformacionAdicional();
 		this.actualizarDatos();
 	}
 
@@ -68,7 +80,7 @@ public class PanelInformacion extends JPanel {
 		this.cantidadMineral.setText(numeroMineral);
 		this.cantidadGas.setText(numeroGas);
 		this.poblacion.setText(poblacionOcupada + "/" + poblacionMax);
-		this.nombre.setText("Jugador: " + nombreJugador);
+		this.nombre.setText("Jugador actual: " + nombreJugador);
 	}
 
 	@Override
@@ -87,5 +99,19 @@ public class PanelInformacion extends JPanel {
 		int porcentajeAncho = ancho - ((int) (ancho * 0.7));
 		int porcentajeAlto = alto - ((int) (alto * 0.6));
 		this.setPreferredSize(new Dimension(porcentajeAncho, porcentajeAlto));
+	}
+
+	public void informacionEdificio(Unidad edificio) {
+		String vida = Integer.toString(edificio.vidaRestante());
+		String jugador = edificio.getJugador().getNombre();
+		this.delJugador.setText("Del jugador: " + jugador);
+		this.delJugador.setVisible(true);
+		this.vida.setText("Vida: " + vida);
+		this.vida.setVisible(true);
+	}
+
+	public void setSinInformacionAdicional() {
+		this.vida.setVisible(false);
+		this.delJugador.setVisible(false);
 	}
 }

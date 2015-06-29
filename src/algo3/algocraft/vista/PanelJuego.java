@@ -8,7 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import algo3.algocraft.modelo.juego.Juego;
+import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CoordenadaInvalidaError;
+import algo3.algocraft.modelo.unidades.Unidad;
 
 @SuppressWarnings("serial")
 public class PanelJuego extends JPanel {
@@ -18,6 +20,10 @@ public class PanelJuego extends JPanel {
 	private PanelBotones panelBotones;
 	private PanelInformacion panelInformacion;
 	private Juego juego;
+	@SuppressWarnings("unused")
+	private Casilla casillaActual;
+	@SuppressWarnings("unused")
+	private Unidad unidadActual;
 
 	public PanelJuego(Juego juego) throws CoordenadaInvalidaError {
 		super();
@@ -30,7 +36,7 @@ public class PanelJuego extends JPanel {
 
 		this.panelSuperior = new JPanel();
 		this.panelSuperior.setLayout(new BorderLayout());
-		this.panelMapa = new PanelMapa(this.juego.getMapa());
+		this.panelMapa = new PanelMapa(this.juego.getMapa(),this);
 		this.panelBotones = new PanelBotones(this, juego.turnoDeJugador());
 		this.panelSuperior.add(panelMapa, BorderLayout.EAST);
 		this.panelSuperior.add(panelBotones, BorderLayout.WEST);
@@ -69,5 +75,17 @@ public class PanelJuego extends JPanel {
 	public void pasarTurno() {
 		this.juego.pasarTurno();
 		this.actualizar();
+	}
+
+	public void setCasillaActual(Casilla casilla) {
+		this.casillaActual = casilla;	
+	}
+
+	public void vistaInformacionEdificio(Unidad edificio) {
+		this.panelInformacion.informacionEdificio(edificio);
+	}
+
+	public void setSinInformacionAdicional() {
+		this.panelInformacion.setSinInformacionAdicional();
 	}
 }

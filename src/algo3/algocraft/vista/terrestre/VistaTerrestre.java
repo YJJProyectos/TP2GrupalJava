@@ -6,14 +6,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import algo3.algocraft.controlador.MouseTocarTerrestre;
-import algo3.algocraft.modelo.mapa.Coordenada;
-import algo3.algocraft.modelo.mapa.Mapa;
+import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.vista.PanelJuego;
 
 @SuppressWarnings("serial")
 public class VistaTerrestre extends JLabel {
 
-	protected Coordenada coordenada;
-	protected Mapa mapa;
+	protected Casilla casilla;
+	protected PanelJuego panelJuego;
+	
+	public VistaTerrestre(Casilla casilla, PanelJuego panelJuego){
+		this.casilla = casilla;
+		this.panelJuego = panelJuego;
+	}
 
 	public void setImagen(String url) {
 		ImageIcon imagenAdentro = new ImageIcon(getClass().getResource(url));
