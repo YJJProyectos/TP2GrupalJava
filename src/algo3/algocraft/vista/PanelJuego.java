@@ -39,7 +39,7 @@ public class PanelJuego extends JPanel {
 		this.panelSuperior = new JPanel();
 		this.panelSuperior.setLayout(new BorderLayout());
 		this.panelMapa = new PanelMapa(this.juego.getMapa(), this);
-		this.panelBotones = new PanelBotones(this, juego.turnoDeJugador());
+		this.panelBotones = new PanelBotones(this, juego);
 		this.panelSuperior.add(panelMapa, BorderLayout.EAST);
 		this.panelSuperior.add(panelBotones, BorderLayout.WEST);
 		this.add(panelSuperior, BorderLayout.NORTH);

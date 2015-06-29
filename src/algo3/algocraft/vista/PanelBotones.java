@@ -7,8 +7,9 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import algo3.algocraft.controlador.AccionBotonCrearRefineria;
 import algo3.algocraft.controlador.AccionBotonPasarTurno;
-import algo3.algocraft.modelo.juego.Jugador;
+import algo3.algocraft.modelo.juego.Juego;
 
 @SuppressWarnings("serial")
 public class PanelBotones extends JPanel {
@@ -23,7 +24,7 @@ public class PanelBotones extends JPanel {
 	private JButton botonPosicionarSoldado;
 	private PanelJuego panelJuego;
 
-	public PanelBotones(PanelJuego panelJuego, Jugador jugador) {
+	public PanelBotones(PanelJuego panelJuego, Juego juego) {
 
 		super();
 		this.panelJuego = panelJuego;
@@ -31,51 +32,38 @@ public class PanelBotones extends JPanel {
 
 		this.botonCrearDeposito = new JButton();
 		this.botonCrearDeposito.setText("Crear Deposito de Suministros");
-		// this.botonCrearDeposito.setBounds(ancho/2 - 100, alto/2 -100, 120,
-		// 50);
 		// this.botonCrearDeposito
 		// .addActionListener(new AccionBotonCrearDeposito(this));
 
 		this.botonCrearRefineria = new JButton();
 		this.botonCrearRefineria.setText("Crear Refineria");
-		// this.botonCrearRefineria.setBounds(ancho/2 - 100, alto/2 -100, 120,
-		// 50);
-		// this.botonCrearRefineria
-		// .addActionListener(new AccionBotonCrearRefineria(this));
+		this.botonCrearRefineria
+				.addActionListener(new AccionBotonCrearRefineria(
+						this.panelJuego, juego));
 
 		this.botonCrearCentroMineral = new JButton();
 		this.botonCrearCentroMineral.setText("Crear Centro Mineral");
-		// this.botonCrearCentroMineral.setBounds(ancho/2 - 100, alto/2 -100,
-		// 120, 50);
 		// this.botonCrearCentroMineral.addActionListener(new
 		// AccionBotonCrearCentroMineral(this);
 
 		this.botonCrearBarraca = new JButton();
 		this.botonCrearBarraca.setText("Crear Barraca");
-		// this.botonCrearBarraca.setBounds(ancho/2 - 100, alto/2 -100, 120,
-		// 50);
 		// this.botonCrearBarraca.addActionListener(new
 		// AccionBotonCrearBarraca(this);
 
 		this.botonCrearFabrica = new JButton();
 		this.botonCrearFabrica.setText("Crear Fabrica");
-		// this.botonCrearFabrica.setBounds(ancho/2 - 100, alto/2 -100, 120,
-		// 50);
 		// this.botonCrearFabrica.addActionListener(new
 		// AccionBotonCrearFabrica(this);
 
 		this.botonCrearPuertoEstelar = new JButton();
 		this.botonCrearPuertoEstelar.setText("Crear Puerto Estelar");
-		// this.botonCrearPuertoEstelar.setBounds(ancho/2 - 100, alto/2 -100,
-		// 120, 50);
 		// this.botonCrearPuertoEstelar.addActionListener(new
 		// AccionBotonCrearPuertoEstelar(this);
-
 		this.botonPosicionarSoldado = new JButton();
 		this.botonPosicionarSoldado.setText("Posicionar Soldado" + "("
-				+ jugador.caintidadSoldadosParaPosicionar() + ")");
-		// this.botonPosicionarSoldado.setBounds(ancho/2 - 100, alto/2 -100,
-		// 120, 50);
+				+ juego.turnoDeJugador().caintidadSoldadosParaPosicionar()
+				+ ")");
 		// this.botonPosicionarSoldado.addActionListener(new
 		// AccionBotonPosicionarSoldado(this);
 
