@@ -10,14 +10,6 @@ public class Coordenada {
 		this.columna = columna;
 	}
 
-	public void setFila(int fila) {
-		this.fila = fila;
-	}
-
-	public void setColumna(int columna) {
-		this.columna = columna;
-	}
-
 	public int getFila() {
 		return this.fila;
 	}

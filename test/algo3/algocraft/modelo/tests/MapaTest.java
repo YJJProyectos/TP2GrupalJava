@@ -27,6 +27,22 @@ public class MapaTest {
 	}
 
 	@Test
+	public void deberiaTenerUnaCantidadDEFilasMaximasIgualA20() {
+
+		Mapa mapa = new Mapa(4);
+
+		Assert.assertEquals(20, mapa.getFilas());
+	}
+
+	@Test
+	public void deberiaTenerUnaCantidadDeColumnasMaximasIgualA20() {
+
+		Mapa mapa = new Mapa(4);
+
+		Assert.assertEquals(20, mapa.getColumnas());
+	}
+
+	@Test
 	public void noDeberiaAgregarUnMarineSiPasanCoordenadaInvalida()
 			throws CasillaOcupadaError, RecursosInsuficientesError,
 			PoblacionLimiteAlcanzadaError {
