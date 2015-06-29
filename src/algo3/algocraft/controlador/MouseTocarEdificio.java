@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 
 import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 import algo3.algocraft.vista.PanelJuego;
 import algo3.algocraft.vista.vistas.Vistas;
 
@@ -30,7 +31,8 @@ public class MouseTocarEdificio implements MouseListener {
 		this.vista.setBorder(BorderFactory
 				.createLineBorder(Color.blue));
 		this.panelJuego.setSinInformacionAdicional();
-		this.panelJuego.vistaInformacionEdificio(this.casilla.getOcupanteTerrestre());
+		this.panelJuego.
+		vistaInformacionEdificio((UnidadEdificio)this.casilla.getOcupanteTerrestre());
 		this.panelJuego.setUnidad(this.casilla.getOcupanteTerrestre());
 	}
 

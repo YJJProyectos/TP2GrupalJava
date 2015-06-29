@@ -12,6 +12,7 @@ import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CoordenadaInvalidaError;
 import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.unidades.Unidad;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 
 @SuppressWarnings("serial")
 public class PanelJuego extends JPanel {
@@ -87,7 +88,7 @@ public class PanelJuego extends JPanel {
 		return this.casillaActual;
 	}
 
-	public void vistaInformacionEdificio(Unidad edificio) {
+	public void vistaInformacionEdificio(UnidadEdificio edificio) {
 		this.panelInformacion.informacionEdificio(edificio);
 	}
 

@@ -11,8 +11,9 @@ import javax.swing.JTextField;
 import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.unidades.Unidad;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 public class PanelInformacion extends JPanel {
 
 	private JTextField cantidadMineral;
@@ -22,6 +23,7 @@ public class PanelInformacion extends JPanel {
 	private JTextField vida;
 	private JTextField tipoUnidad;
 	private JTextField delJugador;
+	private JTextField enConstruccion;
 	private Juego juego;
 
 	public PanelInformacion(Juego juego) {
@@ -57,6 +59,9 @@ public class PanelInformacion extends JPanel {
 		this.delJugador = new JTextField();
 		this.delJugador.setEditable(false);
 		this.delJugador.setBounds(330, 120, 200, 20);
+		this.enConstruccion = new JTextField();
+		this.enConstruccion.setEditable(false);
+		this.enConstruccion.setBounds(550, 120, 100, 20);
 		this.setLayout(null);
 		this.add(labelMineral);
 		this.add(this.cantidadMineral);
@@ -68,6 +73,7 @@ public class PanelInformacion extends JPanel {
 		this.add(this.tipoUnidad);
 		this.add(this.vida);
 		this.add(this.delJugador);
+		this.add(this.enConstruccion);
 		this.setSinInformacionAdicional();
 		this.actualizarDatos();
 	}
@@ -106,7 +112,7 @@ public class PanelInformacion extends JPanel {
 		this.setPreferredSize(new Dimension(porcentajeAncho, porcentajeAlto));
 	}
 
-	public void informacionEdificio(Unidad edificio) {
+	public void informacionEdificio(UnidadEdificio edificio) {
 		String tipoUnidad = edificio.getNombre();
 		String vida = Integer.toString(edificio.vidaRestante());
 		String jugador = edificio.getJugador().getNombre();
@@ -116,11 +122,17 @@ public class PanelInformacion extends JPanel {
 		this.delJugador.setVisible(true);
 		this.vida.setText("Vida: " + vida);
 		this.vida.setVisible(true);
+		this.enConstruccion.setText("En Construccion");
+		if ( edificio.tiempoDeConstruccion() <= 0 ){
+			this.enConstruccion.setText("Construido");
+		}
+		this.enConstruccion.setVisible(true);
 	}
 
 	public void setSinInformacionAdicional() {
 		this.tipoUnidad.setVisible(false);
 		this.vida.setVisible(false);
 		this.delJugador.setVisible(false);
+		this.enConstruccion.setVisible(false);
 	}
 }
