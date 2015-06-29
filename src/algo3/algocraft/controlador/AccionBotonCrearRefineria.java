@@ -35,5 +35,6 @@ public class AccionBotonCrearRefineria implements ActionListener {
 		} catch (RecolectorInvalidoError errorRecolectorInvalido) {
 		} catch (CasillaOcupadaError errorCasillaOcupada) {
 		}
+		this.panelJuego.actualizar();
 	}
 }
