@@ -17,10 +17,6 @@ import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
-import algo3.algocraft.vista.terrestre.recurso.VistaMinaDeMinerales;
-import algo3.algocraft.vista.terrestre.recurso.VistaVolcanDeGas;
-import algo3.algocraft.vista.terrestre.soldados.VistaGolliat;
-import algo3.algocraft.vista.terrestre.soldados.VistaMarine;
 
 @SuppressWarnings({ "serial", "unused" })
 public class VistaCasilla extends JPanel implements Observer{
