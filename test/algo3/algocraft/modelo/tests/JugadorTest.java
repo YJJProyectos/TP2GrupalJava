@@ -187,6 +187,9 @@ public class JugadorTest {
 			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
+
+		Assert.assertEquals(0, jugador.caintidadSoldadosParaPosicionar());
+
 		Coordenada coordenadaMineral = new Coordenada(1, 1);
 		Casilla casillaMineral = new Casilla(coordenadaMineral);
 		Recurso minaDeMinerales = new MinaDeMinerales(1000);
@@ -215,14 +218,22 @@ public class JugadorTest {
 			jugador.pasarTurno();
 		}// Termina de crearse la barraca
 		barraca.entrenarMarine(jugador);
+
+		Assert.assertEquals(0, jugador.caintidadSoldadosParaPosicionar());
+
 		for (int i = 0; i < 3; i++) {
 			jugador.pasarTurno();
 		}// Termina de crearse el marine
+
+		Assert.assertEquals(1, jugador.caintidadSoldadosParaPosicionar());
+
 		Coordenada coordenadaMarine = new Coordenada(1, 4);
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		jugador.posicionarSoldadoEnColaDeEspera(casillaMarine);
 
 		Assert.assertTrue(casillaMarine.estaOcupadaLaTierra());
+
+		Assert.assertEquals(0, jugador.caintidadSoldadosParaPosicionar());
 	}
 
 	@Test
@@ -321,7 +332,7 @@ public class JugadorTest {
 		marine1.atacarEnemigo(marine2, jugador1);
 		Assert.assertEquals(28, marine2.vidaRestante());
 	}
-	
+
 	@Test
 	public void deberiaTener2DePoblacionAlCrearse2Marine()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
@@ -363,9 +374,9 @@ public class JugadorTest {
 		Coordenada coordenadaMarine = new Coordenada(1, 4);
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		jugador.posicionarSoldadoEnColaDeEspera(casillaMarine);
-		
+
 		Assert.assertEquals(1, jugador.cantidadPoblacionOcupada());
-		
+
 		barraca.entrenarMarine(jugador);
 		for (int i = 0; i < 3; i++) {
 			jugador.pasarTurno();
@@ -373,11 +384,11 @@ public class JugadorTest {
 		Coordenada coordenadaMarine2 = new Coordenada(2, 4);
 		Casilla casillaMarine2 = new Casilla(coordenadaMarine2);
 		jugador.posicionarSoldadoEnColaDeEspera(casillaMarine2);
-		
+
 		Assert.assertEquals(2, jugador.cantidadPoblacionOcupada());
 
 	}
-	
+
 	@Test
 	public void deberiaVolverATener0DePoblacionSiLeMatanElMarine()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
@@ -417,8 +428,8 @@ public class JugadorTest {
 		jugador.pasarTurno();
 		Assert.assertEquals(0, jugador.cantidadPoblacionOcupada());
 	}
-	
-	@Test (expected = PoblacionLimiteAlcanzadaError.class)
+
+	@Test(expected = PoblacionLimiteAlcanzadaError.class)
 	public void deberiaNoPoderEntrenarMarineSinLosDepositosRequeridos()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			RecolectorInvalidoError, NoHaySoldadosParaPosicionarError,

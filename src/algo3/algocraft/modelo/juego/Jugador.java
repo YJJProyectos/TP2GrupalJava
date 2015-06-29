@@ -43,11 +43,11 @@ public class Jugador {
 	public void aumentarGas(int cantidadGasRecolectado) {
 		this.cantidadGas += cantidadGasRecolectado;
 	}
-	
-	public int cantidadPoblacionOcupada(){
+
+	public int cantidadPoblacionOcupada() {
 		return this.poblacionOcupada;
 	}
-	
+
 	public int cantidadPoblacionPosible() {
 		return this.poblacionPosible;
 	}
@@ -71,6 +71,10 @@ public class Jugador {
 		UnidadMovil soldado = this.soldadosParaPosicionar.remove(0);
 		soldado.posicionar(casilla);
 		this.agregarUnidad(soldado);
+	}
+
+	public int caintidadSoldadosParaPosicionar() {
+		return this.soldadosParaPosicionar.size();
 	}
 
 	public void agregarUnidad(Unidad unidad) {
@@ -147,8 +151,8 @@ public class Jugador {
 	public String getNombre() {
 		return this.nombre;
 	}
-	
-	public void setNombre(String nombre){
+
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 

@@ -144,7 +144,7 @@ public class VentanaInicio extends JFrame {
 	}
 
 	public void cambiarPanelCargaDatos() {
-		botonEmpezarMapa.setText("Comenzar Juego");
+		botonEmpezarMapa.setText("Comenzar");
 		botonEmpezarMapa.setBounds(ancho / 2 - 80, alto / 2 + 200, 130, 40);
 		botonEmpezarMapa.addActionListener(new AccionEmpezarMapaJuego(this));
 		this.inicioPanel.setVisible(false);

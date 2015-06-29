@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import algo3.algocraft.controlador.AccionBotonPasarTurno;
+import algo3.algocraft.modelo.juego.Jugador;
 
 @SuppressWarnings("serial")
 public class PanelBotones extends JPanel {
@@ -18,9 +19,10 @@ public class PanelBotones extends JPanel {
 	private JButton botonCrearFabrica;
 	private JButton botonCrearPuertoEstelar;
 	private JButton botonPasarTurno;
+	private JButton botonPosicionarSoldado;
 	private PanelJuego panelJuego;
 
-	public PanelBotones(PanelJuego panelJuego) {
+	public PanelBotones(PanelJuego panelJuego, Jugador jugador) {
 
 		super();
 		this.panelJuego = panelJuego;
@@ -61,6 +63,14 @@ public class PanelBotones extends JPanel {
 		// this.botonCrearPuertoEstelar.addActionListener(new
 		// AccionBotonCrearPuertoEstelar(this);
 
+		this.botonPosicionarSoldado = new JButton();
+		this.botonPosicionarSoldado.setText("Posicionar Soldado" + "("
+				+ jugador.caintidadSoldadosParaPosicionar() + ")");
+		// this.botonPosicionarSoldado.setBounds(ancho/2 - 100, alto/2 -100,
+		// 120, 50);
+		// this.botonPosicionarSoldado.addActionListener(new
+		// AccionBotonPosicionarSoldado(this);
+
 		this.botonPasarTurno = new JButton();
 		this.botonPasarTurno.setText("Pasar Turno");
 		this.botonPasarTurno.addActionListener(new AccionBotonPasarTurno(
@@ -72,9 +82,11 @@ public class PanelBotones extends JPanel {
 		this.add(this.botonCrearFabrica);
 		this.add(this.botonCrearPuertoEstelar);
 		this.add(Box.createHorizontalStrut(20));
+		this.add(this.botonPosicionarSoldado);
+		this.add(Box.createHorizontalStrut(20));
 		this.add(this.botonPasarTurno);
 	}
-
+	
 	public void setTamanio(int ancho, int alto) {
 		super.setSize(ancho, alto);
 		int porcentajeAncho = ancho - ((int) (ancho * 0.7));
