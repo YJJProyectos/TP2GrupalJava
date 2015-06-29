@@ -9,6 +9,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import algo3.algocraft.controlador.AccionAcercaDeCreadores;
 import algo3.algocraft.controlador.AccionEmpezar;
@@ -38,6 +39,7 @@ public class VentanaInicio extends JFrame{
 	private JMenuItem menuCreadores;
 	private JButton botonComenzar,botonSalir,botonEmpezarMapa;
 	private Container contenedor;
+	private JTextField nombreJugador1,nombreJugador2;
 	
 	private Juego juego;
 	
@@ -110,8 +112,16 @@ public class VentanaInicio extends JFrame{
 		botonSalir.addActionListener(new AccionSalir());
 		inicioPanel.add(botonSalir);
 		comenzarPanel = new PanelComenzar();
+		nombreJugador1 = new JTextField();
+		nombreJugador2 = new JTextField();
 		botonEmpezarMapa = new JButton();
 		comenzarPanel.add(botonEmpezarMapa);
+		comenzarPanel.add(nombreJugador1);
+		nombreJugador1.setBounds(ancho/2 - 80, alto/2 -100, 130, 40);
+		nombreJugador1.setVisible(false);
+		comenzarPanel.add(nombreJugador2);
+		nombreJugador2.setBounds(ancho/2 - 80, alto/2 , 130, 40);
+		nombreJugador2.setVisible(false);
 		comenzarPanel.setSize(ancho, alto);
 		contenedor.add(comenzarPanel);
 	}
@@ -122,6 +132,8 @@ public class VentanaInicio extends JFrame{
 		botonComenzar.setBounds(ancho/2 - 100, alto/2 -100, 130, 40);
 		botonSalir.setBounds(ancho/2 -100, alto/2, 130, 40);
 		botonEmpezarMapa.setBounds(ancho/2 - 80, alto/2 + 200, 130, 40);
+		nombreJugador1.setBounds(ancho/2 - 80, alto/2 -100, 130, 40);
+		nombreJugador2.setBounds(ancho/2 - 80, alto/2 , 130, 40);
 		comenzarPanel.setSize(ancho, alto);
 		if ( juegoPanel != null){
 			juegoPanel.setSize(ancho, alto);
@@ -134,21 +146,25 @@ public class VentanaInicio extends JFrame{
 		botonEmpezarMapa.addActionListener(new AccionEmpezarMapaJuego(this));
 		this.inicioPanel.setVisible(false);
 		this.comenzarPanel.setVisible(true);
+		this.nombreJugador1.setText("");
+		this.nombreJugador2.setText("");
+		this.nombreJugador1.setVisible(true);
+		this.nombreJugador2.setVisible(true);
 	}
 	public void muestraPanelJuego() throws NombresInvalidosError {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
-		//jugador1.setNombre("jugador 1");
-		//jugador2.setNombre("jugador 2");
+		jugador1.setNombre(this.nombreJugador1.getText());
+		jugador2.setNombre(this.nombreJugador2.getText());
 		this.juego = new Juego(jugador1, jugador2);
-		this.juegoPanel = new PanelJuego(this.juego);
-		this.add(this.juegoPanel);
-		this.juegoPanel.setSize(ancho, alto);
 		this.inicioPanel.setVisible(false);
 		if ( this.juegoPanel != null){
 			this.juegoPanel.setVisible(false);
 		}
 		this.comenzarPanel.setVisible(false);
+		this.juegoPanel = new PanelJuego(this.juego);
+		this.add(this.juegoPanel);
+		this.juegoPanel.setSize(ancho, alto);
 		this.juegoPanel.setVisible(true);
 	}
 	

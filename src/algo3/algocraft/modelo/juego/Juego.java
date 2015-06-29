@@ -37,7 +37,7 @@ public class Juego {
 		String nombre;
 		for (int i = 0; i < nombres.size(); i++){
 			nombre = nombres.get(i);
-			if ( (nombre == "") || ( nombres.lastIndexOf(nombre) != i) ){
+			if ( (nombre.length() == 0) || ( nombres.lastIndexOf(nombre) != i) ){
 				throw new NombresInvalidosError();
 			}
 		}
