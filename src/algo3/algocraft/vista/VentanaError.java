@@ -9,14 +9,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class VistaVentanaError extends JFrame {
+public class VentanaError extends JFrame {
 
 	ConjuntoDeExcepciones excepciones;
 	JLabel informacion;
 	JPanel panel = new JPanel();
 	JButton botonAceptar = new JButton("Aceptar");
 
-	public VistaVentanaError(Exception error) {
+	public VentanaError(Exception error) {
 		setTitle("Error");
 		setVisible(true);
 		this.setSize(250, 100);

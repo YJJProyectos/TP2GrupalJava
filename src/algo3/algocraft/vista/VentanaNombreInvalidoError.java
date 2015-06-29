@@ -10,13 +10,13 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class VistaVentanaNombreInvalidoError extends JFrame {
+public class VentanaNombreInvalidoError extends JFrame {
 
 	JLabel informacion;
 	JPanel panel = new JPanel();
 	JButton botonAceptar = new JButton("Aceptar");
 
-	public VistaVentanaNombreInvalidoError() {
+	public VentanaNombreInvalidoError() {
 		setTitle("Error");
 		setVisible(true);
 		this.setSize(250, 100);

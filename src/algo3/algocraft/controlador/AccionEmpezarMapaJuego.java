@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import algo3.algocraft.modelo.juego.NombresInvalidosError;
 import algo3.algocraft.modelo.mapa.CoordenadaInvalidaError;
 import algo3.algocraft.vista.VentanaInicio;
-import algo3.algocraft.vista.VistaVentanaNombreInvalidoError;
+import algo3.algocraft.vista.VentanaNombreInvalidoError;
 
 public class AccionEmpezarMapaJuego implements ActionListener {
 
@@ -22,7 +22,7 @@ public class AccionEmpezarMapaJuego implements ActionListener {
 			this.ventanaJFrame.muestraPanelJuego();
 		} catch (NombresInvalidosError | CoordenadaInvalidaError error) {
 			// aca deberia lanzar una ventana diciendo error
-			new VistaVentanaNombreInvalidoError();
+			new VentanaNombreInvalidoError();
 		}
 	}
 

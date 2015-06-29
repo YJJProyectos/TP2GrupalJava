@@ -20,7 +20,6 @@ public class PanelJuego extends JPanel {
 	private PanelBotones panelBotones;
 	private PanelInformacion panelInformacion;
 	private Juego juego;
-	@SuppressWarnings("unused")
 	private Casilla casillaActual;
 	@SuppressWarnings("unused")
 	private Unidad unidadActual;
@@ -36,7 +35,7 @@ public class PanelJuego extends JPanel {
 
 		this.panelSuperior = new JPanel();
 		this.panelSuperior.setLayout(new BorderLayout());
-		this.panelMapa = new PanelMapa(this.juego.getMapa(),this);
+		this.panelMapa = new PanelMapa(this.juego.getMapa(), this);
 		this.panelBotones = new PanelBotones(this, juego.turnoDeJugador());
 		this.panelSuperior.add(panelMapa, BorderLayout.EAST);
 		this.panelSuperior.add(panelBotones, BorderLayout.WEST);
@@ -78,7 +77,11 @@ public class PanelJuego extends JPanel {
 	}
 
 	public void setCasillaActual(Casilla casilla) {
-		this.casillaActual = casilla;	
+		this.casillaActual = casilla;
+	}
+
+	public Casilla getCasillaActual() {
+		return this.casillaActual;
 	}
 
 	public void vistaInformacionEdificio(Unidad edificio) {

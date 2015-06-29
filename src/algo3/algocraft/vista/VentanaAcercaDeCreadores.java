@@ -10,13 +10,13 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class VistaVentanaAcercaDeCreadores extends JFrame {
+public class VentanaAcercaDeCreadores extends JFrame {
 
 	JLabel informacion;
 	JPanel panel = new JPanel();
 	JButton botonAceptar = new JButton("Aceptar");
 
-	public VistaVentanaAcercaDeCreadores() {
+	public VentanaAcercaDeCreadores() {
 		setTitle("Creadores");
 		setVisible(true);
 		this.setSize(300, 150);
