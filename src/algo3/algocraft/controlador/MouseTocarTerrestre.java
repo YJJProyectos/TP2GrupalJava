@@ -11,23 +11,24 @@ import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.mapa.Mapa;
 
 public class MouseTocarTerrestre implements MouseListener {
-	
+
 	private JLabel vistaTerrestre;
 
 	public MouseTocarTerrestre(JLabel vistaTerrestre) {
 		this.vistaTerrestre = vistaTerrestre;
 	}
 
-	public MouseTocarTerrestre(JLabel vistaTerrestre,
-			Coordenada coordenada, Mapa mapa) {
+	public MouseTocarTerrestre(JLabel vistaTerrestre, Coordenada coordenada,
+			Mapa mapa) {
 		this.vistaTerrestre = vistaTerrestre;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		System.out.println("terrestre");
-		if ( this.vistaTerrestre.getBorder() == null){
-			this.vistaTerrestre.setBorder(BorderFactory.createLineBorder(Color.blue));
+		if (this.vistaTerrestre.getBorder() == null) {
+			this.vistaTerrestre.setBorder(BorderFactory
+					.createLineBorder(Color.blue));
 		} else {
 			this.vistaTerrestre.setBorder(null);
 		}

@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 import algo3.algocraft.vista.VentanaInicio;
 
 public class AccionEmpezar implements ActionListener {
-	
+
 	private VentanaInicio ventanaJFrame;
-	
+
 	public AccionEmpezar(VentanaInicio ventanaJFrame) {
 		this.ventanaJFrame = ventanaJFrame;
 	}
@@ -16,7 +16,7 @@ public class AccionEmpezar implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		this.ventanaJFrame.cambiarPanelCargaDatos();
-		//System.out.println("cambio de panel");
+		// System.out.println("cambio de panel");
 	}
 
 }

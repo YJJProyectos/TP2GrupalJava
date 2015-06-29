@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import algo3.algocraft.vista.VentanaInicio;
 
 public class AccionReiniciar implements ActionListener {
-	
+
 	private VentanaInicio ventanaInicio;
 
 	public AccionReiniciar(VentanaInicio ventanaInicio) {

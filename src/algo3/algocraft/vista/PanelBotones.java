@@ -63,7 +63,8 @@ public class PanelBotones extends JPanel {
 
 		this.botonPasarTurno = new JButton();
 		this.botonPasarTurno.setText("Pasar Turno");
-		this.botonPasarTurno.addActionListener(new AccionBotonPasarTurno(this.panelJuego));
+		this.botonPasarTurno.addActionListener(new AccionBotonPasarTurno(
+				this.panelJuego));
 		;
 		this.add(this.botonCrearRefineria);
 		this.add(this.botonCrearCentroMineral);

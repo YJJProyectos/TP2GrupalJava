@@ -13,14 +13,14 @@ import algo3.algocraft.modelo.juego.Jugador;
 
 @SuppressWarnings("serial")
 public class PanelInformacion extends JPanel {
-	
+
 	private JTextField cantidadMineral;
 	private JTextField cantidadGas;
 	private JTextField poblacion;
 	private JTextField nombre;
 	private Juego juego;
-	
-	public PanelInformacion(Juego juego){
+
+	public PanelInformacion(Juego juego) {
 		super();
 		this.juego = juego;
 		JLabel labelMineral = new VistaMinerales();
@@ -54,34 +54,38 @@ public class PanelInformacion extends JPanel {
 		this.add(nombre);
 		this.actualizarDatos();
 	}
-	
+
 	public void actualizarDatos() {
 		Jugador jugadorActual = this.juego.turnoDeJugador();
-		String numeroMineral = Integer.toString(jugadorActual.cantidadMineral());
+		String numeroMineral = Integer
+				.toString(jugadorActual.cantidadMineral());
 		String numeroGas = Integer.toString(jugadorActual.cantidadGas());
-		String poblacionOcupada = Integer.toString(jugadorActual.cantidadPoblacionOcupada());
-		String poblacionMax = Integer.toString(jugadorActual.cantidadPoblacionPosible());
+		String poblacionOcupada = Integer.toString(jugadorActual
+				.cantidadPoblacionOcupada());
+		String poblacionMax = Integer.toString(jugadorActual
+				.cantidadPoblacionPosible());
 		String nombreJugador = jugadorActual.getNombre();
 		this.cantidadMineral.setText(numeroMineral);
 		this.cantidadGas.setText(numeroGas);
-		this.poblacion.setText(poblacionOcupada + "/" + poblacionMax); 
+		this.poblacion.setText(poblacionOcupada + "/" + poblacionMax);
 		this.nombre.setText("Jugador: " + nombreJugador);
 	}
 
 	@Override
-	public void paintComponent(Graphics g){
+	public void paintComponent(Graphics g) {
 		Dimension tam = this.getSize();
 		String url = "/algo3/algocraft/imagenes/fondoInformacion.jpg";
 		ImageIcon imagenAdentro = new ImageIcon(getClass().getResource(url));
 		ImageIcon imagen = new ImageIcon(imagenAdentro.getImage());
-		g.drawImage(imagen.getImage(), 0, 0, (int)tam.getWidth(), (int)tam.getHeight(), null);
+		g.drawImage(imagen.getImage(), 0, 0, (int) tam.getWidth(),
+				(int) tam.getHeight(), null);
 		this.setOpaque(false);
 	}
-	
-	public void setTamanio(int ancho , int alto){
+
+	public void setTamanio(int ancho, int alto) {
 		super.setSize(ancho, alto);
-		int porcentajeAncho = ancho - ( (int) ( ancho * 0.7 ) );
-		int porcentajeAlto = alto - ( (int) ( alto * 0.6));
-		this.setPreferredSize(new Dimension(porcentajeAncho , porcentajeAlto));
+		int porcentajeAncho = ancho - ((int) (ancho * 0.7));
+		int porcentajeAlto = alto - ((int) (alto * 0.6));
+		this.setPreferredSize(new Dimension(porcentajeAncho, porcentajeAlto));
 	}
 }

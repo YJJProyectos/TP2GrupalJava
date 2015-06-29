@@ -20,30 +20,30 @@ import algo3.algocraft.controlador.AccionResolucion;
 import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.NombresInvalidosError;
+import algo3.algocraft.modelo.mapa.CoordenadaInvalidaError;
 
 import javax.swing.JButton;
 
 @SuppressWarnings("serial")
-public class VentanaInicio extends JFrame{
-	
-	
+public class VentanaInicio extends JFrame {
+
 	private int ancho = 900;
 	private int alto = 700;
-	private JPanel inicioPanel,comenzarPanel,juegoPanel;
+	private JPanel inicioPanel, comenzarPanel, juegoPanel;
 	private JMenu menuArchivo;
 	private JMenu menuResoluciones;
 	private JMenu menuAcercaDe;
 	private JMenuItem menuComenzarJuego;
-	private JMenuItem menuItemSalir,menuItem1024,menuItem800,menuItemDefecto,
-	                  menuItemResMaxima;
+	private JMenuItem menuItemSalir, menuItem1024, menuItem800,
+			menuItemDefecto, menuItemResMaxima;
 	private JMenuItem menuCreadores;
-	private JButton botonComenzar,botonSalir,botonEmpezarMapa;
+	private JButton botonComenzar, botonSalir, botonEmpezarMapa;
 	private Container contenedor;
-	private JTextField nombreJugador1,nombreJugador2;
-	
+	private JTextField nombreJugador1, nombreJugador2;
+
 	private Juego juego;
-	
-	public VentanaInicio(){
+
+	public VentanaInicio() {
 		this.setTitle("AlgoCraft");
 		Dimension dimension = this.getToolkit().getScreenSize();
 		ancho = (int) dimension.getWidth();
@@ -54,61 +54,62 @@ public class VentanaInicio extends JFrame{
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		String url = "/algo3/algocraft/imagenes/terranicono.jpg";
-		this.setIconImage((new ImageIcon(getClass().getResource(url))).getImage());
+		this.setIconImage((new ImageIcon(getClass().getResource(url)))
+				.getImage());
 		contenedor = this.getContentPane();
 		inicioPanel = new PanelInicial();
 		inicioPanel.setSize(ancho, alto);
 		contenedor.add(inicioPanel);
-		
+
 		JMenuBar barraMenu = new JMenuBar();
 		setJMenuBar(barraMenu);
-		
+
 		menuArchivo = new JMenu("Archivo");
 		barraMenu.add(menuArchivo);
-		
+
 		menuComenzarJuego = new JMenuItem("Reiniciar Juego");
 		menuComenzarJuego.addActionListener(new AccionReiniciar(this));
 		menuArchivo.add(menuComenzarJuego);
-		
+
 		menuItemSalir = new JMenuItem("Salir");
 		menuItemSalir.addActionListener(new AccionSalir());
 		menuArchivo.add(menuItemSalir);
-		
+
 		menuResoluciones = new JMenu("Resoluciones");
 		barraMenu.add(menuResoluciones);
-		
+
 		menuItemResMaxima = new JMenuItem("Pantalla completa");
 		menuItemResMaxima.addActionListener(new AccionResolucion(this,
-				(int)dimension.getWidth(),(int)dimension.getHeight()));
+				(int) dimension.getWidth(), (int) dimension.getHeight()));
 		menuResoluciones.add(menuItemResMaxima);
-		
+
 		menuItem1024 = new JMenuItem("1024x768");
 		menuItem1024.addActionListener(new AccionResolucion(this, 1024, 768));
 		menuResoluciones.add(menuItem1024);
-		
+
 		menuItem800 = new JMenuItem("800x600");
 		menuItem800.addActionListener(new AccionResolucion(this, 800, 600));
 		menuResoluciones.add(menuItem800);
-		
+
 		menuItemDefecto = new JMenuItem("Por defecto");
 		menuItemDefecto.addActionListener(new AccionResolucion(this, 900, 700));
 		menuResoluciones.add(menuItemDefecto);
-		
+
 		menuAcercaDe = new JMenu("Acerca De");
 		barraMenu.add(menuAcercaDe);
-		
+
 		menuCreadores = new JMenuItem("Creadores");
 		menuCreadores.addActionListener(new AccionAcercaDeCreadores());
 		menuAcercaDe.add(menuCreadores);
-		
+
 		botonComenzar = new JButton();
 		botonComenzar.setText("Juego Nuevo");
-		botonComenzar.setBounds(ancho/2 - 100, alto/2 -100, 130, 40);
+		botonComenzar.setBounds(ancho / 2 - 100, alto / 2 - 100, 130, 40);
 		botonComenzar.addActionListener(new AccionEmpezar(this));
 		inicioPanel.add(botonComenzar);
 		botonSalir = new JButton();
 		botonSalir.setText("Salir");
-		botonSalir.setBounds(ancho/2 -100, alto/2, 130, 40);
+		botonSalir.setBounds(ancho / 2 - 100, alto / 2, 130, 40);
 		botonSalir.addActionListener(new AccionSalir());
 		inicioPanel.add(botonSalir);
 		comenzarPanel = new PanelComenzar();
@@ -117,32 +118,34 @@ public class VentanaInicio extends JFrame{
 		botonEmpezarMapa = new JButton();
 		comenzarPanel.add(botonEmpezarMapa);
 		comenzarPanel.add(nombreJugador1);
-		nombreJugador1.setBounds(ancho/2 - 80, alto/2 -100, 130, 40);
+		nombreJugador1.setBounds(ancho / 2 - 80, alto / 2 - 100, 130, 40);
 		nombreJugador1.setVisible(false);
 		comenzarPanel.add(nombreJugador2);
-		nombreJugador2.setBounds(ancho/2 - 80, alto/2 , 130, 40);
+		nombreJugador2.setBounds(ancho / 2 - 80, alto / 2, 130, 40);
 		nombreJugador2.setVisible(false);
 		comenzarPanel.setSize(ancho, alto);
 		contenedor.add(comenzarPanel);
 	}
+
 	public void setDimension(int ancho, int alto) {
 		this.ancho = ancho;
 		this.alto = alto;
 		inicioPanel.setSize(ancho, alto);
-		botonComenzar.setBounds(ancho/2 - 100, alto/2 -100, 130, 40);
-		botonSalir.setBounds(ancho/2 -100, alto/2, 130, 40);
-		botonEmpezarMapa.setBounds(ancho/2 - 80, alto/2 + 200, 130, 40);
-		nombreJugador1.setBounds(ancho/2 - 80, alto/2 -100, 130, 40);
-		nombreJugador2.setBounds(ancho/2 - 80, alto/2 , 130, 40);
+		botonComenzar.setBounds(ancho / 2 - 100, alto / 2 - 100, 130, 40);
+		botonSalir.setBounds(ancho / 2 - 100, alto / 2, 130, 40);
+		botonEmpezarMapa.setBounds(ancho / 2 - 80, alto / 2 + 200, 130, 40);
+		nombreJugador1.setBounds(ancho / 2 - 80, alto / 2 - 100, 130, 40);
+		nombreJugador2.setBounds(ancho / 2 - 80, alto / 2, 130, 40);
 		comenzarPanel.setSize(ancho, alto);
-		if ( juegoPanel != null){
+		if (juegoPanel != null) {
 			juegoPanel.setSize(ancho, alto);
 		}
 		this.setSize(ancho, alto);
 	}
+
 	public void cambiarPanelCargaDatos() {
 		botonEmpezarMapa.setText("Comenzar Juego");
-		botonEmpezarMapa.setBounds(ancho/2 - 80, alto/2 +200, 130, 40);
+		botonEmpezarMapa.setBounds(ancho / 2 - 80, alto / 2 + 200, 130, 40);
 		botonEmpezarMapa.addActionListener(new AccionEmpezarMapaJuego(this));
 		this.inicioPanel.setVisible(false);
 		this.comenzarPanel.setVisible(true);
@@ -151,14 +154,16 @@ public class VentanaInicio extends JFrame{
 		this.nombreJugador1.setVisible(true);
 		this.nombreJugador2.setVisible(true);
 	}
-	public void muestraPanelJuego() throws NombresInvalidosError {
+
+	public void muestraPanelJuego() throws NombresInvalidosError,
+			CoordenadaInvalidaError {
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		jugador1.setNombre(this.nombreJugador1.getText());
 		jugador2.setNombre(this.nombreJugador2.getText());
 		this.juego = new Juego(jugador1, jugador2);
 		this.inicioPanel.setVisible(false);
-		if ( this.juegoPanel != null){
+		if (this.juegoPanel != null) {
 			this.juegoPanel.setVisible(false);
 		}
 		this.comenzarPanel.setVisible(false);
@@ -167,10 +172,10 @@ public class VentanaInicio extends JFrame{
 		this.juegoPanel.setSize(ancho, alto);
 		this.juegoPanel.setVisible(true);
 	}
-	
-	public void reiniciar(){
+
+	public void reiniciar() {
 		this.comenzarPanel.setVisible(false);
-		if (this.juegoPanel != null){
+		if (this.juegoPanel != null) {
 			this.juegoPanel.setVisible(false);
 		}
 		this.inicioPanel.setVisible(true);

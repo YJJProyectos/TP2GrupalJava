@@ -10,24 +10,18 @@ import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.mapa.Mapa;
 
 @SuppressWarnings("serial")
-public class VistaTerrestre extends JLabel{
-	
+public class VistaTerrestre extends JLabel {
+
 	protected Coordenada coordenada;
 	protected Mapa mapa;
-	
-	public VistaTerrestre(Coordenada coordenada, Mapa mapa){
-		super();
-		this.coordenada = coordenada;
-		this.mapa = mapa;
-	}
-	
-	public void setImagen(String url){
+
+	public void setImagen(String url) {
 		ImageIcon imagenAdentro = new ImageIcon(getClass().getResource(url));
 		Image imagen = imagenAdentro.getImage();
-		ImageIcon imagenEscalada = new ImageIcon(imagen.getScaledInstance(20, 20, Image.SCALE_SMOOTH));
-		this.setSize(20,20);
+		ImageIcon imagenEscalada = new ImageIcon(imagen.getScaledInstance(20,
+				20, Image.SCALE_SMOOTH));
+		this.setSize(20, 20);
 		this.setIcon(imagenEscalada);
-		this.addMouseListener(new MouseTocarTerrestre(this, coordenada, mapa));
+		this.addMouseListener(new MouseTocarTerrestre(this));
 	}
-
 }

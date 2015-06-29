@@ -9,14 +9,15 @@ import algo3.algocraft.controlador.MouseTocarAereo;
 
 @SuppressWarnings("serial")
 public class VistaNave extends JLabel {
-	
-	public VistaNave(){
+
+	public VistaNave() {
 		super();
 		String url = "/algo3/algocraft/imagenes/nave.png";
 		ImageIcon imagenAdentro = new ImageIcon(getClass().getResource(url));
 		Image imagen = imagenAdentro.getImage();
-		ImageIcon imagenEscalada = new ImageIcon(imagen.getScaledInstance(15, 15, Image.SCALE_SMOOTH));
-		this.setSize(15,15);
+		ImageIcon imagenEscalada = new ImageIcon(imagen.getScaledInstance(15,
+				15, Image.SCALE_SMOOTH));
+		this.setSize(15, 15);
 		this.setIcon(imagenEscalada);
 		this.addMouseListener(new MouseTocarAereo(this));
 	}

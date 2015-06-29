@@ -8,50 +8,37 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import algo3.algocraft.modelo.juego.Juego;
-import algo3.algocraft.modelo.mapa.Coordenada;
-import algo3.algocraft.modelo.mapa.Mapa;
+import algo3.algocraft.modelo.mapa.CoordenadaInvalidaError;
 
 @SuppressWarnings("serial")
 public class PanelJuego extends JPanel {
 
-	private PanelInformacion panelInformacion;
 	private JPanel panelSuperior;
 	private PanelMapa panelMapa;
 	private PanelBotones panelBotones;
+	private PanelInformacion panelInformacion;
 	private Juego juego;
-	private Mapa mapa;
 
-	public PanelJuego(int fila, int columna) {
-		super();
-		this.setPaneles(fila, columna);
-	}
-
-	public PanelJuego(Juego juego) {
+	public PanelJuego(Juego juego) throws CoordenadaInvalidaError {
 		super();
 		this.juego = juego;
-		this.mapa = this.juego.getMapa();
-		this.setPaneles(mapa.getFilas(), mapa.getColumnas());
+		this.setPaneles();
 	}
 
-	private void setPaneles(int fila, int columna) {
+	private void setPaneles() throws CoordenadaInvalidaError {
 		this.setLayout(new BorderLayout());
-		this.panelInformacion = new PanelInformacion(this.juego);
+
 		this.panelSuperior = new JPanel();
 		this.panelSuperior.setLayout(new BorderLayout());
-		this.panelMapa = new PanelMapa(fila, columna);
+		this.panelMapa = new PanelMapa(this.juego.getMapa());
 		this.panelBotones = new PanelBotones(this);
 		this.panelSuperior.add(panelMapa, BorderLayout.EAST);
 		this.panelSuperior.add(panelBotones, BorderLayout.WEST);
 		this.add(panelSuperior, BorderLayout.NORTH);
+
+		this.panelInformacion = new PanelInformacion(this.juego);
 		this.add(panelInformacion, BorderLayout.SOUTH);
 
-		for (int x = 1; x <= fila; x++) {
-
-			for (int y = 1; y <= columna; y++) {
-				panelMapa.add(new VistaTierra(new Coordenada(fila, columna), this.mapa));
-			}
-
-		}
 	}
 
 	@Override
@@ -59,7 +46,7 @@ public class PanelJuego extends JPanel {
 		super.setSize(ancho, alto);
 		this.panelInformacion.setTamanio(ancho, alto);
 		this.panelMapa.setTamanio(ancho, alto);
-		//this.panelSuperior.setSize(ancho, alto);
+		// this.panelSuperior.setSize(ancho, alto);
 		this.panelBotones.setTamanio(ancho, alto);
 	}
 
@@ -73,12 +60,13 @@ public class PanelJuego extends JPanel {
 				(int) tam.getHeight(), null);
 		this.setOpaque(false);
 	}
-	
-	public void actualizar(){
+
+	public void actualizar() {
 		this.panelInformacion.actualizarDatos();
+		this.panelMapa.actualizarDatos();
 	}
-	
-	public void pasarTurno(){
+
+	public void pasarTurno() {
 		this.juego.pasarTurno();
 		this.actualizar();
 	}

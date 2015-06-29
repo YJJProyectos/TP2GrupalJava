@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import algo3.algocraft.vista.PanelJuego;
 
 public class AccionBotonPasarTurno implements ActionListener {
-	
+
 	private PanelJuego panelJuego;
 
 	public AccionBotonPasarTurno(PanelJuego panelJuego) {

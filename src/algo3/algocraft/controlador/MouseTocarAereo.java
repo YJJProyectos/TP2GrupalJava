@@ -8,7 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
 public class MouseTocarAereo implements MouseListener {
-	
+
 	private JLabel vistaAerea;
 
 	public MouseTocarAereo(JLabel vistaNave) {
@@ -18,8 +18,9 @@ public class MouseTocarAereo implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		System.out.println("aereo");
-		if ( this.vistaAerea.getBorder() == null){
-			this.vistaAerea.setBorder(BorderFactory.createLineBorder(Color.green));
+		if (this.vistaAerea.getBorder() == null) {
+			this.vistaAerea.setBorder(BorderFactory
+					.createLineBorder(Color.green));
 		} else {
 			this.vistaAerea.setBorder(null);
 		}
