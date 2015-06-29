@@ -24,6 +24,7 @@ public class MouseTocarEdificio implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
+		System.out.println("terrestre");
 		this.panelJuego.setCasillaActual(this.casilla);
 		this.panelJuego.sacarBordes();
 		this.vista.setBorder(BorderFactory

@@ -5,25 +5,32 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
+
+import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.vista.PanelJuego;
+import algo3.algocraft.vista.vistas.Vistas;
 
 public class MouseTocarAereo implements MouseListener {
 
-	private JLabel vistaAerea;
+	private Casilla casilla;
+	private PanelJuego panelJuego;
+	private Vistas vista;
 
-	public MouseTocarAereo(JLabel vistaNave) {
-		this.vistaAerea = vistaNave;
+	public MouseTocarAereo(Casilla casilla, PanelJuego panelJuego, Vistas vista) {
+		this.casilla = casilla;
+		this.panelJuego = panelJuego;
+		this.vista = vista;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		System.out.println("aereo");
-		if (this.vistaAerea.getBorder() == null) {
-			this.vistaAerea.setBorder(BorderFactory
-					.createLineBorder(Color.green));
-		} else {
-			this.vistaAerea.setBorder(null);
-		}
+		this.panelJuego.setCasillaActual(this.casilla);
+		this.panelJuego.sacarBordes();
+		this.vista.setBorder(BorderFactory
+				.createLineBorder(Color.green));
+		this.panelJuego.setSinInformacionAdicional();
+		// aca deberia pasar unidad al panel juego y setear la info
 	}
 
 	@Override

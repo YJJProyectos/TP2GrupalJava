@@ -15,6 +15,7 @@ import algo3.algocraft.controlador.MouseTocarCasillaVacia;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.Espectro;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 
@@ -59,19 +60,29 @@ public class VistaCasilla extends JPanel implements Observer{
 	}
 
 	public void actualizarDatos() {
-
+		
+		if ( labelTerrestre != null){
+			this.remove(labelTerrestre);
+		}
+		if ( labelAereo != null){
+			this.remove(labelAereo);
+		}
 		if ( this.casilla.estaOcupadoElRecurso() ){
 			labelTerrestre = 
 				this.vistas.getVista(this.casilla.getRecurso().getClass());
-			this.remove(labelTerrestre);
-			this.add(labelTerrestre,BorderLayout.SOUTH);
+			this.add(labelTerrestre,BorderLayout.WEST);
 		}
 		if ( this.casilla.estaOcupadaLaTierra() ){
 			labelTerrestre = 
 				this.vistas.getVista(this.casilla.getOcupanteTerrestre().getClass());
-			this.remove(labelTerrestre);
-			this.add(labelTerrestre,BorderLayout.SOUTH);
+			if ( labelTerrestre != null){
+				this.remove(labelTerrestre);
+			}
+			this.add(labelTerrestre,BorderLayout.WEST);
 		}
+		//agrego espectro para probar
+		labelAereo = this.vistas.getVista(Espectro.class);
+		this.add(labelAereo,BorderLayout.NORTH);
 	}
 
 	public void paintComponent(Graphics grafico) {

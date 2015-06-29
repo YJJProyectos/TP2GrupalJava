@@ -14,8 +14,10 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Espectro;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.TransporteTerran;
 import algo3.algocraft.vista.vistas.Vistas;
 import algo3.algocraft.vista.vistas.aerea.VistaEspectro;
+import algo3.algocraft.vista.vistas.aerea.VistaTransporteTerran;
 import algo3.algocraft.vista.vistas.terrestre.edificios.VistaBarraca;
 import algo3.algocraft.vista.vistas.terrestre.edificios.VistaCentroDeMineral;
 import algo3.algocraft.vista.vistas.terrestre.edificios.VistaDeposito;
@@ -45,6 +47,8 @@ public class ConjuntoDeVistas {
 		this.vistas.put(PuertoEstelar.class, new VistaPuertoEstelar(casilla,panelJuego));
 		this.vistas.put(Barraca.class, new VistaBarraca(casilla,panelJuego));
 		this.vistas.put(Fabrica.class, new VistaFabrica(casilla,panelJuego)); 
+		this.vistas.put(TransporteTerran.class, new VistaTransporteTerran
+				(casilla, panelJuego));
 	}
 	
 	public Vistas getVista(Class clase){
