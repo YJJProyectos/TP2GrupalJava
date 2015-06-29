@@ -73,11 +73,11 @@ public class VistaCasilla extends JPanel implements Observer{
 			this.add(labelTerrestre,BorderLayout.WEST);
 		}
 		if ( this.casilla.estaOcupadaLaTierra() ){
-			labelTerrestre = 
-				this.vistas.getVista(this.casilla.getOcupanteTerrestre().getClass());
 			if ( labelTerrestre != null){
 				this.remove(labelTerrestre);
 			}
+			labelTerrestre = 
+				this.vistas.getVista(this.casilla.getOcupanteTerrestre().getClass());
 			this.add(labelTerrestre,BorderLayout.WEST);
 		}
 		//agrego espectro para probar

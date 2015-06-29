@@ -29,6 +29,7 @@ public class MouseTocarEdificio implements MouseListener {
 		this.panelJuego.sacarBordes();
 		this.vista.setBorder(BorderFactory
 				.createLineBorder(Color.blue));
+		this.panelJuego.setSinInformacionAdicional();
 		this.panelJuego.vistaInformacionEdificio(this.casilla.getOcupanteTerrestre());
 	}
 

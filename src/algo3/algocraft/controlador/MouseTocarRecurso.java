@@ -25,12 +25,13 @@ public class MouseTocarRecurso implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		System.out.println("terrestre");
+		System.out.println("recurso");
 		this.panelJuego.setCasillaActual(this.casilla);
 		this.panelJuego.sacarBordes();
 		this.vista.setBorder(BorderFactory
 				.createLineBorder(Color.orange));
 		this.panelJuego.setSinInformacionAdicional();
+		this.panelJuego.setRecurso(this.casilla.getRecurso());
 
 	}
 

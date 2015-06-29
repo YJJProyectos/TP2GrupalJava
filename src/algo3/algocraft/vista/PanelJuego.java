@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CoordenadaInvalidaError;
+import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.unidades.Unidad;
 
 @SuppressWarnings("serial")
@@ -23,6 +24,8 @@ public class PanelJuego extends JPanel {
 	private Casilla casillaActual;
 	@SuppressWarnings("unused")
 	private Unidad unidadActual;
+	@SuppressWarnings("unused")
+	private Recurso recursoActual;
 
 	public PanelJuego(Juego juego) throws CoordenadaInvalidaError {
 		super();
@@ -94,5 +97,9 @@ public class PanelJuego extends JPanel {
 
 	public void sacarBordes() {
 		this.panelMapa.sacarBordes();
+	}
+
+	public void setRecurso(Recurso recurso) {
+		this.recursoActual = recurso;
 	}
 }
