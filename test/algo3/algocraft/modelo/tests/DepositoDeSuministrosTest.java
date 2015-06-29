@@ -10,7 +10,6 @@ import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
-import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
@@ -85,7 +84,7 @@ public class DepositoDeSuministrosTest {
 
 	@Test
 	public void siUnMarineAtacaUnDepositoEnConstruccionLoDestruye()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
 			CasillaOcupadaError, JugadorIncorrectoError,
 			PoblacionLimiteAlcanzadaError {
@@ -108,7 +107,7 @@ public class DepositoDeSuministrosTest {
 
 	@Test
 	public void siUnMarineAtacaUnDepositoYaConstruidoNoLoDestruye()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
 			CasillaOcupadaError, JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
 
@@ -133,8 +132,7 @@ public class DepositoDeSuministrosTest {
 
 	@Test
 	public void elDepositoDeSuministrosConstruidoDeberiaRecibirDanio1()
-			throws YaEstaDestruidoError, RecursosInsuficientesError,
-			CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
@@ -152,8 +150,7 @@ public class DepositoDeSuministrosTest {
 
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaDepositoDeSuministrosConstruidoEs499()
-			throws YaEstaDestruidoError, RecursosInsuficientesError,
-			CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
@@ -240,8 +237,7 @@ public class DepositoDeSuministrosTest {
 
 	@Test
 	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
-			throws YaEstaDestruidoError, RecursosInsuficientesError,
-			CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
 		Casilla casilla = new Casilla(new Coordenada(1, 1));

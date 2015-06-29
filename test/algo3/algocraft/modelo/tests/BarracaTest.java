@@ -11,7 +11,6 @@ import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
-import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
@@ -81,7 +80,7 @@ public class BarracaTest {
 
 	@Test
 	public void siUnMarineAtacaUnaBarracaEnConstruccionLaDestruye()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
 			CasillaOcupadaError, JugadorIncorrectoError,
 			PoblacionLimiteAlcanzadaError {
@@ -104,7 +103,7 @@ public class BarracaTest {
 
 	@Test
 	public void siUnMarineAtacaUnaBarracaYaConstruidaNoLaDestruye()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
 			CasillaOcupadaError, JugadorIncorrectoError,
 			PoblacionLimiteAlcanzadaError {
@@ -130,8 +129,7 @@ public class BarracaTest {
 
 	@Test
 	public void laBarracaConstruidaDeberiaRecibirDanio1()
-			throws YaEstaDestruidoError, RecursosInsuficientesError,
-			CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
@@ -148,8 +146,7 @@ public class BarracaTest {
 
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaBarracaConstruidaEs999()
-			throws YaEstaDestruidoError, RecursosInsuficientesError,
-			CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
 		Casilla casilla = new Casilla(new Coordenada(1, 1));
@@ -230,8 +227,7 @@ public class BarracaTest {
 
 	@Test
 	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
-			throws YaEstaDestruidoError, RecursosInsuficientesError,
-			CasillaOcupadaError {
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);

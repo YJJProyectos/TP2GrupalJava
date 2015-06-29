@@ -16,7 +16,6 @@ import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.Unidad;
-import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.BarracaNoConstruidaError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
@@ -35,7 +34,7 @@ public class IntegracionTest {
 			CasillaOcupadaError, CoordenadaInvalidaError,
 			RecolectorInvalidoError, PerteneceAOtroJugadorError,
 			BarracaNoConstruidaError, NoHaySoldadosParaPosicionarError,
-			JugadorIncorrectoError, YaEstaDestruidoError,
+			JugadorIncorrectoError, 
 			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
 			PoblacionLimiteAlcanzadaError, NombresInvalidosError {
 		int esquina1 = 1;

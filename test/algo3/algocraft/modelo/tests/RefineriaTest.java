@@ -11,7 +11,6 @@ import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
-import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
@@ -103,7 +102,7 @@ public class RefineriaTest {
 
 	@Test
 	public void siUnMarineAtacaUnaRefineriaEnConstruccionLoDestruye()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
 			CasillaOcupadaError, RecolectorInvalidoError,
 			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
@@ -127,7 +126,7 @@ public class RefineriaTest {
 
 	@Test
 	public void siUnMarineAtacaUnaRefineriaYaConstruidaNoLaDestruye()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
 			CasillaOcupadaError, RecolectorInvalidoError,
 			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
@@ -154,7 +153,7 @@ public class RefineriaTest {
 
 	@Test
 	public void LaRefineriaConstruidaDeberiaRecibirDanio1()
-			throws YaEstaDestruidoError, RecursosInsuficientesError,
+			throws RecursosInsuficientesError,
 			RecolectorInvalidoError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
@@ -175,7 +174,7 @@ public class RefineriaTest {
 
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaRefineriaConstruidaEs749()
-			throws YaEstaDestruidoError, RecursosInsuficientesError,
+			throws RecursosInsuficientesError,
 			RecolectorInvalidoError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
@@ -270,7 +269,7 @@ public class RefineriaTest {
 
 	@Test
 	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
-			throws YaEstaDestruidoError, RecursosInsuficientesError,
+			throws RecursosInsuficientesError,
 			RecolectorInvalidoError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();

@@ -11,7 +11,6 @@ import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.mapa.Mapa;
 import algo3.algocraft.modelo.unidades.Unidad;
-import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
@@ -44,7 +43,7 @@ public class MarineTest {
 	}
 
 	@Test
-	public void deberiaEstarDetruidoElMarine() throws YaEstaDestruidoError,
+	public void deberiaEstarDetruidoElMarine() throws 
 			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
@@ -56,7 +55,7 @@ public class MarineTest {
 	}
 
 	@Test
-	public void deberiaNoEstarDetruidoElMarine() throws YaEstaDestruidoError,
+	public void deberiaNoEstarDetruidoElMarine() throws 
 			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
@@ -68,7 +67,7 @@ public class MarineTest {
 	}
 
 	@Test
-	public void deberiaRecibirDanio1() throws YaEstaDestruidoError,
+	public void deberiaRecibirDanio1() throws 
 			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
@@ -82,7 +81,7 @@ public class MarineTest {
 	}
 
 	@Test
-	public void deberiaQuedarle39DeVida() throws YaEstaDestruidoError,
+	public void deberiaQuedarle39DeVida() throws 
 			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
@@ -139,7 +138,7 @@ public class MarineTest {
 
 	@Test(expected = JugadorIncorrectoError.class)
 	public void deberiaLanzarUnaExcepcionAlAtacarUnEnemigoPorqueNoRecibeComoParametroAlJugadorPropio()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
 			PoblacionLimiteAlcanzadaError {
@@ -157,7 +156,7 @@ public class MarineTest {
 
 	@Test
 	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
-			throws YaEstaDestruidoError, RecursosInsuficientesError,
+			throws RecursosInsuficientesError,
 			PoblacionLimiteAlcanzadaError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
@@ -172,7 +171,7 @@ public class MarineTest {
 
 	@Test(expected = PerteneceAlMismoJugadorError.class)
 	public void unMarineDeberiaNoDaniarAUnGoliatPorPertenecerAlMismoJugador()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
 			PoblacionLimiteAlcanzadaError {
@@ -193,7 +192,7 @@ public class MarineTest {
 
 	@Test
 	public void unMarineDeberiaNoDaniarAUnGoliatPorEstarFueraDelRango()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
 			PoblacionLimiteAlcanzadaError {
@@ -217,7 +216,7 @@ public class MarineTest {
 
 	@Test
 	public void unMarineDeberiaDaniarAUnGoliatPorEstarElElRango()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
 			PoblacionLimiteAlcanzadaError {
@@ -290,7 +289,7 @@ public class MarineTest {
 
 	@Test(expected = NoPuedeAtacarMultiplesVecesError.class)
 	public void unMarineNoDeberiaPoderAtacarMasDeUnaVez()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
 			PoblacionLimiteAlcanzadaError {
@@ -312,7 +311,7 @@ public class MarineTest {
 
 	@Test
 	public void unMarinePuedeVolverAAtacarLuegoDePasarUnTurno()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
 			PoblacionLimiteAlcanzadaError {

@@ -1,13 +1,11 @@
 package algo3.algocraft.modelo.unidades.unidadesMoviles;
 
 import algo3.algocraft.modelo.unidades.Unidad;
-import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoAccion;
 
 public class EstadoNoAtaco extends EstadoDeAtaque {
 
-	public void atacar(UnidadSoldado atacante, Unidad enemigo)
-			throws YaEstaDestruidoError {
+	public void atacar(UnidadSoldado atacante, Unidad enemigo){
 		PlanoAccion plano = enemigo.getPlano();
 		int distanciaRequerida = atacante.posicion().distanciaA(
 				enemigo.posicion());

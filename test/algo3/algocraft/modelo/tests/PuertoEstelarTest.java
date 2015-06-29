@@ -11,7 +11,6 @@ import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
-import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.BarracaNoConstruidaError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
@@ -254,7 +253,7 @@ public class PuertoEstelarTest {
 
 	@Test
 	public void siUnMarineAtacaUnPuertoEstelarEnConstruccionLoDestruye()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, CasillaOcupadaError,
 			FabricaNoConstruidaError, JugadorIncorrectoError,
@@ -292,7 +291,7 @@ public class PuertoEstelarTest {
 
 	@Test
 	public void siUnMarineAtacaUnPuertoEstelaraYaConstruidoNoLoDestruye()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, CasillaOcupadaError,
 			FabricaNoConstruidaError, JugadorIncorrectoError,
@@ -333,7 +332,7 @@ public class PuertoEstelarTest {
 
 	@Test
 	public void elPuertoEstelarConstruidaDeberiaRecibirDanio1()
-			throws YaEstaDestruidoError, PerteneceAOtroJugadorError,
+			throws PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, FabricaNoConstruidaError,
 			CasillaOcupadaError, BarracaNoConstruidaError {
 
@@ -369,7 +368,7 @@ public class PuertoEstelarTest {
 
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaAUnPuertoEstelarConstruid0Es1299()
-			throws YaEstaDestruidoError, PerteneceAOtroJugadorError,
+			throws PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, FabricaNoConstruidaError,
 			CasillaOcupadaError, BarracaNoConstruidaError {
 
@@ -554,7 +553,7 @@ public class PuertoEstelarTest {
 
 	@Test
 	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
-			throws YaEstaDestruidoError, PerteneceAOtroJugadorError,
+			throws PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, FabricaNoConstruidaError,
 			CasillaOcupadaError, BarracaNoConstruidaError {
 
@@ -716,7 +715,7 @@ public class PuertoEstelarTest {
 
 	@Test
 	public void deberiaNoPoderEntrenarUnEspectroPorqueLaFabricaEstaDestruida()
-			throws PerteneceAOtroJugadorError, YaEstaDestruidoError,
+			throws PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, FabricaNoConstruidaError,
 			CasillaOcupadaError, JugadorIncorrectoError,
 			PoblacionLimiteAlcanzadaError, BarracaNoConstruidaError {
@@ -751,7 +750,7 @@ public class PuertoEstelarTest {
 
 	@Test
 	public void deberiaNoPoderEntrenarUnaNavePorqueLaPuertoEstelarEstaDestruida()
-			throws PerteneceAOtroJugadorError, YaEstaDestruidoError,
+			throws PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, FabricaNoConstruidaError,
 			CasillaOcupadaError, JugadorIncorrectoError,
 			PoblacionLimiteAlcanzadaError, BarracaNoConstruidaError {

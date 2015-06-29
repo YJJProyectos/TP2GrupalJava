@@ -10,7 +10,6 @@ import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.unidades.Unidad;
-import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Espectro;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
@@ -44,7 +43,7 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaEstarDetruido() throws YaEstaDestruidoError,
+	public void deberiaEstarDetruido() throws 
 			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
@@ -56,7 +55,7 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaNoEstarDetruido() throws YaEstaDestruidoError,
+	public void deberiaNoEstarDetruido() throws 
 			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
@@ -68,7 +67,7 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaRecibirDanio() throws YaEstaDestruidoError,
+	public void deberiaRecibirDanio() throws 
 			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
@@ -82,7 +81,7 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaQuedarle119DeVida() throws YaEstaDestruidoError,
+	public void deberiaQuedarle119DeVida() throws 
 			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
@@ -154,7 +153,7 @@ public class EspectroTest {
 
 	@Test(expected = JugadorIncorrectoError.class)
 	public void deberiaLanzarUnaExcepcionAlAtacarUnEnemigoPorqueNoRecibeComoParametroAlJugadorPropio()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
 			PoblacionLimiteAlcanzadaError {
@@ -171,7 +170,7 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaNoDaniarFueraDeRango() throws YaEstaDestruidoError,
+	public void deberiaNoDaniarFueraDeRango() throws 
 			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
 			CasillaOcupadaError, JugadorIncorrectoError,
 			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
@@ -194,7 +193,7 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaDaniarEnElRango() throws YaEstaDestruidoError,
+	public void deberiaDaniarEnElRango() throws 
 			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
 			CasillaOcupadaError, JugadorIncorrectoError,
 			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {

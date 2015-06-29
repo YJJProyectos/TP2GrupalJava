@@ -26,7 +26,7 @@ public abstract class Unidad {
 		this.suministro = unSuministro;
 	}
 
-	public void recibirDanio(int danio) throws YaEstaDestruidoError {
+	public void recibirDanio(int danio){
 		/*if (this.vida <= 0) {
 			throw new YaEstaDestruidoError();
 		}*/

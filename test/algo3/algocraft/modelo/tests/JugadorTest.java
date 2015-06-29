@@ -17,7 +17,6 @@ import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
 import algo3.algocraft.modelo.unidades.Unidad;
-import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
@@ -238,8 +237,7 @@ public class JugadorTest {
 
 	@Test
 	public void siSeDestruyeLaUnicaUnidadDelJugadorEstaDestruido()
-			throws RecursosInsuficientesError, CasillaOcupadaError,
-			YaEstaDestruidoError {
+			throws RecursosInsuficientesError, CasillaOcupadaError{
 
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
@@ -254,8 +252,7 @@ public class JugadorTest {
 
 	@Test
 	public void siSeDestruyeUnaUnidadDeDosDelJugadorNoEstaDestruido()
-			throws RecursosInsuficientesError, CasillaOcupadaError,
-			YaEstaDestruidoError {
+			throws RecursosInsuficientesError, CasillaOcupadaError{
 
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
@@ -291,7 +288,7 @@ public class JugadorTest {
 	public void elMarineDeberiaPoderAtacarDeNuevoAlPasarUnTurno()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			JugadorIncorrectoError, NoHaySoldadosParaPosicionarError,
-			CoordenadaInvalidaError, YaEstaDestruidoError,
+			CoordenadaInvalidaError,
 			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
 			PoblacionLimiteAlcanzadaError {
 		Mapa mapa = new Mapa(4);
@@ -419,11 +416,7 @@ public class JugadorTest {
 		jugador.posicionarSoldadoEnColaDeEspera(casillaMarine);
 		Assert.assertEquals(1, jugador.cantidadPoblacionOcupada());
 		Unidad marine = casillaMarine.getOcupanteTerrestre();
-		try {
-			marine.recibirDanio(1000);
-		} catch (YaEstaDestruidoError e) {
-			e.printStackTrace();
-		}
+		marine.recibirDanio(1000);
 		Assert.assertTrue(marine.estaDestruido());
 		jugador.pasarTurno();
 		Assert.assertEquals(0, jugador.cantidadPoblacionOcupada());

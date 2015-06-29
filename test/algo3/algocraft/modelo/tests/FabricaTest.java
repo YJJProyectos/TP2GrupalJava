@@ -11,7 +11,6 @@ import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
-import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.BarracaNoConstruidaError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
@@ -175,7 +174,7 @@ public class FabricaTest {
 
 	@Test
 	public void siUnMarineAtacaUnaFabricaEnConstruccionLaDestruye()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, CasillaOcupadaError,
 			BarracaNoConstruidaError, JugadorIncorrectoError,
@@ -204,7 +203,7 @@ public class FabricaTest {
 
 	@Test
 	public void siUnMarineAtacaUnaFabricaYaConstruidaNoLaDestruye()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, CasillaOcupadaError,
 			BarracaNoConstruidaError, JugadorIncorrectoError,
@@ -236,7 +235,7 @@ public class FabricaTest {
 
 	@Test
 	public void laFabricaConstruidaDeberiaRecibirDanio1()
-			throws YaEstaDestruidoError, PerteneceAOtroJugadorError,
+			throws PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, BarracaNoConstruidaError,
 			CasillaOcupadaError {
 
@@ -262,7 +261,7 @@ public class FabricaTest {
 
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaFabricaConstruidaEs1249()
-			throws YaEstaDestruidoError, PerteneceAOtroJugadorError,
+			throws PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, BarracaNoConstruidaError,
 			CasillaOcupadaError {
 
@@ -387,7 +386,7 @@ public class FabricaTest {
 
 	@Test
 	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
-			throws YaEstaDestruidoError, PerteneceAOtroJugadorError,
+			throws PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, BarracaNoConstruidaError,
 			CasillaOcupadaError {
 
@@ -454,7 +453,7 @@ public class FabricaTest {
 
 	@Test
 	public void deberiaNoPoderEntrenarUnSoldadoGolliaPorqueLaBarracaEstaDestruida()
-			throws PerteneceAOtroJugadorError, YaEstaDestruidoError,
+			throws PerteneceAOtroJugadorError, 
 			RecursosInsuficientesError, BarracaNoConstruidaError,
 			CasillaOcupadaError, JugadorIncorrectoError,
 			PoblacionLimiteAlcanzadaError {

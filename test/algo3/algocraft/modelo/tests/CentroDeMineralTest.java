@@ -12,7 +12,6 @@ import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
-import algo3.algocraft.modelo.unidades.YaEstaDestruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
@@ -99,7 +98,7 @@ public class CentroDeMineralTest {
 
 	@Test
 	public void siUnMarineAtacaUnCentroDeMineralEnConstruccionLoDestruye()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
 			CasillaOcupadaError, RecolectorInvalidoError,
 			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
@@ -123,7 +122,7 @@ public class CentroDeMineralTest {
 
 	@Test
 	public void siUnMarineAtacaUnCentroDeMineralYaConstruidoNoLaDestruye()
-			throws YaEstaDestruidoError, PerteneceAlMismoJugadorError,
+			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
 			CasillaOcupadaError, RecolectorInvalidoError,
 			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
@@ -150,7 +149,7 @@ public class CentroDeMineralTest {
 
 	@Test
 	public void elCentroDeMineralConstruidoDeberiaRecibirDanio1()
-			throws YaEstaDestruidoError, RecursosInsuficientesError,
+			throws RecursosInsuficientesError,
 			RecolectorInvalidoError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
@@ -171,7 +170,7 @@ public class CentroDeMineralTest {
 
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaAlCentroDeMineralConstruidoEs499()
-			throws YaEstaDestruidoError, RecursosInsuficientesError,
+			throws RecursosInsuficientesError,
 			RecolectorInvalidoError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
@@ -249,7 +248,7 @@ public class CentroDeMineralTest {
 
 	@Test
 	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
-			throws YaEstaDestruidoError, RecursosInsuficientesError,
+			throws RecursosInsuficientesError,
 			RecolectorInvalidoError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
