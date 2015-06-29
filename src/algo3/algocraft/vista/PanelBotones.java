@@ -7,6 +7,8 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import algo3.algocraft.controlador.AccionBotonCrearCentroMineral;
+import algo3.algocraft.controlador.AccionBotonCrearDeposotoDeSuministros;
 import algo3.algocraft.controlador.AccionBotonCrearRefineria;
 import algo3.algocraft.controlador.AccionBotonPasarTurno;
 import algo3.algocraft.modelo.juego.Juego;
@@ -32,8 +34,9 @@ public class PanelBotones extends JPanel {
 
 		this.botonCrearDeposito = new JButton();
 		this.botonCrearDeposito.setText("Crear Deposito de Suministros");
-		// this.botonCrearDeposito
-		// .addActionListener(new AccionBotonCrearDeposito(this));
+		this.botonCrearDeposito
+				.addActionListener(new AccionBotonCrearDeposotoDeSuministros(
+						this.panelJuego, juego));
 
 		this.botonCrearRefineria = new JButton();
 		this.botonCrearRefineria.setText("Crear Refineria");
@@ -43,8 +46,9 @@ public class PanelBotones extends JPanel {
 
 		this.botonCrearCentroMineral = new JButton();
 		this.botonCrearCentroMineral.setText("Crear Centro Mineral");
-		// this.botonCrearCentroMineral.addActionListener(new
-		// AccionBotonCrearCentroMineral(this);
+		this.botonCrearCentroMineral
+				.addActionListener(new AccionBotonCrearCentroMineral(
+						this.panelJuego, juego));
 
 		this.botonCrearBarraca = new JButton();
 		this.botonCrearBarraca.setText("Crear Barraca");
