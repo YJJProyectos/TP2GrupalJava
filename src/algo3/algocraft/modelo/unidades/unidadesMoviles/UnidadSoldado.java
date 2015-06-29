@@ -18,9 +18,9 @@ public class UnidadSoldado extends UnidadMovil {
 	protected int rangoTerrestre;
 
 	public UnidadSoldado(int vida, Jugador jugador, PlanoAccion plano,
-			int costoMineral, int costoGas, int suministro)
+			int costoMineral, int costoGas, int suministro, String nombre)
 			throws RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
-		super(jugador, vida, plano, costoMineral, costoGas, suministro);
+		super(jugador, vida, plano, costoMineral, costoGas, suministro, nombre);
 		this.estadoDeAtaque = new EstadoNoAtaco();
 	}
 

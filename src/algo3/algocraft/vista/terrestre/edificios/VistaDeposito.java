@@ -7,11 +7,12 @@ import algo3.algocraft.vista.terrestre.VistaTerrestre;
 
 @SuppressWarnings("serial")
 public class VistaDeposito extends VistaTerrestre {
-	
-	public VistaDeposito(Casilla casilla, PanelJuego panelJuego){
+
+	public VistaDeposito(Casilla casilla, PanelJuego panelJuego) {
 		super(casilla, panelJuego);
 		String url = "/algo3/algocraft/imagenes/deposito.png";
 		this.setImagen(url);
-		this.addMouseListener(new MouseTocarEdificio(this.casilla,this.panelJuego));
+		this.addMouseListener(new MouseTocarEdificio(this.casilla,
+				this.panelJuego));
 	}
 }

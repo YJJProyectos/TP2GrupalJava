@@ -11,7 +11,7 @@ public class VistaGolliat extends VistaTerrestre {
 		super(casilla, panelJuego);
 		String url = "/algo3/algocraft/imagenes/golliat.png";
 		this.setImagen(url);
-		//this.addMouseListener(l);
+		// this.addMouseListener(l);
 	}
 
 }

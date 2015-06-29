@@ -18,7 +18,7 @@ public class PuertoEstelar extends UnidadEdificio {
 	public PuertoEstelar(Jugador unJugador, Casilla casilla, Fabrica unaFabrica)
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			FabricaNoConstruidaError, CasillaOcupadaError {
-		super(unJugador, 1, 150, 100);
+		super(unJugador, 1, 150, 100, "PuertoEstelar");
 		if (!this.esAliado(unaFabrica)) {
 			throw new PerteneceAOtroJugadorError();
 		}

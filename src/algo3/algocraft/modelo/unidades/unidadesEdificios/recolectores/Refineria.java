@@ -13,7 +13,7 @@ public class Refineria extends Recolector {
 	public Refineria(Recurso recurso, Jugador unJugador)
 			throws RecursosInsuficientesError, RecolectorInvalidoError,
 			CasillaOcupadaError {
-		super(unJugador, 1, 100, 0);
+		super(unJugador, 1, 100, 0, "Refineria");
 		this.enConstruccion = true;
 		this.turnosRestantes = 6;
 		this.jugador.validarCosto(this.costoMineral, this.costoGas);

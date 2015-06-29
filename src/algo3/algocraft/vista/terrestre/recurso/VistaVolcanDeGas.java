@@ -4,7 +4,6 @@ import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.vista.PanelJuego;
 import algo3.algocraft.vista.terrestre.VistaTerrestre;
 
-
 @SuppressWarnings("serial")
 public class VistaVolcanDeGas extends VistaTerrestre {
 

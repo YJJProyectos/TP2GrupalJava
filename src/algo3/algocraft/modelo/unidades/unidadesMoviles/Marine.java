@@ -9,7 +9,7 @@ public class Marine extends UnidadSoldado {
 
 	public Marine(Jugador jugador) throws RecursosInsuficientesError,
 			PoblacionLimiteAlcanzadaError {
-		super(40, jugador, PlanoTerrestre.getInstancia(), 30, 0, 1);
+		super(40, jugador, PlanoTerrestre.getInstancia(), 30, 0, 1, "Marine");
 		this.inicializar(6, 6, 4, 4);
 		this.jugador.validarCosto(this.costoMineral, this.costoGas);
 		this.jugador.validarSuministro(this.suministro);

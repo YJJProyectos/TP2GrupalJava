@@ -9,7 +9,8 @@ public class Espectro extends UnidadSoldado {
 
 	public Espectro(Jugador unJugador) throws RecursosInsuficientesError,
 			PoblacionLimiteAlcanzadaError {
-		super(120, unJugador, PlanoAereo.getInstancia(), 150, 100, 2);
+		super(120, unJugador, PlanoAereo.getInstancia(), 150, 100, 2,
+				"Espectro");
 		this.inicializar(20, 8, 5, 5);
 		this.jugador.validarCosto(this.costoMineral, this.costoGas);
 		this.jugador.validarSuministro(this.suministro);

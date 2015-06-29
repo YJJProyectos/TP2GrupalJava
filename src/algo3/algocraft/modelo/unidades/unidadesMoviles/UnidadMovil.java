@@ -9,9 +9,9 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoAcci
 public abstract class UnidadMovil extends Unidad {
 
 	protected UnidadMovil(Jugador jugador, int vida, PlanoAccion plano,
-			int costoMineral, int costoGas, int suministro)
+			int costoMineral, int costoGas, int suministro, String nombre)
 			throws RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
-		super(jugador, vida, plano, costoMineral, costoGas, suministro);
+		super(jugador, vida, plano, costoMineral, costoGas, suministro, nombre);
 	}
 
 }

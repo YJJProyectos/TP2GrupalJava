@@ -14,7 +14,7 @@ public class Barraca extends UnidadEdificio {
 
 	public Barraca(Jugador unJugador, Casilla casilla)
 			throws RecursosInsuficientesError, CasillaOcupadaError {
-		super(unJugador, 1, 150, 0);
+		super(unJugador, 1, 150, 0, "Barraca");
 		this.enConstruccion = true;
 		this.turnosRestantes = 12;
 		this.marineEnEntrenamiento = null;

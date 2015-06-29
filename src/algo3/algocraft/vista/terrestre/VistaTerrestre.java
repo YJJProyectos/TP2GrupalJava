@@ -14,8 +14,8 @@ public class VistaTerrestre extends JLabel {
 
 	protected Casilla casilla;
 	protected PanelJuego panelJuego;
-	
-	public VistaTerrestre(Casilla casilla, PanelJuego panelJuego){
+
+	public VistaTerrestre(Casilla casilla, PanelJuego panelJuego) {
 		this.casilla = casilla;
 		this.panelJuego = panelJuego;
 	}

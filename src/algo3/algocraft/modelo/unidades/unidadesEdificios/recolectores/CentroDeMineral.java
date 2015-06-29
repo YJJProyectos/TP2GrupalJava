@@ -13,7 +13,7 @@ public class CentroDeMineral extends Recolector {
 	public CentroDeMineral(Recurso recurso, Jugador unJugador)
 			throws RecursosInsuficientesError, RecolectorInvalidoError,
 			CasillaOcupadaError {
-		super(unJugador, 1, 50, 0);
+		super(unJugador, 1, 50, 0, "Centro de Mineral");
 		this.enConstruccion = true;
 		this.turnosRestantes = 4;
 		this.jugador.validarCosto(this.costoMineral, this.costoGas);

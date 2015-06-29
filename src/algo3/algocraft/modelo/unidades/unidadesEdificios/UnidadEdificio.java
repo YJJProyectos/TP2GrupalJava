@@ -11,9 +11,10 @@ public abstract class UnidadEdificio extends Unidad {
 	protected int turnosRestantes;
 
 	protected UnidadEdificio(Jugador jugador, int vida, int costoMineral,
-			int costoGas) {
+			int costoGas, String nombre) {
 		super(jugador, vida, PlanoTerrestre.getInstancia(), costoMineral,
-				costoGas, 0);
+				costoGas, 0, nombre);
+
 	}
 
 	public boolean esTerrestre() {
@@ -21,4 +22,5 @@ public abstract class UnidadEdificio extends Unidad {
 	}
 
 	public abstract int tiempoDeConstruccion();
+
 }

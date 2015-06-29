@@ -20,6 +20,7 @@ public class PanelInformacion extends JPanel {
 	private JTextField poblacion;
 	private JTextField nombre;
 	private JTextField vida;
+	private JTextField tipoUnidad;
 	private JTextField delJugador;
 	private Juego juego;
 
@@ -47,21 +48,25 @@ public class PanelInformacion extends JPanel {
 		this.nombre = new JTextField();
 		this.nombre.setEditable(false);
 		this.nombre.setBounds(410, 90, 200, 20);
+		this.tipoUnidad = new JTextField();
+		this.tipoUnidad.setEditable(false);
+		this.tipoUnidad.setBounds(0, 120, 200, 20);
 		this.vida = new JTextField();
 		this.vida.setEditable(false);
-		this.vida.setBounds(0, 120, 70, 20);
+		this.vida.setBounds(230, 120, 70, 20);
 		this.delJugador = new JTextField();
 		this.delJugador.setEditable(false);
-		this.delJugador.setBounds(100, 120, 200, 20);
+		this.delJugador.setBounds(330, 120, 200, 20);
 		this.setLayout(null);
 		this.add(labelMineral);
-		this.add(cantidadMineral);
+		this.add(this.cantidadMineral);
 		this.add(labelGas);
-		this.add(cantidadGas);
+		this.add(this.cantidadGas);
 		this.add(labelPoblacion);
-		this.add(poblacion);
-		this.add(nombre);
-		this.add(vida);
+		this.add(this.poblacion);
+		this.add(this.nombre);
+		this.add(this.tipoUnidad);
+		this.add(this.vida);
 		this.add(this.delJugador);
 		this.setSinInformacionAdicional();
 		this.actualizarDatos();
@@ -102,8 +107,11 @@ public class PanelInformacion extends JPanel {
 	}
 
 	public void informacionEdificio(Unidad edificio) {
+		String tipoUnidad = edificio.getNombre();
 		String vida = Integer.toString(edificio.vidaRestante());
 		String jugador = edificio.getJugador().getNombre();
+		this.tipoUnidad.setText(tipoUnidad);
+		this.tipoUnidad.setVisible(true);
 		this.delJugador.setText("Del jugador: " + jugador);
 		this.delJugador.setVisible(true);
 		this.vida.setText("Vida: " + vida);
@@ -111,6 +119,7 @@ public class PanelInformacion extends JPanel {
 	}
 
 	public void setSinInformacionAdicional() {
+		this.tipoUnidad.setVisible(false);
 		this.vida.setVisible(false);
 		this.delJugador.setVisible(false);
 	}

@@ -14,9 +14,10 @@ public abstract class Unidad {
 	protected int costoMineral;
 	protected int costoGas;
 	protected int suministro;
+	protected String nombre;
 
 	protected Unidad(Jugador jugador, int vida, PlanoAccion plano,
-			int costoMineral, int costoGas, int unSuministro) {
+			int costoMineral, int costoGas, int unSuministro, String nombre) {
 		this.jugador = jugador;
 		this.vida = vida;
 		this.plano = plano;
@@ -24,14 +25,15 @@ public abstract class Unidad {
 		this.costoMineral = costoMineral;
 		this.costoGas = costoGas;
 		this.suministro = unSuministro;
+		this.nombre = nombre;
 	}
 
-	public void recibirDanio(int danio){
-		/*if (this.vida <= 0) {
-			throw new YaEstaDestruidoError();
-		}*/
+	public void recibirDanio(int danio) {
+		/*
+		 * if (this.vida <= 0) { throw new YaEstaDestruidoError(); }
+		 */
 		this.vida = this.vida - danio;
-		if ( this.vida <= 0 ){
+		if (this.vida <= 0) {
 			this.plano.remover(this.posicion);
 		}
 	}
@@ -78,6 +80,10 @@ public abstract class Unidad {
 
 	public int getSuministro() {
 		return this.suministro;
+	}
+
+	public String getNombre() {
+		return this.nombre;
 	}
 
 }

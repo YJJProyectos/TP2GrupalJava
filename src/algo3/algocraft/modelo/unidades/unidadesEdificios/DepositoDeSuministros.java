@@ -9,7 +9,7 @@ public class DepositoDeSuministros extends UnidadEdificio {
 
 	public DepositoDeSuministros(Jugador unJugador, Casilla casilla)
 			throws RecursosInsuficientesError, CasillaOcupadaError {
-		super(unJugador, 1, 100, 0);
+		super(unJugador, 1, 100, 0, "Deposito de Suministros");
 		this.enConstruccion = true;
 		this.turnosRestantes = 6;
 		this.jugador.validarCosto(this.costoMineral, this.costoGas);

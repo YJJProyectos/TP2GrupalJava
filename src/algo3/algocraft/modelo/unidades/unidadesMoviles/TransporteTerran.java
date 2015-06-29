@@ -16,7 +16,8 @@ public class TransporteTerran extends UnidadMovil {
 
 	public TransporteTerran(Jugador jugador) throws RecursosInsuficientesError,
 			PoblacionLimiteAlcanzadaError {
-		super(jugador, 150, PlanoAereo.getInstancia(), 100, 100, 2);
+		super(jugador, 150, PlanoAereo.getInstancia(), 100, 100, 2,
+				"Nave Transporte");
 		this.jugador.validarCosto(this.costoMineral, this.costoGas);
 		this.jugador.validarSuministro(this.suministro);
 		this.jugador.pagar(this.costoMineral, this.costoGas);

@@ -17,7 +17,7 @@ public class Fabrica extends UnidadEdificio {
 	public Fabrica(Jugador unJugador, Casilla casilla, Barraca unaBarraca)
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			BarracaNoConstruidaError, CasillaOcupadaError {
-		super(unJugador, 1, 200, 100);
+		super(unJugador, 1, 200, 100, "Fabrica");
 		if (!this.esAliado(unaBarraca)) {
 			throw new PerteneceAOtroJugadorError();
 		}
