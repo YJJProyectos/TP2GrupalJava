@@ -46,7 +46,7 @@ public class VistaCasilla extends JPanel implements Observer{
 		// this.casilla = casilla;
 		casilla.addObserver(this);
 		this.actualizarDatos();
-		this.addMouseListener(new MouseTocarCasillaVacia(panelJuego));
+		this.addMouseListener(new MouseTocarCasillaVacia(this.casilla,this.panelJuego));
 
 	}
 
