@@ -29,9 +29,6 @@ public abstract class Unidad {
 	}
 
 	public void recibirDanio(int danio) {
-		/*
-		 * if (this.vida <= 0) { throw new YaEstaDestruidoError(); }
-		 */
 		this.vida = this.vida - danio;
 		if (this.vida <= 0) {
 			this.plano.remover(this.posicion);
