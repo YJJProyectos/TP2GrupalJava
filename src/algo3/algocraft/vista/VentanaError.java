@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class VentanaError extends JFrame {
@@ -14,13 +15,14 @@ public class VentanaError extends JFrame {
 	JPanel panel = new JPanel();
 	JButton botonAceptar = new JButton("Aceptar");
 
-	public VentanaError(JLabel textoError) {
+	public VentanaError(String textoError) {
 		setTitle("Error");
 		setVisible(true);
 		this.setSize(250, 100);
 		this.setLocationRelativeTo(null);
 
-		panel.add(textoError);
+		JLabel labelTextoError = new JLabel(textoError, SwingConstants.CENTER);
+		panel.add(labelTextoError);
 
 		botonAceptar.addActionListener(new BotonAceptar());
 

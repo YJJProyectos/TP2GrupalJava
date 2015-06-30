@@ -4,21 +4,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import algo3.algocraft.modelo.juego.Juego;
+import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
-import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
-import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
-import algo3.algocraft.modelo.recursos.Recurso;
-import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.vista.PanelJuego;
 import algo3.algocraft.vista.VentanaError;
 
-public class AccionBotonCrearCentroMineral implements ActionListener {
+public class AccionBotonEntrenarMarine implements ActionListener {
 
 	private PanelJuego panelJuego;
 	private Juego juego;
 
-	public AccionBotonCrearCentroMineral(PanelJuego panelJuego, Juego juego) {
+	public AccionBotonEntrenarMarine(PanelJuego panelJuego, Juego juego) {
 		this.panelJuego = panelJuego;
 		this.juego = juego;
 	}
@@ -27,18 +26,18 @@ public class AccionBotonCrearCentroMineral implements ActionListener {
 	public void actionPerformed(ActionEvent click) {
 
 		Casilla casilla = this.panelJuego.getCasillaActual();
+		Barraca barraca = (Barraca) casilla.getOcupanteTerrestre();
 
-		Recurso recurso = casilla.getRecurso();
 		try {
-			new CentroDeMineral(recurso, this.juego.turnoDeJugador());
+			barraca.entrenarMarine(juego.turnoDeJugador());
+		} catch (JugadorIncorrectoError e) {
+			String textoError = "<html>Recolector invalido <html>";
+			new VentanaError(textoError);
 		} catch (RecursosInsuficientesError e) {
 			String textoError = "<html>Recursos insuficientes <html>";
 			new VentanaError(textoError);
-		} catch (RecolectorInvalidoError e) {
-			String textoError = "<html>Recolector invalido <html>";
-			new VentanaError(textoError);
-		} catch (CasillaOcupadaError e) {
-			String textoError = "<html>Casilla ocupada <html>";
+		} catch (PoblacionLimiteAlcanzadaError e) {
+			String textoError = "<html>Poblacion limite alcanzada <html>";
 			new VentanaError(textoError);
 		}
 

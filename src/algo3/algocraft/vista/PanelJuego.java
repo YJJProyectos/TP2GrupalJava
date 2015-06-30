@@ -73,7 +73,8 @@ public class PanelJuego extends JPanel {
 	public void actualizar() {
 		this.panelInformacion.actualizarDatos();
 		this.panelMapa.actualizarDatos();
-		this.panelBotones.actualizarDatos();
+		// this.panelBotones.actualizarDatos();
+
 	}
 
 	public void pasarTurno() {
@@ -112,7 +113,7 @@ public class PanelJuego extends JPanel {
 	public Unidad getUnidad() {
 		return this.unidadActual;
 	}
-	
+
 	public void vistaInformacionSoldado(UnidadSoldado soldado) {
 		this.panelInformacion.informacionSoldado(soldado);
 	}

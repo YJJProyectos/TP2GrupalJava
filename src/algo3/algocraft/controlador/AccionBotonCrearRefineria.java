@@ -3,9 +3,6 @@ package algo3.algocraft.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
 import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
@@ -35,17 +32,13 @@ public class AccionBotonCrearRefineria implements ActionListener {
 		try {
 			new Refineria(recurso, this.juego.turnoDeJugador());
 		} catch (RecursosInsuficientesError e) {
-			JLabel textoError = new JLabel(
-					"<html>Recursos insuficientes <html>",
-					SwingConstants.CENTER);
+			String textoError = "<html>Recursos insuficientes <html>";
 			new VentanaError(textoError);
 		} catch (RecolectorInvalidoError e) {
-			JLabel textoError = new JLabel("<html>Recolector invalido <html>",
-					SwingConstants.CENTER);
+			String textoError = "<html>Recolector invalido <html>";
 			new VentanaError(textoError);
 		} catch (CasillaOcupadaError e) {
-			JLabel textoError = new JLabel("<html>Casilla ocupada <html>",
-					SwingConstants.CENTER);
+			String textoError = "<html>Casilla ocupada <html>";
 			new VentanaError(textoError);
 		}
 

@@ -3,9 +3,6 @@ package algo3.algocraft.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
 import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
@@ -33,13 +30,10 @@ public class AccionBotonCrearDeposotoDeSuministros implements ActionListener {
 		try {
 			new DepositoDeSuministros(this.juego.turnoDeJugador(), casilla);
 		} catch (RecursosInsuficientesError e) {
-			JLabel textoError = new JLabel(
-					"<html>Recursos insuficientes <html>",
-					SwingConstants.CENTER);
+			String textoError = "<html>Recursos insuficientes <html>";
 			new VentanaError(textoError);
 		} catch (CasillaOcupadaError e) {
-			JLabel textoError = new JLabel("<html>Casilla invalida <html>",
-					SwingConstants.CENTER);
+			String textoError = "<html>Casilla invalida <html>";
 			new VentanaError(textoError);
 		}
 

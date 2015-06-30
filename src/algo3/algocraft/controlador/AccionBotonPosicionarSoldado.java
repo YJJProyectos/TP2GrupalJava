@@ -3,9 +3,6 @@ package algo3.algocraft.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
 import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.juego.NoHaySoldadosParaPosicionarError;
 import algo3.algocraft.modelo.mapa.Casilla;
@@ -31,13 +28,10 @@ public class AccionBotonPosicionarSoldado implements ActionListener {
 		try {
 			juego.turnoDeJugador().posicionarSoldadoEnColaDeEspera(casilla);
 		} catch (CasillaOcupadaError e) {
-			JLabel textoError = new JLabel("<html>Casilla ocupada <html>",
-					SwingConstants.CENTER);
+			String textoError = "<html>Casilla ocupada <html>";
 			new VentanaError(textoError);
 		} catch (NoHaySoldadosParaPosicionarError e) {
-			JLabel textoError = new JLabel(
-					"<html>No hay soldados para posicionar <html>",
-					SwingConstants.CENTER);
+			String textoError = "<html>No hay soldados para posicionar <html>";
 			new VentanaError(textoError);
 		}
 		;

@@ -13,6 +13,9 @@ import algo3.algocraft.controlador.AccionBotonCrearDeposotoDeSuministros;
 import algo3.algocraft.controlador.AccionBotonCrearFabrica;
 import algo3.algocraft.controlador.AccionBotonCrearPuertoEstelar;
 import algo3.algocraft.controlador.AccionBotonCrearRefineria;
+import algo3.algocraft.controlador.AccionBotonEntrenarEspectro;
+import algo3.algocraft.controlador.AccionBotonEntrenarGolliat;
+import algo3.algocraft.controlador.AccionBotonEntrenarMarine;
 import algo3.algocraft.controlador.AccionBotonPasarTurno;
 import algo3.algocraft.controlador.AccionBotonPosicionarSoldado;
 import algo3.algocraft.modelo.juego.Juego;
@@ -82,14 +85,14 @@ public class PanelBotones extends JPanel {
 		this.botonPosicionarSoldado.setText("Posicionar Soldado" + "("
 				+ juego.turnoDeJugador().caintidadSoldadosParaPosicionar()
 				+ ")");
-		this.botonPosicionarSoldado.addActionListener(new
-		 AccionBotonPosicionarSoldado(panelJuego, juego));
+		this.botonPosicionarSoldado
+				.addActionListener(new AccionBotonPosicionarSoldado(
+						this.panelJuego, juego));
 
 		this.botonPasarTurno = new JButton();
 		this.botonPasarTurno.setText("Pasar Turno");
 		this.botonPasarTurno.addActionListener(new AccionBotonPasarTurno(
 				this.panelJuego));
-		;
 
 		this.botonAtacar = new JButton();
 		this.botonAtacar.setText("Atacar");
@@ -98,23 +101,25 @@ public class PanelBotones extends JPanel {
 
 		this.botonMover = new JButton();
 		this.botonMover.setText("Mover");
-		// this.botonMover
-		// .addActionListener(new AccionBotonCrearRefineria());
+		// this.botonMover.addActionListener(new AccionBotonCrearRefineria());
 
 		this.botonEntrenarMarine = new JButton();
 		this.botonEntrenarMarine.setText("Entrenar Marine");
-		// this.botonEntrenarMarine
-		// .addActionListener(new AccionBotonEntrenarMarine();
+		this.botonEntrenarMarine
+				.addActionListener(new AccionBotonEntrenarMarine(
+						this.panelJuego, juego));
 
 		this.botonEntrenarGolliat = new JButton();
 		this.botonEntrenarGolliat.setText("Entrenar Golliat");
-		// this.botonEntrenarGolliat
-		// .addActionListener(new AccionBotonEntrenarGolliat();
+		this.botonEntrenarGolliat
+				.addActionListener(new AccionBotonEntrenarGolliat(
+						this.panelJuego, juego));
 
 		this.botonEntrenarEspectro = new JButton();
 		this.botonEntrenarEspectro.setText("Entrenar Espectro");
-		// this.botonEntrenarEspectro
-		// .addActionListener(new AccionBotonEntrenarEspectro();
+		this.botonEntrenarEspectro
+				.addActionListener(new AccionBotonEntrenarEspectro(
+						this.panelJuego, juego));
 
 		this.botonAtacar.setVisible(false);
 		this.botonMover.setVisible(false);
