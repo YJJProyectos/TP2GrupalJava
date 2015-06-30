@@ -97,12 +97,12 @@ public class PanelInformacion extends JPanel {
 	public void actualizarDatos() {
 		Jugador jugadorActual = this.juego.turnoDeJugador();
 		String numeroMineral = Integer
-				.toString(jugadorActual.cantidadMineral());
-		String numeroGas = Integer.toString(jugadorActual.cantidadGas());
+				.toString(jugadorActual.getCantidadMineral());
+		String numeroGas = Integer.toString(jugadorActual.getCcantidadGas());
 		String poblacionOcupada = Integer.toString(jugadorActual
-				.cantidadPoblacionOcupada());
+				.getCantidadPoblacionOcupada());
 		String poblacionMax = Integer.toString(jugadorActual
-				.cantidadPoblacionPosible());
+				.getCantidadPoblacionPosible());
 		String nombreJugador = jugadorActual.getNombre();
 		this.cantidadMineral.setText(numeroMineral);
 		this.cantidadGas.setText(numeroGas);

@@ -14,8 +14,8 @@ public class Jugador {
 	private ArrayList<Unidad> unidades;
 	private int cantidadMineral;
 	private int cantidadGas;
-	private int poblacionPosible;
-	private int poblacionOcupada;
+	private int cantidadPoblacionPosible;
+	private int cantidadPoblacionOcupada;
 	private ArrayList<UnidadSoldado> soldadosParaPosicionar;
 	private String nombre;
 
@@ -23,17 +23,17 @@ public class Jugador {
 		this.unidades = new ArrayList<Unidad>();
 		this.cantidadMineral = 400;
 		this.cantidadGas = 100;
-		this.poblacionPosible = 0;
-		this.poblacionOcupada = 0;
+		this.cantidadPoblacionPosible = 0;
+		this.cantidadPoblacionOcupada = 0;
 		this.soldadosParaPosicionar = new ArrayList<UnidadSoldado>();
 		this.nombre = "";
 	}
 
-	public int cantidadMineral() {
+	public int getCantidadMineral() {
 		return this.cantidadMineral;
 	}
 
-	public int cantidadGas() {
+	public int getCcantidadGas() {
 		return this.cantidadGas;
 	}
 
@@ -45,18 +45,18 @@ public class Jugador {
 		this.cantidadGas += cantidadGasRecolectado;
 	}
 
-	public int cantidadPoblacionOcupada() {
-		return this.poblacionOcupada;
+	public int getCantidadPoblacionOcupada() {
+		return this.cantidadPoblacionOcupada;
 	}
 
-	public int cantidadPoblacionPosible() {
-		return this.poblacionPosible;
+	public int getCantidadPoblacionPosible() {
+		return this.cantidadPoblacionPosible;
 	}
 
 	public void aumentarPoblacion() {
-		this.poblacionPosible += 10;
-		if (this.poblacionPosible > 200) {
-			this.poblacionPosible = 200;
+		this.cantidadPoblacionPosible += 10;
+		if (this.cantidadPoblacionPosible > 200) {
+			this.cantidadPoblacionPosible = 200;
 		}
 	}
 
@@ -89,7 +89,7 @@ public class Jugador {
 	}
 
 	public void pasarTurno() {
-		this.poblacionPosible = 0;
+		this.cantidadPoblacionPosible = 0;
 		this.removerUnidadesDestruidas();
 		for (int i = 0; i < this.unidades.size(); i++) {
 			Unidad unidad = this.unidades.get(i);
@@ -107,7 +107,7 @@ public class Jugador {
 
 	public void validarSuministro(int suministro)
 			throws PoblacionLimiteAlcanzadaError {
-		if ((this.poblacionOcupada + suministro) > this.poblacionPosible) {
+		if ((this.cantidadPoblacionOcupada + suministro) > this.cantidadPoblacionPosible) {
 			throw new PoblacionLimiteAlcanzadaError();
 		}
 	}
@@ -118,7 +118,7 @@ public class Jugador {
 	}
 
 	public void aumentarSuministro(int suministro) {
-		this.poblacionOcupada += suministro;
+		this.cantidadPoblacionOcupada += suministro;
 	}
 
 	public void iniciarConDeposito(Casilla posicionDeBase)

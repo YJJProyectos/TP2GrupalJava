@@ -37,7 +37,7 @@ public class JugadorTest {
 
 		Jugador jugador = new Jugador();
 
-		Assert.assertEquals(400, jugador.cantidadMineral());
+		Assert.assertEquals(400, jugador.getCantidadMineral());
 	}
 
 	@Test
@@ -58,7 +58,7 @@ public class JugadorTest {
 		jugador.pasarTurno();
 		jugador.pasarTurno();
 
-		Assert.assertEquals(370, jugador.cantidadMineral());
+		Assert.assertEquals(370, jugador.getCantidadMineral());
 	}
 
 	@Test
@@ -66,7 +66,7 @@ public class JugadorTest {
 
 		Jugador jugador = new Jugador();
 
-		Assert.assertEquals(0, jugador.cantidadPoblacionPosible());
+		Assert.assertEquals(0, jugador.getCantidadPoblacionPosible());
 	}
 
 	@Test
@@ -75,7 +75,7 @@ public class JugadorTest {
 		Jugador jugador = new Jugador();
 		jugador.pasarTurno();
 
-		Assert.assertEquals(0, jugador.cantidadPoblacionPosible());
+		Assert.assertEquals(0, jugador.getCantidadPoblacionPosible());
 	}
 
 	@Test
@@ -93,7 +93,7 @@ public class JugadorTest {
 		}
 		jugador.pasarTurno();
 
-		Assert.assertEquals(10, jugador.cantidadPoblacionPosible());
+		Assert.assertEquals(10, jugador.getCantidadPoblacionPosible());
 	}
 
 	@Test
@@ -117,7 +117,7 @@ public class JugadorTest {
 		jugador.pasarTurno();
 		jugador.pasarTurno();
 
-		Assert.assertEquals(20, jugador.cantidadPoblacionPosible());
+		Assert.assertEquals(20, jugador.getCantidadPoblacionPosible());
 	}
 
 	@Test
@@ -141,7 +141,7 @@ public class JugadorTest {
 		jugador.pasarTurno();
 		jugador.pasarTurno();
 
-		Assert.assertEquals(200, jugador.cantidadPoblacionPosible());
+		Assert.assertEquals(200, jugador.getCantidadPoblacionPosible());
 	}
 
 	@Test
@@ -149,7 +149,7 @@ public class JugadorTest {
 
 		Jugador jugador = new Jugador();
 
-		Assert.assertEquals(100, jugador.cantidadGas());
+		Assert.assertEquals(100, jugador.getCcantidadGas());
 	}
 
 	@Test
@@ -170,7 +170,7 @@ public class JugadorTest {
 		jugador.pasarTurno();
 		jugador.pasarTurno();
 
-		Assert.assertEquals(120, jugador.cantidadGas());
+		Assert.assertEquals(120, jugador.getCcantidadGas());
 	}
 
 	@Test(expected = NoHaySoldadosParaPosicionarError.class)
@@ -284,9 +284,9 @@ public class JugadorTest {
 		Casilla casilla = new Casilla(coordenada);
 		jugador.iniciarConDeposito(casilla);
 
-		Assert.assertEquals(10, jugador.cantidadPoblacionPosible());
+		Assert.assertEquals(10, jugador.getCantidadPoblacionPosible());
 
-		Assert.assertEquals(400, jugador.cantidadMineral());
+		Assert.assertEquals(400, jugador.getCantidadMineral());
 	}
 	
 	@Test
@@ -299,7 +299,7 @@ public class JugadorTest {
 		jugador.iniciarConMarineParaPosicionar();
 		
 		Assert.assertEquals(1, jugador.cantidadSoldadosParaPosicionar());
-		Assert.assertEquals(400, jugador.cantidadMineral());
+		Assert.assertEquals(400, jugador.getCantidadMineral());
 		
 	}
 
@@ -393,7 +393,7 @@ public class JugadorTest {
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		jugador.posicionarSoldadoEnColaDeEspera(casillaMarine);
 
-		Assert.assertEquals(1, jugador.cantidadPoblacionOcupada());
+		Assert.assertEquals(1, jugador.getCantidadPoblacionOcupada());
 
 		barraca.entrenarMarine(jugador);
 		for (int i = 0; i < 3; i++) {
@@ -403,7 +403,7 @@ public class JugadorTest {
 		Casilla casillaMarine2 = new Casilla(coordenadaMarine2);
 		jugador.posicionarSoldadoEnColaDeEspera(casillaMarine2);
 
-		Assert.assertEquals(2, jugador.cantidadPoblacionOcupada());
+		Assert.assertEquals(2, jugador.getCantidadPoblacionOcupada());
 
 	}
 
@@ -436,12 +436,12 @@ public class JugadorTest {
 		Coordenada coordenadaMarine = new Coordenada(1, 4);
 		Casilla casillaMarine = new Casilla(coordenadaMarine);
 		jugador.posicionarSoldadoEnColaDeEspera(casillaMarine);
-		Assert.assertEquals(1, jugador.cantidadPoblacionOcupada());
+		Assert.assertEquals(1, jugador.getCantidadPoblacionOcupada());
 		Unidad marine = casillaMarine.getOcupanteTerrestre();
 		marine.recibirDanio(1000);
 		Assert.assertTrue(marine.estaDestruido());
 		jugador.pasarTurno();
-		Assert.assertEquals(0, jugador.cantidadPoblacionOcupada());
+		Assert.assertEquals(0, jugador.getCantidadPoblacionOcupada());
 	}
 
 	@Test

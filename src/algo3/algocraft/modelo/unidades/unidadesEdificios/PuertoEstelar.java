@@ -7,12 +7,11 @@ import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Espectro;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 public class PuertoEstelar extends UnidadEdificio {
 
 	private Fabrica fabrica;
-	private UnidadSoldado unidadEnEntrenamiento;
+	private Espectro espectroEnEntrenamiento;
 	private int turnosRestantesParaTerminarUnidad;
 
 	public PuertoEstelar(Jugador unJugador, Casilla casilla, Fabrica unaFabrica)
@@ -28,7 +27,7 @@ public class PuertoEstelar extends UnidadEdificio {
 		this.fabrica = unaFabrica;
 		this.enConstruccion = true;
 		this.turnosRestantes = 10;
-		this.unidadEnEntrenamiento = null;
+		this.espectroEnEntrenamiento = null;
 		this.turnosRestantesParaTerminarUnidad = 8;
 		this.jugador.validarCosto(this.costoMineral, this.costoGas);
 		this.posicionar(casilla);
@@ -49,10 +48,10 @@ public class PuertoEstelar extends UnidadEdificio {
 		if (fabrica.estaDestruido()) {
 			throw new FabricaDestruidaError();
 		}
-		if (this.unidadEnEntrenamiento != null) {
+		if (this.espectroEnEntrenamiento != null) {
 			throw new YaHayUnidadEnEntrenamiento();
 		}
-		this.unidadEnEntrenamiento = new Espectro(this.jugador);
+		this.espectroEnEntrenamiento = new Espectro(this.jugador);
 		return true;
 	}
 
@@ -69,14 +68,14 @@ public class PuertoEstelar extends UnidadEdificio {
 	}
 
 	public void continuarEntrenamientoDeUnidad() {
-		if (this.unidadEnEntrenamiento == null) {
+		if (this.espectroEnEntrenamiento == null) {
 			return;
 		}
 		this.turnosRestantesParaTerminarUnidad -= 1;
 		if (this.turnosRestantesParaTerminarUnidad == 0) {
 			this.jugador
-					.agregarSoldadoParaPosicionar(this.unidadEnEntrenamiento);
-			this.unidadEnEntrenamiento = null;
+					.agregarSoldadoParaPosicionar(this.espectroEnEntrenamiento);
+			this.espectroEnEntrenamiento = null;
 			this.turnosRestantesParaTerminarUnidad = 8;
 		}
 	}
@@ -93,7 +92,7 @@ public class PuertoEstelar extends UnidadEdificio {
 	}
 
 	public boolean unidadEnConstruccion() {
-		return this.unidadEnEntrenamiento != null;
+		return this.espectroEnEntrenamiento != null;
 	}
 
 	public int tiempoFaltanteCrearUnidad() {

@@ -279,9 +279,9 @@ public class CentroDeMineralTest {
 		for (int i = 0; i < 4; i++) {
 			centroDeMineral.pasarTurno();
 		}
-		int cantidadInicial = jugador.cantidadMineral();
+		int cantidadInicial = jugador.getCantidadMineral();
 		centroDeMineral.pasarTurno();
-		int cantidadFinal = jugador.cantidadMineral();
+		int cantidadFinal = jugador.getCantidadMineral();
 
 		Assert.assertEquals(10, cantidadFinal - cantidadInicial);
 	}
@@ -300,11 +300,11 @@ public class CentroDeMineralTest {
 		for (int i = 0; i < 4; i++) {
 			centroDeMineral.pasarTurno();
 		}
-		int cantidadInicial = jugador.cantidadMineral();
+		int cantidadInicial = jugador.getCantidadMineral();
 		for (int i = 1; i <= 5; i++) {
 			centroDeMineral.pasarTurno();
 		}
-		int cantidadFinal = jugador.cantidadMineral();
+		int cantidadFinal = jugador.getCantidadMineral();
 
 		Assert.assertEquals(50, cantidadFinal - cantidadInicial);
 	}
@@ -323,9 +323,9 @@ public class CentroDeMineralTest {
 		for (int i = 0; i < 4; i++) {
 			centroDeMineral.pasarTurno();
 		}
-		int cantidadInicial = jugador.cantidadMineral();
+		int cantidadInicial = jugador.getCantidadMineral();
 		centroDeMineral.pasarTurno();
-		int cantidadFinal = jugador.cantidadMineral();
+		int cantidadFinal = jugador.getCantidadMineral();
 
 		Assert.assertEquals(7, cantidadFinal - cantidadInicial);
 	}

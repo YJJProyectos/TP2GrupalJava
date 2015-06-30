@@ -301,9 +301,9 @@ public class RefineriaTest {
 		for (int i = 0; i < 6; i++) {
 			refineria.pasarTurno();
 		}
-		int cantidadInicial = jugador.cantidadGas();
+		int cantidadInicial = jugador.getCcantidadGas();
 		refineria.pasarTurno();
-		int cantidadFinal = jugador.cantidadGas();
+		int cantidadFinal = jugador.getCcantidadGas();
 
 		Assert.assertEquals(10, cantidadFinal - cantidadInicial);
 	}
@@ -322,11 +322,11 @@ public class RefineriaTest {
 		for (int i = 0; i < 6; i++) {
 			refineria.pasarTurno();
 		}
-		int cantidadInicial = jugador.cantidadGas();
+		int cantidadInicial = jugador.getCcantidadGas();
 		for (int i = 1; i <= 5; i++) {
 			refineria.pasarTurno();
 		}
-		int cantidadFinal = jugador.cantidadGas();
+		int cantidadFinal = jugador.getCcantidadGas();
 
 		Assert.assertEquals(50, cantidadFinal - cantidadInicial);
 	}
@@ -345,9 +345,9 @@ public class RefineriaTest {
 		for (int i = 0; i < 6; i++) {
 			refineria.pasarTurno();
 		}
-		int cantidadInicial = jugador.cantidadGas();
+		int cantidadInicial = jugador.getCcantidadGas();
 		refineria.pasarTurno();
-		int cantidadFinal = jugador.cantidadGas();
+		int cantidadFinal = jugador.getCcantidadGas();
 
 		Assert.assertEquals(7, cantidadFinal - cantidadInicial);
 	}
