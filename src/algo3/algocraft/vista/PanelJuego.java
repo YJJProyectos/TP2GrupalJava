@@ -3,6 +3,8 @@ package algo3.algocraft.vista;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -16,7 +18,7 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 @SuppressWarnings("serial")
-public class PanelJuego extends JPanel {
+public class PanelJuego extends JPanel implements Observer{
 
 	private JPanel panelSuperior;
 	private PanelMapa panelMapa;
@@ -33,6 +35,7 @@ public class PanelJuego extends JPanel {
 	public PanelJuego(Juego juego) throws CoordenadaInvalidaError {
 		super();
 		this.juego = juego;
+		this.juego.addObserver(this);
 		this.setPaneles();
 	}
 
@@ -138,5 +141,15 @@ public class PanelJuego extends JPanel {
 
 	public PanelBotones getPanelBotones() {
 		return this.panelBotones;
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		this.pantallaGanador();
+	}
+
+	private void pantallaGanador() {
+		this.juego.getGanador().getNombre();
+		//aca deberia lanzar el cartel que gano tal jugador bla bla bla
 	}
 }

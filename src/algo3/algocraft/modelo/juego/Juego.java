@@ -1,11 +1,12 @@
 package algo3.algocraft.modelo.juego;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Mapa;
 
-public class Juego {
+public class Juego extends Observable{
 
 	private ListaDeJugadores jugadores;
 	private Mapa mapa;
@@ -57,6 +58,8 @@ public class Juego {
 		this.jugadores.comprobarEstadoDeJugadores();
 		if (this.jugadores.cantidad() == 1) {
 			this.ganador = this.jugadores.jugadorActual();
+			this.setChanged();
+			this.notifyObservers();
 		}
 	}
 
