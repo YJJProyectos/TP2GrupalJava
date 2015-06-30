@@ -18,7 +18,7 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 @SuppressWarnings("serial")
-public class PanelJuego extends JPanel implements Observer{
+public class PanelJuego extends JPanel implements Observer {
 
 	private JPanel panelSuperior;
 	private PanelMapa panelMapa;
@@ -150,7 +150,6 @@ public class PanelJuego extends JPanel implements Observer{
 
 	private void pantallaGanador() {
 		this.juego.getGanador().getNombre();
-		new VentanaGanador(this.juego.getGanador(), null);
-		//aca deberia lanzar el cartel que gano tal jugador bla bla bla
+		new VentanaGanador(this.juego.getGanador());
 	}
 }
