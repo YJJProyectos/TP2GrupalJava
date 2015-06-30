@@ -14,6 +14,7 @@ import algo3.algocraft.controlador.AccionBotonCrearFabrica;
 import algo3.algocraft.controlador.AccionBotonCrearPuertoEstelar;
 import algo3.algocraft.controlador.AccionBotonCrearRefineria;
 import algo3.algocraft.controlador.AccionBotonPasarTurno;
+import algo3.algocraft.controlador.AccionBotonPosicionarSoldado;
 import algo3.algocraft.modelo.juego.Juego;
 
 @SuppressWarnings("serial")
@@ -34,11 +35,13 @@ public class PanelBotones extends JPanel {
 	private JButton botonEntrenarEspectro;
 
 	private PanelJuego panelJuego;
+	private Juego juego;
 
 	public PanelBotones(PanelJuego panelJuego, Juego juego) {
 
 		super();
 		this.panelJuego = panelJuego;
+		this.juego = juego;
 		this.setLayout(new GridLayout(20, 1));
 
 		this.botonCrearDeposito = new JButton();
@@ -79,8 +82,8 @@ public class PanelBotones extends JPanel {
 		this.botonPosicionarSoldado.setText("Posicionar Soldado" + "("
 				+ juego.turnoDeJugador().caintidadSoldadosParaPosicionar()
 				+ ")");
-		// this.botonPosicionarSoldado.addActionListener(new
-		// AccionBotonPosicionarSoldado(this);
+		this.botonPosicionarSoldado.addActionListener(new
+		 AccionBotonPosicionarSoldado(panelJuego, juego));
 
 		this.botonPasarTurno = new JButton();
 		this.botonPasarTurno.setText("Pasar Turno");
@@ -169,6 +172,12 @@ public class PanelBotones extends JPanel {
 		int porcentajeAncho = ancho - ((int) (ancho * 0.7));
 		int porcentajeAlto = alto - ((int) (alto * 0.6));
 		this.setPreferredSize(new Dimension(porcentajeAncho, porcentajeAlto));
+	}
+
+	public void actualizarDatos() {
+		this.botonPosicionarSoldado.setText("Posicionar Soldado" + "("
+				+ this.juego.turnoDeJugador().caintidadSoldadosParaPosicionar()
+				+ ")");
 	}
 
 }

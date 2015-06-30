@@ -73,6 +73,7 @@ public class PanelJuego extends JPanel {
 	public void actualizar() {
 		this.panelInformacion.actualizarDatos();
 		this.panelMapa.actualizarDatos();
+		this.panelBotones.actualizarDatos();
 	}
 
 	public void pasarTurno() {
