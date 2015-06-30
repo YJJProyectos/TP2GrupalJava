@@ -18,8 +18,10 @@ import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.BarracaNoConstruidaError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.YaHayUnidadEnEntrenamiento;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
@@ -184,7 +186,8 @@ public class JugadorTest {
 	public void sePuedePosicionarUnSoldadoDeColaDeEsperaDelJugador()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			RecolectorInvalidoError, NoHaySoldadosParaPosicionarError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
+			BarracaNoConstruidaError, YaHayUnidadEnEntrenamiento {
 
 		Jugador jugador = new Jugador();
 
@@ -238,7 +241,7 @@ public class JugadorTest {
 
 	@Test
 	public void siSeDestruyeLaUnicaUnidadDelJugadorEstaDestruido()
-			throws RecursosInsuficientesError, CasillaOcupadaError{
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
@@ -253,7 +256,7 @@ public class JugadorTest {
 
 	@Test
 	public void siSeDestruyeUnaUnidadDeDosDelJugadorNoEstaDestruido()
-			throws RecursosInsuficientesError, CasillaOcupadaError{
+			throws RecursosInsuficientesError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
@@ -289,9 +292,9 @@ public class JugadorTest {
 	public void elMarineDeberiaPoderAtacarDeNuevoAlPasarUnTurno()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			JugadorIncorrectoError, NoHaySoldadosParaPosicionarError,
-			CoordenadaInvalidaError,
-			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
-			PoblacionLimiteAlcanzadaError {
+			CoordenadaInvalidaError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError, PoblacionLimiteAlcanzadaError,
+			BarracaNoConstruidaError, YaHayUnidadEnEntrenamiento {
 		Mapa mapa = new Mapa(4);
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
@@ -335,7 +338,8 @@ public class JugadorTest {
 	public void deberiaTener2DePoblacionAlCrearse2Marine()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			RecolectorInvalidoError, NoHaySoldadosParaPosicionarError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
+			BarracaNoConstruidaError, YaHayUnidadEnEntrenamiento {
 
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaMineral = new Coordenada(1, 1);
@@ -391,7 +395,8 @@ public class JugadorTest {
 	public void deberiaVolverATener0DePoblacionSiLeMatanElMarine()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			RecolectorInvalidoError, NoHaySoldadosParaPosicionarError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
+			BarracaNoConstruidaError, YaHayUnidadEnEntrenamiento {
 
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaDeposito = new Coordenada(1, 2);
@@ -422,10 +427,12 @@ public class JugadorTest {
 		jugador.pasarTurno();
 		Assert.assertEquals(0, jugador.cantidadPoblacionOcupada());
 	}
-	
+
 	@Test
-	public void siEstaOcupadaLaCasillaLaCantidadDeUnidadesAPosicionarEsIgual() 
-			throws RecursosInsuficientesError, CasillaOcupadaError, JugadorIncorrectoError, PoblacionLimiteAlcanzadaError{
+	public void siEstaOcupadaLaCasillaLaCantidadDeUnidadesAPosicionarEsIgual()
+			throws RecursosInsuficientesError, CasillaOcupadaError,
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
+			BarracaNoConstruidaError, YaHayUnidadEnEntrenamiento {
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaDeposito = new Coordenada(1, 2);
 		Casilla casillaDeposito = new Casilla(coordenadaDeposito);
@@ -454,7 +461,7 @@ public class JugadorTest {
 			jugador.posicionarSoldadoEnColaDeEspera(casillaMarine);
 			Assert.fail();
 		} catch (NoHaySoldadosParaPosicionarError | CasillaOcupadaError error) {
-			
+
 		}
 		Assert.assertEquals(1, jugador.cantidadSoldadosParaPosicionar());
 	}
@@ -463,7 +470,8 @@ public class JugadorTest {
 	public void deberiaNoPoderEntrenarMarineSinLosDepositosRequeridos()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			RecolectorInvalidoError, NoHaySoldadosParaPosicionarError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
+			BarracaNoConstruidaError, YaHayUnidadEnEntrenamiento {
 
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 3);

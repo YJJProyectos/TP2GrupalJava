@@ -25,17 +25,20 @@ public class Barraca extends UnidadEdificio {
 		this.jugador.agregarUnidad(this);
 	}
 
-	public boolean entrenarMarine(Jugador unJugador)
+	public void entrenarMarine(Jugador unJugador)
 			throws JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError {
+			PoblacionLimiteAlcanzadaError, BarracaNoConstruidaError,
+			YaHayUnidadEnEntrenamiento {
 		if (this.jugador != unJugador) {
 			throw new JugadorIncorrectoError();
 		}
-		if (this.enConstruccion || this.marineEnEntrenamiento != null) {
-			return false;
+		if (this.enConstruccion) {
+			throw new BarracaNoConstruidaError();
+		}
+		if (this.marineEnEntrenamiento != null) {
+			throw new YaHayUnidadEnEntrenamiento();
 		}
 		this.marineEnEntrenamiento = new Marine(this.jugador);
-		return true;
 	}
 
 	public int tiempoDeConstruccion() {

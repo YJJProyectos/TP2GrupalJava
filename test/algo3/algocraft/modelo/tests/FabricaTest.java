@@ -12,9 +12,12 @@ import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.BarracaDestruidaError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.BarracaNoConstruidaError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.FabricaNoConstruidaError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.YaHayUnidadEnEntrenamiento;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorError;
@@ -235,9 +238,8 @@ public class FabricaTest {
 
 	@Test
 	public void laFabricaConstruidaDeberiaRecibirDanio1()
-			throws PerteneceAOtroJugadorError,
-			RecursosInsuficientesError, BarracaNoConstruidaError,
-			CasillaOcupadaError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			BarracaNoConstruidaError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
@@ -261,9 +263,8 @@ public class FabricaTest {
 
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaFabricaConstruidaEs1249()
-			throws PerteneceAOtroJugadorError,
-			RecursosInsuficientesError, BarracaNoConstruidaError,
-			CasillaOcupadaError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			BarracaNoConstruidaError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
@@ -386,9 +387,8 @@ public class FabricaTest {
 
 	@Test
 	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
-			throws PerteneceAOtroJugadorError,
-			RecursosInsuficientesError, BarracaNoConstruidaError,
-			CasillaOcupadaError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			BarracaNoConstruidaError, CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
 		Coordenada coordenadaBarraca = new Coordenada(1, 1);
@@ -407,10 +407,12 @@ public class FabricaTest {
 	}
 
 	@Test(expected = JugadorIncorrectoError.class)
-	public void deberiaLanzarUnaExexpcionAlEntrenarUnSoldadoMarinePorqueRecibioComoParametroASuMismoJugador()
+	public void deberiaLanzarUnaExexpcionAlEntrenarUnSoldadoGolliatPorqueRecibioComoParametroASuMismoJugador()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			JugadorIncorrectoError, PerteneceAOtroJugadorError,
-			BarracaNoConstruidaError, PoblacionLimiteAlcanzadaError {
+			PoblacionLimiteAlcanzadaError, YaHayUnidadEnEntrenamiento,
+			BarracaDestruidaError, FabricaNoConstruidaError,
+			BarracaNoConstruidaError {
 
 		Jugador jugador = new Jugador();
 		Jugador otroJugador = new Jugador();
@@ -427,14 +429,16 @@ public class FabricaTest {
 		for (int j = 0; j < 12; j++) {
 			fabrica.pasarTurno();
 		}
-		barraca.entrenarMarine(otroJugador);
+		fabrica.entrenarGolliat(otroJugador);
 	}
 
-	@Test
+	@Test(expected = FabricaNoConstruidaError.class)
 	public void deberiaNoPoderEntrenarUnSoldadoGolliaPorqueNoTerminoDeConstruirse()
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
-			BarracaNoConstruidaError, CasillaOcupadaError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
+			throws JugadorIncorrectoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError, BarracaDestruidaError,
+			YaHayUnidadEnEntrenamiento, FabricaNoConstruidaError,
+			CasillaOcupadaError, PerteneceAOtroJugadorError,
+			BarracaNoConstruidaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -447,16 +451,16 @@ public class FabricaTest {
 			barraca.pasarTurno();
 		}
 		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
-
-		Assert.assertFalse(fabrica.entrenarGolliat(jugador));
+		fabrica.entrenarGolliat(jugador);
 	}
 
-	@Test
+	@Test(expected = BarracaDestruidaError.class)
 	public void deberiaNoPoderEntrenarUnSoldadoGolliaPorqueLaBarracaEstaDestruida()
-			throws PerteneceAOtroJugadorError, 
-			RecursosInsuficientesError, BarracaNoConstruidaError,
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			CasillaOcupadaError, JugadorIncorrectoError,
-			PoblacionLimiteAlcanzadaError {
+			PoblacionLimiteAlcanzadaError, BarracaDestruidaError,
+			YaHayUnidadEnEntrenamiento, FabricaNoConstruidaError,
+			BarracaNoConstruidaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -473,15 +477,16 @@ public class FabricaTest {
 			fabrica.pasarTurno();
 		}
 		barraca.recibirDanio(2000);
-
-		Assert.assertFalse(fabrica.entrenarGolliat(jugador));
+		fabrica.entrenarGolliat(jugador);
 	}
 
 	@Test
 	public void deberiaEntrenarUnSoldadoGolliat()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			BarracaNoConstruidaError, CasillaOcupadaError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
+			BarracaDestruidaError, YaHayUnidadEnEntrenamiento,
+			FabricaNoConstruidaError {
 
 		Jugador jugador = new Jugador();
 		// agrego recursos para poder pagar todas las unidades
@@ -500,15 +505,16 @@ public class FabricaTest {
 		for (int j = 0; j < 12; j++) {
 			fabrica.pasarTurno();
 		}
-
-		Assert.assertTrue(fabrica.entrenarGolliat(jugador));
+		fabrica.entrenarGolliat(jugador);
 	}
 
-	@Test
+	@Test(expected = YaHayUnidadEnEntrenamiento.class)
 	public void noDeberiaPoderComenzarAEntrenarAUnGolliatMientrasEsteEntrenandoAOtroGolliat()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			BarracaNoConstruidaError, CasillaOcupadaError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
+			BarracaDestruidaError, YaHayUnidadEnEntrenamiento,
+			FabricaNoConstruidaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarMineral(50);
@@ -527,15 +533,16 @@ public class FabricaTest {
 			fabrica.pasarTurno();
 		}
 		fabrica.entrenarGolliat(jugador);
-
-		Assert.assertFalse(fabrica.entrenarGolliat(jugador));
+		fabrica.entrenarGolliat(jugador);
 	}
 
 	@Test
 	public void deberiaPoderEntrenarAUnGolliatLuegoDeFinalizarElEntrenamientoDeOtroGolliat()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			BarracaNoConstruidaError, CasillaOcupadaError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
+			BarracaDestruidaError, YaHayUnidadEnEntrenamiento,
+			FabricaNoConstruidaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarMineral(150);
@@ -557,8 +564,7 @@ public class FabricaTest {
 		for (int j = 0; j < 6; j++) {
 			fabrica.pasarTurno();
 		}
-
-		Assert.assertTrue(fabrica.entrenarGolliat(jugador));
+		fabrica.entrenarGolliat(jugador);
 	}
 
 	@Test(expected = PerteneceAOtroJugadorError.class)

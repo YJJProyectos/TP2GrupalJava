@@ -12,7 +12,9 @@ import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.recursos.MinaDeMinerales;
 import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.BarracaNoConstruidaError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.YaHayUnidadEnEntrenamiento;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorError;
@@ -242,7 +244,8 @@ public class BarracaTest {
 	@Test(expected = JugadorIncorrectoError.class)
 	public void deberiaLanzarUnaExexpcionAlEntrenarUnSoldadoMarinePorqueRecibioComoParametroASuMismoJugador()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
+			BarracaNoConstruidaError, YaHayUnidadEnEntrenamiento {
 
 		Jugador jugador = new Jugador();
 		Jugador otroJugador = new Jugador();
@@ -255,23 +258,24 @@ public class BarracaTest {
 		barraca.entrenarMarine(otroJugador);
 	}
 
-	@Test
+	@Test(expected = BarracaNoConstruidaError.class)
 	public void deberiaNoPoderEntrenarUnSoldadoMarinePorqueNoTerminoDeConstruirse()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
+			BarracaNoConstruidaError, YaHayUnidadEnEntrenamiento {
 
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
 		Casilla casilla = new Casilla(coordenada);
 		Barraca barraca = new Barraca(jugador, casilla);
-
-		Assert.assertFalse(barraca.entrenarMarine(jugador));
+		barraca.entrenarMarine(jugador);
 	}
 
 	@Test
 	public void deberiaEntrenarUnSoldadoMarine()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
+			BarracaNoConstruidaError, YaHayUnidadEnEntrenamiento {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -281,14 +285,14 @@ public class BarracaTest {
 		for (int i = 0; i < 13; i++) {
 			barraca.pasarTurno();
 		}
-
-		Assert.assertTrue(barraca.entrenarMarine(jugador));
+		barraca.entrenarMarine(jugador);
 	}
 
-	@Test
+	@Test(expected = YaHayUnidadEnEntrenamiento.class)
 	public void noDeberiaPoderComenzarAEntrenarAUnMarineMientrasEsteEntrenandoAOtroMarine()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
+			BarracaNoConstruidaError, YaHayUnidadEnEntrenamiento {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -299,15 +303,15 @@ public class BarracaTest {
 			barraca.pasarTurno();
 		}
 		barraca.entrenarMarine(jugador);
-
-		Assert.assertFalse(barraca.entrenarMarine(jugador));
+		barraca.entrenarMarine(jugador);
 	}
 
 	@Test
 	public void deberiaPoderEntrenarAUnMarineLuegoDeFinalizarElEntrenamientoDeOtroMarine()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			CasillaOcupadaError, JugadorIncorrectoError,
-			PoblacionLimiteAlcanzadaError {
+			PoblacionLimiteAlcanzadaError, BarracaNoConstruidaError,
+			YaHayUnidadEnEntrenamiento {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -321,8 +325,7 @@ public class BarracaTest {
 		for (int j = 0; j < 3; j++) {
 			barraca.pasarTurno();
 		}
-
-		Assert.assertTrue(barraca.entrenarMarine(jugador));
+		barraca.entrenarMarine(jugador);
 	}
 
 }

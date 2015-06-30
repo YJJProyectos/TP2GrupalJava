@@ -17,10 +17,13 @@ import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.BarracaDestruidaError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.BarracaNoConstruidaError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.FabricaNoConstruidaError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.YaHayUnidadEnEntrenamiento;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
@@ -34,9 +37,10 @@ public class IntegracionTest {
 			CasillaOcupadaError, CoordenadaInvalidaError,
 			RecolectorInvalidoError, PerteneceAOtroJugadorError,
 			BarracaNoConstruidaError, NoHaySoldadosParaPosicionarError,
-			JugadorIncorrectoError, 
-			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
-			PoblacionLimiteAlcanzadaError, NombresInvalidosError {
+			JugadorIncorrectoError, PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError, PoblacionLimiteAlcanzadaError,
+			NombresInvalidosError, YaHayUnidadEnEntrenamiento,
+			BarracaDestruidaError, FabricaNoConstruidaError {
 		int esquina1 = 1;
 		int esquina4 = 20;
 		int centro = 10;
@@ -45,9 +49,9 @@ public class IntegracionTest {
 		jugador1.setNombre("1");
 		jugador2.setNombre("2");
 		Juego juego = new Juego(jugador1, jugador2);
-		
+
 		Assert.assertEquals(1, jugador1.cantidadUnidades());
-		
+
 		Jugador jugadorActual = juego.turnoDeJugador();
 		Recurso mineral1 = juego.getMapa().obtenerRecursoEnPosicion(
 				new Coordenada(esquina1, esquina1));
@@ -146,9 +150,9 @@ public class IntegracionTest {
 		golliat2.mover(
 				juego.getMapa().getCasilla(
 						new Coordenada(centro + 1, centro + 1)), jugadorActual);
-		
+
 		Assert.assertEquals(8, jugador1.cantidadUnidades());
-		
+
 		marine2.atacarEnemigo(marine1, jugadorActual);
 		golliat2.atacarEnemigo(marine1, jugadorActual);
 		juego.pasarTurno();
@@ -164,9 +168,9 @@ public class IntegracionTest {
 
 		golliat2.atacarEnemigo(golliat1, jugadorActual);
 		juego.pasarTurno();
-		
+
 		Assert.assertEquals(7, jugador1.cantidadUnidades());
-		
+
 		juego.pasarTurno();
 		for (int m = 0; m < 6; m++) {
 			marine2.atacarEnemigo(golliat1, jugadorActual);
@@ -187,9 +191,9 @@ public class IntegracionTest {
 						new Coordenada(esquina1 + 2, esquina1 + 3)),
 				jugadorActual);
 		juego.pasarTurno();
-		
+
 		Assert.assertEquals(6, jugador1.cantidadUnidades());
-		
+
 		juego.pasarTurno();
 		for (int n = 0; n < 28; n++) {
 			marine2.atacarEnemigo(centro1, jugadorActual);
@@ -205,17 +209,17 @@ public class IntegracionTest {
 			juego.pasarTurno();
 			juego.pasarTurno();
 		}
-		
+
 		Assert.assertEquals(5, jugador1.cantidadUnidades());
-		
+
 		golliat2.atacarEnemigo(barraca1, jugadorActual);
 
 		Assert.assertTrue(barraca1.estaDestruido());
 
 		juego.pasarTurno();
-		
+
 		Assert.assertEquals(4, jugador1.cantidadUnidades());
-		
+
 		juego.pasarTurno();
 
 		for (int p = 0; p < 28; p++) {
@@ -228,22 +232,22 @@ public class IntegracionTest {
 		Assert.assertTrue(deposito1.estaDestruido());
 
 		Assert.assertEquals(3, jugador1.cantidadUnidades());
-		
+
 		for (int q = 0; q < 41; q++) {
 			marine2.atacarEnemigo(refineria1, jugadorActual);
 			golliat2.atacarEnemigo(refineria1, jugadorActual);
 			juego.pasarTurno();
 			juego.pasarTurno();
 		}
-	
+
 		golliat2.atacarEnemigo(refineria1, jugadorActual);
 
 		Assert.assertTrue(refineria1.estaDestruido());
 
 		juego.pasarTurno();
-		
+
 		Assert.assertEquals(2, jugador1.cantidadUnidades());
-		
+
 		juego.pasarTurno();
 
 		for (int r = 0; r < 69; r++) {
@@ -253,86 +257,90 @@ public class IntegracionTest {
 			juego.pasarTurno();
 		}
 		golliat2.atacarEnemigo(fabrica1, jugadorActual);
-		
-		Assert.assertTrue(fabrica1.estaDestruido());			
+
+		Assert.assertTrue(fabrica1.estaDestruido());
 		juego.pasarTurno();
 		juego.pasarTurno();
 
 		Assert.assertEquals(1, jugador1.cantidadUnidades());
-		
-		//aca le falta romperle el deposito que esta cerca del gas
-		// la cagada es que yo le habia puesto en 4 posiciones diferentes (random) 
+
+		// aca le falta romperle el deposito que esta cerca del gas
+		// la cagada es que yo le habia puesto en 4 posiciones diferentes
+		// (random)
 		Assert.assertFalse(jugador1.estaDestruido());
-		
-		Unidad deposito = null;		
+
+		Unidad deposito = null;
 		boolean yaEncontrado = false;
 		int fila = 2;
 		int columna = 2;
 		int filaEncontrada = 0;
 		int columnaEncontrada = 0;
-		Unidad depositoBuscado = juego.getMapa().obtenerElementoTerrestreEnPosicion
-				(new Coordenada(fila, columna)); 
-		if ( depositoBuscado != null && !yaEncontrado){
-			if (jugadorActual != depositoBuscado.getJugador() ){
+		Unidad depositoBuscado = juego.getMapa()
+				.obtenerElementoTerrestreEnPosicion(
+						new Coordenada(fila, columna));
+		if (depositoBuscado != null && !yaEncontrado) {
+			if (jugadorActual != depositoBuscado.getJugador()) {
 				deposito = depositoBuscado;
 				yaEncontrado = true;
 				filaEncontrada = fila;
 				columnaEncontrada = columna;
-			}		
+			}
 		}
 		fila = 2;
 		columna = 19;
-		depositoBuscado = juego.getMapa().obtenerElementoTerrestreEnPosicion
-				(new Coordenada(fila, columna)); 
-		if ( depositoBuscado != null && !yaEncontrado){
-			if (jugadorActual != depositoBuscado.getJugador() ){
+		depositoBuscado = juego.getMapa().obtenerElementoTerrestreEnPosicion(
+				new Coordenada(fila, columna));
+		if (depositoBuscado != null && !yaEncontrado) {
+			if (jugadorActual != depositoBuscado.getJugador()) {
 				deposito = depositoBuscado;
 				yaEncontrado = true;
 				filaEncontrada = fila;
 				columnaEncontrada = columna;
-			}		
+			}
 		}
 		fila = 19;
 		columna = 2;
-		depositoBuscado = juego.getMapa().obtenerElementoTerrestreEnPosicion
-				(new Coordenada(fila, columna)); 
-		if ( depositoBuscado != null && !yaEncontrado){
-			if (jugadorActual != depositoBuscado.getJugador() ){
+		depositoBuscado = juego.getMapa().obtenerElementoTerrestreEnPosicion(
+				new Coordenada(fila, columna));
+		if (depositoBuscado != null && !yaEncontrado) {
+			if (jugadorActual != depositoBuscado.getJugador()) {
 				deposito = depositoBuscado;
 				yaEncontrado = true;
 				filaEncontrada = fila;
 				columnaEncontrada = columna;
-			}		
+			}
 		}
 		fila = 19;
 		columna = 19;
-		depositoBuscado = juego.getMapa().obtenerElementoTerrestreEnPosicion
-				(new Coordenada(fila, columna)); 
-		if ( depositoBuscado != null && !yaEncontrado){
-			if (jugadorActual != depositoBuscado.getJugador() ){
+		depositoBuscado = juego.getMapa().obtenerElementoTerrestreEnPosicion(
+				new Coordenada(fila, columna));
+		if (depositoBuscado != null && !yaEncontrado) {
+			if (jugadorActual != depositoBuscado.getJugador()) {
 				deposito = depositoBuscado;
 				yaEncontrado = true;
 				filaEncontrada = fila;
 				columnaEncontrada = columna;
-			}		
+			}
 		}
-		
+
 		// los acerco donde estaria el ultimo deposito
 		marine2.mover(
-				juego.getMapa().getCasilla
-				(new Coordenada(filaEncontrada, columnaEncontrada +1 )),jugadorActual);
+				juego.getMapa().getCasilla(
+						new Coordenada(filaEncontrada, columnaEncontrada + 1)),
+				jugadorActual);
 		golliat2.mover(
-				juego.getMapa().getCasilla
-				(new Coordenada(filaEncontrada, columnaEncontrada -1 )),jugadorActual);
-		for (int i = 0; i < 28; i++){
+				juego.getMapa().getCasilla(
+						new Coordenada(filaEncontrada, columnaEncontrada - 1)),
+				jugadorActual);
+		for (int i = 0; i < 28; i++) {
 			marine2.atacarEnemigo(deposito, jugadorActual);
 			golliat2.atacarEnemigo(deposito, jugadorActual);
 			juego.pasarTurno();
 			juego.pasarTurno();
 		}
-		
+
 		Assert.assertEquals(0, jugador1.cantidadUnidades());
-		
+
 		Assert.assertTrue(jugador1.estaDestruido());
 
 		juego.pasarTurno();

@@ -14,9 +14,12 @@ import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.BarracaNoConstruidaError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.FabricaDestruidaError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.FabricaNoConstruidaError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.PuertoEstelar;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.PuertoEstelarNoConstruidoError;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.YaHayUnidadEnEntrenamiento;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorError;
@@ -332,9 +335,9 @@ public class PuertoEstelarTest {
 
 	@Test
 	public void elPuertoEstelarConstruidaDeberiaRecibirDanio1()
-			throws PerteneceAOtroJugadorError,
-			RecursosInsuficientesError, FabricaNoConstruidaError,
-			CasillaOcupadaError, BarracaNoConstruidaError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			FabricaNoConstruidaError, CasillaOcupadaError,
+			BarracaNoConstruidaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarMineral(1000);
@@ -368,9 +371,9 @@ public class PuertoEstelarTest {
 
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaAUnPuertoEstelarConstruid0Es1299()
-			throws PerteneceAOtroJugadorError,
-			RecursosInsuficientesError, FabricaNoConstruidaError,
-			CasillaOcupadaError, BarracaNoConstruidaError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			FabricaNoConstruidaError, CasillaOcupadaError,
+			BarracaNoConstruidaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarMineral(1000);
@@ -553,9 +556,9 @@ public class PuertoEstelarTest {
 
 	@Test
 	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
-			throws PerteneceAOtroJugadorError,
-			RecursosInsuficientesError, FabricaNoConstruidaError,
-			CasillaOcupadaError, BarracaNoConstruidaError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			FabricaNoConstruidaError, CasillaOcupadaError,
+			BarracaNoConstruidaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarMineral(1000);
@@ -586,11 +589,12 @@ public class PuertoEstelarTest {
 	}
 
 	@Test(expected = JugadorIncorrectoError.class)
-	public void deberiaLanzarUnaExexpcionAlEntrenarUnSoldadoEspectroPorqueRecibioComoParametroASuMismoJugador()
+	public void deberiaLanzarUnaExexpcionAlEntrenarUnSoldadoEspectroPorqueRecibioComoParametroAOtroJugador()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			JugadorIncorrectoError, PerteneceAOtroJugadorError,
 			FabricaNoConstruidaError, PoblacionLimiteAlcanzadaError,
-			BarracaNoConstruidaError {
+			BarracaNoConstruidaError, PuertoEstelarNoConstruidoError,
+			FabricaDestruidaError, YaHayUnidadEnEntrenamiento {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarMineral(1000);
@@ -620,7 +624,7 @@ public class PuertoEstelarTest {
 	}
 
 	@Test(expected = JugadorIncorrectoError.class)
-	public void deberiaLanzarUnaExexpcionAlEntrenarUnaNavePorqueRecibioComoParametroASuMismoJugador()
+	public void deberiaLanzarUnaExexpcionAlEntrenarUnaNavePorqueRecibioComoParametroAOtroJugador()
 			throws RecursosInsuficientesError, CasillaOcupadaError,
 			JugadorIncorrectoError, PerteneceAOtroJugadorError,
 			FabricaNoConstruidaError, PoblacionLimiteAlcanzadaError,
@@ -653,12 +657,13 @@ public class PuertoEstelarTest {
 		puerto.entrenarNaveTransporte(otroJugador);
 	}
 
-	@Test
+	@Test(expected = PuertoEstelarNoConstruidoError.class)
 	public void deberiaNoPoderEntrenarUnEspectroPorqueNoTerminoDeConstruirse()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			FabricaNoConstruidaError, CasillaOcupadaError,
 			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
-			BarracaNoConstruidaError {
+			BarracaNoConstruidaError, PuertoEstelarNoConstruidoError,
+			FabricaDestruidaError, YaHayUnidadEnEntrenamiento {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarMineral(1000);
@@ -679,8 +684,7 @@ public class PuertoEstelarTest {
 		}
 		PuertoEstelar puerto = new PuertoEstelar(jugador, casillaPuertoEstelar,
 				fabrica);
-
-		Assert.assertFalse(puerto.entrenarEspectro(jugador));
+		puerto.entrenarEspectro(jugador);
 	}
 
 	@Test
@@ -713,12 +717,13 @@ public class PuertoEstelarTest {
 		Assert.assertFalse(puerto.entrenarNaveTransporte(jugador));
 	}
 
-	@Test
+	@Test(expected = FabricaDestruidaError.class)
 	public void deberiaNoPoderEntrenarUnEspectroPorqueLaFabricaEstaDestruida()
-			throws PerteneceAOtroJugadorError,
-			RecursosInsuficientesError, FabricaNoConstruidaError,
-			CasillaOcupadaError, JugadorIncorrectoError,
-			PoblacionLimiteAlcanzadaError, BarracaNoConstruidaError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			FabricaNoConstruidaError, CasillaOcupadaError,
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
+			BarracaNoConstruidaError, PuertoEstelarNoConstruidoError,
+			FabricaDestruidaError, YaHayUnidadEnEntrenamiento {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarMineral(1000);
@@ -744,16 +749,15 @@ public class PuertoEstelarTest {
 			puerto.pasarTurno();
 		}
 		fabrica.recibirDanio(2000);
-
-		Assert.assertFalse(puerto.entrenarEspectro(jugador));
+		puerto.entrenarEspectro(jugador);
 	}
 
 	@Test
 	public void deberiaNoPoderEntrenarUnaNavePorqueLaPuertoEstelarEstaDestruida()
-			throws PerteneceAOtroJugadorError,
-			RecursosInsuficientesError, FabricaNoConstruidaError,
-			CasillaOcupadaError, JugadorIncorrectoError,
-			PoblacionLimiteAlcanzadaError, BarracaNoConstruidaError {
+			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
+			FabricaNoConstruidaError, CasillaOcupadaError,
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
+			BarracaNoConstruidaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarMineral(1000);
@@ -787,7 +791,9 @@ public class PuertoEstelarTest {
 	public void deberiaEntrenarUnEspectro() throws PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, FabricaNoConstruidaError,
 			CasillaOcupadaError, JugadorIncorrectoError,
-			PoblacionLimiteAlcanzadaError, BarracaNoConstruidaError {
+			PoblacionLimiteAlcanzadaError, BarracaNoConstruidaError,
+			PuertoEstelarNoConstruidoError, FabricaDestruidaError,
+			YaHayUnidadEnEntrenamiento {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarMineral(1000);
@@ -813,7 +819,7 @@ public class PuertoEstelarTest {
 			puerto.pasarTurno();
 		}
 		jugador.aumentarPoblacion();
-		Assert.assertTrue(puerto.entrenarEspectro(jugador));
+		puerto.entrenarEspectro(jugador);
 	}
 
 	@Test
@@ -849,12 +855,13 @@ public class PuertoEstelarTest {
 		Assert.assertTrue(puerto.entrenarNaveTransporte(jugador));
 	}
 
-	@Test
+	@Test(expected = YaHayUnidadEnEntrenamiento.class)
 	public void noDeberiaPoderComenzarAEntrenarAUnEspectroMientrasEsteEntrenandoAOtraUnidad()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			FabricaNoConstruidaError, CasillaOcupadaError,
 			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
-			BarracaNoConstruidaError {
+			BarracaNoConstruidaError, PuertoEstelarNoConstruidoError,
+			FabricaDestruidaError, YaHayUnidadEnEntrenamiento {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarMineral(1000);
@@ -878,11 +885,10 @@ public class PuertoEstelarTest {
 				fabrica);
 		for (int i = 0; i < 10; i++) {
 			puerto.pasarTurno();
-		}		
+		}
 		jugador.aumentarPoblacion();
 		puerto.entrenarEspectro(jugador);
-
-		Assert.assertFalse(puerto.entrenarEspectro(jugador));
+		puerto.entrenarEspectro(jugador);
 	}
 
 	@Test
@@ -926,7 +932,8 @@ public class PuertoEstelarTest {
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
 			FabricaNoConstruidaError, CasillaOcupadaError,
 			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
-			BarracaNoConstruidaError {
+			BarracaNoConstruidaError, PuertoEstelarNoConstruidoError,
+			FabricaDestruidaError, YaHayUnidadEnEntrenamiento {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarMineral(1000);
@@ -957,7 +964,7 @@ public class PuertoEstelarTest {
 			puerto.pasarTurno();
 		}
 		jugador.aumentarPoblacion();
-		Assert.assertTrue(puerto.entrenarEspectro(jugador));
+		puerto.entrenarEspectro(jugador);
 	}
 
 	@Test

@@ -6,7 +6,8 @@ import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.Espectro;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.TransporteTerran;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadMovil;
 
 public class PuertoEstelar extends UnidadEdificio {
@@ -38,15 +39,21 @@ public class PuertoEstelar extends UnidadEdificio {
 
 	public boolean entrenarEspectro(Jugador unJugador)
 			throws JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError {
+			PoblacionLimiteAlcanzadaError, PuertoEstelarNoConstruidoError,
+			FabricaDestruidaError, YaHayUnidadEnEntrenamiento {
 		if (this.jugador != unJugador) {
 			throw new JugadorIncorrectoError();
 		}
-		if (this.enConstruccion || fabrica.estaDestruido()
-				|| this.unidadEnEntrenamiento != null) {
-			return false;
+		if (this.enConstruccion) {
+			throw new PuertoEstelarNoConstruidoError();
 		}
-		this.unidadEnEntrenamiento = new Golliat(this.jugador);
+		if (fabrica.estaDestruido()) {
+			throw new FabricaDestruidaError();
+		}
+		if (this.unidadEnEntrenamiento != null) {
+			throw new YaHayUnidadEnEntrenamiento();
+		}
+		this.unidadEnEntrenamiento = new Espectro(this.jugador);
 		this.turnosRestantesParaTerminarUnidad = 8;
 		return true;
 	}
@@ -61,7 +68,7 @@ public class PuertoEstelar extends UnidadEdificio {
 				|| this.unidadEnEntrenamiento != null) {
 			return false;
 		}
-		this.unidadEnEntrenamiento = new Golliat(this.jugador);
+		this.unidadEnEntrenamiento = new TransporteTerran(this.jugador);
 		this.turnosRestantesParaTerminarUnidad = 7;
 		return true;
 	}

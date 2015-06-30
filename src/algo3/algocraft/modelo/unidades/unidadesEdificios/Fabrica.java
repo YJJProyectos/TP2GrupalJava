@@ -35,18 +35,24 @@ public class Fabrica extends UnidadEdificio {
 		this.jugador.agregarUnidad(this);
 	}
 
-	public boolean entrenarGolliat(Jugador unJugador)
+	public void entrenarGolliat(Jugador unJugador)
 			throws JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError {
+			PoblacionLimiteAlcanzadaError, BarracaDestruidaError,
+			YaHayUnidadEnEntrenamiento, FabricaNoConstruidaError {
 		if (this.jugador != unJugador) {
 			throw new JugadorIncorrectoError();
 		}
-		if (this.enConstruccion || barraca.estaDestruido()
-				|| this.golliatEnEntrenamiento != null) {
-			return false;
+		if (this.enConstruccion) {
+			throw new FabricaNoConstruidaError();
+		}
+		if (barraca.estaDestruido()) {
+			throw new BarracaDestruidaError();
+		}
+		if (this.golliatEnEntrenamiento != null) {
+			throw new YaHayUnidadEnEntrenamiento();
 		}
 		this.golliatEnEntrenamiento = new Golliat(this.jugador);
-		return true;
+
 	}
 
 	public int tiempoDeConstruccion() {
