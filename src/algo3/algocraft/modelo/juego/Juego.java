@@ -29,6 +29,8 @@ public class Juego extends Observable{
 		try {
 			jugador1.iniciarConDeposito(this.mapa.posicionDeBase());
 			jugador2.iniciarConDeposito(this.mapa.posicionDeBase());
+			jugador1.iniciarConMarineParaPosicionar();
+			jugador2.iniciarConMarineParaPosicionar();
 		} catch (RecursosInsuficientesError | CasillaOcupadaError e) {
 			e.printStackTrace();
 		}
