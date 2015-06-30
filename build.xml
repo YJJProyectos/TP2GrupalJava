@@ -132,11 +132,24 @@
 		</javac>
 	</target>
 
-	<target name="empaquetar" depends="compilar.paquete">
-		<jar destfile="${build}/dist/titiritero.jar" basedir="${build}/classes" />
+	<target name="empaquetar.con.imagenes" depends="compilar.paquete">
+		<copydir src="src/algo3/algocraft/imagenes"
+			dest="${build}/classes/algo3/algocraft/imagenes"
+			includes="**/*.png"/>
+		<copydir src="src/algo3/algocraft/imagenes"
+			dest="${build}/classes/algo3/algocraft/imagenes"
+			includes="**/*.jpg"/>
+		<jar destfile="${build}/dist/ProgramaPrincipal.jar" basedir="${build}/classes"/>
 	</target>
 
 	<target name="integracion-continua" depends="run-pmd,coverage-report,alternate-coverage-report" description="Ejecuta todas las tareas de integracion y genera los correspondientes reportes"/>
+
+	<target name="ejecutar.aplicacion" depends="empaquetar.con.imagenes">
+	<java classname="algo3.algocraft.ProgramaPrincipal" fork="true">
+	<classpath refid="classpath" />
+		<classpath location="${build}/dist/ProgramaPrincipal.jar" />
+	</java>
+	</target>
 
 	<!-- Ivy installation -->
 	<target name="download-ivy" unless="skip.download">
