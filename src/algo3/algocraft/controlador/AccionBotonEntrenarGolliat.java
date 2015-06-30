@@ -50,10 +50,7 @@ public class AccionBotonEntrenarGolliat implements ActionListener {
 		} catch (FabricaNoConstruidaError e) {
 			String textoError = "<html>Fabrica no construida <html>";
 			new VentanaError(textoError);
-		} catch (Exception e) {
-			String textoError = "<html>No se selecciono una casilla con una Fabrica <html>";
-			new VentanaError(textoError);
-		}
+		} 
 
 		this.panelJuego.actualizar();
 	}

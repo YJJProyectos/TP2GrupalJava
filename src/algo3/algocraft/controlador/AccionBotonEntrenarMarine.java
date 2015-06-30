@@ -46,9 +46,6 @@ public class AccionBotonEntrenarMarine implements ActionListener {
 		} catch (YaHayUnidadEnEntrenamiento e) {
 			String textoError = "<html>Ya hay unidad en entrenamiento <html>";
 			new VentanaError(textoError);
-		} catch (Exception e) {
-			String textoError = "<html>No se selecciono una casilla con una Barraca <html>";
-			new VentanaError(textoError);
 		}
 
 		this.panelJuego.actualizar();

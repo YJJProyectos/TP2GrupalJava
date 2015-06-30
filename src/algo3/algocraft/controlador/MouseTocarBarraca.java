@@ -28,6 +28,7 @@ public class MouseTocarBarraca implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent click) {
 		if (click.getButton() == MouseEvent.BUTTON1) {
+			this.panelJuego.setCasillaActual(this.casilla);
 			this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(
 					false);
 			this.panelJuego.sacarBordes();
