@@ -150,7 +150,7 @@ public class PanelInformacion extends JPanel {
 		this.unidadEnConstruccion.setVisible(false);
 	}
 	
-	public void setInformacionUnidadEnCreacion(String datos){
+	public void setInformacionUnidadEnEntrenamiento(String datos){
 		this.unidadEnConstruccion.setText(datos);
 		this.unidadEnConstruccion.setVisible(true);
 	}

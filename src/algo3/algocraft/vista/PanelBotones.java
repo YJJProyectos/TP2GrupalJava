@@ -50,35 +50,38 @@ public class PanelBotones extends JPanel {
 		this.setLayout(new GridLayout(20, 1));
 
 		this.botonCrearDeposito = new JButton();
-		this.botonCrearDeposito.setText("Crear Deposito de Suministros");
+		this.botonCrearDeposito
+				.setText("Crear Deposito de Suministros (100 M / 0 G)");
 		this.botonCrearDeposito
 				.addActionListener(new AccionBotonCrearDepositoDeSuministros(
 						this.panelJuego, juego));
 
 		this.botonCrearRefineria = new JButton();
-		this.botonCrearRefineria.setText("Crear Refineria");
+		this.botonCrearRefineria.setText("Crear Refineria (100 M / 0 G)");
 		this.botonCrearRefineria
 				.addActionListener(new AccionBotonCrearRefineria(
 						this.panelJuego, juego));
 
 		this.botonCrearCentroMineral = new JButton();
-		this.botonCrearCentroMineral.setText("Crear Centro Mineral");
+		this.botonCrearCentroMineral
+				.setText("Crear Centro Mineral (50 M / 0 G)");
 		this.botonCrearCentroMineral
 				.addActionListener(new AccionBotonCrearCentroMineral(
 						this.panelJuego, juego));
 
 		this.botonCrearBarraca = new JButton();
-		this.botonCrearBarraca.setText("Crear Barraca");
+		this.botonCrearBarraca.setText("Crear Barraca (150 M / 0 G)");
 		this.botonCrearBarraca.addActionListener(new AccionBotonCrearBarraca(
 				this.panelJuego, juego));
 
 		this.botonCrearFabrica = new JButton();
-		this.botonCrearFabrica.setText("Crear Fabrica");
+		this.botonCrearFabrica.setText("Crear Fabrica (200 M / 100 G)");
 		this.botonCrearFabrica.addActionListener(new AccionBotonCrearFabrica(
 				this.panelJuego, juego));
 
 		this.botonCrearPuertoEstelar = new JButton();
-		this.botonCrearPuertoEstelar.setText("Crear Puerto Estelar");
+		this.botonCrearPuertoEstelar
+				.setText("Crear Puerto Estelar (150 M / 100 G)");
 		this.botonCrearPuertoEstelar
 				.addActionListener(new AccionBotonCrearPuertoEstelar(
 						this.panelJuego, juego));
@@ -109,19 +112,19 @@ public class PanelBotones extends JPanel {
 				juego));
 
 		this.botonEntrenarMarine = new JButton();
-		this.botonEntrenarMarine.setText("Entrenar Marine");
+		this.botonEntrenarMarine.setText("Entrenar Marine (50 M / 0 G)");
 		this.botonEntrenarMarine
 				.addActionListener(new AccionBotonEntrenarMarine(
 						this.panelJuego, juego));
 
 		this.botonEntrenarGolliat = new JButton();
-		this.botonEntrenarGolliat.setText("Entrenar Golliat");
+		this.botonEntrenarGolliat.setText("Entrenar Golliat (100 M / 50 G)");
 		this.botonEntrenarGolliat
 				.addActionListener(new AccionBotonEntrenarGolliat(
 						this.panelJuego, juego));
 
 		this.botonEntrenarEspectro = new JButton();
-		this.botonEntrenarEspectro.setText("Entrenar Espectro");
+		this.botonEntrenarEspectro.setText("Entrenar Espectro (150 M / 100 G)");
 		this.botonEntrenarEspectro
 				.addActionListener(new AccionBotonEntrenarEspectro(
 						this.panelJuego, juego));
