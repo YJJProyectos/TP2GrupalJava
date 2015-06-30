@@ -10,18 +10,17 @@ import algo3.algocraft.vista.VentanaInicio;
 
 public class AccionEmpezarMapaJuego implements ActionListener {
 
-	private VentanaInicio ventanaJFrame;
+	private VentanaInicio ventanaInicio;
 
-	public AccionEmpezarMapaJuego(VentanaInicio ventanaJFrame) {
-		this.ventanaJFrame = ventanaJFrame;
+	public AccionEmpezarMapaJuego(VentanaInicio ventanaInicio) {
+		this.ventanaInicio = ventanaInicio;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
-			this.ventanaJFrame.muestraPanelJuego();
+			this.ventanaInicio.muestraPanelJuego();
 		} catch (NombresInvalidosError | CoordenadaInvalidaError error) {
-			// aca deberia lanzar una ventana diciendo error
 			String textoError = "<html>Nombres Invalidos <html>";
 			new VentanaError(textoError);
 		}

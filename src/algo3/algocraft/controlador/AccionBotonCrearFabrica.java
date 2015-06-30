@@ -27,10 +27,9 @@ public class AccionBotonCrearFabrica implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent click) {
 
-		Barraca barraca = (Barraca) this.panelJuego.getUnidad();
-		Casilla casilla = this.panelJuego.getCasillaActual();
-
 		try {
+			Barraca barraca = (Barraca) this.panelJuego.getUnidad();
+			Casilla casilla = this.panelJuego.getCasillaActual();
 			new Fabrica(this.juego.turnoDeJugador(), casilla, barraca);
 		} catch (PerteneceAOtroJugadorError e) {
 			String textoError = "<html>La Barraca pertenede a otro Jugador <html>";
@@ -43,6 +42,9 @@ public class AccionBotonCrearFabrica implements ActionListener {
 			new VentanaError(textoError);
 		} catch (CasillaOcupadaError e) {
 			String textoError = "<html>Casilla ocupada <html>";
+			new VentanaError(textoError);
+		} catch (Exception e) {
+			String textoError = "<html>No se seleccionaron bien las unidades <html>";
 			new VentanaError(textoError);
 		}
 

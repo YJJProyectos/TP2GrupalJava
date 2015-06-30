@@ -16,7 +16,6 @@ public class AccionEmpezar implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		this.ventanaJFrame.cambiarPanelCargaDatos();
-		// System.out.println("cambio de panel");
 	}
 
 }

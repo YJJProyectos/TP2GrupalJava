@@ -23,7 +23,6 @@ public class PanelMapa extends JPanel {
 		super();
 		this.mapa = mapa;
 		this.panelJuego = panelJuego;
-		//this.vistaTablero = new HashMap<Coordenada, VistaCasilla>();
 		this.setLayout(new GridLayout(mapa.getFilas(), mapa.getColumnas()));
 
 		for (int x = 1; x <= mapa.getFilas(); x++) {
@@ -31,7 +30,6 @@ public class PanelMapa extends JPanel {
 				Coordenada coordenada = new Coordenada(x, y);
 				Casilla casilla = mapa.getCasilla(coordenada);
 				VistaCasilla vistaCasilla = new VistaCasilla(casilla,this.panelJuego);
-				//this.vistaTablero.put(coordenada, vistaCasilla);
 				this.add(vistaCasilla);
 			}
 		}

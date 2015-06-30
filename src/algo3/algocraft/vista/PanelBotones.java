@@ -97,11 +97,11 @@ public class PanelBotones extends JPanel {
 		this.botonAtacar = new JButton();
 		this.botonAtacar.setText("Atacar");
 		// this.botonAtacar
-		// .addActionListener(new AccionBotonCrearDeposotoDeSuministros();
+		// .addActionListener(new AccionBotonAtacar();
 
 		this.botonMover = new JButton();
 		this.botonMover.setText("Mover");
-		// this.botonMover.addActionListener(new AccionBotonCrearRefineria());
+		// this.botonMover.addActionListener(new AccionBotonMover());
 
 		this.botonEntrenarMarine = new JButton();
 		this.botonEntrenarMarine.setText("Entrenar Marine");
