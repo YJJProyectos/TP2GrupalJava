@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import algo3.algocraft.controlador.AccionBotonCrearBarraca;
 import algo3.algocraft.controlador.AccionBotonCrearCentroMineral;
 import algo3.algocraft.controlador.AccionBotonCrearDeposotoDeSuministros;
+import algo3.algocraft.controlador.AccionBotonCrearFabrica;
+import algo3.algocraft.controlador.AccionBotonCrearPuertoEstelar;
 import algo3.algocraft.controlador.AccionBotonCrearRefineria;
 import algo3.algocraft.controlador.AccionBotonPasarTurno;
 import algo3.algocraft.modelo.juego.Juego;
@@ -58,13 +60,15 @@ public class PanelBotones extends JPanel {
 
 		this.botonCrearFabrica = new JButton();
 		this.botonCrearFabrica.setText("Crear Fabrica");
-		// this.botonCrearFabrica.addActionListener(new
-		// AccionBotonCrearFabrica(this);
+		this.botonCrearFabrica.addActionListener(new AccionBotonCrearFabrica(
+				this.panelJuego, juego));
 
 		this.botonCrearPuertoEstelar = new JButton();
 		this.botonCrearPuertoEstelar.setText("Crear Puerto Estelar");
-		// this.botonCrearPuertoEstelar.addActionListener(new
-		// AccionBotonCrearPuertoEstelar(this);
+		this.botonCrearPuertoEstelar
+				.addActionListener(new AccionBotonCrearPuertoEstelar(
+						this.panelJuego, juego));
+
 		this.botonPosicionarSoldado = new JButton();
 		this.botonPosicionarSoldado.setText("Posicionar Soldado" + "("
 				+ juego.turnoDeJugador().caintidadSoldadosParaPosicionar()

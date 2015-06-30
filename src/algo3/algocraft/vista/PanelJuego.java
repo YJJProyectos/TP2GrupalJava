@@ -23,7 +23,6 @@ public class PanelJuego extends JPanel {
 	private PanelInformacion panelInformacion;
 	private Juego juego;
 	private Casilla casillaActual;
-	@SuppressWarnings("unused")
 	private Unidad unidadActual;
 	@SuppressWarnings("unused")
 	private Recurso recursoActual;
@@ -103,8 +102,12 @@ public class PanelJuego extends JPanel {
 	public void setRecurso(Recurso recurso) {
 		this.recursoActual = recurso;
 	}
-	
-	public void setUnidad(Unidad unidad){
+
+	public void setUnidad(Unidad unidad) {
 		this.unidadActual = unidad;
+	}
+
+	public Unidad getUnidad() {
+		return this.unidadActual;
 	}
 }

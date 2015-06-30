@@ -12,12 +12,13 @@ import algo3.algocraft.vista.PanelJuego;
 import algo3.algocraft.vista.vistas.Vistas;
 
 public class MouseTocarEdificio implements MouseListener {
-	
+
 	private Casilla casilla;
 	private PanelJuego panelJuego;
 	private Vistas vista;
 
-	public MouseTocarEdificio(Casilla casilla, PanelJuego panelJuego, Vistas vista) {
+	public MouseTocarEdificio(Casilla casilla, PanelJuego panelJuego,
+			Vistas vista) {
 		this.casilla = casilla;
 		this.panelJuego = panelJuego;
 		this.vista = vista;
@@ -26,13 +27,11 @@ public class MouseTocarEdificio implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		System.out.println("terrestre");
-		this.panelJuego.setCasillaActual(this.casilla);
 		this.panelJuego.sacarBordes();
-		this.vista.setBorder(BorderFactory
-				.createLineBorder(Color.blue));
+		this.vista.setBorder(BorderFactory.createLineBorder(Color.blue));
 		this.panelJuego.setSinInformacionAdicional();
-		this.panelJuego.
-		vistaInformacionEdificio((UnidadEdificio)this.casilla.getOcupanteTerrestre());
+		this.panelJuego.vistaInformacionEdificio((UnidadEdificio) this.casilla
+				.getOcupanteTerrestre());
 		this.panelJuego.setUnidad(this.casilla.getOcupanteTerrestre());
 	}
 
