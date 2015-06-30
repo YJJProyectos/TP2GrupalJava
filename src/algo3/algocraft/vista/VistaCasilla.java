@@ -82,14 +82,15 @@ public class VistaCasilla extends JPanel implements Observer{
 				this.vistas.getVista(this.casilla.getOcupanteTerrestre().getClass());
 			this.add(labelTerrestre,BorderLayout.WEST);
 		}
-		//agrego espectro para probar
-		/*labelAereo = this.vistas.getVista(Espectro.class);
-		this.add(labelAereo,BorderLayout.NORTH); */
+		if ( this.casilla.estaOcupadoElAire() ){
+			labelAereo = 
+			this.vistas.getVista(this.casilla.getOcupanteAereo().getClass());
+			this.add(labelAereo,BorderLayout.NORTH);
+		}
 	}
 
 	public void paintComponent(Graphics grafico) {
 
-		// super.paintComponent(grafico);
 		Dimension dimension = getSize();
 		if (!this.yaPusoLaTierra) {
 			this.numero = (int) Math.round(Math.random() * 4);

@@ -118,9 +118,12 @@ public class EspectroTest {
 		Golliat golliat = new Golliat(jugador);
 		UnidadSoldado espectro = new Espectro(jugador);
 		golliat.posicionar(casilla);
+		Assert.assertFalse(casilla.estaOcupadoElAire());
 		espectro.posicionar(casilla);
 
 		Assert.assertEquals(casilla, espectro.posicion());
+		Assert.assertTrue(casilla.estaOcupadoElAire());
+		Assert.assertEquals(espectro, casilla.getOcupanteAereo());
 	}
 
 	@Test(expected = CasillaOcupadaError.class)

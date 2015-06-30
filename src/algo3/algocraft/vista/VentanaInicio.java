@@ -173,6 +173,8 @@ public class VentanaInicio extends JFrame {
 			jugador1.agregarSoldadoParaPosicionar(marine);
 			Golliat otro = new Golliat(jugador1);
 			jugador1.agregarSoldadoParaPosicionar(otro);
+			Marine marine2 = new Marine(jugador2);
+			jugador2.agregarSoldadoParaPosicionar(marine2);
 			Espectro espectro = new Espectro(jugador2);
 			jugador2.agregarSoldadoParaPosicionar(espectro);
 		} catch (RecursosInsuficientesError e) {

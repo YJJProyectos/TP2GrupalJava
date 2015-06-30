@@ -34,7 +34,7 @@ public class Casilla extends Observable{
 	}
 
 	public Unidad getOcupanteAereo() {
-		return this.ocupanteTerrestre;
+		return this.ocupanteAereo;
 	}
 
 	public Recurso getRecurso() {
