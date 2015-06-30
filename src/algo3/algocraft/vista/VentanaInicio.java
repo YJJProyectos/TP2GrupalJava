@@ -40,6 +40,7 @@ public class VentanaInicio extends JFrame {
 	private JButton botonComenzar, botonSalir, botonEmpezarMapa;
 	private Container contenedor;
 	private JTextField nombreJugador1, nombreJugador2;
+	private JTextField cartelNombreJugador1,cartelNombreJugador2;
 
 	private Juego juego;
 
@@ -117,14 +118,32 @@ public class VentanaInicio extends JFrame {
 		nombreJugador2 = new JTextField();
 		botonEmpezarMapa = new JButton();
 		comenzarPanel.add(botonEmpezarMapa);
+		cartelNombreJugador1 = new JTextField();
+		cartelNombreJugador2 = new JTextField();
+		cartelNombreJugador1.setEditable(false);
+		cartelNombreJugador1.setText("Nombre Jugador 1 :");
+		cartelNombreJugador1.setBounds(ancho / 2 - 290, alto / 2 - 100, 130, 40);
+		cartelNombreJugador2.setEditable(false);
+		cartelNombreJugador2.setText("Nombre Jugador 2 :");
+		cartelNombreJugador2.setBounds(ancho / 2 - 290, alto / 2 , 130, 40);
+		comenzarPanel.add(cartelNombreJugador1);
+		comenzarPanel.add(cartelNombreJugador2);
 		comenzarPanel.add(nombreJugador1);
 		nombreJugador1.setBounds(ancho / 2 - 80, alto / 2 - 100, 130, 40);
 		nombreJugador1.setVisible(false);
 		comenzarPanel.add(nombreJugador2);
 		nombreJugador2.setBounds(ancho / 2 - 80, alto / 2, 130, 40);
 		nombreJugador2.setVisible(false);
+		this.sacarTextosPanelComenzar();
 		comenzarPanel.setSize(ancho, alto);
 		contenedor.add(comenzarPanel);
+	}
+
+	private void sacarTextosPanelComenzar() {
+		this.nombreJugador1.setVisible(false);
+		this.nombreJugador2.setVisible(false);
+		this.cartelNombreJugador1.setVisible(false);
+		this.cartelNombreJugador2.setVisible(false);
 	}
 
 	public void setDimension(int ancho, int alto) {
@@ -136,6 +155,8 @@ public class VentanaInicio extends JFrame {
 		botonEmpezarMapa.setBounds(ancho / 2 - 80, alto / 2 + 200, 130, 40);
 		nombreJugador1.setBounds(ancho / 2 - 80, alto / 2 - 100, 130, 40);
 		nombreJugador2.setBounds(ancho / 2 - 80, alto / 2, 130, 40);
+		cartelNombreJugador1.setBounds(ancho / 2 - 290, alto / 2 - 100, 130, 40);
+		cartelNombreJugador2.setBounds(ancho / 2 - 290, alto / 2 , 130, 40);
 		comenzarPanel.setSize(ancho, alto);
 		if (juegoPanel != null) {
 			juegoPanel.setSize(ancho, alto);
@@ -153,10 +174,13 @@ public class VentanaInicio extends JFrame {
 		this.nombreJugador2.setText("");
 		this.nombreJugador1.setVisible(true);
 		this.nombreJugador2.setVisible(true);
+		this.cartelNombreJugador1.setVisible(true);
+		this.cartelNombreJugador2.setVisible(true);
 	}
 
 	public void muestraPanelJuego() throws NombresInvalidosError,
 			CoordenadaInvalidaError {
+		this.sacarTextosPanelComenzar();
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		jugador1.setNombre(this.nombreJugador1.getText());
