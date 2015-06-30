@@ -11,26 +11,23 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class VentanaError extends JFrame {
 
-	ConjuntoDeExcepciones excepciones;
-	JLabel informacion;
 	JPanel panel = new JPanel();
 	JButton botonAceptar = new JButton("Aceptar");
 
-	public VentanaError(Exception error) {
+	public VentanaError(JLabel textoError) {
 		setTitle("Error");
 		setVisible(true);
 		this.setSize(250, 100);
 		this.setLocationRelativeTo(null);
 
-		informacion = excepciones.getExcepcion(error.getClass());
-
-		panel.add(informacion);
+		panel.add(textoError);
 
 		botonAceptar.addActionListener(new BotonAceptar());
 
 		panel.add(botonAceptar);
 
 		add(panel);
+
 	}
 
 	private class BotonAceptar implements ActionListener {

@@ -3,10 +3,13 @@ package algo3.algocraft.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
 import algo3.algocraft.modelo.juego.NombresInvalidosError;
 import algo3.algocraft.modelo.mapa.CoordenadaInvalidaError;
+import algo3.algocraft.vista.VentanaError;
 import algo3.algocraft.vista.VentanaInicio;
-import algo3.algocraft.vista.VentanaNombreInvalidoError;
 
 public class AccionEmpezarMapaJuego implements ActionListener {
 
@@ -22,7 +25,9 @@ public class AccionEmpezarMapaJuego implements ActionListener {
 			this.ventanaJFrame.muestraPanelJuego();
 		} catch (NombresInvalidosError | CoordenadaInvalidaError error) {
 			// aca deberia lanzar una ventana diciendo error
-			new VentanaNombreInvalidoError();
+			JLabel textoError = new JLabel("<html>Nombres Invalidos <html>",
+					SwingConstants.CENTER);
+			new VentanaError(textoError);
 		}
 	}
 

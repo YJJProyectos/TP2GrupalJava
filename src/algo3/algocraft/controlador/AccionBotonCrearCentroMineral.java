@@ -3,6 +3,9 @@ package algo3.algocraft.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
 import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
@@ -11,6 +14,7 @@ import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.vista.PanelJuego;
+import algo3.algocraft.vista.VentanaError;
 
 public class AccionBotonCrearCentroMineral implements ActionListener {
 
@@ -27,14 +31,24 @@ public class AccionBotonCrearCentroMineral implements ActionListener {
 
 		Casilla casilla = this.panelJuego.getCasillaActual();
 
+		Recurso recurso = casilla.getRecurso();
 		try {
-			Recurso recurso = casilla.getRecurso();
 			new CentroDeMineral(recurso, this.juego.turnoDeJugador());
-		} catch (RecursosInsuficientesError errorRecursosInsuficientes) {
-
-		} catch (RecolectorInvalidoError errorRecolectorInvalido) {
-		} catch (CasillaOcupadaError errorCasillaOcupada) {
+		} catch (RecursosInsuficientesError e) {
+			JLabel textoError = new JLabel(
+					"<html>Recursos insuficientes <html>",
+					SwingConstants.CENTER);
+			new VentanaError(textoError);
+		} catch (RecolectorInvalidoError e) {
+			JLabel textoError = new JLabel("<html>Recolector invalido <html>",
+					SwingConstants.CENTER);
+			new VentanaError(textoError);
+		} catch (CasillaOcupadaError e) {
+			JLabel textoError = new JLabel("<html>Casilla ocupada <html>",
+					SwingConstants.CENTER);
+			new VentanaError(textoError);
 		}
+
 		this.panelJuego.actualizar();
 	}
 }
