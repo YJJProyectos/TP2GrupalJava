@@ -626,39 +626,7 @@ public class PuertoEstelarTest {
 		puerto.entrenarEspectro(otroJugador);
 	}
 
-	@Test(expected = JugadorIncorrectoError.class)
-	public void deberiaLanzarUnaExexpcionAlEntrenarUnaNavePorqueRecibioComoParametroAOtroJugador()
-			throws RecursosInsuficientesError, CasillaOcupadaError,
-			JugadorIncorrectoError, PerteneceAOtroJugadorError,
-			FabricaNoConstruidaError, PoblacionLimiteAlcanzadaError,
-			BarracaNoConstruidaError {
 
-		Jugador jugador = new Jugador();
-		jugador.aumentarMineral(1000);
-		jugador.aumentarGas(1000);
-		Jugador otroJugador = new Jugador();
-		otroJugador.aumentarPoblacion();
-		Coordenada coordenadaBarraca = new Coordenada(1, 2);
-		Coordenada coordenadaFabrica = new Coordenada(1, 1);
-		Coordenada coordenadaPuertoEstelar = new Coordenada(2, 1);
-		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
-		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
-		Casilla casillaPuertoEstelar = new Casilla(coordenadaPuertoEstelar);
-		Barraca barraca = new Barraca(jugador, casillaBarraca);
-		for (int i = 0; i < 12; i++) {
-			jugador.pasarTurno();
-		}
-		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
-		for (int i = 0; i < 12; i++) {
-			jugador.pasarTurno();
-		}
-		PuertoEstelar puerto = new PuertoEstelar(jugador, casillaPuertoEstelar,
-				fabrica);
-		for (int i = 0; i < 10; i++) {
-			puerto.pasarTurno();
-		}
-		puerto.entrenarNaveTransporte(otroJugador);
-	}
 
 	@Test(expected = PuertoEstelarNoConstruidoError.class)
 	public void deberiaNoPoderEntrenarUnEspectroPorqueNoTerminoDeConstruirse()
@@ -690,35 +658,7 @@ public class PuertoEstelarTest {
 		puerto.entrenarEspectro(jugador);
 	}
 
-	@Test
-	public void deberiaNoPoderEntrenarUnNavePorqueNoTerminoDeConstruirse()
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
-			FabricaNoConstruidaError, CasillaOcupadaError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
-			BarracaNoConstruidaError {
 
-		Jugador jugador = new Jugador();
-		jugador.aumentarMineral(1000);
-		jugador.aumentarGas(1000);
-		Coordenada coordenadaBarraca = new Coordenada(1, 2);
-		Coordenada coordenadaFabrica = new Coordenada(1, 1);
-		Coordenada coordenadaPuertoEstelar = new Coordenada(2, 1);
-		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
-		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
-		Casilla casillaPuertoEstelar = new Casilla(coordenadaPuertoEstelar);
-		Barraca barraca = new Barraca(jugador, casillaBarraca);
-		for (int i = 0; i < 12; i++) {
-			jugador.pasarTurno();
-		}
-		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
-		for (int i = 0; i < 12; i++) {
-			jugador.pasarTurno();
-		}
-		PuertoEstelar puerto = new PuertoEstelar(jugador, casillaPuertoEstelar,
-				fabrica);
-
-		Assert.assertFalse(puerto.entrenarNaveTransporte(jugador));
-	}
 
 	@Test(expected = FabricaDestruidaError.class)
 	public void deberiaNoPoderEntrenarUnEspectroPorqueLaFabricaEstaDestruida()
@@ -755,40 +695,7 @@ public class PuertoEstelarTest {
 		puerto.entrenarEspectro(jugador);
 	}
 
-	@Test
-	public void deberiaNoPoderEntrenarUnaNavePorqueLaPuertoEstelarEstaDestruida()
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
-			FabricaNoConstruidaError, CasillaOcupadaError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
-			BarracaNoConstruidaError {
 
-		Jugador jugador = new Jugador();
-		jugador.aumentarMineral(1000);
-		jugador.aumentarGas(1000);
-		jugador.aumentarPoblacion();
-		Coordenada coordenadaBarraca = new Coordenada(1, 2);
-		Coordenada coordenadaFabrica = new Coordenada(1, 1);
-		Coordenada coordenadaPuertoEstelar = new Coordenada(2, 1);
-		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
-		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
-		Casilla casillaPuertoEstelar = new Casilla(coordenadaPuertoEstelar);
-		Barraca barraca = new Barraca(jugador, casillaBarraca);
-		for (int i = 0; i < 12; i++) {
-			jugador.pasarTurno();
-		}
-		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
-		for (int i = 0; i < 12; i++) {
-			jugador.pasarTurno();
-		}
-		PuertoEstelar puerto = new PuertoEstelar(jugador, casillaPuertoEstelar,
-				fabrica);
-		for (int i = 0; i < 10; i++) {
-			puerto.pasarTurno();
-		}
-		fabrica.recibirDanio(2000);
-
-		Assert.assertFalse(puerto.entrenarNaveTransporte(jugador));
-	}
 
 	@Test
 	public void deberiaEntrenarUnEspectro() throws PerteneceAOtroJugadorError,
@@ -825,38 +732,7 @@ public class PuertoEstelarTest {
 		puerto.entrenarEspectro(jugador);
 	}
 
-	@Test
-	public void deberiaEntrenarUnaNave() throws PerteneceAOtroJugadorError,
-			RecursosInsuficientesError, FabricaNoConstruidaError,
-			CasillaOcupadaError, JugadorIncorrectoError,
-			PoblacionLimiteAlcanzadaError, BarracaNoConstruidaError {
 
-		Jugador jugador = new Jugador();
-		jugador.aumentarMineral(1000);
-		jugador.aumentarGas(1000);
-		jugador.aumentarPoblacion();
-		Coordenada coordenadaBarraca = new Coordenada(1, 2);
-		Coordenada coordenadaFabrica = new Coordenada(1, 1);
-		Coordenada coordenadaPuertoEstelar = new Coordenada(2, 1);
-		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
-		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
-		Casilla casillaPuertoEstelar = new Casilla(coordenadaPuertoEstelar);
-		Barraca barraca = new Barraca(jugador, casillaBarraca);
-		for (int i = 0; i < 12; i++) {
-			jugador.pasarTurno();
-		}
-		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
-		for (int i = 0; i < 12; i++) {
-			jugador.pasarTurno();
-		}
-		PuertoEstelar puerto = new PuertoEstelar(jugador, casillaPuertoEstelar,
-				fabrica);
-		for (int i = 0; i < 10; i++) {
-			puerto.pasarTurno();
-		}
-		jugador.aumentarPoblacion();
-		Assert.assertTrue(puerto.entrenarNaveTransporte(jugador));
-	}
 
 	@Test(expected = YaHayUnidadEnEntrenamiento.class)
 	public void noDeberiaPoderComenzarAEntrenarAUnEspectroMientrasEsteEntrenandoAOtraUnidad()
@@ -894,41 +770,7 @@ public class PuertoEstelarTest {
 		puerto.entrenarEspectro(jugador);
 	}
 
-	@Test
-	public void noDeberiaPoderComenzarAEntrenarAUnaNaveMientrasEsteEntrenandoAOtraUnidad()
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
-			FabricaNoConstruidaError, CasillaOcupadaError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
-			BarracaNoConstruidaError {
 
-		Jugador jugador = new Jugador();
-		jugador.aumentarMineral(1000);
-		jugador.aumentarGas(1000);
-		jugador.aumentarPoblacion();
-		Coordenada coordenadaBarraca = new Coordenada(1, 2);
-		Coordenada coordenadaFabrica = new Coordenada(1, 1);
-		Coordenada coordenadaPuertoEstelar = new Coordenada(2, 1);
-		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
-		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
-		Casilla casillaPuertoEstelar = new Casilla(coordenadaPuertoEstelar);
-		Barraca barraca = new Barraca(jugador, casillaBarraca);
-		for (int i = 0; i < 12; i++) {
-			jugador.pasarTurno();
-		}
-		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
-		for (int i = 0; i < 12; i++) {
-			jugador.pasarTurno();
-		}
-		PuertoEstelar puerto = new PuertoEstelar(jugador, casillaPuertoEstelar,
-				fabrica);
-		for (int i = 0; i < 10; i++) {
-			puerto.pasarTurno();
-		}
-		jugador.aumentarPoblacion();
-		puerto.entrenarNaveTransporte(jugador);
-
-		Assert.assertFalse(puerto.entrenarNaveTransporte(jugador));
-	}
 
 	@Test
 	public void deberiaPoderEntrenarAUnEspectroLuegoDeFinalizarElEntrenamientoDeOtraUnidad()
@@ -970,44 +812,7 @@ public class PuertoEstelarTest {
 		puerto.entrenarEspectro(jugador);
 	}
 
-	@Test
-	public void deberiaPoderEntrenarAUnaNaveLuegoDeFinalizarElEntrenamientoDeOtraUnidad()
-			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
-			FabricaNoConstruidaError, CasillaOcupadaError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
-			BarracaNoConstruidaError {
 
-		Jugador jugador = new Jugador();
-		jugador.aumentarMineral(1000);
-		jugador.aumentarGas(1000);
-		jugador.aumentarPoblacion();
-		Coordenada coordenadaBarraca = new Coordenada(1, 2);
-		Coordenada coordenadaFabrica = new Coordenada(1, 1);
-		Coordenada coordenadaPuertoEstelar = new Coordenada(2, 1);
-		Casilla casillaBarraca = new Casilla(coordenadaBarraca);
-		Casilla casillaFabrica = new Casilla(coordenadaFabrica);
-		Casilla casillaPuertoEstelar = new Casilla(coordenadaPuertoEstelar);
-		Barraca barraca = new Barraca(jugador, casillaBarraca);
-		for (int i = 0; i < 12; i++) {
-			jugador.pasarTurno();
-		}
-		Fabrica fabrica = new Fabrica(jugador, casillaFabrica, barraca);
-		for (int i = 0; i < 12; i++) {
-			jugador.pasarTurno();
-		}
-		PuertoEstelar puerto = new PuertoEstelar(jugador, casillaPuertoEstelar,
-				fabrica);
-		for (int i = 0; i < 10; i++) {
-			puerto.pasarTurno();
-		}
-		jugador.aumentarPoblacion();
-		puerto.entrenarNaveTransporte(jugador);
-		for (int j = 0; j < 7; j++) {
-			puerto.pasarTurno();
-		}
-		jugador.aumentarPoblacion();
-		Assert.assertTrue(puerto.entrenarNaveTransporte(jugador));
-	}
 
 	@Test(expected = PerteneceAOtroJugadorError.class)
 	public void deberiaLanzarLaExcepcionPerteneceAOtroJugadorErrorSiElPuertoEstelarPerteneceAOtroJugador()

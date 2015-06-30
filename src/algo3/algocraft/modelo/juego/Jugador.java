@@ -7,7 +7,7 @@ import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadMovil;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 public class Jugador {
 
@@ -16,7 +16,7 @@ public class Jugador {
 	private int cantidadGas;
 	private int poblacionPosible;
 	private int poblacionOcupada;
-	private ArrayList<UnidadMovil> soldadosParaPosicionar;
+	private ArrayList<UnidadSoldado> soldadosParaPosicionar;
 	private String nombre;
 
 	public Jugador() {
@@ -25,7 +25,7 @@ public class Jugador {
 		this.cantidadGas = 100;
 		this.poblacionPosible = 0;
 		this.poblacionOcupada = 0;
-		this.soldadosParaPosicionar = new ArrayList<UnidadMovil>();
+		this.soldadosParaPosicionar = new ArrayList<UnidadSoldado>();
 		this.nombre = "";
 	}
 
@@ -60,7 +60,7 @@ public class Jugador {
 		}
 	}
 
-	public void agregarSoldadoParaPosicionar(UnidadMovil unidadEnEntrenamiento) {
+	public void agregarSoldadoParaPosicionar(UnidadSoldado unidadEnEntrenamiento) {
 		this.soldadosParaPosicionar.add(unidadEnEntrenamiento);
 	}
 
@@ -69,7 +69,7 @@ public class Jugador {
 		if (this.soldadosParaPosicionar.isEmpty()) {
 			throw new NoHaySoldadosParaPosicionarError();
 		}
-		UnidadMovil soldado = this.soldadosParaPosicionar.get(0);
+		UnidadSoldado soldado = this.soldadosParaPosicionar.get(0);
 		soldado.posicionar(casilla);
 		this.soldadosParaPosicionar.remove(0);
 		this.agregarUnidad(soldado);
@@ -159,8 +159,8 @@ public class Jugador {
 	}
 
 	public void iniciarConMarineParaPosicionar() {
-		
-		this.aumentarMineral(30); //la cantidad necesaria para un marine
+
+		this.aumentarMineral(30); // la cantidad necesaria para un marine
 		try {
 			Marine marine = new Marine(this);
 			this.agregarSoldadoParaPosicionar(marine);
@@ -171,7 +171,7 @@ public class Jugador {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

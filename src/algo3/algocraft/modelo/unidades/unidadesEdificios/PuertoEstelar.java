@@ -7,13 +7,12 @@ import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.unidades.PerteneceAOtroJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Espectro;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.TransporteTerran;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadMovil;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 public class PuertoEstelar extends UnidadEdificio {
 
 	private Fabrica fabrica;
-	private UnidadMovil unidadEnEntrenamiento;
+	private UnidadSoldado unidadEnEntrenamiento;
 	private int turnosRestantesParaTerminarUnidad;
 
 	public PuertoEstelar(Jugador unJugador, Casilla casilla, Fabrica unaFabrica)
@@ -30,7 +29,7 @@ public class PuertoEstelar extends UnidadEdificio {
 		this.enConstruccion = true;
 		this.turnosRestantes = 10;
 		this.unidadEnEntrenamiento = null;
-		this.turnosRestantesParaTerminarUnidad = -1;
+		this.turnosRestantesParaTerminarUnidad = 8;
 		this.jugador.validarCosto(this.costoMineral, this.costoGas);
 		this.posicionar(casilla);
 		this.jugador.pagar(this.costoMineral, this.costoGas);
@@ -54,22 +53,6 @@ public class PuertoEstelar extends UnidadEdificio {
 			throw new YaHayUnidadEnEntrenamiento();
 		}
 		this.unidadEnEntrenamiento = new Espectro(this.jugador);
-		this.turnosRestantesParaTerminarUnidad = 8;
-		return true;
-	}
-
-	public boolean entrenarNaveTransporte(Jugador unJugador)
-			throws JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError {
-		if (this.jugador != unJugador) {
-			throw new JugadorIncorrectoError();
-		}
-		if (this.enConstruccion || fabrica.estaDestruido()
-				|| this.unidadEnEntrenamiento != null) {
-			return false;
-		}
-		this.unidadEnEntrenamiento = new TransporteTerran(this.jugador);
-		this.turnosRestantesParaTerminarUnidad = 7;
 		return true;
 	}
 
@@ -94,7 +77,7 @@ public class PuertoEstelar extends UnidadEdificio {
 			this.jugador
 					.agregarSoldadoParaPosicionar(this.unidadEnEntrenamiento);
 			this.unidadEnEntrenamiento = null;
-			this.turnosRestantesParaTerminarUnidad = -1;
+			this.turnosRestantesParaTerminarUnidad = 8;
 		}
 	}
 

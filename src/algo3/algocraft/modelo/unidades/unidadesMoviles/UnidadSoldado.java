@@ -9,7 +9,7 @@ import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoAccion;
 
-public class UnidadSoldado extends UnidadMovil {
+public class UnidadSoldado extends Unidad {
 
 	protected EstadoDeAtaque estadoDeAtaque;
 	protected int danioAereo;
