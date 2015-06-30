@@ -23,15 +23,17 @@ public class AccionBotonPosicionarSoldado implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent click) {
 
-		Casilla casilla = this.panelJuego.getCasillaActual();
-
 		try {
+			Casilla casilla = this.panelJuego.getCasillaActual();
 			juego.turnoDeJugador().posicionarSoldadoEnColaDeEspera(casilla);
 		} catch (CasillaOcupadaError e) {
 			String textoError = "<html>Casilla ocupada <html>";
 			new VentanaError(textoError);
 		} catch (NoHaySoldadosParaPosicionarError e) {
 			String textoError = "<html>No hay soldados para posicionar <html>";
+			new VentanaError(textoError);
+		} catch (Exception e) {
+			String textoError = "<html>Casilla sin seleccionar <html>";
 			new VentanaError(textoError);
 		}
 		;

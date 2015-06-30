@@ -33,6 +33,9 @@ public class AccionBotonCrearBarraca implements ActionListener {
 		} catch (CasillaOcupadaError e) {
 			String textoError = "<html>Casilla ccupada <html>";
 			new VentanaError(textoError);
+		} catch (Exception e) {
+			String textoError = "<html>Casilla sin seleccionar <html>";
+			new VentanaError(textoError);
 		}
 
 		this.panelJuego.actualizar();

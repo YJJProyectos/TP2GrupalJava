@@ -26,19 +26,26 @@ public class AccionBotonCrearCentroMineral implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent click) {
 
-		Casilla casilla = this.panelJuego.getCasillaActual();
-
-		Recurso recurso = casilla.getRecurso();
 		try {
-			new CentroDeMineral(recurso, this.juego.turnoDeJugador());
+			Casilla casilla = this.panelJuego.getCasillaActual();
+			Recurso recurso = casilla.getRecurso();
+			if (recurso == null){
+				String textoError = "<html>Ningun recurso seleccionado <html>";
+				new VentanaError(textoError);
+			} else {
+				new CentroDeMineral(recurso, this.juego.turnoDeJugador());
+			}
 		} catch (RecursosInsuficientesError e) {
 			String textoError = "<html>Recursos insuficientes <html>";
 			new VentanaError(textoError);
 		} catch (RecolectorInvalidoError e) {
-			String textoError = "<html>Recolector invalido <html>";
+			String textoError = "<html>Se necesita una mina de mineral <html>";
 			new VentanaError(textoError);
 		} catch (CasillaOcupadaError e) {
 			String textoError = "<html>Casilla ocupada <html>";
+			new VentanaError(textoError);
+		} catch (Exception e) {
+			String textoError = "<html>Casilla sin seleccionar <html>";
 			new VentanaError(textoError);
 		}
 
