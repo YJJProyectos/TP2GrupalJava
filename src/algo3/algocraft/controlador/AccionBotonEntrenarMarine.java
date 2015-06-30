@@ -27,10 +27,9 @@ public class AccionBotonEntrenarMarine implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent click) {
 
-		Casilla casilla = this.panelJuego.getCasillaActual();
-		Barraca barraca = (Barraca) casilla.getOcupanteTerrestre();
-
 		try {
+			Casilla casilla = this.panelJuego.getCasillaActual();
+			Barraca barraca = (Barraca) casilla.getOcupanteTerrestre();
 			barraca.entrenarMarine(juego.turnoDeJugador());
 		} catch (JugadorIncorrectoError e) {
 			String textoError = "<html>La unidad pertenece a otro jugador <html>";
@@ -46,6 +45,9 @@ public class AccionBotonEntrenarMarine implements ActionListener {
 			new VentanaError(textoError);
 		} catch (YaHayUnidadEnEntrenamiento e) {
 			String textoError = "<html>Ya hay unidad en entrenamiento <html>";
+			new VentanaError(textoError);
+		} catch (Exception e) {
+			String textoError = "<html>No se selecciono una casilla con una Barraca <html>";
 			new VentanaError(textoError);
 		}
 

@@ -28,10 +28,10 @@ public class AccionBotonEntrenarEspectro implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent click) {
 
-		Casilla casilla = this.panelJuego.getCasillaActual();
-		PuertoEstelar puerto = (PuertoEstelar) casilla.getOcupanteTerrestre();
-
 		try {
+			Casilla casilla = this.panelJuego.getCasillaActual();
+			PuertoEstelar puerto = (PuertoEstelar) casilla
+					.getOcupanteTerrestre();
 			puerto.entrenarEspectro(juego.turnoDeJugador());
 		} catch (JugadorIncorrectoError e) {
 			String textoError = "<html>La unidad pertenece a otro jugador <html>";
@@ -50,6 +50,9 @@ public class AccionBotonEntrenarEspectro implements ActionListener {
 			new VentanaError(textoError);
 		} catch (YaHayUnidadEnEntrenamiento e) {
 			String textoError = "<html>Ya hay unidad en entrenamiento <html>";
+			new VentanaError(textoError);
+		} catch (Exception e) {
+			String textoError = "<html>No se selecciono una casilla con un Puerto Estelar <html>";
 			new VentanaError(textoError);
 		}
 

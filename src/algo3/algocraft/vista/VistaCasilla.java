@@ -85,8 +85,9 @@ public class VistaCasilla extends JPanel implements Observer{
 		if ( this.casilla.estaOcupadoElAire() ){
 			labelAereo = 
 			this.vistas.getVista(this.casilla.getOcupanteAereo().getClass());
-			this.add(labelAereo,BorderLayout.NORTH);
+			this.add(labelAereo,BorderLayout.EAST);
 		}
+		this.repaint();
 	}
 
 	public void paintComponent(Graphics grafico) {

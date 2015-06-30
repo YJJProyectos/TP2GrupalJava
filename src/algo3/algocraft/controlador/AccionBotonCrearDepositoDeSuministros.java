@@ -25,15 +25,17 @@ public class AccionBotonCrearDepositoDeSuministros implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent click) {
 
-		Casilla casilla = this.panelJuego.getCasillaActual();
-
 		try {
+			Casilla casilla = this.panelJuego.getCasillaActual();
 			new DepositoDeSuministros(this.juego.turnoDeJugador(), casilla);
 		} catch (RecursosInsuficientesError e) {
 			String textoError = "<html>Recursos insuficientes <html>";
 			new VentanaError(textoError);
 		} catch (CasillaOcupadaError e) {
 			String textoError = "<html>Casilla ocupada <html>";
+			new VentanaError(textoError);
+		} catch (Exception e) {
+			String textoError = "<html>Casilla sin seleccionar <html>";
 			new VentanaError(textoError);
 		}
 
