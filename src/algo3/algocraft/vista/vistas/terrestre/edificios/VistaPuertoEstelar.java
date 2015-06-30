@@ -1,6 +1,6 @@
 package algo3.algocraft.vista.vistas.terrestre.edificios;
 
-import algo3.algocraft.controlador.MouseTocarEdificio;
+import algo3.algocraft.controlador.MouseTocarPuertoEstelar;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.vista.PanelJuego;
 import algo3.algocraft.vista.vistas.terrestre.VistaTerrestre;
@@ -12,7 +12,8 @@ public class VistaPuertoEstelar extends VistaTerrestre {
 		super(casilla, panelJuego);
 		String url = "/algo3/algocraft/imagenes/PuertoEstelar.png";
 		this.setImagen(url);
-		this.addMouseListener(new MouseTocarEdificio(this.casilla,this.panelJuego,this));
+		this.addMouseListener(new MouseTocarPuertoEstelar(this.casilla,
+				this.panelJuego, this));
 	}
 
 }

@@ -139,6 +139,31 @@ public class PanelBotones extends JPanel {
 
 	}
 
+	public void visibilidadBotonEntrenarMarine(Boolean booleano) {
+		this.botonEntrenarMarine.setVisible(booleano);
+	}
+
+	public void visibilidadBotonEntrenarGolliat(Boolean booleano) {
+		this.botonEntrenarGolliat.setVisible(booleano);
+	}
+
+	public void visibilidadBotonEntrenarEspectro(Boolean booleano) {
+		this.botonEntrenarEspectro.setVisible(booleano);
+	}
+
+	public void visibilidadBotonesUnidadSoldado(Boolean booleano) {
+		this.botonAtacar.setVisible(booleano);
+		this.botonMover.setVisible(booleano);
+	}
+
+	public void visibilidadCasillasEspeciales(Boolean booleano) {
+		this.botonEntrenarMarine.setVisible(booleano);
+		this.botonEntrenarGolliat.setVisible(booleano);
+		this.botonEntrenarEspectro.setVisible(booleano);
+		this.botonAtacar.setVisible(booleano);
+		this.botonMover.setVisible(booleano);
+	}
+
 	public void setTamanio(int ancho, int alto) {
 		super.setSize(ancho, alto);
 		int porcentajeAncho = ancho - ((int) (ancho * 0.7));

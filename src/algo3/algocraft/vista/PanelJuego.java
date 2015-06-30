@@ -110,4 +110,8 @@ public class PanelJuego extends JPanel {
 	public Unidad getUnidad() {
 		return this.unidadActual;
 	}
+
+	public PanelBotones getPanelBotones() {
+		return this.panelBotones;
+	}
 }

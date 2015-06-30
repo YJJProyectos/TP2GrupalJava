@@ -7,30 +7,32 @@ import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 
 import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 import algo3.algocraft.vista.PanelJuego;
-import algo3.algocraft.vista.VistaCasilla;
+import algo3.algocraft.vista.vistas.Vistas;
 
-public class MouseTocarCasillaVacia implements MouseListener {
+public class MouseTocarBarraca implements MouseListener {
 
 	private Casilla casilla;
-
 	private PanelJuego panelJuego;
-	private VistaCasilla vistaCasilla;
+	private Vistas vista;
 
-	public MouseTocarCasillaVacia(Casilla casilla, PanelJuego panelJuego,
-			VistaCasilla vistaCasilla) {
+	public MouseTocarBarraca(Casilla casilla, PanelJuego panelJuego,
+			Vistas vista) {
 		this.casilla = casilla;
 		this.panelJuego = panelJuego;
-		this.vistaCasilla = vistaCasilla;
+		this.vista = vista;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(false);
-		this.panelJuego.setCasillaActual(this.casilla);
-		this.panelJuego.setSinInformacionAdicional();
+		this.panelJuego.getPanelBotones().visibilidadBotonEntrenarMarine(true);
 		this.panelJuego.sacarBordes();
-		this.vistaCasilla.setBorder(BorderFactory.createLineBorder(Color.red));
+		this.vista.setBorder(BorderFactory.createLineBorder(Color.blue));
+		this.panelJuego.setSinInformacionAdicional();
+		this.panelJuego.vistaInformacionEdificio((UnidadEdificio) this.casilla
+				.getOcupanteTerrestre());
+		this.panelJuego.setUnidad(this.casilla.getOcupanteTerrestre());
 	}
 
 	@Override
