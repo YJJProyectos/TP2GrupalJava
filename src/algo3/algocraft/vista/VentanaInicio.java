@@ -180,7 +180,6 @@ public class VentanaInicio extends JFrame {
 
 	public void muestraPanelJuego() throws NombresInvalidosError,
 			CoordenadaInvalidaError {
-		this.sacarTextosPanelComenzar();
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();
 		jugador1.setNombre(this.nombreJugador1.getText());
@@ -195,6 +194,7 @@ public class VentanaInicio extends JFrame {
 		this.add(this.juegoPanel);
 		this.juegoPanel.setSize(ancho, alto);
 		this.juegoPanel.setVisible(true);
+		this.sacarTextosPanelComenzar();
 	}
 
 	public void reiniciar() {
