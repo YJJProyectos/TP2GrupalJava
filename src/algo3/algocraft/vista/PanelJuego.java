@@ -152,4 +152,8 @@ public class PanelJuego extends JPanel implements Observer {
 		this.juego.getGanador().getNombre();
 		new VentanaGanador(this.juego.getGanador());
 	}
+
+	public void setInformacionUnidadEnCreacion(String datos) {
+		this.panelInformacion.setInformacionUnidadEnCreacion(datos);
+	}
 }

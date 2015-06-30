@@ -109,4 +109,12 @@ public class PuertoEstelar extends UnidadEdificio {
 		return enConstruccion;
 	}
 
+	public boolean unidadEnConstruccion() {
+		return this.unidadEnEntrenamiento != null;
+	}
+
+	public int tiempoFaltanteCrearUnidad() {
+		return this.turnosRestantesParaTerminarUnidad;
+	}
+
 }

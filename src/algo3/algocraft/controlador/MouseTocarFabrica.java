@@ -43,6 +43,11 @@ public class MouseTocarFabrica implements MouseListener {
 			if (!fabrica.enConstruccion()) {
 				this.panelJuego.getPanelBotones()
 						.visibilidadBotonEntrenarGolliat(true);
+				if ( fabrica.unidadEnConstruccion() ){
+					int turnosFaltantes = fabrica.tiempoFaltanteCrearGolliat();
+					String datos = "Golliat a crear("+ turnosFaltantes + ")turnos";
+					this.panelJuego.setInformacionUnidadEnCreacion(datos);
+				}
 			}
 		} else if (click.getButton() == MouseEvent.BUTTON3) {
 			this.panelJuego.setCasillaDestino(this.casilla);

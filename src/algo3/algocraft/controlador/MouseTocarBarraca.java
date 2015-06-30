@@ -43,6 +43,11 @@ public class MouseTocarBarraca implements MouseListener {
 			if (!barraca.enConstruccion()) {
 				this.panelJuego.getPanelBotones()
 						.visibilidadBotonEntrenarMarine(true);
+				if ( barraca.unidadEnConstruccion() ){
+					int turnosFaltantes = barraca.tiempoFaltanteCrearMarine();
+					String datos = "Marine a crear("+ turnosFaltantes + ")turnos";
+					this.panelJuego.setInformacionUnidadEnCreacion(datos);
+				}
 			}
 		} else if (click.getButton() == MouseEvent.BUTTON3) {
 			this.panelJuego.setCasillaDestino(this.casilla);

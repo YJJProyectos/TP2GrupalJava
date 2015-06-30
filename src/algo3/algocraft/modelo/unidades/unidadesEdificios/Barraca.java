@@ -77,4 +77,12 @@ public class Barraca extends UnidadEdificio {
 		return enConstruccion;
 	}
 
+	public boolean unidadEnConstruccion() {
+		return this.marineEnEntrenamiento != null;
+	}
+
+	public int tiempoFaltanteCrearMarine() {
+		return this.turnosRestantesParaTerminarMarine;
+	}
+
 }

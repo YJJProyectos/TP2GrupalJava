@@ -38,15 +38,7 @@ public class PanelMapa extends JPanel {
 
 	public void actualizarDatos() {
 
-		/*for (int x = 1; x <= this.mapa.getFilas(); x++) {
-			for (int y = 1; y <= this.mapa.getColumnas(); y++) {
-				Coordenada coordenada = new Coordenada(x, y);
-				VistaCasilla vista = this.vistaTablero.get(coordenada);
-				vista.actualizarDatos();
-			}
-		} */
-		/*VistaCasilla[] componentes= (VistaCasilla[])this.getComponents(); 
-		componentes[0].actualizarDatos(); Da 400 , 0 a 399 */
+		this.sacarBordes();
 	}
 
 	public void setTamanio(int ancho, int alto) {

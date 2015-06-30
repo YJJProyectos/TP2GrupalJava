@@ -17,7 +17,7 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 @SuppressWarnings({ "serial" })
 public class PanelInformacion extends JPanel {
 
-	private JTextField cantidadMineral,cantidadGas,poblacion;
+	private JTextField cantidadMineral,cantidadGas,poblacion,unidadEnConstruccion;
 	private JTextField nombre,vida,tipoUnidad,delJugador,enConstruccion;
 	private JTextField danioTerrestre, danioAereo, rangoTerrestre, rangoAereo;
 	private Juego juego;
@@ -54,10 +54,13 @@ public class PanelInformacion extends JPanel {
 		this.vida.setBounds(230, 120, 70, 20);
 		this.delJugador = new JTextField();
 		this.delJugador.setEditable(false);
-		this.delJugador.setBounds(330, 120, 200, 20);
+		this.delJugador.setBounds(330, 120, 190, 20);
 		this.enConstruccion = new JTextField();
 		this.enConstruccion.setEditable(false);
-		this.enConstruccion.setBounds(550, 120, 100, 20);
+		this.enConstruccion.setBounds(540, 120, 160, 20);
+		this.unidadEnConstruccion = new JTextField();
+		this.unidadEnConstruccion.setEditable(false);
+		this.unidadEnConstruccion.setBounds(720, 120, 150, 20);
 		this.danioTerrestre = new JTextField();
 		this.danioTerrestre.setEditable(false);
 		this.danioTerrestre.setBounds(0, 150, 120, 20);
@@ -86,6 +89,7 @@ public class PanelInformacion extends JPanel {
 		this.add(this.rangoTerrestre);
 		this.add(this.danioAereo);
 		this.add(this.rangoAereo);
+		this.add(this.unidadEnConstruccion);
 		this.setSinInformacionAdicional();
 		this.actualizarDatos();
 	}
@@ -126,7 +130,8 @@ public class PanelInformacion extends JPanel {
 
 	public void informacionEdificio(UnidadEdificio edificio) {
 		this.setInformacionVidaNombreJugador(edificio);
-		this.enConstruccion.setText("En Construccion");
+		this.enConstruccion.setText
+		("En construccion(" + edificio.tiempoDeConstruccion() + " turnos)" );
 		if ( edificio.tiempoDeConstruccion() <= 0 ){
 			this.enConstruccion.setText("Construido");
 		}
@@ -142,6 +147,12 @@ public class PanelInformacion extends JPanel {
 		this.rangoTerrestre.setVisible(false);
 		this.danioAereo.setVisible(false);
 		this.rangoAereo.setVisible(false);
+		this.unidadEnConstruccion.setVisible(false);
+	}
+	
+	public void setInformacionUnidadEnCreacion(String datos){
+		this.unidadEnConstruccion.setText(datos);
+		this.unidadEnConstruccion.setVisible(true);
 	}
 
 	public void informacionSoldado(UnidadSoldado soldado) {

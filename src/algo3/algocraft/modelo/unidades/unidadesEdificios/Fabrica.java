@@ -91,4 +91,12 @@ public class Fabrica extends UnidadEdificio {
 		return enConstruccion;
 	}
 
+	public boolean unidadEnConstruccion() {
+		return this.golliatEnEntrenamiento != null;
+	}
+
+	public int tiempoFaltanteCrearGolliat() {
+		return this.turnosRestantesParaTerminarGolliat;
+	}
+
 }
