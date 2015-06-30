@@ -13,6 +13,7 @@ import algo3.algocraft.modelo.mapa.CoordenadaInvalidaError;
 import algo3.algocraft.modelo.recursos.Recurso;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
 @SuppressWarnings("serial")
 public class PanelJuego extends JPanel {
@@ -109,6 +110,10 @@ public class PanelJuego extends JPanel {
 
 	public Unidad getUnidad() {
 		return this.unidadActual;
+	}
+	
+	public void vistaInformacionSoldado(UnidadSoldado soldado) {
+		this.panelInformacion.informacionSoldado(soldado);
 	}
 
 	public PanelBotones getPanelBotones() {

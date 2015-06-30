@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 
 import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 import algo3.algocraft.vista.PanelJuego;
 import algo3.algocraft.vista.vistas.Vistas;
 
@@ -32,6 +33,8 @@ public class MouseTocarUnidadSoldado implements MouseListener {
 				.createLineBorder(Color.blue));
 		this.panelJuego.setSinInformacionAdicional();
 		this.panelJuego.setUnidad(this.casilla.getOcupanteTerrestre());
+		this.panelJuego.vistaInformacionSoldado
+		((UnidadSoldado)this.casilla.getOcupanteTerrestre());
 		//deberia setear informacion de unidad y mostrar opciones de ataque/mover
 	}
 

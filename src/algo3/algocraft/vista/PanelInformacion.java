@@ -12,18 +12,14 @@ import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 
-@SuppressWarnings({ "serial", "unused" })
+@SuppressWarnings({ "serial" })
 public class PanelInformacion extends JPanel {
 
-	private JTextField cantidadMineral;
-	private JTextField cantidadGas;
-	private JTextField poblacion;
-	private JTextField nombre;
-	private JTextField vida;
-	private JTextField tipoUnidad;
-	private JTextField delJugador;
-	private JTextField enConstruccion;
+	private JTextField cantidadMineral,cantidadGas,poblacion;
+	private JTextField nombre,vida,tipoUnidad,delJugador,enConstruccion;
+	private JTextField danioTerrestre, danioAereo, rangoTerrestre, rangoAereo;
 	private Juego juego;
 
 	public PanelInformacion(Juego juego) {
@@ -62,6 +58,18 @@ public class PanelInformacion extends JPanel {
 		this.enConstruccion = new JTextField();
 		this.enConstruccion.setEditable(false);
 		this.enConstruccion.setBounds(550, 120, 100, 20);
+		this.danioTerrestre = new JTextField();
+		this.danioTerrestre.setEditable(false);
+		this.danioTerrestre.setBounds(0, 150, 120, 20);
+		this.rangoTerrestre = new JTextField();
+		this.rangoTerrestre.setEditable(false);
+		this.rangoTerrestre.setBounds(140, 150, 120, 20);
+		this.danioAereo = new JTextField();
+		this.danioAereo.setEditable(false);
+		this.danioAereo.setBounds(280, 150, 120, 20);
+		this.rangoAereo = new JTextField();
+		this.rangoAereo.setEditable(false);
+		this.rangoAereo.setBounds(420, 150, 120, 20);
 		this.setLayout(null);
 		this.add(labelMineral);
 		this.add(this.cantidadMineral);
@@ -74,6 +82,10 @@ public class PanelInformacion extends JPanel {
 		this.add(this.vida);
 		this.add(this.delJugador);
 		this.add(this.enConstruccion);
+		this.add(this.danioTerrestre);
+		this.add(this.rangoTerrestre);
+		this.add(this.danioAereo);
+		this.add(this.rangoAereo);
 		this.setSinInformacionAdicional();
 		this.actualizarDatos();
 	}
@@ -113,15 +125,7 @@ public class PanelInformacion extends JPanel {
 	}
 
 	public void informacionEdificio(UnidadEdificio edificio) {
-		String tipoUnidad = edificio.getNombre();
-		String vida = Integer.toString(edificio.vidaRestante());
-		String jugador = edificio.getJugador().getNombre();
-		this.tipoUnidad.setText(tipoUnidad);
-		this.tipoUnidad.setVisible(true);
-		this.delJugador.setText("Del jugador: " + jugador);
-		this.delJugador.setVisible(true);
-		this.vida.setText("Vida: " + vida);
-		this.vida.setVisible(true);
+		this.setInformacionVidaNombreJugador(edificio);
 		this.enConstruccion.setText("En Construccion");
 		if ( edificio.tiempoDeConstruccion() <= 0 ){
 			this.enConstruccion.setText("Construido");
@@ -134,5 +138,38 @@ public class PanelInformacion extends JPanel {
 		this.vida.setVisible(false);
 		this.delJugador.setVisible(false);
 		this.enConstruccion.setVisible(false);
+		this.danioTerrestre.setVisible(false);
+		this.rangoTerrestre.setVisible(false);
+		this.danioAereo.setVisible(false);
+		this.rangoAereo.setVisible(false);
+	}
+
+	public void informacionSoldado(UnidadSoldado soldado) {
+		
+		this.setInformacionVidaNombreJugador(soldado);
+		String danioTerrestre = Integer.toString(soldado.getDanioTerrestre());
+		String danioAereo = Integer.toString(soldado.getDanioAereo());
+		String rangoTerrestre = Integer.toString(soldado.getRangoTerrestre());
+		String rangoAereo = Integer.toString(soldado.getRangoAereo());
+		this.danioTerrestre.setText("Danio Terrestre: "+ danioTerrestre );
+		this.rangoTerrestre.setText("Rango Terrestre: " + rangoTerrestre);
+		this.danioAereo.setText("Danio Aereo: " + danioAereo);
+		this.rangoAereo.setText("Rango Aereo: "+ rangoAereo);
+		this.danioTerrestre.setVisible(true);
+		this.rangoTerrestre.setVisible(true);
+		this.danioAereo.setVisible(true);
+		this.rangoAereo.setVisible(true);
+	}
+	
+	private void setInformacionVidaNombreJugador(Unidad unidad) {
+		String tipoUnidad = unidad.getNombre();
+		String vida = Integer.toString(unidad.vidaRestante());
+		String jugador = unidad.getJugador().getNombre();
+		this.tipoUnidad.setText(tipoUnidad);
+		this.tipoUnidad.setVisible(true);
+		this.delJugador.setText("Del jugador: " + jugador);
+		this.delJugador.setVisible(true);
+		this.vida.setText("Vida: " + vida);
+		this.vida.setVisible(true);
 	}
 }
