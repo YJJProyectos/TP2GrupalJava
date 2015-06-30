@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 
 import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.Fabrica;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 import algo3.algocraft.vista.PanelJuego;
 import algo3.algocraft.vista.vistas.Vistas;
@@ -27,13 +28,16 @@ public class MouseTocarFabrica implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(false);
-		this.panelJuego.getPanelBotones().visibilidadBotonEntrenarGolliat(true);
 		this.panelJuego.sacarBordes();
 		this.vista.setBorder(BorderFactory.createLineBorder(Color.blue));
 		this.panelJuego.setSinInformacionAdicional();
 		this.panelJuego.vistaInformacionEdificio((UnidadEdificio) this.casilla
 				.getOcupanteTerrestre());
 		this.panelJuego.setUnidad(this.casilla.getOcupanteTerrestre());
+		Fabrica fabrica = (Fabrica)this.casilla.getOcupanteTerrestre();
+		if ( !fabrica.enConstruccion() ){
+			this.panelJuego.getPanelBotones().visibilidadBotonEntrenarGolliat(true);
+		}
 	}
 
 	@Override

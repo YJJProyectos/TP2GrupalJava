@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 
 import algo3.algocraft.modelo.mapa.Casilla;
+import algo3.algocraft.modelo.unidades.unidadesEdificios.PuertoEstelar;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 import algo3.algocraft.vista.PanelJuego;
 import algo3.algocraft.vista.vistas.Vistas;
@@ -27,14 +28,17 @@ public class MouseTocarPuertoEstelar implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(false);
-		this.panelJuego.getPanelBotones()
-				.visibilidadBotonEntrenarEspectro(true);
 		this.panelJuego.sacarBordes();
 		this.vista.setBorder(BorderFactory.createLineBorder(Color.blue));
 		this.panelJuego.setSinInformacionAdicional();
 		this.panelJuego.vistaInformacionEdificio((UnidadEdificio) this.casilla
 				.getOcupanteTerrestre());
 		this.panelJuego.setUnidad(this.casilla.getOcupanteTerrestre());
+		PuertoEstelar puerto = (PuertoEstelar)this.casilla.getOcupanteTerrestre();
+		if ( !puerto.enConstruccion() ){
+			this.panelJuego.getPanelBotones()
+			.visibilidadBotonEntrenarEspectro(true);
+		}
 	}
 
 	@Override
