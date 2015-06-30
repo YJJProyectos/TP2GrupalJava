@@ -29,7 +29,7 @@ public class AccionBotonCrearCentroMineral implements ActionListener {
 		try {
 			Casilla casilla = this.panelJuego.getCasillaActual();
 			Recurso recurso = casilla.getRecurso();
-			if (recurso == null){
+			if (recurso == null) {
 				String textoError = "<html>Ningun recurso seleccionado <html>";
 				new VentanaError(textoError);
 			} else {

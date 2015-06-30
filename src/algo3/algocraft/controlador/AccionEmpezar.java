@@ -7,15 +7,15 @@ import algo3.algocraft.vista.VentanaInicio;
 
 public class AccionEmpezar implements ActionListener {
 
-	private VentanaInicio ventanaJFrame;
+	private VentanaInicio ventanaInicio;
 
-	public AccionEmpezar(VentanaInicio ventanaJFrame) {
-		this.ventanaJFrame = ventanaJFrame;
+	public AccionEmpezar(VentanaInicio ventanaInicio) {
+		this.ventanaInicio = ventanaInicio;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		this.ventanaJFrame.cambiarPanelCargaDatos();
+		this.ventanaInicio.cambiarPanelCargaDatos();
 	}
 
 }

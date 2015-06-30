@@ -150,6 +150,7 @@ public class PanelJuego extends JPanel implements Observer{
 
 	private void pantallaGanador() {
 		this.juego.getGanador().getNombre();
+		new VentanaGanador(this.juego.getGanador(), null);
 		//aca deberia lanzar el cartel que gano tal jugador bla bla bla
 	}
 }

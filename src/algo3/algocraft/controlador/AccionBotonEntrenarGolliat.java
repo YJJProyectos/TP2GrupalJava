@@ -28,10 +28,9 @@ public class AccionBotonEntrenarGolliat implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent click) {
 
-		Casilla casilla = this.panelJuego.getCasillaActual();
-		Fabrica fabrica = (Fabrica) casilla.getOcupanteTerrestre();
-
 		try {
+			Casilla casilla = this.panelJuego.getCasillaActual();
+			Fabrica fabrica = (Fabrica) casilla.getOcupanteTerrestre();
 			fabrica.entrenarGolliat(juego.turnoDeJugador());
 		} catch (JugadorIncorrectoError e) {
 			String textoError = "<html>La unidad pertenece a otro jugador <html>";
@@ -50,6 +49,9 @@ public class AccionBotonEntrenarGolliat implements ActionListener {
 			new VentanaError(textoError);
 		} catch (FabricaNoConstruidaError e) {
 			String textoError = "<html>Fabrica no construida <html>";
+			new VentanaError(textoError);
+		} catch (Exception e) {
+			String textoError = "<html>No se selecciono una casilla con una Fabrica <html>";
 			new VentanaError(textoError);
 		}
 
