@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import algo3.algocraft.controlador.AccionAcercaDeCreadores;
+import algo3.algocraft.controlador.AccionAcercaDeManualDeJuego;
 import algo3.algocraft.controlador.AccionEmpezar;
 import algo3.algocraft.controlador.AccionEmpezarMapaJuego;
 import algo3.algocraft.controlador.AccionReiniciar;
@@ -36,7 +37,7 @@ public class VentanaInicio extends JFrame {
 	private JMenuItem menuComenzarJuego;
 	private JMenuItem menuItemSalir, menuItem1024, menuItem800,
 			menuItemDefecto, menuItemResMaxima;
-	private JMenuItem menuCreadores;
+	private JMenuItem menuCreadores,menuManualDeJuego;
 	private JButton botonComenzar, botonSalir, botonEmpezarMapa;
 	private Container contenedor;
 	private JTextField nombreJugador1, nombreJugador2;
@@ -98,7 +99,11 @@ public class VentanaInicio extends JFrame {
 
 		menuAcercaDe = new JMenu("Acerca De");
 		barraMenu.add(menuAcercaDe);
-
+		
+		menuManualDeJuego = new JMenuItem("Manual de juego");
+		menuManualDeJuego.addActionListener(new AccionAcercaDeManualDeJuego());
+		menuAcercaDe.add(menuManualDeJuego);
+		
 		menuCreadores = new JMenuItem("Creadores");
 		menuCreadores.addActionListener(new AccionAcercaDeCreadores());
 		menuAcercaDe.add(menuCreadores);
