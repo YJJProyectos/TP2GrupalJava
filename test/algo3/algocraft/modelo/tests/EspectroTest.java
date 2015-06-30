@@ -11,6 +11,7 @@ import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.DistanciaMayorQueElRangoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Espectro;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
@@ -43,8 +44,8 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaEstarDetruido() throws 
-			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
+	public void deberiaEstarDetruido() throws RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -55,8 +56,8 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaNoEstarDetruido() throws 
-			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
+	public void deberiaNoEstarDetruido() throws RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -67,8 +68,8 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaRecibirDanio() throws 
-			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
+	public void deberiaRecibirDanio() throws RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -81,8 +82,8 @@ public class EspectroTest {
 	}
 
 	@Test
-	public void deberiaQuedarle119DeVida() throws 
-			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
+	public void deberiaQuedarle119DeVida() throws RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -159,7 +160,7 @@ public class EspectroTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError {
+			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -172,11 +173,12 @@ public class EspectroTest {
 		espectro.atacarEnemigo(soldadoEnemigo, jugadorEnemigo);
 	}
 
-	@Test
-	public void deberiaNoDaniarFueraDeRango() throws 
-			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
-			CasillaOcupadaError, JugadorIncorrectoError,
-			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
+	@Test(expected = DistanciaMayorQueElRangoError.class)
+	public void deberiaNoDaniarFueraDeRango()
+			throws PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
+			JugadorIncorrectoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -192,14 +194,13 @@ public class EspectroTest {
 		soldadoEnemigo.posicionar(casillaAliado);
 		espectro.atacarEnemigo(soldadoEnemigo, jugadorAliado);
 
-		Assert.assertEquals(40, soldadoEnemigo.vidaRestante());
 	}
 
 	@Test
-	public void deberiaDaniarEnElRango() throws 
-			PerteneceAlMismoJugadorError, NoPuedeAtacarMultiplesVecesError,
-			CasillaOcupadaError, JugadorIncorrectoError,
-			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
+	public void deberiaDaniarEnElRango() throws PerteneceAlMismoJugadorError,
+			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
+			JugadorIncorrectoError, RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();

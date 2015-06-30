@@ -25,15 +25,24 @@ public class MouseTocarEdificio implements MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		System.out.println("terrestre");
-		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(false);
-		this.panelJuego.sacarBordes();
-		this.vista.setBorder(BorderFactory.createLineBorder(Color.blue));
-		this.panelJuego.setSinInformacionAdicional();
-		this.panelJuego.vistaInformacionEdificio((UnidadEdificio) this.casilla
-				.getOcupanteTerrestre());
-		this.panelJuego.setUnidad(this.casilla.getOcupanteTerrestre());
+	public void mouseClicked(MouseEvent click) {
+		if (click.getButton() == MouseEvent.BUTTON1) {
+			System.out.println("terrestre");
+			this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(
+					false);
+			this.panelJuego.sacarBordes();
+			this.vista.setBorder(BorderFactory.createLineBorder(Color.blue));
+			this.panelJuego.setSinInformacionAdicional();
+			this.panelJuego
+					.vistaInformacionEdificio((UnidadEdificio) this.casilla
+							.getOcupanteTerrestre());
+			this.panelJuego.setUnidadIzquierdo(this.casilla
+					.getOcupanteTerrestre());
+		} else if (click.getButton() == MouseEvent.BUTTON3) {
+			this.panelJuego.setCasillaDestino(this.casilla);
+			this.panelJuego.setUnidadDerecho(this.casilla
+					.getOcupanteTerrestre());
+		}
 	}
 
 	@Override

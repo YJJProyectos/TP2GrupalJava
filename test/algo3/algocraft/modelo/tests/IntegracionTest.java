@@ -26,6 +26,7 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.YaHayUnidadEnEntrenamiento;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.DistanciaMayorQueElRangoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
@@ -40,7 +41,8 @@ public class IntegracionTest {
 			JugadorIncorrectoError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, PoblacionLimiteAlcanzadaError,
 			NombresInvalidosError, YaHayUnidadEnEntrenamiento,
-			BarracaDestruidaError, FabricaNoConstruidaError {
+			BarracaDestruidaError, FabricaNoConstruidaError,
+			DistanciaMayorQueElRangoError {
 		int esquina1 = 1;
 		int esquina4 = 20;
 		int centro = 10;

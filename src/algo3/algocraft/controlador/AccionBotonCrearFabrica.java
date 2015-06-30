@@ -28,7 +28,7 @@ public class AccionBotonCrearFabrica implements ActionListener {
 	public void actionPerformed(ActionEvent click) {
 
 		try {
-			Barraca barraca = (Barraca) this.panelJuego.getUnidad();
+			Barraca barraca = (Barraca) this.panelJuego.getUnidadIzquierdo();
 			Casilla casilla = this.panelJuego.getCasillaActual();
 			new Fabrica(this.juego.turnoDeJugador(), casilla, barraca);
 		} catch (PerteneceAOtroJugadorError e) {

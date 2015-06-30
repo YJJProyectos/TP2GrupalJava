@@ -12,7 +12,7 @@ import algo3.algocraft.vista.PanelJuego;
 import algo3.algocraft.vista.vistas.Vistas;
 
 public class MouseTocarUnidadSoldado implements MouseListener {
-	
+
 	private Casilla casilla;
 	private PanelJuego panelJuego;
 	private Vistas vista;
@@ -25,19 +25,29 @@ public class MouseTocarUnidadSoldado implements MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent click) {
 		System.out.println("soldado");
-		this.panelJuego.setCasillaActual(this.casilla);
-		this.panelJuego.sacarBordes();
-		this.vista.setBorder(BorderFactory
-				.createLineBorder(Color.blue));
-		this.panelJuego.setSinInformacionAdicional();
-		this.panelJuego.setUnidad(this.casilla.getOcupanteTerrestre());
-		this.panelJuego.vistaInformacionSoldado
-		((UnidadSoldado)this.casilla.getOcupanteTerrestre());
-		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(false);
-		this.panelJuego.getPanelBotones().visibilidadBotonesUnidadSoldado(true);
-		//deberia setear informacion de unidad y mostrar opciones de ataque/mover
+		if (click.getButton() == MouseEvent.BUTTON1) {
+			this.panelJuego.setCasillaActual(this.casilla);
+			this.panelJuego.sacarBordes();
+			this.vista.setBorder(BorderFactory.createLineBorder(Color.blue));
+			this.panelJuego.setSinInformacionAdicional();
+			this.panelJuego.setUnidadIzquierdo(this.casilla
+					.getOcupanteTerrestre());
+			this.panelJuego
+					.vistaInformacionSoldado((UnidadSoldado) this.casilla
+							.getOcupanteTerrestre());
+			this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(
+					false);
+			this.panelJuego.getPanelBotones().visibilidadBotonesUnidadSoldado(
+					true);
+			// deberia setear informacion de unidad y mostrar opciones de
+			// ataque/mover
+		} else if (click.getButton() == MouseEvent.BUTTON3) {
+			this.panelJuego.setCasillaDestino(this.casilla);
+			this.panelJuego.setUnidadDerecho(this.casilla
+					.getOcupanteTerrestre());
+		}
 	}
 
 	@Override

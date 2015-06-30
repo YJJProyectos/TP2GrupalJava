@@ -15,6 +15,7 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.Barraca;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.DistanciaMayorQueElRangoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorError;
@@ -105,7 +106,8 @@ public class RefineriaTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
 			CasillaOcupadaError, RecolectorInvalidoError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
+			DistanciaMayorQueElRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -129,7 +131,8 @@ public class RefineriaTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
 			CasillaOcupadaError, RecolectorInvalidoError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
+			DistanciaMayorQueElRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -153,8 +156,8 @@ public class RefineriaTest {
 
 	@Test
 	public void LaRefineriaConstruidaDeberiaRecibirDanio1()
-			throws RecursosInsuficientesError,
-			RecolectorInvalidoError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, RecolectorInvalidoError,
+			CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
@@ -174,8 +177,8 @@ public class RefineriaTest {
 
 	@Test
 	public void laVidaRestanteLuegoDeQuitarle1UnidadDevidaALaRefineriaConstruidaEs749()
-			throws RecursosInsuficientesError,
-			RecolectorInvalidoError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, RecolectorInvalidoError,
+			CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);
@@ -269,8 +272,8 @@ public class RefineriaTest {
 
 	@Test
 	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
-			throws RecursosInsuficientesError,
-			RecolectorInvalidoError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, RecolectorInvalidoError,
+			CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
 		Coordenada coordenada = new Coordenada(1, 1);

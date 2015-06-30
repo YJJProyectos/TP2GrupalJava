@@ -7,6 +7,7 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import algo3.algocraft.controlador.AccionBotonAtacar;
 import algo3.algocraft.controlador.AccionBotonCrearBarraca;
 import algo3.algocraft.controlador.AccionBotonCrearCentroMineral;
 import algo3.algocraft.controlador.AccionBotonCrearDepositoDeSuministros;
@@ -16,6 +17,7 @@ import algo3.algocraft.controlador.AccionBotonCrearRefineria;
 import algo3.algocraft.controlador.AccionBotonEntrenarEspectro;
 import algo3.algocraft.controlador.AccionBotonEntrenarGolliat;
 import algo3.algocraft.controlador.AccionBotonEntrenarMarine;
+import algo3.algocraft.controlador.AccionBotonMover;
 import algo3.algocraft.controlador.AccionBotonPasarTurno;
 import algo3.algocraft.controlador.AccionBotonPosicionarSoldado;
 import algo3.algocraft.modelo.juego.Juego;
@@ -82,9 +84,11 @@ public class PanelBotones extends JPanel {
 						this.panelJuego, juego));
 
 		this.botonPosicionarSoldado = new JButton();
-		this.botonPosicionarSoldado.setText("Posicionar Soldado" + "("
-				+ juego.turnoDeJugador().cantidadSoldadosParaPosicionar()
-				+ ")");
+		this.botonPosicionarSoldado
+				.setText("Posicionar Soldado"
+						+ "("
+						+ juego.turnoDeJugador()
+								.cantidadSoldadosParaPosicionar() + ")");
 		this.botonPosicionarSoldado
 				.addActionListener(new AccionBotonPosicionarSoldado(
 						this.panelJuego, juego));
@@ -96,12 +100,13 @@ public class PanelBotones extends JPanel {
 
 		this.botonAtacar = new JButton();
 		this.botonAtacar.setText("Atacar");
-		// this.botonAtacar
-		// .addActionListener(new AccionBotonAtacar();
+		this.botonAtacar.addActionListener(new AccionBotonAtacar(
+				this.panelJuego, juego));
 
 		this.botonMover = new JButton();
 		this.botonMover.setText("Mover");
-		// this.botonMover.addActionListener(new AccionBotonMover());
+		this.botonMover.addActionListener(new AccionBotonMover(this.panelJuego,
+				juego));
 
 		this.botonEntrenarMarine = new JButton();
 		this.botonEntrenarMarine.setText("Entrenar Marine");

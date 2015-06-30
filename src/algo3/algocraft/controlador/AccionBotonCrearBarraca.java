@@ -24,9 +24,8 @@ public class AccionBotonCrearBarraca implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent click) {
 
-		Casilla casilla = this.panelJuego.getCasillaActual();
-
 		try {
+			Casilla casilla = this.panelJuego.getCasillaActual();
 			new Barraca(this.juego.turnoDeJugador(), casilla);
 		} catch (RecursosInsuficientesError e) {
 			String textoError = "<html>Recursos insuficientes <html>";

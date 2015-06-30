@@ -34,7 +34,8 @@ public class UnidadSoldado extends UnidadMovil {
 
 	public void atacarEnemigo(Unidad enemigo, Jugador unJugador)
 			throws PerteneceAlMismoJugadorError,
-			NoPuedeAtacarMultiplesVecesError, JugadorIncorrectoError {
+			NoPuedeAtacarMultiplesVecesError, JugadorIncorrectoError,
+			DistanciaMayorQueElRangoError {
 		if (this.jugador != unJugador) {
 			throw new JugadorIncorrectoError();
 		}

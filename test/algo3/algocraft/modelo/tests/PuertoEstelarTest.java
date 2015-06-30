@@ -20,6 +20,7 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.PuertoEstelar;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.PuertoEstelarNoConstruidoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.YaHayUnidadEnEntrenamiento;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.DistanciaMayorQueElRangoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorError;
@@ -260,7 +261,8 @@ public class PuertoEstelarTest {
 			NoPuedeAtacarMultiplesVecesError, PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, CasillaOcupadaError,
 			FabricaNoConstruidaError, JugadorIncorrectoError,
-			PoblacionLimiteAlcanzadaError, BarracaNoConstruidaError {
+			PoblacionLimiteAlcanzadaError, BarracaNoConstruidaError,
+			DistanciaMayorQueElRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		jugadorAliado.aumentarMineral(1000);
@@ -298,7 +300,8 @@ public class PuertoEstelarTest {
 			NoPuedeAtacarMultiplesVecesError, PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, CasillaOcupadaError,
 			FabricaNoConstruidaError, JugadorIncorrectoError,
-			PoblacionLimiteAlcanzadaError, BarracaNoConstruidaError {
+			PoblacionLimiteAlcanzadaError, BarracaNoConstruidaError,
+			DistanciaMayorQueElRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		jugadorAliado.aumentarMineral(1000);

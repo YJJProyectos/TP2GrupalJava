@@ -25,12 +25,18 @@ public class MouseTocarCasillaVacia implements MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(false);
-		this.panelJuego.setCasillaActual(this.casilla);
-		this.panelJuego.setSinInformacionAdicional();
-		this.panelJuego.sacarBordes();
-		this.vistaCasilla.setBorder(BorderFactory.createLineBorder(Color.red));
+	public void mouseClicked(MouseEvent click) {
+		if (click.getButton() == MouseEvent.BUTTON1) {
+			this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(
+					false);
+			this.panelJuego.setCasillaActual(this.casilla);
+			this.panelJuego.setSinInformacionAdicional();
+			this.panelJuego.sacarBordes();
+			this.vistaCasilla.setBorder(BorderFactory
+					.createLineBorder(Color.red));
+		} else if (click.getButton() == MouseEvent.BUTTON3) {
+			this.panelJuego.setCasillaDestino(this.casilla);
+		}
 	}
 
 	@Override

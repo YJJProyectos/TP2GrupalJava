@@ -26,17 +26,27 @@ public class MouseTocarBarraca implements MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(false);
-		this.panelJuego.sacarBordes();
-		this.vista.setBorder(BorderFactory.createLineBorder(Color.blue));
-		this.panelJuego.setSinInformacionAdicional();
-		this.panelJuego.vistaInformacionEdificio((UnidadEdificio) this.casilla
-				.getOcupanteTerrestre());
-		this.panelJuego.setUnidad(this.casilla.getOcupanteTerrestre());
-		Barraca barraca = (Barraca)this.casilla.getOcupanteTerrestre();
-		if ( !barraca.enConstruccion()){
-			this.panelJuego.getPanelBotones().visibilidadBotonEntrenarMarine(true);
+	public void mouseClicked(MouseEvent click) {
+		if (click.getButton() == MouseEvent.BUTTON1) {
+			this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(
+					false);
+			this.panelJuego.sacarBordes();
+			this.vista.setBorder(BorderFactory.createLineBorder(Color.blue));
+			this.panelJuego.setSinInformacionAdicional();
+			this.panelJuego
+					.vistaInformacionEdificio((UnidadEdificio) this.casilla
+							.getOcupanteTerrestre());
+			this.panelJuego.setUnidadIzquierdo(this.casilla
+					.getOcupanteTerrestre());
+			Barraca barraca = (Barraca) this.casilla.getOcupanteTerrestre();
+			if (!barraca.enConstruccion()) {
+				this.panelJuego.getPanelBotones()
+						.visibilidadBotonEntrenarMarine(true);
+			}
+		} else if (click.getButton() == MouseEvent.BUTTON3) {
+			this.panelJuego.setCasillaDestino(this.casilla);
+			this.panelJuego.setUnidadDerecho(this.casilla
+					.getOcupanteTerrestre());
 		}
 	}
 

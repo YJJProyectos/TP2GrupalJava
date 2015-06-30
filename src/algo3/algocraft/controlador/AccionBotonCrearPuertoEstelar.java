@@ -28,7 +28,7 @@ public class AccionBotonCrearPuertoEstelar implements ActionListener {
 	public void actionPerformed(ActionEvent click) {
 
 		try {
-			Fabrica fabrica = (Fabrica) this.panelJuego.getUnidad();
+			Fabrica fabrica = (Fabrica) this.panelJuego.getUnidadIzquierdo();
 			Casilla casilla = this.panelJuego.getCasillaActual();
 			new PuertoEstelar(this.juego.turnoDeJugador(), casilla, fabrica);
 		} catch (PerteneceAOtroJugadorError e) {

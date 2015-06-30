@@ -34,7 +34,7 @@ public class AccionBotonEntrenarEspectro implements ActionListener {
 		try {
 			puerto.entrenarEspectro(juego.turnoDeJugador());
 		} catch (JugadorIncorrectoError e) {
-			String textoError = "<html>Jugador incorrecto <html>";
+			String textoError = "<html>La unidad pertenece a otro jugador <html>";
 			new VentanaError(textoError);
 		} catch (RecursosInsuficientesError e) {
 			String textoError = "<html>Recursos insuficientes <html>";

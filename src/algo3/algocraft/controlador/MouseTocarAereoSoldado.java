@@ -17,26 +17,34 @@ public class MouseTocarAereoSoldado implements MouseListener {
 	private PanelJuego panelJuego;
 	private Vistas vista;
 
-	public MouseTocarAereoSoldado(Casilla casilla, PanelJuego panelJuego, Vistas vista) {
+	public MouseTocarAereoSoldado(Casilla casilla, PanelJuego panelJuego,
+			Vistas vista) {
 		this.casilla = casilla;
 		this.panelJuego = panelJuego;
 		this.vista = vista;
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		System.out.println("aereo");
-		this.panelJuego.setCasillaActual(this.casilla);
-		this.panelJuego.sacarBordes();
-		this.vista.setBorder(BorderFactory
-				.createLineBorder(Color.green));
-		this.panelJuego.setSinInformacionAdicional();
-		this.panelJuego.setUnidad(this.casilla.getOcupanteAereo());
-		this.panelJuego.vistaInformacionSoldado
-		((UnidadSoldado)this.casilla.getOcupanteAereo());
-		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(false);
-		this.panelJuego.getPanelBotones().visibilidadBotonesUnidadSoldado(true);
-		// aca deberia pasar unidad al panel juego y setear la info
+	public void mouseClicked(MouseEvent click) {
+		if (click.getButton() == MouseEvent.BUTTON1) {
+			System.out.println("aereo");
+			this.panelJuego.setCasillaActual(this.casilla);
+			this.panelJuego.sacarBordes();
+			this.vista.setBorder(BorderFactory.createLineBorder(Color.green));
+			this.panelJuego.setSinInformacionAdicional();
+			this.panelJuego.setUnidadIzquierdo(this.casilla.getOcupanteAereo());
+			this.panelJuego
+					.vistaInformacionSoldado((UnidadSoldado) this.casilla
+							.getOcupanteAereo());
+			this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(
+					false);
+			this.panelJuego.getPanelBotones().visibilidadBotonesUnidadSoldado(
+					true);
+			// aca deberia pasar unidad al panel juego y setear la info
+		} else if (click.getButton() == MouseEvent.BUTTON3) {
+			this.panelJuego.setCasillaDestino(this.casilla);
+			this.panelJuego.setUnidadDerecho(this.casilla.getOcupanteAereo());
+		}
 	}
 
 	@Override

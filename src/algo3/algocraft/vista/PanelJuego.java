@@ -24,7 +24,9 @@ public class PanelJuego extends JPanel {
 	private PanelInformacion panelInformacion;
 	private Juego juego;
 	private Casilla casillaActual;
-	private Unidad unidadActual;
+	private Casilla casillaDestino;
+	private Unidad unidadActualIzquierdo;
+	private Unidad unidadActualDerecho;
 	@SuppressWarnings("unused")
 	private Recurso recursoActual;
 
@@ -90,6 +92,14 @@ public class PanelJuego extends JPanel {
 		return this.casillaActual;
 	}
 
+	public void setCasillaDestino(Casilla casilla) {
+		this.casillaDestino = casilla;
+	}
+
+	public Casilla getCasillaDestino() {
+		return this.casillaDestino;
+	}
+
 	public void vistaInformacionEdificio(UnidadEdificio edificio) {
 		this.panelInformacion.informacionEdificio(edificio);
 	}
@@ -106,12 +116,20 @@ public class PanelJuego extends JPanel {
 		this.recursoActual = recurso;
 	}
 
-	public void setUnidad(Unidad unidad) {
-		this.unidadActual = unidad;
+	public void setUnidadIzquierdo(Unidad unidad) {
+		this.unidadActualIzquierdo = unidad;
 	}
 
-	public Unidad getUnidad() {
-		return this.unidadActual;
+	public Unidad getUnidadIzquierdo() {
+		return this.unidadActualIzquierdo;
+	}
+
+	public void setUnidadDerecho(Unidad unidad) {
+		this.unidadActualDerecho = unidad;
+	}
+
+	public Unidad getUnidadDerecho() {
+		return this.unidadActualDerecho;
 	}
 
 	public void vistaInformacionSoldado(UnidadSoldado soldado) {

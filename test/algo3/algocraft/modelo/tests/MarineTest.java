@@ -12,6 +12,7 @@ import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.mapa.Mapa;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.DistanciaMayorQueElRangoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
@@ -43,8 +44,8 @@ public class MarineTest {
 	}
 
 	@Test
-	public void deberiaEstarDetruidoElMarine() throws 
-			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
+	public void deberiaEstarDetruidoElMarine()
+			throws RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -55,8 +56,8 @@ public class MarineTest {
 	}
 
 	@Test
-	public void deberiaNoEstarDetruidoElMarine() throws 
-			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
+	public void deberiaNoEstarDetruidoElMarine()
+			throws RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -67,8 +68,8 @@ public class MarineTest {
 	}
 
 	@Test
-	public void deberiaRecibirDanio1() throws 
-			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
+	public void deberiaRecibirDanio1() throws RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -81,8 +82,8 @@ public class MarineTest {
 	}
 
 	@Test
-	public void deberiaQuedarle39DeVida() throws 
-			RecursosInsuficientesError, PoblacionLimiteAlcanzadaError {
+	public void deberiaQuedarle39DeVida() throws RecursosInsuficientesError,
+			PoblacionLimiteAlcanzadaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -141,7 +142,7 @@ public class MarineTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError {
+			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -156,8 +157,8 @@ public class MarineTest {
 
 	@Test
 	public void deberiaDesocuparLaCasillaUnaVezYaDestruido()
-			throws RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, CasillaOcupadaError {
+			throws RecursosInsuficientesError, PoblacionLimiteAlcanzadaError,
+			CasillaOcupadaError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -174,7 +175,7 @@ public class MarineTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError {
+			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -190,12 +191,12 @@ public class MarineTest {
 		soldado.atacarEnemigo(soldadoAliado, jugador);
 	}
 
-	@Test
+	@Test(expected = DistanciaMayorQueElRangoError.class)
 	public void unMarineDeberiaNoDaniarAUnGoliatPorEstarFueraDelRango()
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError {
+			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -211,7 +212,6 @@ public class MarineTest {
 		soldadoEnemigo.posicionar(casillaSoldadoEnemigo);
 		soldadoAliado.atacarEnemigo(soldadoEnemigo, jugadorAliado);
 
-		Assert.assertEquals(125, soldadoEnemigo.vidaRestante());
 	}
 
 	@Test
@@ -219,7 +219,7 @@ public class MarineTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError {
+			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
@@ -292,7 +292,7 @@ public class MarineTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError {
+			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
@@ -314,7 +314,7 @@ public class MarineTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError {
+			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
