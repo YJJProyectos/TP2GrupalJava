@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 import algo3.algocraft.controlador.AccionBotonCrearBarraca;
 import algo3.algocraft.controlador.AccionBotonCrearCentroMineral;
-import algo3.algocraft.controlador.AccionBotonCrearDeposotoDeSuministros;
+import algo3.algocraft.controlador.AccionBotonCrearDepositoDeSuministros;
 import algo3.algocraft.controlador.AccionBotonCrearFabrica;
 import algo3.algocraft.controlador.AccionBotonCrearPuertoEstelar;
 import algo3.algocraft.controlador.AccionBotonCrearRefineria;
@@ -50,7 +50,7 @@ public class PanelBotones extends JPanel {
 		this.botonCrearDeposito = new JButton();
 		this.botonCrearDeposito.setText("Crear Deposito de Suministros");
 		this.botonCrearDeposito
-				.addActionListener(new AccionBotonCrearDeposotoDeSuministros(
+				.addActionListener(new AccionBotonCrearDepositoDeSuministros(
 						this.panelJuego, juego));
 
 		this.botonCrearRefineria = new JButton();
@@ -83,7 +83,7 @@ public class PanelBotones extends JPanel {
 
 		this.botonPosicionarSoldado = new JButton();
 		this.botonPosicionarSoldado.setText("Posicionar Soldado" + "("
-				+ juego.turnoDeJugador().caintidadSoldadosParaPosicionar()
+				+ juego.turnoDeJugador().cantidadSoldadosParaPosicionar()
 				+ ")");
 		this.botonPosicionarSoldado
 				.addActionListener(new AccionBotonPosicionarSoldado(
@@ -181,7 +181,7 @@ public class PanelBotones extends JPanel {
 
 	public void actualizarDatos() {
 		this.botonPosicionarSoldado.setText("Posicionar Soldado" + "("
-				+ this.juego.turnoDeJugador().caintidadSoldadosParaPosicionar()
+				+ this.juego.turnoDeJugador().cantidadSoldadosParaPosicionar()
 				+ ")");
 	}
 

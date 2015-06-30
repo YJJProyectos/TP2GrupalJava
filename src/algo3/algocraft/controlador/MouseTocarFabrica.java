@@ -26,6 +26,7 @@ public class MouseTocarFabrica implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
+		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(false);
 		this.panelJuego.getPanelBotones().visibilidadBotonEntrenarGolliat(true);
 		this.panelJuego.sacarBordes();
 		this.vista.setBorder(BorderFactory.createLineBorder(Color.blue));

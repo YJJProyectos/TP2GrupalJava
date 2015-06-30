@@ -34,6 +34,8 @@ public class MouseTocarAereoSoldado implements MouseListener {
 		this.panelJuego.setUnidad(this.casilla.getOcupanteAereo());
 		this.panelJuego.vistaInformacionSoldado
 		((UnidadSoldado)this.casilla.getOcupanteAereo());
+		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(false);
+		this.panelJuego.getPanelBotones().visibilidadBotonesUnidadSoldado(true);
 		// aca deberia pasar unidad al panel juego y setear la info
 	}
 

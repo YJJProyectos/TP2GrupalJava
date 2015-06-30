@@ -68,12 +68,13 @@ public class Jugador {
 		if (this.soldadosParaPosicionar.isEmpty()) {
 			throw new NoHaySoldadosParaPosicionarError();
 		}
-		UnidadMovil soldado = this.soldadosParaPosicionar.remove(0);
+		UnidadMovil soldado = this.soldadosParaPosicionar.get(0);
 		soldado.posicionar(casilla);
+		this.soldadosParaPosicionar.remove(0);
 		this.agregarUnidad(soldado);
 	}
 
-	public int caintidadSoldadosParaPosicionar() {
+	public int cantidadSoldadosParaPosicionar() {
 		return this.soldadosParaPosicionar.size();
 	}
 

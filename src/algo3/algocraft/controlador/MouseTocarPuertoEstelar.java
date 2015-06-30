@@ -26,6 +26,7 @@ public class MouseTocarPuertoEstelar implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
+		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(false);
 		this.panelJuego.getPanelBotones()
 				.visibilidadBotonEntrenarEspectro(true);
 		this.panelJuego.sacarBordes();

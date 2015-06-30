@@ -9,14 +9,13 @@ import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
 import algo3.algocraft.vista.PanelJuego;
-import algo3.algocraft.vista.VentanaError;
 
-public class AccionBotonCrearDeposotoDeSuministros implements ActionListener {
+public class AccionBotonCrearDepositoDeSuministros implements ActionListener {
 
 	private PanelJuego panelJuego;
 	private Juego juego;
 
-	public AccionBotonCrearDeposotoDeSuministros(PanelJuego panelJuego,
+	public AccionBotonCrearDepositoDeSuministros(PanelJuego panelJuego,
 			Juego juego) {
 		this.panelJuego = panelJuego;
 		this.juego = juego;
@@ -30,11 +29,11 @@ public class AccionBotonCrearDeposotoDeSuministros implements ActionListener {
 		try {
 			new DepositoDeSuministros(this.juego.turnoDeJugador(), casilla);
 		} catch (RecursosInsuficientesError e) {
-			String textoError = "<html>Recursos insuficientes <html>";
-			new VentanaError(textoError);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (CasillaOcupadaError e) {
-			String textoError = "<html>Casilla invalida <html>";
-			new VentanaError(textoError);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		this.panelJuego.actualizar();

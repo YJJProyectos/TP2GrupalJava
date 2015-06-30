@@ -26,6 +26,7 @@ public class MouseTocarBarraca implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
+		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(false);
 		this.panelJuego.getPanelBotones().visibilidadBotonEntrenarMarine(true);
 		this.panelJuego.sacarBordes();
 		this.vista.setBorder(BorderFactory.createLineBorder(Color.blue));
