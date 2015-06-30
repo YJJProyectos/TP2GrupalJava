@@ -103,11 +103,13 @@ public class IntegracionTest {
 			juego.pasarTurno();
 		}// creo las fabricas
 		jugadorActual = juego.turnoDeJugador();
-		barraca2.entrenarMarine(jugadorActual);
+		//ahora como agregue que empieze con un marine, no hace falta crearlo
+		//barraca2.entrenarMarine(jugadorActual);
 		fabrica2.entrenarGolliat(jugadorActual);
 		juego.pasarTurno();
 		jugadorActual = juego.turnoDeJugador();
-		barraca1.entrenarMarine(jugadorActual);
+		//ahora como agregue que empieze con un marine, no hace falta crearlo
+		//barraca1.entrenarMarine(jugadorActual);
 		fabrica1.entrenarGolliat(jugadorActual);
 		for (int l = 0; l < 12; l++) {
 			juego.pasarTurno();

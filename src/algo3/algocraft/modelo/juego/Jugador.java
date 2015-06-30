@@ -6,6 +6,7 @@ import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.DepositoDeSuministros;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadMovil;
 
 public class Jugador {
@@ -155,6 +156,22 @@ public class Jugador {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public void iniciarConMarineParaPosicionar() {
+		
+		this.aumentarMineral(30); //la cantidad necesaria para un marine
+		try {
+			Marine marine = new Marine(this);
+			this.agregarSoldadoParaPosicionar(marine);
+		} catch (RecursosInsuficientesError e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PoblacionLimiteAlcanzadaError e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

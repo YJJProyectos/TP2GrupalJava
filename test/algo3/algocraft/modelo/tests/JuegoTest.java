@@ -439,5 +439,18 @@ public class JuegoTest {
 
 		Assert.assertFalse(juego.agregarJugador(jugador5));
 	}
+	
+	@Test
+	public void losJugadoresDeberianEmpezarCon1SoldadoParaPosicionar() 
+			throws NombresInvalidosError{
+		Jugador jugador1 = new Jugador();
+		Jugador jugador2 = new Jugador();
+		jugador1.setNombre("lala");
+		jugador2.setNombre("lolo");
+		@SuppressWarnings("unused")
+		Juego juego = new Juego(jugador1, jugador2);
+		Assert.assertEquals(1, jugador1.cantidadSoldadosParaPosicionar());
+		Assert.assertEquals(1, jugador2.cantidadSoldadosParaPosicionar());
+	}
 
 }

@@ -20,12 +20,7 @@ import algo3.algocraft.controlador.AccionResolucion;
 import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.NombresInvalidosError;
-import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
-import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.CoordenadaInvalidaError;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.Espectro;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 
 import javax.swing.JButton;
 
@@ -168,22 +163,6 @@ public class VentanaInicio extends JFrame {
 		jugador2.setNombre(this.nombreJugador2.getText());
 		this.juego = new Juego(jugador1, jugador2);
 		this.inicioPanel.setVisible(false);
-		try {
-			Marine marine = new Marine(jugador1);
-			jugador1.agregarSoldadoParaPosicionar(marine);
-			Golliat otro = new Golliat(jugador1);
-			jugador1.agregarSoldadoParaPosicionar(otro);
-			Marine marine2 = new Marine(jugador2);
-			jugador2.agregarSoldadoParaPosicionar(marine2);
-			Espectro espectro = new Espectro(jugador2);
-			jugador2.agregarSoldadoParaPosicionar(espectro);
-		} catch (RecursosInsuficientesError e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (PoblacionLimiteAlcanzadaError e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		if (this.juegoPanel != null) {
 			this.juegoPanel.setVisible(false);
 		}

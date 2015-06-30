@@ -288,6 +288,20 @@ public class JugadorTest {
 
 		Assert.assertEquals(400, jugador.cantidadMineral());
 	}
+	
+	@Test
+	public void alIniciarrElJugadorConMarineDebeTener1SoldadoParaPosicionarYMismoMineral()
+			throws RecursosInsuficientesError, CasillaOcupadaError{
+		Jugador jugador = new Jugador();
+		Coordenada coordenada = new Coordenada(2, 2);
+		Casilla casilla = new Casilla(coordenada);
+		jugador.iniciarConDeposito(casilla);
+		jugador.iniciarConMarineParaPosicionar();
+		
+		Assert.assertEquals(1, jugador.cantidadSoldadosParaPosicionar());
+		Assert.assertEquals(400, jugador.cantidadMineral());
+		
+	}
 
 	@Test
 	public void elMarineDeberiaPoderAtacarDeNuevoAlPasarUnTurno()
