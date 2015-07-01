@@ -12,6 +12,7 @@ public class VentanaAcercaDeCreadores extends JFrame {
 						null,
 						"<html>          FIUBA <br>"
 								+ " Algoritmos y Programacion 3<br>"
+								+ " 1° Cuatrimestre 2015<br>"
 								+ " Alumnos:<br>"
 								+ "- Gandolfo, SantiagoVladimir<br>- Yang, Jia Jun<br>"
 								+ "- von Brudersdorff, Federico <html>",
