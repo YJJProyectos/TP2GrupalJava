@@ -31,7 +31,6 @@ public class MouseTocarRecurso implements MouseListener {
 		this.vista.setBorder(BorderFactory
 				.createLineBorder(Color.orange));
 		this.panelJuego.setSinInformacionAdicional();
-		this.panelJuego.setRecurso(this.casilla.getRecurso());
 
 	}
 
