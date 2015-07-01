@@ -14,7 +14,7 @@ import algo3.algocraft.modelo.recursos.RecolectorInvalidoError;
 import algo3.algocraft.modelo.recursos.VolcanDeGasVespeno;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.DistanciaMayorQueElRangoError;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.DistanciaFueraDeRangoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorError;
@@ -102,7 +102,7 @@ public class CentroDeMineralTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
 			CasillaOcupadaError, RecolectorInvalidoError,
-			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -127,7 +127,7 @@ public class CentroDeMineralTest {
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
 			CasillaOcupadaError, RecolectorInvalidoError,
 			JugadorIncorrectoError, PoblacionLimiteAlcanzadaError,
-			DistanciaMayorQueElRangoError {
+			DistanciaFueraDeRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();

@@ -11,7 +11,7 @@ import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.DistanciaMayorQueElRangoError;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.DistanciaFueraDeRangoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Espectro;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
@@ -160,7 +160,7 @@ public class EspectroTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -173,12 +173,12 @@ public class EspectroTest {
 		espectro.atacarEnemigo(soldadoEnemigo, jugadorEnemigo);
 	}
 
-	@Test(expected = DistanciaMayorQueElRangoError.class)
+	@Test(expected = DistanciaFueraDeRangoError.class)
 	public void deberiaNoDaniarFueraDeRango()
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -200,7 +200,7 @@ public class EspectroTest {
 	public void deberiaDaniarEnElRango() throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();

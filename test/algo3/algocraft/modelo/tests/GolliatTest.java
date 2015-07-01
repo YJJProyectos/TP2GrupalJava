@@ -12,7 +12,7 @@ import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.mapa.Mapa;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.DistanciaMayorQueElRangoError;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.DistanciaFueraDeRangoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Espectro;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
@@ -139,7 +139,7 @@ public class GolliatTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -174,7 +174,7 @@ public class GolliatTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -189,12 +189,12 @@ public class GolliatTest {
 		soldado.atacarEnemigo(soldadoAliado, jugador);
 	}
 
-	@Test(expected = DistanciaMayorQueElRangoError.class)
+	@Test(expected = DistanciaFueraDeRangoError.class)
 	public void unGolliatDeberiaNoDaniarAUnMarinePorEstarFueraDelRango()
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -217,7 +217,7 @@ public class GolliatTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
@@ -235,12 +235,12 @@ public class GolliatTest {
 		Assert.assertEquals(28, soldadoEnemigo.vidaRestante());
 	}
 
-	@Test(expected = DistanciaMayorQueElRangoError.class)
+	@Test(expected = DistanciaFueraDeRangoError.class)
 	public void deberiaNoDaniarAUnaUnidadVoladoraFueraDeRangoAereo()
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -261,7 +261,7 @@ public class GolliatTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -333,7 +333,7 @@ public class GolliatTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
@@ -355,7 +355,7 @@ public class GolliatTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();

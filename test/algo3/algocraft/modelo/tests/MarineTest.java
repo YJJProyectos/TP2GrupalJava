@@ -12,7 +12,7 @@ import algo3.algocraft.modelo.mapa.Coordenada;
 import algo3.algocraft.modelo.mapa.Mapa;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.DistanciaMayorQueElRangoError;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.DistanciaFueraDeRangoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
@@ -142,7 +142,7 @@ public class MarineTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -175,7 +175,7 @@ public class MarineTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Jugador jugador = new Jugador();
 		jugador.aumentarPoblacion();
@@ -191,12 +191,12 @@ public class MarineTest {
 		soldado.atacarEnemigo(soldadoAliado, jugador);
 	}
 
-	@Test(expected = DistanciaMayorQueElRangoError.class)
+	@Test(expected = DistanciaFueraDeRangoError.class)
 	public void unMarineDeberiaNoDaniarAUnGoliatPorEstarFueraDelRango()
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();
@@ -219,7 +219,7 @@ public class MarineTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
@@ -292,7 +292,7 @@ public class MarineTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();
@@ -314,7 +314,7 @@ public class MarineTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, CasillaOcupadaError,
 			JugadorIncorrectoError, RecursosInsuficientesError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			PoblacionLimiteAlcanzadaError, DistanciaFueraDeRangoError {
 
 		Mapa mapa = new Mapa(2);
 		Jugador jugadorAliado = new Jugador();

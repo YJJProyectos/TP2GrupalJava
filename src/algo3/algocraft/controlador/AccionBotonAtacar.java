@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.DistanciaMayorQueElRangoError;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.DistanciaFueraDeRangoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
@@ -40,7 +40,7 @@ public class AccionBotonAtacar implements ActionListener {
 		} catch (JugadorIncorrectoError e) {
 			String textoError = "<html>La unidad pertenece a otro jugador <html>";
 			new VentanaError(textoError);
-		} catch (DistanciaMayorQueElRangoError e) {
+		} catch (DistanciaFueraDeRangoError e) {
 			String textoError = "<html>La unidad esta fuera de rango <html>";
 			new VentanaError(textoError);
 		} catch (Exception e) {

@@ -8,5 +8,5 @@ public abstract class EstadoDeAtaque {
 
 	public abstract void atacar(UnidadSoldado atacante, Unidad enemigo)
 			throws NoPuedeAtacarMultiplesVecesError,
-			DistanciaMayorQueElRangoError;
+			DistanciaFueraDeRangoError;
 }

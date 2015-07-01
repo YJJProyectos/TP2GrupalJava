@@ -24,7 +24,7 @@ import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.YaHayUnidadEnEntrenamiento;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.CentroDeMineral;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.recolectores.Refineria;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.DistanciaMayorQueElRangoError;
+import algo3.algocraft.modelo.unidades.unidadesMoviles.DistanciaFueraDeRangoError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.NoPuedeAtacarMultiplesVecesError;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.PerteneceAlMismoJugadorError;
@@ -310,7 +310,7 @@ public class JugadorTest {
 			CoordenadaInvalidaError, PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, PoblacionLimiteAlcanzadaError,
 			BarracaNoConstruidaError, YaHayUnidadEnEntrenamiento,
-			DistanciaMayorQueElRangoError {
+			DistanciaFueraDeRangoError {
 		Mapa mapa = new Mapa(4);
 		Jugador jugador1 = new Jugador();
 		Jugador jugador2 = new Jugador();

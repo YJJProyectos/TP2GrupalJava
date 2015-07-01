@@ -6,7 +6,7 @@ import algo3.algocraft.modelo.unidades.comportamientos.PlanoAccion;
 public class EstadoNoAtaco extends EstadoDeAtaque {
 
 	public void atacar(UnidadSoldado atacante, Unidad enemigo)
-			throws DistanciaMayorQueElRangoError {
+			throws DistanciaFueraDeRangoError {
 		PlanoAccion plano = enemigo.getPlano();
 		int distanciaRequerida = atacante.posicion().distanciaA(
 				enemigo.posicion());
@@ -14,7 +14,7 @@ public class EstadoNoAtaco extends EstadoDeAtaque {
 		int rangoTerrestre = atacante.getRangoTerrestre();
 		int distanciaAtaque = plano.entraEnElRango(rangoAereo, rangoTerrestre);
 		if (distanciaRequerida > distanciaAtaque) {
-			throw new DistanciaMayorQueElRangoError();
+			throw new DistanciaFueraDeRangoError();
 		}
 		int danioAereo = atacante.getDanioAereo();
 		int danioTerrestre = atacante.getDanioTerrestre();
