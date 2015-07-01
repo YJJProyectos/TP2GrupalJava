@@ -1,4 +1,4 @@
-package algo3.algocraft.vista;
+package algo3.algocraft.vista.vistas;
 
 import java.awt.Image;
 

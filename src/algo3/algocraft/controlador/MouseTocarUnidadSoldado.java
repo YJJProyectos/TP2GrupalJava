@@ -26,7 +26,6 @@ public class MouseTocarUnidadSoldado implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent click) {
-		System.out.println("soldado");
 		if (click.getButton() == MouseEvent.BUTTON1) {
 			this.panelJuego.setCasillaActual(this.casilla);
 			this.panelJuego.sacarBordes();
@@ -41,8 +40,6 @@ public class MouseTocarUnidadSoldado implements MouseListener {
 					false);
 			this.panelJuego.getPanelBotones().visibilidadBotonesUnidadSoldado(
 					true);
-			// deberia setear informacion de unidad y mostrar opciones de
-			// ataque/mover
 		} else if (click.getButton() == MouseEvent.BUTTON3) {
 			this.panelJuego.setCasillaDestino(this.casilla);
 			this.panelJuego.setUnidadDerecho(this.casilla

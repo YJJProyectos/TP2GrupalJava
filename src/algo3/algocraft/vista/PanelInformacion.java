@@ -13,6 +13,9 @@ import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.UnidadEdificio;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
+import algo3.algocraft.vista.vistas.VistaGas;
+import algo3.algocraft.vista.vistas.VistaMinerales;
+import algo3.algocraft.vista.vistas.VistaPoblacion;
 
 @SuppressWarnings({ "serial" })
 public class PanelInformacion extends JPanel {

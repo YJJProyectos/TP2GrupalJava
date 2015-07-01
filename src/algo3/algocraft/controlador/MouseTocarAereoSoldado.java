@@ -27,7 +27,6 @@ public class MouseTocarAereoSoldado implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent click) {
 		if (click.getButton() == MouseEvent.BUTTON1) {
-			System.out.println("aereo");
 			this.panelJuego.setCasillaActual(this.casilla);
 			this.panelJuego.sacarBordes();
 			this.vista.setBorder(BorderFactory.createLineBorder(Color.green));
@@ -40,7 +39,6 @@ public class MouseTocarAereoSoldado implements MouseListener {
 					false);
 			this.panelJuego.getPanelBotones().visibilidadBotonesUnidadSoldado(
 					true);
-			// aca deberia pasar unidad al panel juego y setear la info
 		} else if (click.getButton() == MouseEvent.BUTTON3) {
 			this.panelJuego.setCasillaDestino(this.casilla);
 			this.panelJuego.setUnidadDerecho(this.casilla.getOcupanteAereo());

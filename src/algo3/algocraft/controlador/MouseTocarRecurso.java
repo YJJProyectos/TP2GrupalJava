@@ -25,7 +25,6 @@ public class MouseTocarRecurso implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		System.out.println("recurso");
 		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(false);
 		this.panelJuego.setCasillaActual(this.casilla);
 		this.panelJuego.sacarBordes();

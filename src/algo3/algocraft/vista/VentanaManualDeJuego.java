@@ -20,6 +20,7 @@ public class VentanaManualDeJuego extends JOptionPane{
 						+ " luego seleccionar la casilla a ocupar y tocar crear fabrica<br>"
 						+ " Para construir Puerto estelar se debe seleccionar una fabrica construida"
 						+ " luego seleccionar la casilla a ocupar y tocar crear puerto estelar<br>"
+						+ " Un soldado para posicionar no cuenta como unidad hasta que no se posicione<br>"
 						+ " El boton posicionar soldado, posiciona el primer soldado que se acaba de crear, "
 						+ " inicialmente el jugador comienza con un marine a posicionar<br>"
 						+ " Para posicionar el soldado primero se debe seleccionar una casilla vacia "

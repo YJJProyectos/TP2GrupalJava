@@ -14,9 +14,7 @@ import algo3.algocraft.modelo.mapa.Mapa;
 @SuppressWarnings("serial")
 public class PanelMapa extends JPanel {
 
-	@SuppressWarnings("unused")
 	private Mapa mapa;
-	//private HashMap<Coordenada, VistaCasilla> vistaTablero;
 	private PanelJuego panelJuego;
 
 	public PanelMapa(Mapa mapa,PanelJuego panelJuego) throws CoordenadaInvalidaError {
@@ -25,8 +23,8 @@ public class PanelMapa extends JPanel {
 		this.panelJuego = panelJuego;
 		this.setLayout(new GridLayout(mapa.getFilas(), mapa.getColumnas()));
 
-		for (int x = 1; x <= mapa.getFilas(); x++) {
-			for (int y = 1; y <= mapa.getColumnas(); y++) {
+		for (int x = 1; x <= this.mapa.getFilas(); x++) {
+			for (int y = 1; y <= this.mapa.getColumnas(); y++) {
 				Coordenada coordenada = new Coordenada(x, y);
 				Casilla casilla = mapa.getCasilla(coordenada);
 				VistaCasilla vistaCasilla = new VistaCasilla(casilla,this.panelJuego);

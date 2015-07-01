@@ -27,7 +27,6 @@ public class MouseTocarEdificio implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent click) {
 		if (click.getButton() == MouseEvent.BUTTON1) {
-			System.out.println("terrestre");
 			this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(
 					false);
 			this.panelJuego.sacarBordes();
