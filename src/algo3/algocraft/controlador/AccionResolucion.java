@@ -7,19 +7,19 @@ import algo3.algocraft.vista.VentanaInicio;
 
 public class AccionResolucion implements ActionListener {
 
-	private VentanaInicio frame;
+	private VentanaInicio ventanaInicio;
 	private int ancho;
 	private int alto;
 
-	public AccionResolucion(VentanaInicio frameImagen, int ancho, int alto) {
-		this.frame = frameImagen;
+	public AccionResolucion(VentanaInicio ventanaInicio, int ancho, int alto) {
+		this.ventanaInicio = ventanaInicio;
 		this.ancho = ancho;
 		this.alto = alto;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		frame.setDimension(ancho, alto);
+		ventanaInicio.setDimension(ancho, alto);
 	}
 
 }
