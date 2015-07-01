@@ -1,4 +1,4 @@
-package algo3.algocraft.controlador;
+package algo3.algocraft.controlador.mouseRecurso;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -12,9 +12,9 @@ import algo3.algocraft.vista.vistas.Vistas;
 
 public class MouseTocarRecurso implements MouseListener {
 	
-	private Casilla casilla;
-	private PanelJuego panelJuego;
-	private Vistas vista;
+	protected Casilla casilla;
+	protected PanelJuego panelJuego;
+	protected Vistas vista;
 
 	public MouseTocarRecurso(Casilla casilla, PanelJuego panelJuego,
 			Vistas vista) {

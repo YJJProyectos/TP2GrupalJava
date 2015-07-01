@@ -186,4 +186,13 @@ public class PanelInformacion extends JPanel {
 		this.vida.setText("Vida: " + vida);
 		this.vida.setVisible(true);
 	}
+
+	public void setInformacionRecurso(String dato, int cantidadRecurso) {
+		String datoRecurso = dato;
+		String cantidad = Integer.toString(cantidadRecurso);
+		this.tipoUnidad.setText(datoRecurso+ "  - Cantidad:");
+		this.tipoUnidad.setVisible(true);
+		this.vida.setText(cantidad);
+		this.vida.setVisible(true);
+	}
 }
