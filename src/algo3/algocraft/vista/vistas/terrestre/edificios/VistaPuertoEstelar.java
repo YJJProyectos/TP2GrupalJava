@@ -3,10 +3,10 @@ package algo3.algocraft.vista.vistas.terrestre.edificios;
 import algo3.algocraft.controlador.MouseTocarPuertoEstelar;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.vista.PanelJuego;
-import algo3.algocraft.vista.vistas.terrestre.VistaTerrestre;
+import algo3.algocraft.vista.vistas.Vistas;
 
 @SuppressWarnings("serial")
-public class VistaPuertoEstelar extends VistaTerrestre {
+public class VistaPuertoEstelar extends Vistas {
 
 	public VistaPuertoEstelar(Casilla casilla, PanelJuego panelJuego) {
 		super(casilla, panelJuego);
