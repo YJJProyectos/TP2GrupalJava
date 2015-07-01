@@ -1,4 +1,4 @@
-package algo3.algocraft.vista.vistas.aerea;
+package algo3.algocraft.vista.vistas.soldados;
 
 import java.awt.Image;
 

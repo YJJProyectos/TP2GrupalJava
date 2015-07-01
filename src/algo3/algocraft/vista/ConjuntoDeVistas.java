@@ -15,7 +15,9 @@ import algo3.algocraft.modelo.unidades.unidadesMoviles.Espectro;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Golliat;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.Marine;
 import algo3.algocraft.vista.vistas.Vistas;
-import algo3.algocraft.vista.vistas.aerea.VistaEspectro;
+import algo3.algocraft.vista.vistas.soldados.VistaEspectro;
+import algo3.algocraft.vista.vistas.soldados.VistaGolliat;
+import algo3.algocraft.vista.vistas.soldados.VistaMarine;
 import algo3.algocraft.vista.vistas.terrestre.edificios.VistaBarraca;
 import algo3.algocraft.vista.vistas.terrestre.edificios.VistaCentroDeMineral;
 import algo3.algocraft.vista.vistas.terrestre.edificios.VistaDeposito;
@@ -24,8 +26,6 @@ import algo3.algocraft.vista.vistas.terrestre.edificios.VistaPuertoEstelar;
 import algo3.algocraft.vista.vistas.terrestre.edificios.VistaRefineria;
 import algo3.algocraft.vista.vistas.terrestre.recurso.VistaMinaDeMinerales;
 import algo3.algocraft.vista.vistas.terrestre.recurso.VistaVolcanDeGas;
-import algo3.algocraft.vista.vistas.terrestre.soldados.VistaGolliat;
-import algo3.algocraft.vista.vistas.terrestre.soldados.VistaMarine;
 
 @SuppressWarnings("rawtypes")
 public class ConjuntoDeVistas {
