@@ -53,5 +53,8 @@ public class AccionBotonEntrenarGolliat implements ActionListener {
 		} 
 
 		this.panelJuego.actualizar();
+		this.panelJuego.setSinInformacionAdicional();
+		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(
+				false);
 	}
 }

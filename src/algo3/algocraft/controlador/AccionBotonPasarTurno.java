@@ -16,6 +16,9 @@ public class AccionBotonPasarTurno implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		this.panelJuego.pasarTurno();
+		this.panelJuego.setSinInformacionAdicional();
+		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(
+				false);
 	}
 
 }

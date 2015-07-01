@@ -28,6 +28,7 @@ public class AccionBotonMover implements ActionListener {
 			UnidadSoldado unidad = (UnidadSoldado) this.panelJuego
 					.getUnidadIzquierdo();
 			Casilla casilla = this.panelJuego.getCasillaDestino();
+			this.panelJuego.actualizar();
 			unidad.mover(casilla, this.juego.turnoDeJugador());
 		} catch (CasillaOcupadaError e) {
 			String textoError = "<html>Casilla ocupada <html>";
@@ -40,6 +41,5 @@ public class AccionBotonMover implements ActionListener {
 			new VentanaError(textoError);
 		}
 
-		this.panelJuego.actualizar();
 	}
 }

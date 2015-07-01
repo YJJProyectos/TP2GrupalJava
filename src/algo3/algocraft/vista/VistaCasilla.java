@@ -1,11 +1,13 @@
 package algo3.algocraft.vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -59,11 +61,13 @@ public class VistaCasilla extends JPanel implements Observer{
 			labelTerrestre = 
 				this.vistas.getVista(this.casilla.getOcupanteTerrestre().getClass());
 			this.add(labelTerrestre,BorderLayout.WEST);
+			this.labelTerrestre.setBorder(BorderFactory.createLineBorder(Color.blue));
 		}
 		if ( this.casilla.estaOcupadoElAire() ){
 			labelAereo = 
 			this.vistas.getVista(this.casilla.getOcupanteAereo().getClass());
 			this.add(labelAereo,BorderLayout.EAST);
+			this.labelAereo.setBorder(BorderFactory.createLineBorder(Color.green));
 		}
 		this.repaint();
 	}

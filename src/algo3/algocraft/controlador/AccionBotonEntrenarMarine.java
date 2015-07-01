@@ -49,5 +49,8 @@ public class AccionBotonEntrenarMarine implements ActionListener {
 		}
 
 		this.panelJuego.actualizar();
+		this.panelJuego.setSinInformacionAdicional();
+		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(
+				false);
 	}
 }

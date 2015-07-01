@@ -49,5 +49,7 @@ public class AccionBotonAtacar implements ActionListener {
 		}
 
 		this.panelJuego.actualizar();
+		this.panelJuego.setSinInformacionAdicional();
+		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(false);
 	}
 }

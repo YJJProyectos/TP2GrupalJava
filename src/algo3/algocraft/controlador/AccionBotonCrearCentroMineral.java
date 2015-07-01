@@ -50,5 +50,6 @@ public class AccionBotonCrearCentroMineral implements ActionListener {
 		}
 
 		this.panelJuego.actualizar();
+		this.panelJuego.setSinInformacionAdicional();
 	}
 }

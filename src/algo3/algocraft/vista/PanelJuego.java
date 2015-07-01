@@ -34,6 +34,7 @@ public class PanelJuego extends JPanel implements Observer {
 		this.juego = juego;
 		this.juego.addObserver(this);
 		this.setPaneles();
+		this.actualizar();
 	}
 
 	private void setPaneles() throws CoordenadaInvalidaError {

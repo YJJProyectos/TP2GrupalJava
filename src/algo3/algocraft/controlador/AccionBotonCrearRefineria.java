@@ -51,5 +51,6 @@ public class AccionBotonCrearRefineria implements ActionListener {
 		}
 
 		this.panelJuego.actualizar();
+		this.panelJuego.setSinInformacionAdicional();
 	}
 }
