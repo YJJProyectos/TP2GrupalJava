@@ -11,20 +11,20 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class PanelInicial extends JPanel {
 
-	private JLabel label;
+	private JLabel labelTitulo;
 
 	public PanelInicial() {
 		super();
 		this.setLayout(null);
-		label = new JLabel();
+		labelTitulo = new JLabel();
 		String url = "/algo3/algocraft/imagenes/algocraft.png";
 		ImageIcon imagenAdentro = new ImageIcon(getClass().getResource(url));
 		Image imagen = imagenAdentro.getImage();
 		ImageIcon imagenEscalada = new ImageIcon(imagen.getScaledInstance(600,
 				60, Image.SCALE_SMOOTH));
-		label.setIcon(imagenEscalada);
-		label.setSize(600, 60);
-		this.add(label);
+		labelTitulo.setIcon(imagenEscalada);
+		labelTitulo.setSize(600, 60);
+		this.add(labelTitulo);
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class PanelInicial extends JPanel {
 	@Override
 	public void setSize(int ancho, int alto) {
 		super.setSize(ancho, alto);
-		label.setLocation(ancho / 2 - 300, alto / 2 - 200);
+		labelTitulo.setLocation(ancho / 2 - 300, alto / 2 - 200);
 	}
 
 }
