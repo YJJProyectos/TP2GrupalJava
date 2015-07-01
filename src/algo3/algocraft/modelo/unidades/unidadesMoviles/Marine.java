@@ -3,7 +3,7 @@ package algo3.algocraft.modelo.unidades.unidadesMoviles;
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoTerrestre;
+import algo3.algocraft.modelo.unidades.comportamientos.PlanoTerrestre;
 
 public class Marine extends UnidadSoldado {
 

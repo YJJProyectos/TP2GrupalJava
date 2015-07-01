@@ -1,7 +1,7 @@
 package algo3.algocraft.modelo.unidades.unidadesMoviles;
 
 import algo3.algocraft.modelo.unidades.Unidad;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoAccion;
+import algo3.algocraft.modelo.unidades.comportamientos.PlanoAccion;
 
 public class EstadoNoAtaco extends EstadoDeAtaque {
 

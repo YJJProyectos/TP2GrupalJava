@@ -6,8 +6,8 @@ import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
 import algo3.algocraft.modelo.unidades.Unidad;
+import algo3.algocraft.modelo.unidades.comportamientos.PlanoAccion;
 import algo3.algocraft.modelo.unidades.unidadesEdificios.JugadorIncorrectoError;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoAccion;
 
 public class UnidadSoldado extends Unidad {
 

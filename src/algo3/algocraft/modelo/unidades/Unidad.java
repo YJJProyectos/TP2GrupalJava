@@ -3,7 +3,7 @@ package algo3.algocraft.modelo.unidades;
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.mapa.CasillaOcupadaError;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoAccion;
+import algo3.algocraft.modelo.unidades.comportamientos.PlanoAccion;
 
 public abstract class Unidad {
 

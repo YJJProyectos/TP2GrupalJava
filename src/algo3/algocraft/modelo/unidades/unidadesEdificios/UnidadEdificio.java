@@ -2,7 +2,7 @@ package algo3.algocraft.modelo.unidades.unidadesEdificios;
 
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.unidades.Unidad;
-import algo3.algocraft.modelo.unidades.unidadesMoviles.comportamientos.PlanoTerrestre;
+import algo3.algocraft.modelo.unidades.comportamientos.PlanoTerrestre;
 
 public abstract class UnidadEdificio extends Unidad {
 
