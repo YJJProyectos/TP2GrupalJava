@@ -148,4 +148,8 @@ public class PanelJuego extends JPanel implements Observer {
 	public void setInformacionUnidadEnEntrenamiento(String datos) {
 		this.panelInformacion.setInformacionUnidadEnEntrenamiento(datos);
 	}
+	
+	public void setInformacionRecurso(String dato, int cantidadRecurso) {
+		this.panelInformacion.setInformacionRecurso(dato, cantidadRecurso);
+	}
 }
