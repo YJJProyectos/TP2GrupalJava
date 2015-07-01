@@ -626,8 +626,6 @@ public class PuertoEstelarTest {
 		puerto.entrenarEspectro(otroJugador);
 	}
 
-
-
 	@Test(expected = PuertoEstelarNoConstruidoError.class)
 	public void deberiaNoPoderEntrenarUnEspectroPorqueNoTerminoDeConstruirse()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
@@ -657,8 +655,6 @@ public class PuertoEstelarTest {
 				fabrica);
 		puerto.entrenarEspectro(jugador);
 	}
-
-
 
 	@Test(expected = FabricaDestruidaError.class)
 	public void deberiaNoPoderEntrenarUnEspectroPorqueLaFabricaEstaDestruida()
@@ -695,8 +691,6 @@ public class PuertoEstelarTest {
 		puerto.entrenarEspectro(jugador);
 	}
 
-
-
 	@Test
 	public void deberiaEntrenarUnEspectro() throws PerteneceAOtroJugadorError,
 			RecursosInsuficientesError, FabricaNoConstruidaError,
@@ -730,9 +724,8 @@ public class PuertoEstelarTest {
 		}
 		jugador.aumentarPoblacion();
 		puerto.entrenarEspectro(jugador);
+		Assert.assertEquals(8, puerto.tiempoFaltanteEntrenarEspectro());
 	}
-
-
 
 	@Test(expected = YaHayUnidadEnEntrenamiento.class)
 	public void noDeberiaPoderComenzarAEntrenarAUnEspectroMientrasEsteEntrenandoAOtraUnidad()
@@ -770,8 +763,6 @@ public class PuertoEstelarTest {
 		puerto.entrenarEspectro(jugador);
 	}
 
-
-
 	@Test
 	public void deberiaPoderEntrenarAUnEspectroLuegoDeFinalizarElEntrenamientoDeOtraUnidad()
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
@@ -804,15 +795,17 @@ public class PuertoEstelarTest {
 			puerto.pasarTurno();
 		}
 		jugador.aumentarPoblacion();
+		Assert.assertFalse(puerto.unidadEnConstruccion());
 		puerto.entrenarEspectro(jugador);
+		Assert.assertTrue(puerto.unidadEnConstruccion());
 		for (int j = 0; j < 8; j++) {
 			puerto.pasarTurno();
 		}
 		jugador.aumentarPoblacion();
+		Assert.assertFalse(puerto.unidadEnConstruccion());
 		puerto.entrenarEspectro(jugador);
+		Assert.assertTrue(puerto.unidadEnConstruccion());
 	}
-
-
 
 	@Test(expected = PerteneceAOtroJugadorError.class)
 	public void deberiaLanzarLaExcepcionPerteneceAOtroJugadorErrorSiElPuertoEstelarPerteneceAOtroJugador()

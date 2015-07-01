@@ -45,7 +45,7 @@ public class MouseTocarPuertoEstelar implements MouseListener {
 				this.panelJuego.getPanelBotones()
 						.visibilidadBotonEntrenarEspectro(true);
 				if (puerto.unidadEnConstruccion()) {
-					int turnosFaltantes = puerto.tiempoFaltanteCrearUnidad();
+					int turnosFaltantes = puerto.tiempoFaltanteEntrenarEspectro();
 					String datos = "Espectro a crear(" + turnosFaltantes
 							+ "turnos)";
 					this.panelJuego.setInformacionUnidadEnEntrenamiento(datos);

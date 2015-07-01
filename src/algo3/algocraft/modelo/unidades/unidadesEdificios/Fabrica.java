@@ -95,7 +95,7 @@ public class Fabrica extends UnidadEdificio {
 		return this.golliatEnEntrenamiento != null;
 	}
 
-	public int tiempoFaltanteCrearGolliat() {
+	public int tiempoFaltanteEntrenarGolliat() {
 		return this.turnosRestantesParaTerminarGolliat;
 	}
 

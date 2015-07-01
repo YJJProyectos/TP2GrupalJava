@@ -287,6 +287,7 @@ public class BarracaTest {
 			barraca.pasarTurno();
 		}
 		barraca.entrenarMarine(jugador);
+		Assert.assertEquals(3, barraca.tiempoFaltanteEntrenarMarine());
 	}
 
 	@Test(expected = YaHayUnidadEnEntrenamiento.class)
@@ -322,11 +323,26 @@ public class BarracaTest {
 		for (int i = 0; i < 12; i++) {
 			barraca.pasarTurno();
 		}
+		Assert.assertFalse(barraca.unidadEnConstruccion());
 		barraca.entrenarMarine(jugador);
+		Assert.assertTrue(barraca.unidadEnConstruccion());
 		for (int j = 0; j < 3; j++) {
 			barraca.pasarTurno();
 		}
+		Assert.assertFalse(barraca.unidadEnConstruccion());
 		barraca.entrenarMarine(jugador);
+		Assert.assertTrue(barraca.unidadEnConstruccion());
+	}
+
+	@Test
+	public void elNombreDeUnaBarracaEsBarraca()
+			throws RecursosInsuficientesError, CasillaOcupadaError {
+		Jugador jugador = new Jugador();
+		jugador.aumentarPoblacion();
+		Coordenada coordenada = new Coordenada(1, 1);
+		Casilla casilla = new Casilla(coordenada);
+		Barraca barraca = new Barraca(jugador, casilla);
+		Assert.assertEquals("Barraca", barraca.getNombre());
 	}
 
 }

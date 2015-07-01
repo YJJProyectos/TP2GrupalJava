@@ -12,7 +12,7 @@ public class PuertoEstelar extends UnidadEdificio {
 
 	private Fabrica fabrica;
 	private Espectro espectroEnEntrenamiento;
-	private int turnosRestantesParaTerminarUnidad;
+	private int turnosRestantesParaTerminarEspectro;
 
 	public PuertoEstelar(Jugador unJugador, Casilla casilla, Fabrica unaFabrica)
 			throws PerteneceAOtroJugadorError, RecursosInsuficientesError,
@@ -28,7 +28,7 @@ public class PuertoEstelar extends UnidadEdificio {
 		this.enConstruccion = true;
 		this.turnosRestantes = 10;
 		this.espectroEnEntrenamiento = null;
-		this.turnosRestantesParaTerminarUnidad = 8;
+		this.turnosRestantesParaTerminarEspectro = 8;
 		this.jugador.validarCosto(this.costoMineral, this.costoGas);
 		this.posicionar(casilla);
 		this.jugador.pagar(this.costoMineral, this.costoGas);
@@ -71,12 +71,12 @@ public class PuertoEstelar extends UnidadEdificio {
 		if (this.espectroEnEntrenamiento == null) {
 			return;
 		}
-		this.turnosRestantesParaTerminarUnidad -= 1;
-		if (this.turnosRestantesParaTerminarUnidad == 0) {
+		this.turnosRestantesParaTerminarEspectro -= 1;
+		if (this.turnosRestantesParaTerminarEspectro == 0) {
 			this.jugador
 					.agregarSoldadoParaPosicionar(this.espectroEnEntrenamiento);
 			this.espectroEnEntrenamiento = null;
-			this.turnosRestantesParaTerminarUnidad = 8;
+			this.turnosRestantesParaTerminarEspectro = 8;
 		}
 	}
 
@@ -95,8 +95,8 @@ public class PuertoEstelar extends UnidadEdificio {
 		return this.espectroEnEntrenamiento != null;
 	}
 
-	public int tiempoFaltanteCrearUnidad() {
-		return this.turnosRestantesParaTerminarUnidad;
+	public int tiempoFaltanteEntrenarEspectro() {
+		return this.turnosRestantesParaTerminarEspectro;
 	}
 
 }

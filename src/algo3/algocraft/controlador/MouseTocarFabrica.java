@@ -44,7 +44,7 @@ public class MouseTocarFabrica implements MouseListener {
 				this.panelJuego.getPanelBotones()
 						.visibilidadBotonEntrenarGolliat(true);
 				if (fabrica.unidadEnConstruccion()) {
-					int turnosFaltantes = fabrica.tiempoFaltanteCrearGolliat();
+					int turnosFaltantes = fabrica.tiempoFaltanteEntrenarGolliat();
 					String datos = "Golliat a crear(" + turnosFaltantes
 							+ "turnos)";
 					this.panelJuego.setInformacionUnidadEnEntrenamiento(datos);

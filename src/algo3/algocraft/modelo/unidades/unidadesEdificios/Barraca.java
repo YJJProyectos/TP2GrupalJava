@@ -81,7 +81,7 @@ public class Barraca extends UnidadEdificio {
 		return this.marineEnEntrenamiento != null;
 	}
 
-	public int tiempoFaltanteCrearMarine() {
+	public int tiempoFaltanteEntrenarMarine() {
 		return this.turnosRestantesParaTerminarMarine;
 	}
 

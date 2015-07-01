@@ -507,6 +507,7 @@ public class FabricaTest {
 			fabrica.pasarTurno();
 		}
 		fabrica.entrenarGolliat(jugador);
+		Assert.assertEquals(6, fabrica.tiempoFaltanteEntrenarGolliat());
 	}
 
 	@Test(expected = YaHayUnidadEnEntrenamiento.class)
@@ -561,11 +562,15 @@ public class FabricaTest {
 		for (int j = 0; j < 12; j++) {
 			fabrica.pasarTurno();
 		}
+		Assert.assertFalse(fabrica.unidadEnConstruccion());
 		fabrica.entrenarGolliat(jugador);
+		Assert.assertTrue(fabrica.unidadEnConstruccion());
 		for (int j = 0; j < 6; j++) {
 			fabrica.pasarTurno();
 		}
+		Assert.assertFalse(fabrica.unidadEnConstruccion());
 		fabrica.entrenarGolliat(jugador);
+		Assert.assertTrue(fabrica.unidadEnConstruccion());
 	}
 
 	@Test(expected = PerteneceAOtroJugadorError.class)
