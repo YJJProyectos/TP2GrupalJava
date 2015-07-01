@@ -86,7 +86,7 @@ public class BarracaTest {
 			throws PerteneceAlMismoJugadorError,
 			NoPuedeAtacarMultiplesVecesError, RecursosInsuficientesError,
 			CasillaOcupadaError, JugadorIncorrectoError,
-			PoblacionLimiteAlcanzadaError, DistanciaMayorQueElRangoError {
+			DistanciaMayorQueElRangoError, PoblacionLimiteAlcanzadaError {
 
 		Jugador jugadorAliado = new Jugador();
 		Jugador jugadorEnemigo = new Jugador();

@@ -11,7 +11,7 @@ public class EstadoNoAtaco extends EstadoDeAtaque {
 		int distanciaRequerida = atacante.posicion().distanciaA(
 				enemigo.posicion());
 		int rangoAereo = atacante.getRangoAereo();
-		int rangoTerrestre = atacante.getDanioTerrestre();
+		int rangoTerrestre = atacante.getRangoTerrestre();
 		int distanciaAtaque = plano.entraEnElRango(rangoAereo, rangoTerrestre);
 		if (distanciaRequerida > distanciaAtaque) {
 			throw new DistanciaMayorQueElRangoError();
