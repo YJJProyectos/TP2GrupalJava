@@ -4,6 +4,7 @@ import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.PoblacionLimiteAlcanzadaError;
 import algo3.algocraft.modelo.juego.RecursosInsuficientesError;
 import algo3.algocraft.modelo.unidades.comportamientos.PlanoAereo;
+import algo3.algocraft.vista.Sonido;
 
 public class Espectro extends UnidadSoldado {
 
@@ -17,5 +18,12 @@ public class Espectro extends UnidadSoldado {
 		this.jugador.pagar(this.costoMineral, this.costoGas);
 		this.jugador.aumentarSuministro(this.suministro);
 	}
+	
+	@Override
+	public void sonidoAtacar(){
+		Sonido sonido = Sonido.getInstance();
+		sonido.ataqueDeEspectro();
+	}
+
 
 }
