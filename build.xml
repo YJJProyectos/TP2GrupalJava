@@ -139,6 +139,9 @@
 		<copydir src="src/algo3/algocraft/imagenes"
 			dest="${build}/classes/algo3/algocraft/imagenes"
 			includes="**/*.jpg"/>
+		<copydir src="src/algo3/algocraft/sonidos"
+			dest="${build}/classes/algo3/algocraft/sonidos"
+			includes="**/*.wav"/>
 		<jar destfile="${build}/dist/ProgramaPrincipal.jar" basedir="${build}/classes"/>
 	</target>
 
