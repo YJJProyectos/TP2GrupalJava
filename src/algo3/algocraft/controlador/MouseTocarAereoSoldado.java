@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import algo3.algocraft.modelo.mapa.Casilla;
 import algo3.algocraft.modelo.unidades.unidadesMoviles.UnidadSoldado;
 import algo3.algocraft.vista.PanelJuego;
+import algo3.algocraft.vista.Sonido;
 import algo3.algocraft.vista.vistas.Vistas;
 
 public class MouseTocarAereoSoldado implements MouseListener {
@@ -37,8 +38,9 @@ public class MouseTocarAereoSoldado implements MouseListener {
 							.getOcupanteAereo());
 			this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(
 					false);
-			this.panelJuego.getPanelBotones().visibilidadBotonesUnidadSoldado(
-					true);
+			/*this.panelJuego.getPanelBotones().visibilidadBotonesUnidadSoldado(
+					true); */
+			Sonido.getInstance().voz();
 		} else if (click.getButton() == MouseEvent.BUTTON3) {
 			this.panelJuego.setCasillaDestino(this.casilla);
 			this.panelJuego.setUnidadDerecho(this.casilla.getOcupanteAereo());

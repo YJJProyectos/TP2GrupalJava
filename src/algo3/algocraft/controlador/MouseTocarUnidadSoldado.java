@@ -39,8 +39,8 @@ public class MouseTocarUnidadSoldado implements MouseListener {
 							.getOcupanteTerrestre());
 			this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(
 					false);
-			this.panelJuego.getPanelBotones().visibilidadBotonesUnidadSoldado(
-					true);
+			/*this.panelJuego.getPanelBotones().visibilidadBotonesUnidadSoldado(
+					true); */
 			Sonido.getInstance().voz();
 		} else if (click.getButton() == MouseEvent.BUTTON3) {
 			this.panelJuego.setCasillaDestino(this.casilla);
