@@ -111,7 +111,7 @@ public class Sonido {
 	public void voz() {
 		voz.close();
 		try {
-			int numero = (int) Math.round(Math.random() * 4);
+			int numero = (int) Math.round(Math.random() * 3);
 			String url = "/algo3/algocraft/sonidos/voz";
 			voz.open(AudioSystem.getAudioInputStream
 					(getClass().getResourceAsStream(url + numero +".wav")));
