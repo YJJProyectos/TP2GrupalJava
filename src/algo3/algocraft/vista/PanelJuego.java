@@ -83,6 +83,14 @@ public class PanelJuego extends JPanel implements Observer {
 	public void pasarTurno() {
 		this.juego.pasarTurno();
 		this.actualizar();
+		this.limpiarCasillasYUnidades();
+	}
+
+	private void limpiarCasillasYUnidades() {
+		this.casillaActual = null;
+		this.casillaDestino = null;
+		this.unidadActualIzquierdo = null;
+		this.unidadActualDerecho = null;
 	}
 
 	public void setCasillaActual(Casilla casilla) {
@@ -152,5 +160,9 @@ public class PanelJuego extends JPanel implements Observer {
 	
 	public void setInformacionRecurso(String dato, int cantidadRecurso) {
 		this.panelInformacion.setInformacionRecurso(dato, cantidadRecurso);
+	}
+	
+	public Juego getJuego(){
+		return this.juego;
 	}
 }

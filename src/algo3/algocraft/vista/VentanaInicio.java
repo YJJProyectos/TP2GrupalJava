@@ -18,6 +18,7 @@ import algo3.algocraft.controlador.AccionEmpezarMapaJuego;
 import algo3.algocraft.controlador.AccionReiniciar;
 import algo3.algocraft.controlador.AccionSalir;
 import algo3.algocraft.controlador.AccionResolucion;
+import algo3.algocraft.controlador.AccionSonidoFondo;
 import algo3.algocraft.modelo.juego.Juego;
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.juego.NombresInvalidosError;
@@ -34,14 +35,17 @@ public class VentanaInicio extends JFrame {
 	private JMenu menuArchivo;
 	private JMenu menuResoluciones;
 	private JMenu menuAcercaDe;
+	private JMenu menuSonido;
 	private JMenuItem menuComenzarJuego;
 	private JMenuItem menuItemSalir, menuItem1024, menuItem800,
 			menuItemDefecto, menuItemResMaxima;
 	private JMenuItem menuCreadores,menuManualDeJuego;
+	private JMenuItem menuSonidoFondo;
 	private JButton botonComenzar, botonSalir, botonEmpezarMapa;
 	private Container contenedor;
 	private JTextField nombreJugador1, nombreJugador2;
 	private JTextField cartelNombreJugador1,cartelNombreJugador2;
+	private SonidoFondo sonidoFondo;
 
 	private Juego juego;
 
@@ -76,7 +80,7 @@ public class VentanaInicio extends JFrame {
 		menuItemSalir = new JMenuItem("Salir");
 		menuItemSalir.addActionListener(new AccionSalir());
 		menuArchivo.add(menuItemSalir);
-
+		
 		menuResoluciones = new JMenu("Resoluciones");
 		barraMenu.add(menuResoluciones);
 
@@ -96,6 +100,15 @@ public class VentanaInicio extends JFrame {
 		menuItemDefecto = new JMenuItem("Por defecto");
 		menuItemDefecto.addActionListener(new AccionResolucion(this, 900, 700));
 		menuResoluciones.add(menuItemDefecto);
+		
+		menuSonido = new JMenu("Sonido");
+		barraMenu.add(menuSonido);
+		
+		this.sonidoFondo = new SonidoFondo();
+		
+		menuSonidoFondo = new JMenuItem("Activar/Desactivar sonido fondo");
+		menuSonidoFondo.addActionListener(new AccionSonidoFondo(this.sonidoFondo));
+		menuSonido.add(menuSonidoFondo);
 
 		menuAcercaDe = new JMenu("Acerca De");
 		barraMenu.add(menuAcercaDe);

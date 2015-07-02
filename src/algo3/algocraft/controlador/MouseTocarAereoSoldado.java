@@ -42,6 +42,7 @@ public class MouseTocarAereoSoldado implements MouseListener {
 		} else if (click.getButton() == MouseEvent.BUTTON3) {
 			this.panelJuego.setCasillaDestino(this.casilla);
 			this.panelJuego.setUnidadDerecho(this.casilla.getOcupanteAereo());
+			AccionesSoldado.atacar(panelJuego);
 		}
 	}
 

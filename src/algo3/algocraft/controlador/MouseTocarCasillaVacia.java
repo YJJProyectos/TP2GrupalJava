@@ -36,6 +36,7 @@ public class MouseTocarCasillaVacia implements MouseListener {
 					.createLineBorder(Color.red));
 		} else if (click.getButton() == MouseEvent.BUTTON3) {
 			this.panelJuego.setCasillaDestino(this.casilla);
+			AccionesSoldado.mover(panelJuego);
 		}
 	}
 

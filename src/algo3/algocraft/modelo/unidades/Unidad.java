@@ -30,7 +30,7 @@ public abstract class Unidad {
 
 	public void recibirDanio(int danio) {
 		this.vida = this.vida - danio;
-		if (this.vida <= 0) {
+		if ( this.estaDestruido() ) {
 			this.plano.remover(this.posicion);
 		}
 	}
@@ -81,6 +81,9 @@ public abstract class Unidad {
 
 	public String getNombre() {
 		return this.nombre;
+	}
+	public void sonidoDestruccion(){
+		
 	}
 
 }

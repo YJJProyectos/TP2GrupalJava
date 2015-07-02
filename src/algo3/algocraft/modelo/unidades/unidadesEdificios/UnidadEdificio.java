@@ -3,6 +3,7 @@ package algo3.algocraft.modelo.unidades.unidadesEdificios;
 import algo3.algocraft.modelo.juego.Jugador;
 import algo3.algocraft.modelo.unidades.Unidad;
 import algo3.algocraft.modelo.unidades.comportamientos.PlanoTerrestre;
+import algo3.algocraft.vista.Sonido;
 
 public abstract class UnidadEdificio extends Unidad {
 
@@ -19,6 +20,12 @@ public abstract class UnidadEdificio extends Unidad {
 
 	public boolean esTerrestre() {
 		return true;
+	}
+	
+	@Override
+	public void sonidoDestruccion(){
+		Sonido sonido = Sonido.getInstance();
+		sonido.destruccionEdificio();
 	}
 
 	public abstract int tiempoDeConstruccion();

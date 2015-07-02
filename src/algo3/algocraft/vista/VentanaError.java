@@ -7,6 +7,8 @@ import javax.swing.JOptionPane;
 public class VentanaError extends JFrame {
 
 	public VentanaError(String textoError) {
+		Sonido sonido = Sonido.getInstance();
+		sonido.error();
 		JOptionPane.showMessageDialog(null, textoError, "Error",
 				JOptionPane.ERROR_MESSAGE);
 

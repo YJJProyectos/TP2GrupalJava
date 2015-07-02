@@ -55,6 +55,7 @@ public class MouseTocarPuertoEstelar implements MouseListener {
 			this.panelJuego.setCasillaDestino(this.casilla);
 			this.panelJuego.setUnidadDerecho(this.casilla
 					.getOcupanteTerrestre());
+			AccionesSoldado.atacar(panelJuego);
 		}
 	}
 

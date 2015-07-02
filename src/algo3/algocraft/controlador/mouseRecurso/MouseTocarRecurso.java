@@ -24,13 +24,15 @@ public class MouseTocarRecurso implements MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(false);
-		this.panelJuego.setCasillaActual(this.casilla);
-		this.panelJuego.sacarBordes();
-		this.vista.setBorder(BorderFactory
-				.createLineBorder(Color.orange));
-		this.panelJuego.setSinInformacionAdicional();
+	public void mouseClicked(MouseEvent click) {
+		if (click.getButton() == MouseEvent.BUTTON1) {
+			this.panelJuego.getPanelBotones().visibilidadCasillasEspeciales(false);
+			this.panelJuego.setCasillaActual(this.casilla);
+			this.panelJuego.sacarBordes();
+			this.vista.setBorder(BorderFactory
+					.createLineBorder(Color.orange));
+			this.panelJuego.setSinInformacionAdicional();
+		}
 
 	}
 

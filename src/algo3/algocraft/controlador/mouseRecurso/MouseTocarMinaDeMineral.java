@@ -14,10 +14,12 @@ public class MouseTocarMinaDeMineral extends MouseTocarRecurso{
 	}
 	
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		super.mouseClicked(arg0);
-		this.panelJuego.setInformacionRecurso("Mina De Mineral", 
-				this.casilla.getRecurso().getCantidad());
+	public void mouseClicked(MouseEvent click) {
+		super.mouseClicked(click);
+		if (click.getButton() == MouseEvent.BUTTON1) {
+			this.panelJuego.setInformacionRecurso("Mina De Mineral", 
+					this.casilla.getRecurso().getCantidad());
+		}
 	}
 
 }

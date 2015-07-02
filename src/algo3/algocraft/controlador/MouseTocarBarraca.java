@@ -54,6 +54,7 @@ public class MouseTocarBarraca implements MouseListener {
 			this.panelJuego.setCasillaDestino(this.casilla);
 			this.panelJuego.setUnidadDerecho(this.casilla
 					.getOcupanteTerrestre());
+			AccionesSoldado.atacar(panelJuego);
 		}
 	}
 

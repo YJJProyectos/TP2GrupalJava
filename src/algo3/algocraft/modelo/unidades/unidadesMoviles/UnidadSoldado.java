@@ -78,4 +78,8 @@ public class UnidadSoldado extends Unidad {
 		return danioTerrestre;
 	}
 
+	public void sonidoAtacar() {
+		
+	}
+
 }
